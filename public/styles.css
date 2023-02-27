@@ -60,3 +60,12 @@ footer p {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+
+.content {
+  color: green;
+}
+
+.title {
+  color: rgb(66, 66, 162);
+  background: rgb(170, 81, 170);
+}
