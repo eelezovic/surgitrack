@@ -3,6 +3,10 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
 import contacts from "./contacts";
+import styles from "./Header.module.css"
+
+
+
 
 function App() {
   return ( 
