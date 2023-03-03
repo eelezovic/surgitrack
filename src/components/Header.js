@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "./Header.module.css"
 
 function Header() {
   return (
-    <header>
-      <h1>Instrument Tracking System</h1>
-    </header>
+    <div className={styles.header}>
+      <h1>Home</h1>
+    </div>
   );
 }
 

@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import Note from "./Note";
-import contacts from "./contacts";
-import styles from "./Header.module.css"
+import Note from "./items";
+import contacts from "./home.contents";
+
 
 
 
@@ -13,12 +13,13 @@ function App() {
   <div>
     <Header />
     <Note 
-      title={contacts[0].title}
       content={contacts[0].content}
     />
       <Note 
-      title={contacts[1].title}
       content={contacts[1].content}
+    />
+    <Note 
+      content={contacts[2].content}
     />
     <Footer />
   </div>
