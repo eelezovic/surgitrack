@@ -1,29 +1,28 @@
-import React from "react";
-import Header from "./Header";
+import React, { useState } from "react";
 import Footer from "./Footer";
-import Note from "./items";
-import contacts from "./home";
-
-
-
-const  isLoggedIn = false ;
-
+import Navbar from "./Navbar";
+import Home from "../pages/Home";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
+import { Route, Routes } from "react-router-dom";
+import ButtonComponent from "./buttons/ButtonComponent";
 
 function App() {
   return ( 
-  <div>
-    <Header />
-    <Note 
-      content={contacts[0].content}
-    />
-      <Note 
-      content={contacts[1].content}
-    />
-    <Note 
-      content={contacts[2].content}
-    />
+  <>
+    <Navbar />
+    <div className="navbar-container">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </div>
+    <ButtonComponent />
+
+
     <Footer />
-  </div>
+  </>
   );
 }
 
