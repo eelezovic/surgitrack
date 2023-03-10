@@ -9,22 +9,11 @@ html {
 }
 
 body {
-  background: #d0ced0;
+  background: white;
 }
 
-.navbar {
-  background-color: #39559e;
-  color: white;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 75px;
-}
 
-.logo {
-  color: #d6d8fc;
-  font-size: 30px;
-}
+
 
 .nav-links {
   display: flex;
@@ -61,11 +50,11 @@ body {
   }
   .nav-link-mobile {
     position: absolute;
-    display:block;
+    display: grid;
     list-style: none;
     background-color: #39559e;
     left: 0;
-    top: 75px;
+    top: 10px;
     transition: all 0.5s ease-out;
     width: 100%;
   }
@@ -91,17 +80,6 @@ body {
 }
 }
 
-.main-container {
-  background: #fff;
-  border-radius: 7px;
-  cursor: pointer;
-  padding: 30px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
 
 .item-container {
   color: black;
@@ -114,27 +92,63 @@ footer {
   text-align: center;
   bottom: 0;
   width: 100%;
-  height: 2.3rem;
-  padding: 10px;
+  height: 4rem;
+  padding: 30px;
+  background-color: #39559e;
 }
 
 footer p {
   color: #9a8f8f;
+  font-size: 0.7rem;
 }
 
 /*ButtonComponent CSS*/
 .item-container {
+  border-radius: 10px;
   background-color: #819ee5;
   color: white;
   display: flex;
-  justify-content: space-around;
-  text-align: center;
-  width: 40%;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
   height: 10vh;
 }
 
-.button-container {
+/*Home.js component */
+.main-container {
+  background: #fff;
+  cursor: pointer;
+  width: 100%;
+  height: 100vh;
   display: flex;
-  justify-content: space-around;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 40px;
+  gap: 50px;
+}
+@media screen and (max-width: 1000px) {
+  .main-container {
+    background: #fff;
+    cursor: pointer;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 70px 20px;
+    margin-top: 60px;
+    padding: 30px;
+  }
+  .item-container {
+    border-radius: 10px;
+    background-color: #819ee5;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    width: 50%;
+    height: 10vh;
+  }
 }

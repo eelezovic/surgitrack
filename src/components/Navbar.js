@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-
+import styles from "./Navbar.module.css";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
 
 function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
   return (
-  <nav className="navbar">
-    <h2 className="logo">Logo</h2>
-    <ul className={isMobile ?  "nav-link-mobile" : "nav-links"}
+  <nav className={styles.navbar}>
+    <h2 className={styles.logo}>Logo</h2>
+    <ul className={isMobile ?  styles.navLinkMobile : "nav-links"}
     onClick={() => setIsMobile(false)}>
       <Link to="/" className="home">Home</Link>
       <Link to="/about" className="about">About</Link>

@@ -1,0 +1,14 @@
+
+.navbar {
+  background-color: #39559e;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 75px;
+}
+
+.logo {
+  color: #819ee5;
+  font-size: 30px;
+}
