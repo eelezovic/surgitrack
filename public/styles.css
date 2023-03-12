@@ -12,98 +12,14 @@ body {
   background: white;
 }
 
-
-
-
-.nav-links {
-  display: flex;
-  justify-content:flex-end;
-  list-style: none;
-  width: 75%;
-}
-
-.home,
-.about,
-.contact {
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  padding: 10px 20px;
-  margin: 0 10px;
-  cursor: pointer;
-}
-
-.mobile-menu-icon {
-  display: none;
-}
-
-
-@media screen and (max-width: 780px) {
-  .logo {
-    display: flex;
-    position: absolute;
-    top: 15px;
-    left: 35px;
-  }
-  .nav-links {
-    display: none;
-  }
-  .nav-link-mobile {
-    position: absolute;
-    display: grid;
-    list-style: none;
-    background-color: #39559e;
-    left: 0;
-    top: 10px;
-    transition: all 0.5s ease-out;
-    width: 100%;
-  }
-.home,
-.about,
-.contact {
-  color: white;
-  text-align: center;
-  padding: 32px;
-  width: 100%;
-  transition: all 0.5s ease;
-}
-.mobile-menu-icon {
-  display: block;
-  position: absolute;
-  font-size: 30px;
-  color: white;
-  background-color: #39559e;
-  border: none;
-  outline: none;
-  top: 15px;
-  right: 25px
-}
-}
-
-
-.item-container {
+.itemContainer {
   color: black;
   border: 1px solid #39559e;
 }
 
 
-footer {
-  position: absolute;
-  text-align: center;
-  bottom: 0;
-  width: 100%;
-  height: 4rem;
-  padding: 30px;
-  background-color: #39559e;
-}
-
-footer p {
-  color: #9a8f8f;
-  font-size: 0.7rem;
-}
-
 /*ButtonComponent CSS*/
-.item-container {
+.itemContainer {
   border-radius: 10px;
   background-color: #819ee5;
   color: white;
@@ -115,7 +31,7 @@ footer p {
 }
 
 /*Home.js component */
-.main-container {
+.mainContainer {
   background: #fff;
   cursor: pointer;
   width: 100%;
@@ -128,7 +44,7 @@ footer p {
   gap: 50px;
 }
 @media screen and (max-width: 1000px) {
-  .main-container {
+  .mainContainer {
     background: #fff;
     cursor: pointer;
     width: 100%;
@@ -141,7 +57,7 @@ footer p {
     margin-top: 60px;
     padding: 30px;
   }
-  .item-container {
+  .itemContainer {
     border-radius: 10px;
     background-color: #819ee5;
     color: white;

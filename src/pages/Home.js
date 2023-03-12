@@ -3,17 +3,17 @@ import ButtonComponent from "../components/buttons/ButtonComponent";
 
 function Home() {
   return (
-  <div className="main-container">
-    <div className="search-container">
+  <div className="mainContainer">
+    <div className="searchContainer">
       <label><b>Search </b></label>
       <input type="text"></input>
     </div>
-    <div className="item-container">
+    <div className="itemContainer">
       <ButtonComponent name="Instruments"></ButtonComponent>
     </div>
-    <div className="item-container">
+    <div className="itemContainer">
       <ButtonComponent name="Instrument Sets"></ButtonComponent>
-      <ButtonComponent  name="Click ME" onClick={() => alert("Click")}></ButtonComponent>
+      <ButtonComponent  name="Click ME" klik={() => alert("Emir")}></ButtonComponent>
     </div>
   </div> 
   );

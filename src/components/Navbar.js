@@ -8,14 +8,14 @@ function Navbar() {
   return (
   <nav className={styles.navbar}>
     <h2 className={styles.logo}>Logo</h2>
-    <ul className={isMobile ?  styles.navLinkMobile : "nav-links"}
+    <ul className={isMobile ?  styles.navLinkMobile : styles.navLinks}
     onClick={() => setIsMobile(false)}>
-      <Link to="/" className="home">Home</Link>
-      <Link to="/about" className="about">About</Link>
-      <Link to="/contact" className="contact">Contact</Link>
+      <Link to="/" className={styles.home}>Home</Link>
+      <Link to="/about" className={styles.about}>About</Link>
+      <Link to="/contact" className={styles.contact}>Contact</Link>
     </ul>
     <button 
-      className="mobile-menu-icon"
+      className={styles.mobileMenuIcon}
       onClick={() => setIsMobile(!isMobile)}
     >
       {isMobile ? <i className="fas fa-times"></i> : <i className="fas fa-bars"></i>}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Home from "../pages/Home";
@@ -6,7 +6,7 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import { Route, Routes } from "react-router-dom";
 import ButtonComponent from "./buttons/ButtonComponent";
-import SearchComponent from "./SearchComponent";
+
 
 function App() {
   return ( 
@@ -20,7 +20,6 @@ function App() {
       </Routes>
     </div>
     <ButtonComponent />
-    <SearchComponent />
     <Footer />
   </>
   );
