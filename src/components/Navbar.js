@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 
 function Navbar() {
@@ -23,7 +23,7 @@ function Navbar() {
   </nav>
   );
 }
-
+/*
 function CustomLink({ to, children, ...props}) {
   const resolvedPath = useResolvedPath(to)
   const isActive = useMatch({ path: resolvedPath.pathname, end: true}) // to keep end: true?
@@ -33,5 +33,5 @@ function CustomLink({ to, children, ...props}) {
     </li>
   );
 } 
-
+*/
 export default Navbar

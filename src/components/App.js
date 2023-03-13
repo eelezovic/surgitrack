@@ -5,21 +5,23 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import { Route, Routes } from "react-router-dom";
-import ButtonComponent from "./buttons/ButtonComponent";
+import ButtonComponent from "./ButtonComponent";
+import SingleInstrumentsComponent from "./SingleInstrumentsComponent";
 
 
 function App() {
   return ( 
-  <>
+  <> 
     <Navbar />
-    <div className="navbar-container">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-    </div>
     <ButtonComponent />
+    <Routes>
+      <Route path="/singleinstrumentscomponent" element={<SingleInstrumentsComponent />} />
+    </Routes>
     <Footer />
   </>
   );
