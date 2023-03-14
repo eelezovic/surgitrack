@@ -6,7 +6,8 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import { Route, Routes } from "react-router-dom";
 import ButtonComponent from "./ButtonComponent";
-import SingleInstrumentsComponent from "./SingleInstrumentsComponent";
+import SingleInstrumentsComponent from "../pages/SingleInstrumentsComponent";
+import InstrumentSetComponent from "../pages/InstrumentSetComponent";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     <ButtonComponent />
     <Routes>
       <Route path="/singleinstrumentscomponent" element={<SingleInstrumentsComponent />} />
+      <Route path="/InstrumentSetComponent" element={<InstrumentSetComponent />} />
     </Routes>
     <Footer />
   </>

@@ -12,23 +12,9 @@ body {
   background: white;
 }
 
-.itemContainer {
-  color: black;
-  border: 1px solid #39559e;
-}
-
 
 /*ButtonComponent CSS*/
-.itemContainer {
-  border-radius: 10px;
-  background-color: #819ee5;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20%;
-  height: 10vh;
-}
+
 
 /*Home.js component */
 .mainContainer {
@@ -67,4 +53,49 @@ body {
     width: 50%;
     height: 10vh;
   }
+}
+
+/* Single Instruments CSS */
+.SingleInstrumentContainer {
+  background-color: #eee;
+  height: 100vh;
+  width: 100vw;
+}
+
+.SearchBarContainer {
+  padding-top: 5vh;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+}
+
+.inputWrapper {
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  height: 2.5rem;
+  padding: 0 15px;
+  box-shadow: 0 0 8px #ddd;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  height:  100%;
+  font-size: 1.25rem;
+  width: 100%;
+  margin-left:  5px;
+}
+
+input:focus {
+  outline: none;
+}
+
+#searchIcon {
+  color: royalblue;
 }

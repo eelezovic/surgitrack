@@ -2,13 +2,9 @@ import React from "react";
 import "./ButtonComponent.module.css";
 
 
-function ButtonComponent({onClick,name, image}) {
+function ButtonComponent({name, imageURL}) {
   return (
-    <div className="button-container">
-      <button onClick={onClick} className="button">
-        {name}
-      </button>
-
+    <div>
       <h2>{name}</h2>
     </div>
   );
