@@ -8,7 +8,6 @@ function Home() {
   return (
   <div className="mainContainer">
     <div className="searchContainer">
-    <Searchbar />
     </div>
     
     <Link to="/singleinstrumentscomponent" className={styles.singleinstrumentscomponent}><ButtonComponent name="Instruments"/></Link>

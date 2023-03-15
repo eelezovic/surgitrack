@@ -1,8 +1,8 @@
 import React from "react"; 
 import Searchbar from "../components/SearchBar";
-
+import Table from "../components/Table";
 import styles from "../pages/SingleInstrumentsComponent.module.css";
-
+import { SingleInstrumentsData } from "../components/dataStorage/SingleInstrumentsData";
 
 
 function SingleInstrumentsComponent() {
@@ -10,7 +10,6 @@ function SingleInstrumentsComponent() {
     <div className="SingleInstrumentContainer">
       <div className="SearchBarContainer">
         <Searchbar />
-        <div>SearchResults</div>
       </div>
     </div>
   );
