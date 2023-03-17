@@ -3,6 +3,7 @@ import styles from "./Table.module.css";
 
 function Table({data}) {
   return (
+    <div className="container">
     <table>
       <tbody>
         <tr>
@@ -21,6 +22,7 @@ function Table({data}) {
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 

@@ -1,4 +1,6 @@
 import React from "react"
+import styles from "./Pagination.module.css";
+
 
 const Pagination = ({postsPerPage, totalPosts, paginate}) => {
   const pageNumbers = [];
@@ -7,7 +9,7 @@ const Pagination = ({postsPerPage, totalPosts, paginate}) => {
     pageNumbers.push(i);
   }
   return (
-    <nav>
+    <div className="paginationContainer">
       <ul className="pagination">
         {pageNumbers.map(id => (
           <li key={id} className="pageItem">
@@ -17,7 +19,7 @@ const Pagination = ({postsPerPage, totalPosts, paginate}) => {
           </li>
         ))}
       </ul>
-    </nav>
+    </div>
   )
 }
 
