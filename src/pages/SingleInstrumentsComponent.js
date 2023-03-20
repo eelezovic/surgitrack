@@ -7,7 +7,7 @@ import SearchBar from "../components/SearchBar";
 
 function SingleInstrumentsComponent() {
   return (
-    <div className="SingleInstrumentContainer">
+    <div className="singleInstrumentContainer">
       <div className="SearchBarContainer">
         <SearchBar />
       </div>

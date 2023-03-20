@@ -1,24 +1,36 @@
 
 table {
-  border: 2px solid rgb(193, 11, 11);
   border-collapse: collapse;
   display: flex;
   width: 100%;
-  height: auto;
-  text-align: center;
+  text-align:start;
   justify-content: center;
   margin: auto;
 }
 
-/*
+
 th, td {
   letter-spacing: 2px;
   border: 1px solid #ddd;
   padding: 8px;
-  background-color: #cdcdcd;
-  margin: 30px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
 }
-*/
+
+th {
+  background-color: #5774ba;
+  color: white;
+}
+
+tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: rgb(205, 255, 158);
+}
+
 
 
 
