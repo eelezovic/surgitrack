@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Table.module.css";
 
-function Table({data}) {
+function Table({data}) { 
   return (
     <div className="tableContainer">
     <table>
@@ -25,5 +25,4 @@ function Table({data}) {
     </div>
   );
 }
-
 export default Table;

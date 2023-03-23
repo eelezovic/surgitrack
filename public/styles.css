@@ -52,7 +52,7 @@ body {
 }
 /* Single Instruments CSS */
 .singleInstrumentContainer {
-  background-color: #eee;
+  background-color: #de0b0b;
   display: flex;
 }
 
@@ -62,13 +62,13 @@ body {
   align-items: center;
   min-width: 200px;
   padding-top: 20px;
+  background-color: aqua;
 
 }
 
 .inputWrapper {
   background-color: white;
-  width: 100%;
-  margin: auto;
+  width: 50%;
   border-radius: 10px;
   height: 2.5rem;
   padding: 0 15px;
@@ -106,6 +106,8 @@ input:focus {
   flex-direction: row;
   list-style: none;
   display: flex;
+  position: absolute;
+  margin-top: 300px;
 }
 
 
@@ -134,6 +136,6 @@ input:focus {
   top: 150px;
   width: 50%;
   height: 400px;
-  border: 3px solid #89ea00;
+
   margin-left: 400px;
 }
