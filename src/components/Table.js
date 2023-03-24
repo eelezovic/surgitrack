@@ -3,7 +3,7 @@ import styles from "./Table.module.css";
 
 function Table({data}) { 
   return (
-    <div className="tableContainer">
+    <div className={styles.tableContainer}>
     <table>
       <tbody>
         <tr>

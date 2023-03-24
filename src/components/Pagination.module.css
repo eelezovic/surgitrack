@@ -1,0 +1,30 @@
+.paginationContainer {
+  display: flex;
+  margin: 0 0 35px 0;
+}
+
+.pagination {
+  text-align: center;
+  flex-direction: row;
+  list-style: none;
+  display: flex;
+}
+
+.pageItem {
+  text-decoration: none;
+}
+
+.pageItem a {
+  color:#5774ba;
+  float: left;
+  padding: 8px 16px; 
+  margin: 0 2px; 
+}
+
+.pageItem a:link {
+   text-decoration: none; 
+}
+
+.pagination a:hover {
+  background-color: #ddd;
+}

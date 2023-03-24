@@ -7,17 +7,16 @@ const Pagination = ({postsPerPage, totalPosts, paginate}) => {
 
   for(let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
-
-   
   }
+
+
+
   return (
-    <div className="paginationContainer">
-      <ul className="pagination">
+    <div className={styles.paginationContainer}>
+      <ul className={styles.pagination}>
         {pageNumbers.map(id => (
-          <li key={id} className="pageItem">
-          <a onClick={() => paginate(id)} href="#!" className="pageLink">
-            {id}
-          </a>
+          <li key={id} className={styles.pageItem}>
+          <a onClick={() => paginate(id)} href="#!" className="pageLink"> {id} </a>
           </li>
         ))}
       </ul>

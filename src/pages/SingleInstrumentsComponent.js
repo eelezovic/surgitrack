@@ -13,6 +13,7 @@ function SingleInstrumentsComponent() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = SingleInstrumentsData.slice(indexOfFirstPost, indexOfLastPost);
+  const numbers = [...Array(pageNumbers +1).keys()].slice(1)
   const keys = ["instrument_name", "instrument_id", "instrument_location"]
   const getDataWithSearchString = (data) => {
     return data.filter(
@@ -20,20 +21,17 @@ function SingleInstrumentsComponent() {
       keys.some(key => item[key].toUpperCase().includes(query.toUpperCase()))
     );
   }
-
   // To change pages
   const paginate = (pageNumbers) => setCurrentPage(pageNumbers);
 
   return (
-    <div className="singleInstrumentContainer">
-      <div className="SearchBarContainer">
+    <div className={styles.singleInstrumentContainer}>
+        <SearchBar setQuery={setQuery} />
         <Table data={getDataWithSearchString(currentPosts)} query={query} /> 
         <Pagination
           postsPerPage={postsPerPage} 
           totalPosts={SingleInstrumentsData.length} 
           paginate={paginate} />
-        <SearchBar setQuery={setQuery} />
-      </div>
     </div>
   );
 }

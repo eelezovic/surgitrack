@@ -1,14 +1,14 @@
 import React from "react";
-
+import styles from "./SearchBar.module.css";
 
 function SearchBar({setQuery}) {
   return (
-    <div className="inputWrapper">
+    <div className={styles.inputWrapper}>
       <i id="searchIcon" class="fa-solid fa-magnifying-glass"></i>
       <input 
       type="text" 
       placeholder="Instrument search" 
-      className="search"
+      className={styles.search}
       onChange={(e) => setQuery(e.target.value)} 
       />
     </div>

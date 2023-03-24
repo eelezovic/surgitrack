@@ -31,6 +31,13 @@
   cursor: pointer;
 }
 
+.home:hover,
+.about:hover,
+.contact:hover {
+  color: #a6c7fc;
+}
+
+
 .mobileMenuIcon {
   display: none;
 }
@@ -73,6 +80,7 @@
   border: none;
   outline: none;
   top: 15px;
-  right: 25px
+  right: 25px;
+  cursor: pointer;
 }
 }
