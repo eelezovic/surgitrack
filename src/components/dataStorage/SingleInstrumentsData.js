@@ -5,6 +5,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1000",
     "instrument_quantity": "1",
     "instrument_location": "Carousel",
+    "instrument_image":
   },
   {
     "id":2,
@@ -12,6 +13,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1001",
     "instrument_quantity": "1",
     "instrument_location": "Carousel",
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/AllisForceps56.jpg"
   },
   {
     "id":3,
@@ -19,6 +21,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1002",
     "instrument_quantity": "1",
     "instrument_location": "OR",
+    "instrument_image":
   },
   {
     "id":4,
@@ -26,6 +29,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1003",
     "instrument_quantity": "1",
     "instrument_location": "OR",
+    "instrument_image":
   },
   {
     "id":5,
@@ -33,6 +37,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1004",
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
+    "instrument_image":
   },
   {
     "id":6,
@@ -40,6 +45,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1005",
     "instrument_quantity": "1",
     "instrument_location": "OR",
+    "instrument_image":
   },
   {
     "id":7,
@@ -47,6 +53,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1006",
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
+    "instrument_image":
   },
   {
     "id":8,
@@ -54,6 +61,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1007",
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
+    "instrument_image":
   },
   {
     "id":9,
