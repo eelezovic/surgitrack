@@ -7,7 +7,7 @@ function SearchBar({setQuery}) {
       <i id="searchIcon" class="fa-solid fa-magnifying-glass"></i>
       <input 
       type="text" 
-      placeholder="Instrument search" 
+      placeholder="Search..." 
       className={styles.search}
       onChange={(e) => setQuery(e.target.value)} 
       />

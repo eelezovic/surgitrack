@@ -5,7 +5,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1000",
     "instrument_quantity": "1",
     "instrument_location": "Carousel",
-    "instrument_image":
+    "instrument_image": "https://www.stille.se/wp-content/uploads/2019/12/1200x1200_102-9022.jpg",
   },
   {
     "id":2,
@@ -13,7 +13,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1001",
     "instrument_quantity": "1",
     "instrument_location": "Carousel",
-    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/AllisForceps56.jpg"
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/AllisForceps56.jpg",
   },
   {
     "id":3,
@@ -21,7 +21,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1002",
     "instrument_quantity": "1",
     "instrument_location": "OR",
-    "instrument_image":
+    "instrument_image": "https://www.integralife.com/ccstore/v1/images/?source=/file/v634622050409593382/products/M823B-GRAY.jpg",
   },
   {
     "id":4,
@@ -29,7 +29,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1003",
     "instrument_quantity": "1",
     "instrument_location": "OR",
-    "instrument_image":
+    "instrument_image": "https://www.olympus-global.com/technology/design/story/surgicalenergydevice/images/img_02.jpg",
   },
   {
     "id":5,
@@ -37,7 +37,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1004",
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
-    "instrument_image":
+    "instrument_image": "https://animalab.eu/images/e1934af3-6823-414a-94e0-895f35b7a6a2/504218.jpg",
   },
   {
     "id":6,
@@ -45,7 +45,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1005",
     "instrument_quantity": "1",
     "instrument_location": "OR",
-    "instrument_image":
+    "instrument_image": "https://dtrmedical.com/wp-content/uploads/2014/11/OralBiopsyForceps90mm.jpg",
   },
   {
     "id":7,
@@ -53,7 +53,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1006",
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
-    "instrument_image":
+    "instrument_image": "https://lifeinstruments.com/wp-content/uploads/2020/11/Rongeurs-Stille_Horsely_Bone_Cutter.jpg",
   },
   {
     "id":8,
@@ -61,7 +61,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1007",
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
-    "instrument_image":
+    "instrument_image": "https://www.innomed.net/Images/prod_shots_430/FaillaceExtraSmallBoneClamp_1171.jpg",
   },
   {
     "id":9,
@@ -69,6 +69,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1008",
     "instrument_quantity": "1",
     "instrument_location": "Carousel",
+    "instrument_image": "https://www.stille.se/wp-content/uploads/2019/12/1200x1200_105-17230.jpg",
   },
   {
     "id":10,
@@ -76,6 +77,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1009",
     "instrument_quantity": "1",
     "instrument_location": "OR",
+    "instrument_image": "https://surgical-instruments.bbraun.com/medias/ea126h1-50.jpg?context=bWFzdGVyfHJvb3R8MTUzOTQwfGltYWdlL2pwZWd8aDk1L2g5MC8xMjExNTg5NDk2MDE1OC5qcGd8NGY4M2FkMzkxNzJkMDQ1YmIxMTI1YjI1MzM3OTRhOTdkNTE3YWViMDhjYTQzMzI2Njg0ZjQ2YzI1MTEwNGE3OQ",
   },
   {
     "id":11,
@@ -441,4 +443,4 @@ export const SingleInstrumentsData = [
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
   }
-]
+];

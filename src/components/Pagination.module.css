@@ -28,3 +28,43 @@
 .pagination a:hover {
   background-color: #ddd;
 }
+
+.active {
+  background-color: #c3c6ca;
+  color: #fff;
+}
+
+.paginationButtons {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #333;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+}
+
+.paginationButtons:hover {
+  background-color: #f5f5f5;
+  border: 1px solid #bbb;
+}
+
+.paginationButtons:active {
+  background-color: #ddd;
+  border: 1px solid #999;
+}
+
+.paginationButtons[disabled] {
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.paginationButtons.previous {
+  float: left;
+}
+
+.paginationButtons.next {
+  float: right;
+}

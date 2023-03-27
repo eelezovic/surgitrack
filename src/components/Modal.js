@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./Modal.module.css";
 
-function Modal({isOpen, closeModal, title, content, image}) {
-  const [isImageOpen, setIsImageOpen] = (false);
+function Modal({ isOpen, closeModal, title, content }) {
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   const handleImageClick = () => {
     setIsImageOpen(!isImageOpen);
@@ -12,17 +12,20 @@ function Modal({isOpen, closeModal, title, content, image}) {
     <>
       {isOpen && (
         <div className={styles.modal}>
-          <div className={StyleSheet.modalHeader}>
+          <div className={styles.modalHeader}>
             <h2>{title}</h2>
             <div className={styles.modalButtons}>
-              <button onClick={closeModal}>Close</button>
-              <button onClick={handleImageClick}>Show Image </button>
+              <button className={styles.modalButton} onClick={closeModal}>Close</button>
             </div>
           </div>
           <div className={styles.modalContent}>{content}</div>
           {isImageOpen && (
             <div className={styles.modalImage}>
-              <img src={image} alt="Instrument" />
+              <img
+                src={content.src}
+                alt={content.alt}
+                onClick={handleImageClick}
+              />
             </div>
           )}
         </div>

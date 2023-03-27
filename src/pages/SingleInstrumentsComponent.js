@@ -22,7 +22,7 @@ function SingleInstrumentsComponent() {
   }
 
   // To change pages
-  const paginate = (pageNumbers) => setCurrentPage(pageNumbers);
+  const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
 
   return (
     <div className={styles.singleInstrumentContainer}>
@@ -31,7 +31,8 @@ function SingleInstrumentsComponent() {
         <Pagination
           postsPerPage={postsPerPage} 
           totalPosts={SingleInstrumentsData.length} 
-          paginate={paginate} />
+          paginate={handlePagination}
+          currentPage={currentPage} />
     </div>
   );
 }
