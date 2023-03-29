@@ -42,6 +42,7 @@
 .modalContent {
   background-color: #d9f5fa;
   padding: 20px;
+  justify-content: center;
 }
 
 .modalImage {
