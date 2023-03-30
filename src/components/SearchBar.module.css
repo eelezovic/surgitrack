@@ -24,10 +24,25 @@ input:focus {
   outline: none;
 }
 
-#searchIcon{
-  color: rgb(7, 95, 238);
+#searchIcon {
+  color: blue;
 }
 
 .search {
   background-color: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 1000px) {
+  .inputWrapper {
+    background-color: white;
+    width: 50%;
+    border-radius: 7px;
+    height: 2rem;
+    padding: 0 15px;
+    margin: 10px;
+    box-shadow: 0 0 8px #ddd;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(179, 179, 179);
+  }
 }

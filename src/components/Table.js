@@ -29,6 +29,7 @@ function Table({ data }) {
               <th>Instrument Id</th>
               <th>Quantity</th>
               <th>Location</th>
+              
             </tr>
             {data.map((item) => (
               <tr key={item.id} onClick={() => handleItemClick(item)}>

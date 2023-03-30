@@ -9,7 +9,7 @@ function SingleInstrumentsComponent() {
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
-
+  
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
       ["instrument_name", "instrument_id", "instrument_location"].some((key) =>

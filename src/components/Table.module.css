@@ -30,7 +30,7 @@ tr:nth-child(even){
 }
 
 tr:hover {
-  background-color: rgb(205, 255, 158);
+  background-color: #cedcff;
 }
 
 .paragraph {
