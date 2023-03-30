@@ -3,7 +3,7 @@ import styles from "./Table.module.css";
 import Modal from "./Modal";
 
 function Table({ data }) {
-  const [selectedItem, setSelectedItem] = useState({});
+  const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleItemClick = (item) => {

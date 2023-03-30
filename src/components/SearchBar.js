@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./SearchBar.module.css";
 
-function SearchBar({setQuery}) {
+const SearchBar = ({setQuery}) => {
+  
   return (
     <div className={styles.inputWrapper}>
       <i id="searchIcon" class="fa-solid fa-magnifying-glass"></i>
@@ -14,4 +15,7 @@ function SearchBar({setQuery}) {
     </div>
   );
 }
+
 export default SearchBar;
+
+

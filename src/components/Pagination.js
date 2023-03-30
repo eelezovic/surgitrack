@@ -24,13 +24,24 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
         ))}
       </ul>
       {currentPage > 1 && (
-        <button className={styles.paginationButtons} onClick={() => paginate(currentPage - 1)}>Previous</button>
+        <button
+          className={styles.paginationButtons}
+          onClick={() => paginate(currentPage - 1)}
+        >
+          Previous
+        </button>
       )}
       {currentPage < pageNumbers.length && (
-        <button className={styles.paginationButtons} onClick={() => paginate(currentPage + 1)}>Next</button>
+        <button
+          className={styles.paginationButtons}
+          onClick={() => paginate(currentPage + 1)}
+        >
+          Next
+        </button>
       )}
     </div>
   );
 };
 
 export default Pagination;
+
