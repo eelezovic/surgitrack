@@ -4,10 +4,10 @@ import styles from "./Dropdown.module.css"
 
 function Dropdown (){
   const [isActive, setIsActive] = useState(false);
-
+ 
   return (
     <div className={styles.dropdown}>
-      <div className={styles.dropdownButton}>Select One</div>
+      <div className={styles.dropdownButton}>Select specialty</div>
       <div className={styles.dropdownContent}>
         <div className={styles.dropdownItem}>
           React
