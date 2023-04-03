@@ -1,6 +1,7 @@
 .dropdown {
-  width: 400px;
-  margin: 100px auto;
+  width: 250px;
+  user-select: none;
+  margin: 50px;
   position: relative;
 }
 
@@ -26,14 +27,34 @@
   font-weight: 500;
   color: #333;
   width: 100%;
+  z-index: 1;
+  height: 400px; /* Set a fixed height for the dropdown content */
+  overflow-y: scroll; /* Add the CSS overflow-y property to enable scrolling */
 }
 
 .dropdown .dropdownContent .dropdownItem {
   padding: 10px;
   cursor: pointer;
   transition: all 0.2s;
+  display: block;
+  text-decoration: none;
 }
 
 .dropdownItem:hover {
-  background: #f4f4f4;
+  background: #eeeded;
+}
+
+
+
+.dropdownScroll {
+  height: 100%; /* Set the height to 100% to enable scrolling within the div */
+}
+
+
+/* Styles for the dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  left: 5px;
+  margin-left: 10px;
 }
