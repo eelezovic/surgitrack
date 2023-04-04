@@ -26,13 +26,13 @@ function Table({ data, headers }) {
           <tbody>
             <tr>
               {headers.map((header) => (
-                <th key={header}>{header}</th>
+                <th key={header.name}>{header.name}</th>
               ))}
             </tr>
             {data.map((item) => (
               <tr key={item.id} onClick={() => handleItemClick(item)}>
                 {headers.map((header) => (
-                  <td key={header}>{item[header]}</td>
+                  <td key={header.accessor}>{item[header.accessor]}</td>
                 ))}
               </tr>
             ))}

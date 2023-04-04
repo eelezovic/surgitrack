@@ -6,7 +6,7 @@ import { SingleInstrumentsData } from "../components/dataStorage/SingleInstrumen
 import Pagination from "../components/Pagination";
 
 function SingleInstrumentsComponent() {
-  const headers = ["Instrument Name", "ID", "quantity", "Location"];
+  const headers = [{name: 'Instrument Name', accessor: 'instrument_name'},{name: 'ID', accessor: 'instrument_id'}, { name: 'Quantity', accessor: 'instrument_quantity'}, { name: 'Location',accessor: 'instrument_location'}];
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
