@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./Dropdown.module.css"
 
 function Dropdown ({selected, setSelected}){
   const [isActive, setIsActive] = useState(false);
   const options = ["None", "Cardiology" , "Dental", "General", "Gynecology", "Neurology", "Obestetrics", "Opthamology", "Orthopedic", "Plastics", "Thoracic", "Urology", "Vascular", "Gynecology", "Robotics"];
+
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsActive(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
+
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} ref={dropdownRef}>
       <div className={styles.dropdownButton} onClick={(e) => setIsActive(!isActive)}>
         {selected}
         <span className="fas fa-caret-down"></span>
@@ -33,3 +49,4 @@ function Dropdown ({selected, setSelected}){
 }
 
 export default Dropdown;
+

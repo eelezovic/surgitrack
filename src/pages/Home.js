@@ -6,16 +6,24 @@ import SearchBar from "../components/SearchBar";
 
 function Home() {
   return (
-    <div className="mainContainer">
-      <div className="imageContainer">
-        <img src="https://cdn-icons-png.flaticon.com/512/2804/2804765.png" alt="InstrumentSet icon" className={styles.InstrumentIcon} />
-        <img src="https://cdn-icons-png.flaticon.com/512/8638/8638209.png" alt="Instrument icon" className={styles.InstrumentIcon} />
-      </div> 
-      <SearchBar />
-      <Link to="/singleinstrumentscomponent" className={styles.singleinstrumentscomponent}><ButtonComponent name="Instruments"/></Link>
-      <Link to="/instrumentsetcomponent" className={styles.instrumentsetcomponent}><ButtonComponent name="Instrument Sets"/></Link>
+    <div className={styles.mainContainer}>
+       <SearchBar />
+      <div className={styles.singleInstrumentContainer}>
+        <div className={styles.iconContainer}>
+        <Link to="/singleinstrumentscomponent"> <img src="https://cdn-icons-png.flaticon.com/512/8638/8638209.png" alt="Instrument icon" className={styles.InstrumentIcon} /> </Link> 
+        </div>
+        <Link to="/singleinstrumentscomponent" className={styles.singleinstrumentscomponent}><ButtonComponent name="Instruments"/></Link>
+      </div>
+
+      <div className={styles.instrumentSetContainer}>
+        <div className={styles.iconContainer}>
+          <img src="https://cdn-icons-png.flaticon.com/512/2804/2804765.png" alt="InstrumentSet icon" className={styles.InstrumentIcon} />
+        </div>
+        <Link to="/instrumentsetcomponent" className={styles.instrumentsetcomponent}><ButtonComponent name="Instrument Sets"/></Link>
+      </div>
     </div> 
   );
 }
 
 export default Home;
+

@@ -1,8 +1,9 @@
 .tableContainer {
-  border: 1px solid hsl(0, 5%, 59%);
   margin: 5px 0 20px 0;
+  display: flex;
 }
 table {
+  border: 1px solid hsl(0, 5%, 59%);
   border-collapse: collapse;
   display: flex;
   width: 100%;
@@ -37,6 +38,7 @@ tr:hover {
   font-size: 1.3rem;
   margin-bottom: 10px;
 }
+
 
 
 

@@ -6,6 +6,7 @@ import { SingleInstrumentsData } from "../components/dataStorage/SingleInstrumen
 import Pagination from "../components/Pagination";
 
 function SingleInstrumentsComponent() {
+  const headers = ["Instrument Name", "ID", "quantity", "Location"];
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
@@ -28,7 +29,7 @@ function SingleInstrumentsComponent() {
   return (
     <div className={styles.singleInstrumentContainer}>
       <SearchBar setQuery={setQuery} />
-      <Table data={currentPosts} query={query} />
+      <Table data={currentPosts} query={query} headers={headers} />
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={allPosts.length}

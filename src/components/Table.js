@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Table.module.css";
 import Modal from "./Modal";
 
-function Table({ data }) {
+function Table({ data, headers }) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -25,18 +25,15 @@ function Table({ data }) {
         <table>
           <tbody>
             <tr>
-              <th>Instrument Name</th>
-              <th>Instrument Id</th>
-              <th>Quantity</th>
-              <th>Location</th>
-              
+              {headers.map((header) => (
+                <th key={header}>{header}</th>
+              ))}
             </tr>
             {data.map((item) => (
               <tr key={item.id} onClick={() => handleItemClick(item)}>
-                <td>{item.instrument_name}</td>
-                <td>{item.instrument_id}</td>
-                <td>{item.instrument_quantity}</td>
-                <td>{item.instrument_location}</td>
+                {headers.map((header) => (
+                  <td key={header}>{item[header]}</td>
+                ))}
               </tr>
             ))}
           </tbody>

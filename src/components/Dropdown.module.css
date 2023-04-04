@@ -47,14 +47,28 @@
 
 
 .dropdownScroll {
-  height: 100%; /* Set the height to 100% to enable scrolling within the div */
+  height: 100%;
 }
 
 
-/* Styles for the dropdown container */
+@media screen and (max-width: 1000px) {
 .dropdown {
+  width: 145px;
+  user-select: none;
+  margin: 10px;
   position: relative;
-  display: inline-block;
-  left: 5px;
-  margin-left: 10px;
+  }
+.dropdown .dropdownButton {
+  padding: 5px;
+  background: #fff;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
+  }
 }
+
+
