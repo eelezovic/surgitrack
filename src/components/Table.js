@@ -43,7 +43,7 @@ function Table({ data, headers }) {
         <Modal
           isOpen={isModalOpen}
           closeModal={closeModal}
-          title={selectedItem.instrument_name}
+          title={selectedItem.instrument_name || selectedItem.set_name}
           content={
             <>
               <img
@@ -51,11 +51,16 @@ function Table({ data, headers }) {
                 alt={selectedItem.instrument_name}
                 onClick={handleImageClick}
               />
-              <p className={styles.paragraph}>Instrument ID: {selectedItem.instrument_id}</p>
-              <p className={styles.paragraph}>Quantity: {selectedItem.instrument_quantity}</p>
+              <p className={styles.paragraph}> Instrument ID: {selectedItem.instrument_id}</p>
+              <p className={styles.paragraph}> Quantity: {selectedItem.instrument_quantity}</p>
+              <p className={styles.paragraph}>Location: {selectedItem.set_location}</p>
+              <p className={styles.paragraph}> Contents: {Object.entries(selectedItem.set_contents).map(([name, quantity]) => (
+                  <li key={name}>{`${name} (${quantity})`}</li>
+                ))} </p>
             </>
           }
         />
+        
       )}
     </>
   );

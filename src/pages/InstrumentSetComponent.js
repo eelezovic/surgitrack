@@ -1,18 +1,25 @@
 import React, { useState } from "react";
-import { InstrumentSetData, setData } from "../components/dataStorage/InstrumentSetData";
+import { setData as InstrumentSetData } from "../components/dataStorage/InstrumentSetData";
 import Dropdown from "../components/Dropdown";
 import Table from "../components/Table";
-
+import SearchBar from "../components/SearchBar";
 
 const InstrumentSetComponent = () => {
-  const headers = [{name: 'Set Name', accessor: 'instrument_name'},{name: 'ID', accessor: 'instrument_id'}, { name: 'Quantity', accessor: 'instrument_quantity'}, { name: 'Location',accessor: 'instrument_location'}];
+  const headers = [
+    { name: "Set Name", accessor: "set_name" },
+    { name: "ID", accessor: "set_id" },
+    { name: "Quantity", accessor: "set_quantity" },
+    { name: "Location", accessor: "set_location" },
+  ];
   const [selected, setSelected] = useState("Select specialty");
+  const [query, setQuery] = useState("");
   return (
     <div className="container">
-
+      <SearchBar setQuery={setQuery} />
       <Dropdown selected={selected} setSelected={setSelected} />
-      <Table headers={headers} data={setData} />
+      <Table headers={headers} data={InstrumentSetData} />
     </div>
-  );     
-}
+  );
+};
+
 export default InstrumentSetComponent;
