@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "../pages/InstrumentSetComponent.module.css";
 import { setData as InstrumentSetData } from "../components/dataStorage/InstrumentSetData";
 import Dropdown from "../components/Dropdown";
 import Table from "../components/Table";
@@ -13,8 +14,10 @@ const InstrumentSetComponent = () => {
   ];
   const [selected, setSelected] = useState("Select specialty");
   const [query, setQuery] = useState("");
+
+
   return (
-    <div className="container">
+    <div className={styles.container}>
       <SearchBar setQuery={setQuery} />
       <Dropdown selected={selected} setSelected={setSelected} />
       <Table headers={headers} data={InstrumentSetData} />

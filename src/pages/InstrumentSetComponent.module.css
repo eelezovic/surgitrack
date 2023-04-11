@@ -1,40 +1,8 @@
-.tableContainer {
-  margin: 5px 0 20px 0;
-  display: flex;
-}
-table {
-  border: 1px solid hsl(0, 5%, 59%);
-  border-collapse: collapse;
-  display: flex;
+.container {
   width: 100%;
-  text-align:start;
-  justify-content:center;
-}
-
-
-th, td {
-  letter-spacing: 2px;
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  cursor: pointer;
-}
-
-th {
-  background-color: #5774ba;
-  color: white;
-}
-
-tr:nth-child(even){
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #cedcff;
-}
-
-.paragraph {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items: center;
 }
