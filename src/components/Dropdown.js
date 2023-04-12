@@ -22,6 +22,7 @@ function Dropdown ({selected, setSelected}){
 
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
+      
       <div className={styles.dropdownButton} onClick={(e) => setIsActive(!isActive)}>
         {selected}
         <span className="fas fa-caret-down"></span>

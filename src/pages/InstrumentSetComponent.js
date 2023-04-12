@@ -4,6 +4,7 @@ import { setData as InstrumentSetData } from "../components/dataStorage/Instrume
 import Dropdown from "../components/Dropdown";
 import Table from "../components/Table";
 import SearchBar from "../components/SearchBar";
+import Pagination from "../components/Pagination";
 
 const InstrumentSetComponent = () => {
   const headers = [
@@ -14,15 +15,42 @@ const InstrumentSetComponent = () => {
   ];
   const [selected, setSelected] = useState("Select specialty");
   const [query, setQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
 
+  const getDataWithSearchString = (data) => {
+    return data.filter((item) =>
+      ["set_name", "set_id", "set_location"].some((key) =>
+        item[key].toUpperCase().includes(query.toUpperCase())
+      )
+    );
+  };
+
+  const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
+
+  const allPosts = getDataWithSearchString(InstrumentSetData);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
-    <div className={styles.container}>
-      <SearchBar setQuery={setQuery} />
-      <Dropdown selected={selected} setSelected={setSelected} />
-      <Table headers={headers} data={InstrumentSetData} />
+    <div className={styles.instrumentSetContainer}>
+      <div className={styles.dropDown}>
+        <Dropdown selected={selected} setSelected={setSelected} />
+      </div>
+      <div className={styles.mainContainer}>
+        <SearchBar setQuery={setQuery} />
+        <Table headers={headers} data={currentPosts} />
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={allPosts.length}
+          paginate={handlePagination}
+          currentPage={currentPage}
+        />
+      </div>
     </div>
   );
 };
 
 export default InstrumentSetComponent;
+

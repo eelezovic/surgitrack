@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./SearchBar.module.css";
 
-const SearchBar = ({setQuery}) => {
+function SearchBar ({setQuery}) {
  
   return (
     <div className={styles.inputWrapper}>

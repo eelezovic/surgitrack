@@ -13,8 +13,8 @@ table {
 
 
 th, td {
-  letter-spacing: 2px;
-  border: 1px solid #ddd;
+  letter-spacing: 1.5px;
+  border: 1px solid #e7e7e7;
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -22,7 +22,7 @@ th, td {
 }
 
 th {
-  background-color: #5774ba;
+  background-color: #7793d4;
   color: white;
 }
 
@@ -31,7 +31,7 @@ tr:nth-child(even){
 }
 
 tr:hover {
-  background-color: #cedcff;
+  background-color: #dfe8ff;
 }
 
 .paragraph {
