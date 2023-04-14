@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Table.module.css";
 import Modal from "./Modal";
 
-function Table({ data, headers }) {
+function Table({ data, headers, selectedSpecialty }) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -12,12 +12,16 @@ function Table({ data, headers }) {
   };
 
   const handleImageClick = () => {
-    // do something when the image is clicked
+
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const filteredData = selectedSpecialty !== "Select specialty"
+    ? data.filter((item) => item.select_specialty === selectedSpecialty) 
+    : data;
 
   return (
     <>
@@ -29,7 +33,7 @@ function Table({ data, headers }) {
                 <th key={header.name}>{header.name}</th>
               ))}
             </tr>
-            {data.map((item) => (
+            {filteredData.map((item) => (
               <tr key={item.id} onClick={() => handleItemClick(item)}>
                 {headers.map((header) => (
                   <td key={header.accessor}>{item[header.accessor]}</td>
@@ -54,7 +58,7 @@ function Table({ data, headers }) {
               <p className={styles.paragraph}> Instrument ID: {selectedItem.instrument_id}</p>
               <p className={styles.paragraph}> Quantity: {selectedItem.instrument_quantity}</p>
               <p className={styles.paragraph}>Location: {selectedItem.set_location}</p>
-              <p className={styles.paragraph}> Contents: {Object.entries(selectedItem.set_contents).map(([name, quantity]) => (
+              <p className={styles.paragraph}> Contents: {Object.entries(selectedItem.set_contents || {}).map(([name, quantity]) => (
                   <li key={name}>{`${name} (${quantity})`}</li>
                 ))} </p>
             </>

@@ -40,7 +40,7 @@ const InstrumentSetComponent = () => {
       </div>
       <div className={styles.mainContainer}>
         <SearchBar setQuery={setQuery} />
-        <Table headers={headers} data={currentPosts} />
+        <Table headers={headers} data={currentPosts} selectedSpecialty={selected} />
         <Pagination
           postsPerPage={postsPerPage}
           totalPosts={allPosts.length}
