@@ -12,7 +12,6 @@ function Table({ data, headers, selectedSpecialty }) {
   };
 
   const handleImageClick = () => {
-
   };
 
   const closeModal = () => {
@@ -51,16 +50,21 @@ function Table({ data, headers, selectedSpecialty }) {
           content={
             <>
               <img
-                src={selectedItem.instrument_image}
-                alt={selectedItem.instrument_name}
+                src={selectedItem.instrument_image || selectedItem.set_image }
+                alt={selectedItem.instrument_name || selectedItem.set_name}
                 onClick={handleImageClick}
               />
               <p className={styles.paragraph}> Instrument ID: {selectedItem.instrument_id}</p>
               <p className={styles.paragraph}> Quantity: {selectedItem.instrument_quantity}</p>
               <p className={styles.paragraph}>Location: {selectedItem.set_location}</p>
-              <p className={styles.paragraph}> Contents: {Object.entries(selectedItem.set_contents || {}).map(([name, quantity]) => (
-                  <li key={name}>{`${name} (${quantity})`}</li>
-                ))} </p>
+              {selectedItem.set_name && (
+                <p className={styles.contents}>
+                  Contents:{" "}
+                  {Object.entries(selectedItem.set_contents || {}).map(([name, quantity]) => (
+                    <li key={name}>{`${name} (${quantity})`}</li>
+                  ))}
+                </p>
+              )}
             </>
           }
         />

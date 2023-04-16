@@ -35,8 +35,30 @@ tr:hover {
 }
 
 .paragraph {
-  font-size: 1.3rem;
+  width: 50%;
+  font-size: 1.2rem;
   margin-bottom: 10px;
+  color: #242935;
+  font-style: italic; 
+  padding: 4px;
+  border: 1px solid rgb(153, 152, 152);
+}
+
+.contents {
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  color: #242935;
+  font-style: italic; 
+}
+
+.contents li {
+  padding: 5px;
+  font-size: 1rem;
+  color: rgb(56, 93, 187);
+  list-style:  square;
+  font-style:oblique;
 }
 
 

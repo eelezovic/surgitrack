@@ -5,7 +5,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1000",
     "instrument_quantity": "1",
     "instrument_location": "Carousel",
-    "instrument_image": "https://www.stille.se/wp-content/uploads/2019/12/1200x1200_102-9022.jpg",
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/400%2010-162.png",
   },
   {
     "id":2,
@@ -183,6 +183,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1023",
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/405-3-325.jpg"
   },
   {
     "id":26,
@@ -190,6 +191,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1024",
     "instrument_quantity": "1",
     "instrument_location": "OR",
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/400-MH21-89.jpg"
   },
   {
     "id":27,
@@ -197,6 +199,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1025",
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/405-2561C.jpg"
   },
   {
     "id":28,
@@ -204,6 +207,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1026",
     "instrument_quantity": "1",
     "instrument_location": "OR",
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/Rochester-Ochner%20Forceps_I.jpg"
   },
   {
     "id":29,
@@ -232,6 +236,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1030",
     "instrument_quantity": "1",
     "instrument_location": "OR",
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/400-12-131.png"
   },
   {
     "id":33,
@@ -239,6 +244,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1031",
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/400%2024-150.jpg"
   },
   {
     "id":34,
@@ -379,6 +385,7 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1051",
     "instrument_quantity": "1",
     "instrument_location": "OR",
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/900-299.jpg"
   },
   {
     "id":54,
@@ -400,6 +407,8 @@ export const SingleInstrumentsData = [
     "instrument_id": "G1054",
     "instrument_quantity": "1",
     "instrument_location": "Carousel",
+    "instrument_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/400%2064-410%20copy.jpg"
+    
   },
   {
     "id":57,
