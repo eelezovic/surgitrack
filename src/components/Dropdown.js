@@ -3,8 +3,7 @@ import styles from "./Dropdown.module.css"
 
 function Dropdown ({selected, setSelected}){
   const [isActive, setIsActive] = useState(false);
-  const options = ["None", "Cardiology" , "Dental", "General", "Gynecology", "Neurology", "Obestetrics", "Opthamology", "Orthopedic", "Plastics", "Thoracic", "Urology", "Vascular", "Gynecology", "Robotics"];
-
+  const options = ["All", "Cardiology" , "Dental", "General", "Gynecology", "Neurology", "Obestetrics", "Opthamology", "Orthopedic", "Plastics", "Thoracic", "Urology", "Vascular", "Gynecology", "Robotics"];
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -44,7 +43,7 @@ function Dropdown ({selected, setSelected}){
           </div>
         </div>
       )}
-      
+
     </div>
   )
 }

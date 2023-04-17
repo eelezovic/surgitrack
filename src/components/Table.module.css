@@ -61,7 +61,11 @@ tr:hover {
   font-style:oblique;
 }
 
-
+img {
+  border: 2px solid rgb(169, 211, 234);
+  width: 300px;
+  height: 300px;
+}
 
 
 

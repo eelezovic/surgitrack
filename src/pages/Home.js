@@ -10,7 +10,7 @@ function Home() {
       <div className={styles.searchBarIcon}>
        <SearchBar />
        </div>
-      
+      < div className={styles.container}>
       <div className={styles.singleInstrumentContainer}>
         <div className={styles.iconContainer}>
         <Link to="/singleinstrumentscomponent"> <img src="https://cdn-icons-png.flaticon.com/512/8638/8638209.png" alt="Instrument icon" className={styles.InstrumentIcon} /> </Link> 
@@ -23,6 +23,7 @@ function Home() {
         <Link to="/instrumentsetcomponent"> <img src="https://cdn-icons-png.flaticon.com/512/2804/2804765.png" alt="InstrumentSet icon" className={styles.InstrumentIcon} /> </Link>
         </div>
         <Link to="/instrumentsetcomponent" className={styles.instrumentsetcomponent}><ButtonComponent name="Instrument Sets"/></Link>
+      </div>
       </div>
     </div> 
   );

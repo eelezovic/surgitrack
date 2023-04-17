@@ -11,16 +11,16 @@ function Table({ data, headers, selectedSpecialty }) {
     setIsModalOpen(true);
   };
 
-  const handleImageClick = () => {
-  };
+  const handleImageClick = () => {};
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  const filteredData = selectedSpecialty !== "Select specialty"
-    ? data.filter((item) => item.select_specialty === selectedSpecialty) 
-    : data;
+  const filteredData =
+    selectedSpecialty !== "Select specialty"
+      ? data.filter((item) => item.select_specialty === selectedSpecialty)
+      : data;
 
   return (
     <>
@@ -46,29 +46,55 @@ function Table({ data, headers, selectedSpecialty }) {
         <Modal
           isOpen={isModalOpen}
           closeModal={closeModal}
-          title={selectedItem.instrument_name || selectedItem.set_name}
+          title={
+            selectedItem.set_name
+              ? `${selectedItem.set_name}`
+              : `${selectedItem.instrument_name}`
+          }
           content={
             <>
               <img
-                src={selectedItem.instrument_image || selectedItem.set_image }
-                alt={selectedItem.instrument_name || selectedItem.set_name}
+                src={selectedItem.set_image || selectedItem.instrument_image}
+                alt={selectedItem.set_name || selectedItem.instrument_name}
                 onClick={handleImageClick}
               />
-              <p className={styles.paragraph}> Instrument ID: {selectedItem.instrument_id}</p>
-              <p className={styles.paragraph}> Quantity: {selectedItem.instrument_quantity}</p>
-              <p className={styles.paragraph}>Location: {selectedItem.set_location}</p>
               {selectedItem.set_name && (
-                <p className={styles.contents}>
-                  Contents:{" "}
-                  {Object.entries(selectedItem.set_contents || {}).map(([name, quantity]) => (
-                    <li key={name}>{`${name} (${quantity})`}</li>
-                  ))}
-                </p>
+                <>
+                 <p className={styles.paragraph}>
+                    Set ID: {selectedItem.set_id}
+                  </p>
+                  <p className={styles.paragraph}>
+                    Quantity: {selectedItem.set_quantity}
+                  </p>
+                  <p className={styles.paragraph}>
+                    Location: {selectedItem.set_location}
+                  </p>
+                  <p className={styles.contents}>
+                    Contents:{" "}
+                    {Object.entries(selectedItem.set_contents || {}).map(
+                      ([name, quantity]) => (
+                        <li key={name}>{`${name} (${quantity})`}</li>
+                      )
+                    )}
+                  </p>
+                </>
+              )}
+              {selectedItem.instrument_name && (
+                <>
+                 <p className={styles.paragraph}>
+                    Instrument ID: {selectedItem.instrument_id}
+                  </p>
+                  <p className={styles.paragraph}>
+                    Location: {selectedItem.instrument_location}
+                  </p>
+                  <p className={styles.paragraph}>
+                    Quantity: {selectedItem.instrument_quantity}
+                  </p>
+                </>
               )}
             </>
           }
         />
-        
       )}
     </>
   );

@@ -28,8 +28,8 @@
   color: #333;
   width: 100%;
   z-index: 1;
-  height: 400px; /* Set a fixed height for the dropdown content */
-  overflow-y: scroll; /* Add the CSS overflow-y property to enable scrolling */
+  height: 400px; 
+  overflow-y: scroll; 
 }
 
 .dropdown .dropdownContent .dropdownItem {
@@ -53,10 +53,10 @@
 
 @media screen and (max-width: 1000px) {
 .dropdown {
+  display: flex;
   width: 145px;
   user-select: none;
   margin: 10px;
-  position: relative;
   }
 .dropdown .dropdownButton {
   padding: 5px;
