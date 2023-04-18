@@ -1,0 +1,48 @@
+.miniModalContainer {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0 ,0.4);
+}
+
+.miniModal {
+  border-radius: 5px;
+  padding: 2rem;
+  background-color: white;
+  width: 25em;
+}
+
+.miniModal .button {
+  margin: auto;
+  display: block;
+    margin-top: 1rem;
+    border: none;
+    background-color: #1d4ed8;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px #ccc;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.formGroup input {
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+}
+
+.formGroup label {
+  margin-bottom: 0.2rem;
+}

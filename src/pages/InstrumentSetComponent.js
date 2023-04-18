@@ -5,6 +5,8 @@ import Dropdown from "../components/Dropdown";
 import Table from "../components/Table";
 import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
+import MiniModal from "../components/MiniModal";
+
 
 const InstrumentSetComponent = () => {
   const headers = [
@@ -12,11 +14,13 @@ const InstrumentSetComponent = () => {
     { name: "ID", accessor: "set_id" },
     { name: "Quantity", accessor: "set_quantity" },
     { name: "Location", accessor: "set_location" },
+    { name: "Action", accessor: "set_action" },
   ];
   const [selected, setSelected] = useState("Select specialty");
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
+  const [miniModalOpen, setMiniModalOpen] = useState(false)
 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
@@ -41,6 +45,8 @@ const InstrumentSetComponent = () => {
       <div className={styles.mainContainer}>
         <SearchBar setQuery={setQuery} />
         <Table headers={headers} data={currentPosts} selectedSpecialty={selected} />
+        {miniModalOpen && <MiniModal closeMiniModal={() => {setMiniModalOpen(false)}} />}
+        <button className={styles.button} onClick={() => setMiniModalOpen(true)}>Add</button>
         <Pagination
           postsPerPage={postsPerPage}
           totalPosts={allPosts.length}
