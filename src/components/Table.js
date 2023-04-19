@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Table.module.css";
 import Modal from "./Modal";
 
-function Table({ data, headers, selectedSpecialty }) {
+function Table({ data, headers, selectedSpecialty, onDelete, onEdit }) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -15,6 +15,16 @@ function Table({ data, headers, selectedSpecialty }) {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleEdit = (event, item) => {
+    event.stopPropagation();
+    onEdit(item);
+  };
+
+  const handleDelete = (event, item) => {
+    event.stopPropagation();
+    onDelete(item);
   };
 
   const filteredData =
@@ -35,7 +45,16 @@ function Table({ data, headers, selectedSpecialty }) {
             {filteredData.map((item) => (
               <tr key={item.id} onClick={() => handleItemClick(item)}>
                 {headers.map((header) => (
-                  <td key={header.accessor}>{item[header.accessor]}</td>
+                  <td key={header.accessor}>
+                    {header.accessor !== "set_action" ? (
+                      item[header.accessor]
+                    ) : (
+                      <>
+                        <button onClick={(e) => handleEdit(e, item)}>Edit</button>
+                        <button onClick={(e) => handleDelete(e, item)}>Delete</button>
+                      </>
+                    )}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -60,7 +79,7 @@ function Table({ data, headers, selectedSpecialty }) {
               />
               {selectedItem.set_name && (
                 <>
-                 <p className={styles.paragraph}>
+                  <p className={styles.paragraph}>
                     Set ID: {selectedItem.set_id}
                   </p>
                   <p className={styles.paragraph}>
@@ -81,7 +100,7 @@ function Table({ data, headers, selectedSpecialty }) {
               )}
               {selectedItem.instrument_name && (
                 <>
-                 <p className={styles.paragraph}>
+                  <p className={styles.paragraph}>
                     Instrument ID: {selectedItem.instrument_id}
                   </p>
                   <p className={styles.paragraph}>
@@ -101,3 +120,5 @@ function Table({ data, headers, selectedSpecialty }) {
 }
 
 export default Table;
+
+

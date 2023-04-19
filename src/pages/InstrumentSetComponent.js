@@ -37,6 +37,7 @@ const InstrumentSetComponent = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
+
   return (
     <div className={styles.instrumentSetContainer}>
       <div className={styles.dropDown}>

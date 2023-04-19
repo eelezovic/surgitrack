@@ -21,14 +21,14 @@
 .miniModal .button {
   margin: auto;
   display: block;
-    margin-top: 1rem;
-    border: none;
-    background-color: #1d4ed8;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 5px 5px #ccc;
+  margin-top: 1rem;
+  border: none;
+  background-color: #39559e;;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
 }
 
 .formGroup {
