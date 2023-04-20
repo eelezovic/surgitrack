@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Table.module.css";
 import Modal from "./Modal";
+import { FaPen, FaTrash } from "react-icons/fa";
 
 function Table({ data, headers, selectedSpecialty, onDelete, onEdit }) {
   const [selectedItem, setSelectedItem] = useState();
@@ -50,8 +51,12 @@ function Table({ data, headers, selectedSpecialty, onDelete, onEdit }) {
                       item[header.accessor]
                     ) : (
                       <>
-                        <button onClick={(e) => handleEdit(e, item)}>Edit</button>
-                        <button onClick={(e) => handleDelete(e, item)}>Delete</button>
+                        <button onClick={(e) => handleEdit(e, item)} className={styles.iconButton}>
+                          <FaPen />
+                        </button>
+                        <button onClick={(e) => handleDelete(e, item)} className={`${styles.iconButton} ${styles.delete}`}>
+                          <FaTrash />
+                        </button>
                       </>
                     )}
                   </td>
@@ -120,5 +125,6 @@ function Table({ data, headers, selectedSpecialty, onDelete, onEdit }) {
 }
 
 export default Table;
+
 
 

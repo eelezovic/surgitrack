@@ -13,7 +13,6 @@ table {
 
 th, td {
   letter-spacing: 1.5px;
-  border: 1px solid #e7e7e7;
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -67,6 +66,28 @@ img {
   margin: 40px;
   padding: 5px;
 }
+
+.iconButton {
+  font-size: 1rem;
+  color: #5eacff;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  margin: 0 5px;
+}
+
+.iconButton:hover {
+  opacity: 1;
+}
+
+.iconButton.delete {
+  color: #e15664;
+}
+
+.iconButton.edit {
+  color: #007bff;
+}
+
 
 @media screen and (max-width: 1000px) {
 .paragraph {

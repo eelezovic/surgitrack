@@ -7,7 +7,6 @@ import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
 import MiniModal from "../components/MiniModal";
 
-
 const InstrumentSetComponent = () => {
   const headers = [
     { name: "Set Name", accessor: "set_name" },
@@ -16,11 +15,12 @@ const InstrumentSetComponent = () => {
     { name: "Location", accessor: "set_location" },
     { name: "Action", accessor: "set_action" },
   ];
+
   const [selected, setSelected] = useState("Select specialty");
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
-  const [miniModalOpen, setMiniModalOpen] = useState(false)
+  const [miniModalOpen, setMiniModalOpen] = useState(false);
 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
@@ -37,7 +37,6 @@ const InstrumentSetComponent = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
-
   return (
     <div className={styles.instrumentSetContainer}>
       <div className={styles.dropDown}>
@@ -45,9 +44,27 @@ const InstrumentSetComponent = () => {
       </div>
       <div className={styles.mainContainer}>
         <SearchBar setQuery={setQuery} />
-        <Table headers={headers} data={currentPosts} selectedSpecialty={selected} />
-        {miniModalOpen && <MiniModal closeMiniModal={() => {setMiniModalOpen(false)}} />}
-        <button className={styles.button} onClick={() => setMiniModalOpen(true)}>Add</button>
+        <Table
+          headers={headers}
+          data={currentPosts}
+          selectedSpecialty={selected}
+        />
+        {miniModalOpen && (
+          <MiniModal
+            closeMiniModal={() => {
+              setMiniModalOpen(false);
+            }}
+            addItem={(item) => {
+              InstrumentSetData.push(item);
+            }}
+          />
+        )}
+        <button
+          className={styles.button}
+          onClick={() => setMiniModalOpen(true)}
+        >
+          Add
+        </button>
         <Pagination
           postsPerPage={postsPerPage}
           totalPosts={allPosts.length}

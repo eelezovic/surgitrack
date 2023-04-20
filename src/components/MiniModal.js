@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./MiniModal.module.css";
 
-function MiniModal({ closeMiniModal }) {
+function MiniModal({ closeMiniModal, addItem }) {
   const [formState, setFormState] = useState({
     setName: "",
     setId: "",
@@ -32,16 +32,36 @@ function MiniModal({ closeMiniModal }) {
     });
   };
 
+  const validateForm = () => {
+    if (formState.setName && formState.setId && formState.setLocation && formState.setQuantity) {
+      return true;
+    } else {
+      return  alert("please fill out all required fields!");
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (!validateForm()) return;
+    addItem({
+      set_name: formState.setName,
+      set_id: formState.setId,
+      set_quantity: formState.setQuantity,
+      set_location: formState.setLocation,
+      set_action: (
+        <div className={styles.actionButtons}>
+          <button className={styles.editButton}>Edit</button>
+          <button className={styles.deleteButton}>Delete</button>
+        </div>
+      ),
+    });
     closeMiniModal();
   };
 
   return (
     <div className={styles.miniModalContainer}>
       <div className={styles.miniModal} ref={modalRef}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label htmlFor="setName">Set Name</label>
             <input name="setName" value={formState.setName} onChange={handleChange} />
@@ -58,7 +78,7 @@ function MiniModal({ closeMiniModal }) {
             <label htmlFor="setLocation">Location</label>
             <input name="setLocation" value={formState.setLocation} onChange={handleChange} />
           </div>
-          <button type="submit" className={styles.button} onChange={handleSubmit}>
+          <button type="submit" className={styles.button}>
             Submit
           </button>
         </form>
@@ -68,3 +88,4 @@ function MiniModal({ closeMiniModal }) {
 }
 
 export default MiniModal;
+
