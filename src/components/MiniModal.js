@@ -3,7 +3,7 @@ import styles from "./MiniModal.module.css";
 
 function MiniModal({ closeMiniModal, addItem }) {
   const [formState, setFormState] = useState({
-    setName: "",
+   setName: "",
     setId: "",
     setQuantity: "",
     setLocation: "",
