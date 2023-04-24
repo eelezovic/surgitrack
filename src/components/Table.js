@@ -6,17 +6,8 @@ import { FaPen, FaTrash } from "react-icons/fa";
 function Table({ data, headers, selectedSpecialty, onDelete, onEdit }) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [display, setDisplay] = useState(false);
+  const [hoveredItemId, setHoveredItemId] = useState(null);
 
-  const handleMouseEnter = () => {
-    console.log('Mouse entered button');
-    setDisplay(true);
-  };
-
-  const handleMouseLeave = () => {
-    console.log('Mouse left button');
-    setDisplay(false);
-  };
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -24,7 +15,6 @@ function Table({ data, headers, selectedSpecialty, onDelete, onEdit }) {
   };
 
   const handleImageClick = () => {};
-
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -55,29 +45,24 @@ function Table({ data, headers, selectedSpecialty, onDelete, onEdit }) {
               ))}
             </tr>
             {filteredData.map((item) => (
-              <tr key={item.id} onClick={() => handleItemClick(item)}>
+              <tr key={item.id} onClick={() => handleItemClick(item)} onMouseEnter={() => setHoveredItemId(item.id)} onMouseLeave={() => setHoveredItemId(null)} >
                 {headers.map((header) => (
                   <td key={header.accessor}>
                     {header.accessor !== "set_action" ? (
                       item[header.accessor]
                     ) : (
+                  <> 
+                    {hoveredItemId === item.id && (
                       <>
-                      <button
-                        onClick={(e) => handleEdit(e, item)}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                        className={`${styles.iconButton} ${styles.edit}`}
-                      >
-                        <FaPen style={{ display: display ? 'block' : 'none' }} />
+                      <button onClick={(e) => handleEdit(e, item)} className={`${styles.iconButton} ${styles.edit}`} >
+                        <FaPen />
                       </button>
-                      <button
-                        onClick={(e) => handleDelete(e, item)}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                        className={`${styles.iconButton} ${styles.delete}`}
-                      >
-                        <FaTrash style={{ display: display ? 'block' : 'none' }} />
+
+                      <button onClick={(e) => handleDelete(e, item)} className={`${styles.iconButton} ${styles.delete}`} > 
+                        <FaTrash />
                       </button>
+                    </>
+                    )}
                     </>
                     )}
                   </td>
