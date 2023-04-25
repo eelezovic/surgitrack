@@ -16,6 +16,8 @@ const InstrumentSetComponent = () => {
     { name: "Action", accessor: "set_action" },
   ];
 
+  
+
   const [selected, setSelected] = useState("Select specialty");
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -60,7 +62,7 @@ const InstrumentSetComponent = () => {
           />
         )}
         <button
-          className={styles.button}
+          className={styles.addButton}
           onClick={() => setMiniModalOpen(true)}
         >
           Add

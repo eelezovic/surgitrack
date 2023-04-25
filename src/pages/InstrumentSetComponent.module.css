@@ -21,7 +21,7 @@
   align-items: center;
 }
 
-.button {
+.addButton {
   display:flex;
   margin: 1rem;
   border: none;

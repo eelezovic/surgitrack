@@ -43,7 +43,7 @@ function SingleInstrumentsComponent() {
           />
         )}
         <button
-          className={styles.button}
+          className={styles.addButton}
           onClick={() => setMiniModalOpen(true)}
         >
           Add
