@@ -82,11 +82,23 @@ img {
 }
 
 .iconButton.delete {
-  color: #e15664;
+  color: #dd4857;
+  cursor: pointer;
+}
+
+.iconButton.delete:hover {
+  color: #e37883;
+  cursor: pointer;
 }
 
 .iconButton.edit {
   color: #007bff;
+  cursor: pointer;
+}
+
+.iconButton.edit:hover {
+  color: #54a4f9;
+  cursor: pointer;
 }
 
 

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./MiniModal.module.css";
 
-function MiniModal({ closeMiniModal, addItem }) {
-  const [formState, setFormState] = useState({
+function MiniModal({ closeMiniModal, addItem, defaultValue }) {
+  const [formState, setFormState] = useState(defaultValue || {
    setName: "",
     setId: "",
     setQuantity: "",

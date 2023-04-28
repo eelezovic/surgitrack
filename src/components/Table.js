@@ -3,10 +3,11 @@ import styles from "./Table.module.css";
 import Modal from "./Modal";
 import { FaPen, FaTrash } from "react-icons/fa";
 
-function Table({ data, headers, selectedSpecialty, onDelete, onEdit }) {
+function Table({ data, headers, selectedSpecialty, onDelete, onEdit, editRow }) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState(null);
+  const [setData, setSetData] = useState([]);
 
 
   const handleItemClick = (item) => {
@@ -23,12 +24,14 @@ function Table({ data, headers, selectedSpecialty, onDelete, onEdit }) {
     event.stopPropagation();
     onEdit(item);
   };
-
-  const handleDelete = (event, item) => {
+  
+  const handleDelete = (event, id) => {
     event.stopPropagation();
-    onDelete(item);
+    const updatedData = data.filter((dataItem) => dataItem !== id);
+    setData(updatedData);
   };
-
+  
+  
   const filteredData =
     selectedSpecialty !== "Select specialty"
       ? data.filter((item) => item.select_specialty === selectedSpecialty)
@@ -54,11 +57,11 @@ function Table({ data, headers, selectedSpecialty, onDelete, onEdit }) {
                   <> 
                     {hoveredItemId === item.id && (
                       <>
-                      <button onClick={(e) => handleEdit(e, item)} className={`${styles.iconButton} ${styles.edit}`} >
+                      <button onClick={(event) => handleEdit(event, item)} className={`${styles.iconButton} ${styles.edit}`} >
                         <FaPen />
                       </button>
 
-                      <button onClick={(e) => handleDelete(e, item)} className={`${styles.iconButton} ${styles.delete}`} > 
+                      <button onClick={(event) => handleDelete(event, item)} className={`${styles.iconButton} ${styles.delete}`} > 
                         <FaTrash />
                       </button>
                     </>

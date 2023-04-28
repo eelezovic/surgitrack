@@ -16,13 +16,23 @@ const InstrumentSetComponent = () => {
     { name: "Action", accessor: "set_action" },
   ];
 
-  
-
   const [selected, setSelected] = useState("Select specialty");
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
   const [miniModalOpen, setMiniModalOpen] = useState(false);
+  const [rowToEdit, setRowToEdit] = useState(null)
+
+  const handleEditRow = (item) => {
+    setRowToEdit(item);
+    setMiniModalOpen(true)
+  }
+
+  const handleDeleteRow = (id) => {
+    const updatedData = InstrumentSetData.filter((item) => item.set_id !== id);
+    InstrumentSetData = updatedData;
+  };
+  
 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
@@ -50,6 +60,8 @@ const InstrumentSetComponent = () => {
           headers={headers}
           data={currentPosts}
           selectedSpecialty={selected}
+          editRow={handleEditRow}
+          deleteRow={handleDeleteRow}
         />
         {miniModalOpen && (
           <MiniModal
@@ -59,6 +71,7 @@ const InstrumentSetComponent = () => {
             addItem={(item) => {
               InstrumentSetData.push(item);
             }}
+            defaultValue={rowToEdit !== null && [rowToEdit]}
           />
         )}
         <button
