@@ -6,7 +6,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
-
+  
   return (
     <div className={styles.paginationContainer}>
       <ul className={styles.pagination}>

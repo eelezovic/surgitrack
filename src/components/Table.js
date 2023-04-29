@@ -3,12 +3,10 @@ import styles from "./Table.module.css";
 import Modal from "./Modal";
 import { FaPen, FaTrash } from "react-icons/fa";
 
-function Table({ data, headers, selectedSpecialty, onDelete, onEdit, editRow }) {
+function Table({ data, headers, selectedSpecialty, onDelete, onEdit, editRow, setData}) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState(null);
-  const [setData, setSetData] = useState([]);
-
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -25,9 +23,9 @@ function Table({ data, headers, selectedSpecialty, onDelete, onEdit, editRow }) 
     onEdit(item);
   };
   
-  const handleDelete = (event, id) => {
+  const handleDelete = (event, item) => {
     event.stopPropagation();
-    const updatedData = data.filter((dataItem) => dataItem !== id);
+    const updatedData = data.filter((dataItem) => dataItem.id !== item.id);
     setData(updatedData);
   };
   

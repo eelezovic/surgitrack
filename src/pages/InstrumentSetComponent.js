@@ -22,17 +22,12 @@ const InstrumentSetComponent = () => {
   const [postsPerPage] = useState(10);
   const [miniModalOpen, setMiniModalOpen] = useState(false);
   const [rowToEdit, setRowToEdit] = useState(null)
-
+  const [setData, setSetData] = useState(InstrumentSetData);
+  
   const handleEditRow = (item) => {
     setRowToEdit(item);
     setMiniModalOpen(true)
   }
-
-  const handleDeleteRow = (id) => {
-    const updatedData = InstrumentSetData.filter((item) => item.set_id !== id);
-    InstrumentSetData = updatedData;
-  };
-  
 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
@@ -44,7 +39,7 @@ const InstrumentSetComponent = () => {
 
   const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
 
-  const allPosts = getDataWithSearchString(InstrumentSetData);
+  const allPosts = getDataWithSearchString(setData);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
@@ -61,7 +56,7 @@ const InstrumentSetComponent = () => {
           data={currentPosts}
           selectedSpecialty={selected}
           editRow={handleEditRow}
-          deleteRow={handleDeleteRow}
+          setData={setSetData}
         />
         {miniModalOpen && (
           <MiniModal

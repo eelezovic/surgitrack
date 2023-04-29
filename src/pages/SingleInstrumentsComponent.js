@@ -11,7 +11,7 @@ function SingleInstrumentsComponent() {
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
-  
+  const [setData, setSetData] = useState(SingleInstrumentsData);
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
       ["instrument_name", "instrument_id", "instrument_location"].some((key) =>
@@ -22,7 +22,7 @@ function SingleInstrumentsComponent() {
 
   const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
 
-  const allPosts = getDataWithSearchString(SingleInstrumentsData);
+  const allPosts = getDataWithSearchString(setData);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
@@ -31,7 +31,7 @@ function SingleInstrumentsComponent() {
   return (
     <div className={styles.singleInstrumentContainer}>
       <SearchBar setQuery={setQuery} />
-      <Table data={currentPosts} query={query} headers={headers} />
+      <Table data={currentPosts} query={query} headers={headers} setData={setSetData} />
       {miniModalOpen && (
           <MiniModal
             closeMiniModal={() => {
