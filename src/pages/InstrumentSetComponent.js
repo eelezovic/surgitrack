@@ -26,8 +26,16 @@ const InstrumentSetComponent = () => {
   
   const handleEditRow = (item) => {
     setRowToEdit(item);
-    setMiniModalOpen(true)
-  }
+    setMiniModalOpen(true);
+  };
+
+  const handleSubmit = (newRow) => {
+    setData.push(newRow);
+    const updatedData = setData.map((currentRow, item) =>
+    item === rowToEdit ? newRow : currentRow
+    );
+    setSetData(updatedData);
+    }; 
 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
@@ -63,10 +71,9 @@ const InstrumentSetComponent = () => {
             closeMiniModal={() => {
               setMiniModalOpen(false);
             }}
-            addItem={(item) => {
-              InstrumentSetData.push(item);
-            }}
-            defaultValue={rowToEdit !== null && [rowToEdit]}
+            onSubmit={handleSubmit}
+            defaultValue={rowToEdit !== null &&  [rowToEdit]}
+            rowToEdit={rowToEdit}
           />
         )}
         <button

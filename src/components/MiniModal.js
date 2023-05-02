@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./MiniModal.module.css";
 
-function MiniModal({ closeMiniModal, addItem, defaultValue }) {
-  const [formState, setFormState] = useState(defaultValue || {
+function MiniModal({ closeMiniModal, onSubmit, defaultValue}) {
+  const [formState, setFormState] = useState(defaultValue ||{
    setName: "",
     setId: "",
     setQuantity: "",
     setLocation: "",
-  });
+  }); 
 
   const modalRef = useRef();
 
@@ -43,17 +43,12 @@ function MiniModal({ closeMiniModal, addItem, defaultValue }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-    addItem({
+
+    onSubmit({
       set_name: formState.setName,
       set_id: formState.setId,
       set_quantity: formState.setQuantity,
       set_location: formState.setLocation,
-      set_action: (
-        <div className={styles.actionButtons}>
-          <button className={styles.editButton}>Edit</button>
-          <button className={styles.deleteButton}>Delete</button>
-        </div>
-      ),
     });
     closeMiniModal();
   };
@@ -78,7 +73,7 @@ function MiniModal({ closeMiniModal, addItem, defaultValue }) {
             <label htmlFor="setLocation">Location</label>
             <input name="setLocation" value={formState.setLocation} onChange={handleChange} />
           </div>
-          <button type="submit" className={styles.button}>
+          <button type="submit" className={styles.button} onClick={handleSubmit}>
             Submit
           </button>
         </form>

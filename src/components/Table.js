@@ -3,7 +3,7 @@ import styles from "./Table.module.css";
 import Modal from "./Modal";
 import { FaPen, FaTrash } from "react-icons/fa";
 
-function Table({ data, headers, selectedSpecialty, onDelete, onEdit, editRow, setData}) {
+function Table({ data, headers, selectedSpecialty, editRow, setData}) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState(null);
@@ -18,10 +18,6 @@ function Table({ data, headers, selectedSpecialty, onDelete, onEdit, editRow, se
     setIsModalOpen(false);
   };
 
-  const handleEdit = (event, item) => {
-    event.stopPropagation();
-    onEdit(item);
-  };
   
   const handleDelete = (event, item) => {
     event.stopPropagation();
@@ -42,9 +38,10 @@ function Table({ data, headers, selectedSpecialty, onDelete, onEdit, editRow, se
           <tbody>
             <tr>
               {headers.map((header) => (
-                <th key={header.name}>{header.name}</th>
+                <th key={header}>{header.name}</th>
               ))}
             </tr>
+
             {filteredData.map((item) => (
               <tr key={item.id} onClick={() => handleItemClick(item)} onMouseEnter={() => setHoveredItemId(item.id)} onMouseLeave={() => setHoveredItemId(null)} >
                 {headers.map((header) => (
@@ -55,7 +52,7 @@ function Table({ data, headers, selectedSpecialty, onDelete, onEdit, editRow, se
                   <> 
                     {hoveredItemId === item.id && (
                       <>
-                      <button onClick={(event) => handleEdit(event, item)} className={`${styles.iconButton} ${styles.edit}`} >
+                      <button onClick={(event) => { event.stopPropagation(); editRow(item)}} className={`${styles.iconButton} ${styles.edit}`} >
                         <FaPen />
                       </button>
 
