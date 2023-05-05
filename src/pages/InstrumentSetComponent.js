@@ -30,12 +30,17 @@ const InstrumentSetComponent = () => {
   };
 
   const handleSubmit = (newRow) => {
-    setData.push(newRow);
-    const updatedData = setData.map((currentRow, item) =>
-    item === rowToEdit ? newRow : currentRow
-    );
-    setSetData(updatedData);
-    }; 
+    if (rowToEdit === null) {
+      setSetData([...setData, newRow]); // Add new item to the data array
+    } else {
+      const updatedData = setData.map((currentRow) =>
+        currentRow.set_id === rowToEdit.set_id ? newRow : currentRow
+      );
+      setSetData(updatedData);
+    }
+    setMiniModalOpen(false);
+  };
+  
 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
