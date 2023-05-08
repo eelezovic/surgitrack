@@ -37,6 +37,7 @@ const InstrumentSetComponent = () => {
         currentRow.set_id === rowToEdit.set_id ? newRow : currentRow
       );
       setSetData(updatedData);
+      setRowToEdit(null);
     }
     setMiniModalOpen(false);
   };
@@ -75,10 +76,10 @@ const InstrumentSetComponent = () => {
           <MiniModal
             closeMiniModal={() => {
               setMiniModalOpen(false);
+              setRowToEdit(null)
             }}
             onSubmit={handleSubmit}
-            defaultValue={rowToEdit !== null &&  [rowToEdit]}
-            rowToEdit={rowToEdit}
+            defaultValue={rowToEdit ? {setName: rowToEdit.set_name, setId: rowToEdit.set_id, setQuantity: rowToEdit.set_quantity, setLocation: rowToEdit.set_location} : null}
           />
         )}
         <button
