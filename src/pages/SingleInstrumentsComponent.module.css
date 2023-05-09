@@ -7,4 +7,19 @@
   align-items: center;
 }
 
+.addButton {
+  display:flex;
+  border: none;
+  background-color: #39559e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
+}
+
+.addButton:hover {
+  background-color: #819ee5;
+}
+
 

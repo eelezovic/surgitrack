@@ -3,7 +3,7 @@ import styles from "./Table.module.css";
 import Modal from "./Modal";
 import { FaPen, FaTrash } from "react-icons/fa";
 
-function Table({ data, headers, selectedSpecialty, editRow, setData}) {
+function Table({ data, headers, selectedSpecialty, editRow, setData }) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState(null);
@@ -18,17 +18,17 @@ function Table({ data, headers, selectedSpecialty, editRow, setData}) {
     setIsModalOpen(false);
   };
 
-  
   const handleDelete = (event, item) => {
     event.stopPropagation();
     const updatedData = data.filter((dataItem) => dataItem.id !== item.id);
     setData(updatedData);
   };
-  
-  
+
   const filteredData =
     selectedSpecialty !== "Select specialty"
-      ? data.filter((item) => item.select_specialty === selectedSpecialty)
+      ? selectedSpecialty === "All"
+        ? data
+        : data.filter((item) => item.select_specialty === selectedSpecialty)
       : data;
 
   return (
@@ -43,25 +43,39 @@ function Table({ data, headers, selectedSpecialty, editRow, setData}) {
             </tr>
 
             {filteredData.map((item) => (
-              <tr key={item.id} onClick={() => handleItemClick(item)} onMouseEnter={() => setHoveredItemId(item.id)} onMouseLeave={() => setHoveredItemId(null)} >
+              <tr
+                key={item.id}
+                onClick={() => handleItemClick(item)}
+                onMouseEnter={() => setHoveredItemId(item.id)}
+                onMouseLeave={() => setHoveredItemId(null)}
+              >
                 {headers.map((header) => (
                   <td key={header.accessor}>
                     {header.accessor !== "set_action" ? (
                       item[header.accessor]
                     ) : (
-                  <> 
-                    {hoveredItemId === item.id && (
                       <>
-                      <button onClick={(event) => { event.stopPropagation(); editRow(item)}} className={`${styles.iconButton} ${styles.edit}`} >
-                        <FaPen />
-                      </button>
+                        {hoveredItemId === item.id && (
+                          <>
+                            <button
+                              onClick={(event) => {
+                                event.stopPropagation();
+                                editRow(item);
+                              }}
+                              className={`${styles.iconButton} ${styles.edit}`}
+                            >
+                              <FaPen />
+                            </button>
 
-                      <button onClick={(event) => handleDelete(event, item)} className={`${styles.iconButton} ${styles.delete}`} > 
-                        <FaTrash />
-                      </button>
-                    </>
-                    )}
-                    </>
+                            <button
+                              onClick={(event) => handleDelete(event, item)}
+                              className={`${styles.iconButton} ${styles.delete}`}
+                            >
+                              <FaTrash />
+                            </button>
+                          </>
+                        )}
+                      </>
                     )}
                   </td>
                 ))}
@@ -129,6 +143,3 @@ function Table({ data, headers, selectedSpecialty, editRow, setData}) {
 }
 
 export default Table;
-
-
-

@@ -33,6 +33,11 @@
   box-shadow: 0 5px 5px #ccc;
 }
 
+.addButton:hover {
+  background-color: #819ee5;
+}
+
+
 .editButton {
   background-color: #4caf50;
   color: white;

@@ -24,8 +24,8 @@ input:focus {
   outline: none;
 }
 
-#searchIcon {
-  color: blue;
+.searchIcon {
+  color: rgb(255, 0, 8);
 }
 
 .search {

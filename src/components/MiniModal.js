@@ -39,19 +39,29 @@ function MiniModal({ closeMiniModal, onSubmit, defaultValue}) {
       return  alert("please fill out all required fields!");
     }
   }
-
-  const handleSubmit = (e) => {
+ 
+  const handleSubmit = (e, instrumentObject) => {
     e.preventDefault();
     if (!validateForm()) return;
-
-    onSubmit({
-      set_name: formState.setName,
-      set_id: formState.setId,
-      set_quantity: formState.setQuantity,
-      set_location: formState.setLocation,
-    });
+  
+    const dataObject = instrumentObject
+      ? {
+          set_id: formState.setId,
+          set_name: formState.setName,
+          set_quantity: formState.setQuantity,
+          set_location: formState.setLocation,
+        }
+      : {
+          instrument_id: formState.setId,
+          instrument_name: formState.setName,
+          instrument_quantity: formState.setQuantity,
+          instrument_location: formState.setLocation,
+        };
+    onSubmit(dataObject);
     closeMiniModal();
   };
+  
+  
 
   return (
     <div className={styles.miniModalContainer}>

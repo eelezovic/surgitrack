@@ -5,7 +5,7 @@ function SearchBar ({setQuery}) {
 
   return (
     <div className={styles.inputWrapper}>
-      <i id="searchIcon" class="fa-solid fa-magnifying-glass"></i>
+      <i className="fa-solid fa-magnifying-glass blue-color"></i>
       <input 
       type="text" 
       placeholder="Search..." 

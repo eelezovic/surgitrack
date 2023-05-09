@@ -7,9 +7,6 @@ import SearchBar from "../components/SearchBar";
 function Home() {
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.searchBarIcon}>
-       <SearchBar />
-       </div>
       < div className={styles.container}>
       <div className={styles.singleInstrumentContainer}>
         <div className={styles.iconContainer}>

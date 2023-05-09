@@ -12,7 +12,7 @@ function Dropdown ({selected, setSelected}){
         setIsActive(false);
       }
     };
-
+    
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);

@@ -7,11 +7,38 @@ import Pagination from "../components/Pagination";
 import MiniModal from "../components/MiniModal";
 
 function SingleInstrumentsComponent() {
-  const headers = [{name: 'Instrument Name', accessor: 'instrument_name'},{name: 'ID', accessor: 'instrument_id'}, { name: 'Quantity', accessor: 'instrument_quantity'}, { name: 'Location',accessor: 'instrument_location'},  { name: "Action", accessor: "set_action" },];
+  const headers = [
+    { name: "Instrument Name", accessor: "instrument_name" },
+    { name: "ID", accessor: "instrument_id" },
+    { name: "Quantity", accessor: "instrument_quantity" },
+    { name: "Location", accessor: "instrument_location" },
+    { name: "Action", accessor: "set_action" },
+  ];
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(8);
   const [setData, setSetData] = useState(SingleInstrumentsData);
+  const [rowToEdit, setRowToEdit] = useState(null);
+  const [miniModalOpen, setMiniModalOpen] = useState(false);
+
+  const handleEditRow = (item) => {
+    setRowToEdit(item);
+    setMiniModalOpen(true);
+  };
+
+  const handleSubmit = (newRow) => {
+    if (rowToEdit === null) {
+      setSetData([...setData, newRow]);
+    } else {
+      const updatedData = setData.map((currentRow) =>
+        currentRow.instrument_id === rowToEdit.instrument_id ? newRow : currentRow
+      );
+      setSetData(updatedData);
+      setRowToEdit(null);
+    }
+    setMiniModalOpen(false);
+  };
+
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
       ["instrument_name", "instrument_id", "instrument_location"].some((key) =>
@@ -26,28 +53,42 @@ function SingleInstrumentsComponent() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
-  const [miniModalOpen, setMiniModalOpen] = useState(false);
 
   return (
     <div className={styles.singleInstrumentContainer}>
       <SearchBar setQuery={setQuery} />
-      <Table data={currentPosts} query={query} headers={headers} setData={setSetData} />
+      <Table
+        data={currentPosts}
+        headers={headers}
+        setData={setSetData}
+        editRow={handleEditRow}
+        query={query}
+      />
       {miniModalOpen && (
-          <MiniModal
-            closeMiniModal={() => {
-              setMiniModalOpen(false);
-            }}
-            addItem={(item) => {
-              SingleInstrumentsData.push(item);
-            }}
-          />
-        )}
-        <button
-          className={styles.addButton}
-          onClick={() => setMiniModalOpen(true)}
-        >
-          Add
-        </button>
+        <MiniModal
+          closeMiniModal={() => {
+            setMiniModalOpen(false);
+            setRowToEdit(null);
+          }}
+          onSubmit={handleSubmit}
+          defaultValue={
+            rowToEdit
+            ? {
+              setName: rowToEdit.instrument_name,
+                    setId: rowToEdit.instrument_id,
+                    setQuantity: rowToEdit.instrument_quantity,
+                    setLocation: rowToEdit.instrument_location,
+            }
+            : null
+          }
+        />
+      )}
+      <button
+        className={styles.addButton}
+        onClick={() => setMiniModalOpen(true)}
+      >
+        Add
+      </button>
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={allPosts.length}
@@ -59,4 +100,3 @@ function SingleInstrumentsComponent() {
 }
 
 export default SingleInstrumentsComponent;
-

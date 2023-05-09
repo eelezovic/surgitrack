@@ -21,9 +21,9 @@ const InstrumentSetComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [miniModalOpen, setMiniModalOpen] = useState(false);
-  const [rowToEdit, setRowToEdit] = useState(null)
+  const [rowToEdit, setRowToEdit] = useState(null);
   const [setData, setSetData] = useState(InstrumentSetData);
-  
+
   const handleEditRow = (item) => {
     setRowToEdit(item);
     setMiniModalOpen(true);
@@ -41,7 +41,6 @@ const InstrumentSetComponent = () => {
     }
     setMiniModalOpen(false);
   };
-  
 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
@@ -76,10 +75,19 @@ const InstrumentSetComponent = () => {
           <MiniModal
             closeMiniModal={() => {
               setMiniModalOpen(false);
-              setRowToEdit(null)
+              setRowToEdit(null);
             }}
             onSubmit={handleSubmit}
-            defaultValue={rowToEdit ? {setName: rowToEdit.set_name, setId: rowToEdit.set_id, setQuantity: rowToEdit.set_quantity, setLocation: rowToEdit.set_location} : null}
+            defaultValue={
+              rowToEdit
+                ? {
+                    setName: rowToEdit.set_name,
+                    setId: rowToEdit.set_id,
+                    setQuantity: rowToEdit.set_quantity,
+                    setLocation: rowToEdit.set_location,
+                  }
+                : null
+            }
           />
         )}
         <button
@@ -100,4 +108,3 @@ const InstrumentSetComponent = () => {
 };
 
 export default InstrumentSetComponent;
-
