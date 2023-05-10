@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Table.module.css";
 import Modal from "./Modal";
 import { FaPen, FaTrash } from "react-icons/fa";
+import ReactImageMagnify from 'react-image-magnify';
 
 function Table({ data, headers, selectedSpecialty, editRow, setData }) {
   const [selectedItem, setSelectedItem] = useState();
@@ -95,11 +96,23 @@ function Table({ data, headers, selectedSpecialty, editRow, setData }) {
           }
           content={
             <>
-              <img
-                src={selectedItem.set_image || selectedItem.instrument_image}
-                alt={selectedItem.set_name || selectedItem.instrument_name}
-                onClick={handleImageClick}
-              />
+            <div className={styles.imageMagnifier}>
+              <ReactImageMagnify
+      {...{
+        smallImage: {
+          src: selectedItem.set_image || selectedItem.instrument_image,
+          alt: selectedItem.set_name || selectedItem.instrument_name,
+          isFluidWidth: true,
+        },
+        largeImage: {
+          src: selectedItem.set_image || selectedItem.instrument_image,
+          width: 500,
+          height: 800,
+        },
+        onClick: handleImageClick,
+      }}
+    />
+    </div>
               {selectedItem.set_name && (
                 <>
                   <p className={styles.paragraph}>

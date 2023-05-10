@@ -60,12 +60,11 @@ tr:hover {
   font-style:oblique;
 }
 
-img {
-  border: 2px solid rgb(169, 211, 234);
-  width: 50%;
-  height: 50%;
-  margin: 40px;
-  padding: 5px;
+.imageMagnifier {
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+  border: 1px solid grey;
 }
 
  .iconButton {
@@ -112,12 +111,12 @@ img {
   padding: 6px;
   border: 1px solid #7793d4;
   }
-img {
-  border: 2px solid rgb(169, 211, 234);
-  width: 80%;
-  height: 80%;
-  margin: 40px;
-  padding: 5px;
+
+  .imageMagnifier {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    border: 1px solid grey;
   }
 }
  
