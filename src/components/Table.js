@@ -109,7 +109,7 @@ function Table({ data, headers, selectedSpecialty, editRow, setData }) {
           width: 500,
           height: 800,
         },
-        onClick: handleImageClick,
+       
       }}
     />
     </div>

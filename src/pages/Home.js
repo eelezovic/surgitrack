@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ButtonComponent from "../components/ButtonComponent";
 import styles from "../pages/Home.module.css";
-import SearchBar from "../components/SearchBar";
+
 
 function Home() {
   return (
@@ -12,7 +12,7 @@ function Home() {
         <div className={styles.iconContainer}>
         <Link to="/singleinstrumentscomponent"> <img src="https://cdn-icons-png.flaticon.com/512/8638/8638209.png" alt="Instrument icon" className={styles.InstrumentIcon} /> </Link> 
         </div>
-        <Link to="/singleinstrumentscomponent" className={styles.singleinstrumentscomponent}><ButtonComponent name="Instruments"/></Link>
+        <Link to="/singleinstrumentscomponent" className={styles.singleinstrumentscomponent}><ButtonComponent name="Single Instruments"/></Link>
       </div>
 
       <div className={styles.instrumentSetContainer}>
