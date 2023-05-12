@@ -1,0 +1,30 @@
+.aboutCountainer {
+  border: 1px solid black;
+  display: block;
+  font-family: verdana;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2% auto;
+  padding: 20px;
+  background-color: rgb(190, 236, 242);
+  color: #20325e;
+  height: 50%;
+  width: 70%;
+}
+
+.aboutCountainer h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutCountainer p {
+  font-size: 20px;
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+

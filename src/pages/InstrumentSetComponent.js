@@ -29,7 +29,7 @@ const InstrumentSetComponent = () => {
     setMiniModalOpen(true);
   };
 
-  const handleSubmit = (newRow) => {
+  const handleSubmit = (newRow, instrumentSet) => {
     if (rowToEdit === null) {
       setSetData([...setData, newRow]); // Add new item to the data array
     } else {

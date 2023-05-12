@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./MiniModal.module.css";
 
-function MiniModal({ closeMiniModal, onSubmit, defaultValue}) {
+function MiniModal({ closeMiniModal, onSubmit, defaultValue, componentType}) {
   const [formState, setFormState] = useState(defaultValue ||{
     setName: "",
     setId: "",
@@ -40,28 +40,27 @@ function MiniModal({ closeMiniModal, onSubmit, defaultValue}) {
     }
   }
  
-  const handleSubmit = (e, instrumentObject) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
   
-    const dataObject = instrumentObject
+    const dataObject = componentType
       ? {
+          instrument_id: formState.setId,
+          instrument_name: formState.setName,
+          instrument_quantity: formState.setQuantity,
+          instrument_location: formState.setLocation,
+        }
+        : {
           set_id: formState.setId,
           set_name: formState.setName,
           set_quantity: formState.setQuantity,
           set_location: formState.setLocation,
         }
-      : {
-          instrument_id: formState.setId,
-          instrument_name: formState.setName,
-          instrument_quantity: formState.setQuantity,
-          instrument_location: formState.setLocation,
-        };
+      
     onSubmit(dataObject);
     closeMiniModal();
   };
-  
-  
 
   return (
     <div className={styles.miniModalContainer}>

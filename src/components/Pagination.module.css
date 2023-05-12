@@ -37,7 +37,7 @@
 .paginationButtons {
   background-color: #fff;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 5px;
   color: #333;
   cursor: pointer;
   font-size: 16px;
@@ -67,4 +67,26 @@
 
 .paginationButtons.next {
   float: right;
+}
+
+@media screen and (max-width: 1000px) {
+  
+  .paginationButtons {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 6px;
+    padding: 5px 6px;
+    transition: all 0.3s ease;
+  }
+  .pageItem a {
+    color:#5774ba;
+    float: left;
+    padding: 8px 12px; 
+    margin: 0 2px; 
+  }
+
 }

@@ -39,15 +39,21 @@ function SingleInstrumentsComponent() {
     setMiniModalOpen(false);
   };
 
-  const getDataWithSearchString = (data) => {
+  function getDataWithSearchString(data) {
     return data.filter((item) =>
       ["instrument_name", "instrument_id", "instrument_location"].some((key) =>
         item[key].toUpperCase().includes(query.toUpperCase())
       )
     );
-  };
+  }
+  
+  
 
-  const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
+  const handlePagination = (pageNumbers) => {
+  setCurrentPage(pageNumbers);
+  window.scrollTo(0, 0);
+};
+
 
   const allPosts = getDataWithSearchString(setData);
   const indexOfLastPost = currentPage * postsPerPage;
@@ -70,6 +76,7 @@ function SingleInstrumentsComponent() {
             setMiniModalOpen(false);
             setRowToEdit(null);
           }}
+          componentType="singleInstrument"
           onSubmit={handleSubmit}
           defaultValue={
             rowToEdit

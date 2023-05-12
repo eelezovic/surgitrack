@@ -66,7 +66,6 @@
   border-radius: 4px;
 }
 
-
 @media screen and (max-width: 1000px) {
   .instrumentSetContainer {
     width: 100%;
@@ -74,5 +73,16 @@
    display: flex;
    flex-direction: column;
    justify-content: center;
+  }
+  .addButton {
+    display:flex;
+    margin: 0.6rem;
+    border: none;
+    background-color: #39559e;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 3px 4px #ccc;
   }
   }
