@@ -9,7 +9,7 @@ table {
   width: 100%;
   text-align:start;
   margin: 5px;
-  color:#1e436b
+  color:#1e436b;
 }
 
 th, td {
@@ -100,15 +100,21 @@ tr:hover {
   cursor: pointer;
 }
 
+h3 {
+  color: rgb(21, 54, 111);
+  margin-bottom: 4px;
+  font-size: 0.7rem;
+  left: 10px;
+}
+
 
 @media screen and (max-width: 1000px) {
 .paragraph {
   width: 50%;
   font-size: 1.2rem;
-  margin: auto;
   color: #352424;
   font-style: italic; 
-  padding: 6px;
+  padding: 4px;
   border: 1px solid #7793d4;
   }
 

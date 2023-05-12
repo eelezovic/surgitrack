@@ -23,7 +23,7 @@ const InstrumentSetComponent = () => {
   const [miniModalOpen, setMiniModalOpen] = useState(false);
   const [rowToEdit, setRowToEdit] = useState(null);
   const [setData, setSetData] = useState(InstrumentSetData);
-
+console.log(setData)
   const handleEditRow = (item) => {
     setRowToEdit(item);
     setMiniModalOpen(true);
@@ -63,7 +63,7 @@ const InstrumentSetComponent = () => {
         <Dropdown selected={selected} setSelected={setSelected} />
       </div>
       <div className={styles.mainContainer}>
-        <SearchBar setQuery={setQuery} />
+        <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
         <Table
           headers={headers}
           data={currentPosts}
@@ -85,6 +85,9 @@ const InstrumentSetComponent = () => {
                     setId: rowToEdit.set_id,
                     setQuantity: rowToEdit.set_quantity,
                     setLocation: rowToEdit.set_location,
+                    setImage:rowToEdit.set_image,
+                    setContent:rowToEdit.set_content,
+                    id: rowToEdit.id
                   }
                 : null
             }

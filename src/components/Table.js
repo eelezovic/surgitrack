@@ -45,7 +45,7 @@ function Table({ data, headers, selectedSpecialty, editRow, setData }) {
 
             {filteredData.map((item) => (
               <tr
-                key={item.id}
+                key={item.id }
                 onClick={() => handleItemClick(item)}
                 onMouseEnter={() => setHoveredItemId(item.id)}
                 onMouseLeave={() => setHoveredItemId(null)}
@@ -113,6 +113,7 @@ function Table({ data, headers, selectedSpecialty, editRow, setData }) {
       }}
     />
     </div>
+    <h3>Enlarge image on hover</h3>
               {selectedItem.set_name && (
                 <>
                   <p className={styles.paragraph}>

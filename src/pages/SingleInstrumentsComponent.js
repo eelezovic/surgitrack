@@ -62,7 +62,7 @@ function SingleInstrumentsComponent() {
 
   return (
     <div className={styles.singleInstrumentContainer}>
-      <SearchBar setQuery={setQuery} />
+      <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
       <Table
         data={currentPosts}
         headers={headers}
@@ -85,6 +85,7 @@ function SingleInstrumentsComponent() {
                     setId: rowToEdit.instrument_id,
                     setQuantity: rowToEdit.instrument_quantity,
                     setLocation: rowToEdit.instrument_location,
+                    id: rowToEdit.id
             }
             : null
           }

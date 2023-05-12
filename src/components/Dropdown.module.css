@@ -3,6 +3,7 @@
   user-select: none;
   margin: 50px;
   position: relative;
+
 }
 
 .dropdown .dropdownButton {
@@ -44,8 +45,6 @@
   background: #eeeded;
 }
 
-
-
 .dropdownScroll {
   height: 100%;
 }
@@ -53,9 +52,9 @@
 @media screen and (max-width: 1000px) {
 .dropdown {
   display: flex;
-  width: 145px;
-  user-select: none;
-  margin: 10px;
+  width: 150px;
+  user-select:text;
+  margin: 8px;
   }
 .dropdown .dropdownButton {
   padding: 8px;

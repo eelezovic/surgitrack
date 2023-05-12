@@ -1,13 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./MiniModal.module.css";
 
-function MiniModal({ closeMiniModal, onSubmit, defaultValue, componentType}) {
-  const [formState, setFormState] = useState(defaultValue ||{
-    setName: "",
-    setId: "",
-    setQuantity: "",
-    setLocation: "",
-  }); 
+function MiniModal({ closeMiniModal, onSubmit, defaultValue, componentType }) {
+  const [formState, setFormState] = useState(
+    defaultValue || {
+      setName: "",
+      setId: "",
+      setQuantity: "",
+      setLocation: "",
+      setImage: "",
+      setContent: "",
+      id: "",
+    }
+  );
 
   const modalRef = useRef();
 
@@ -33,31 +38,40 @@ function MiniModal({ closeMiniModal, onSubmit, defaultValue, componentType}) {
   };
 
   const validateForm = () => {
-    if (formState.setName && formState.setId && formState.setLocation && formState.setQuantity) {
+    if (
+      formState.setName &&
+      formState.setId &&
+      formState.setLocation &&
+      formState.setQuantity
+    ) {
       return true;
     } else {
-      return  alert("please fill out all required fields!");
+      return alert("Please fill out all required fields!");
     }
-  }
- 
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-  
+
     const dataObject = componentType
       ? {
+          id: formState.id,
           instrument_id: formState.setId,
           instrument_name: formState.setName,
           instrument_quantity: formState.setQuantity,
           instrument_location: formState.setLocation,
         }
-        : {
+      : {
+          id: formState.id,
           set_id: formState.setId,
           set_name: formState.setName,
           set_quantity: formState.setQuantity,
           set_location: formState.setLocation,
-        }
-      
+          set_image: formState.setImage,
+          set_content: formState.setContent,
+        };
+
     onSubmit(dataObject);
     closeMiniModal();
   };
@@ -68,21 +82,41 @@ function MiniModal({ closeMiniModal, onSubmit, defaultValue, componentType}) {
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label htmlFor="setName">Set Name</label>
-            <input name="setName" value={formState.setName} onChange={handleChange} />
+            <input
+              name="setName"
+              value={formState.setName}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="setId">ID</label>
-            <input name="setId" value={formState.setId} onChange={handleChange} />
+            <input
+              name="setId"
+              value={formState.setId}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="setQuantity">Quantity</label>
-            <input name="setQuantity" value={formState.setQuantity} onChange={handleChange} />
+            <input
+              name="setQuantity"
+              value={formState.setQuantity}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="setLocation">Location</label>
-            <input name="setLocation" value={formState.setLocation} onChange={handleChange} />
+            <input
+              name="setLocation"
+              value={formState.setLocation}
+              onChange={handleChange}
+            />
           </div>
-          <button type="submit" className={styles.button} onClick={handleSubmit}>
+          <button
+            type="submit"
+            className={styles.button}
+            onClick={handleSubmit}
+          >
             Submit
           </button>
         </form>
@@ -92,4 +126,3 @@ function MiniModal({ closeMiniModal, onSubmit, defaultValue, componentType}) {
 }
 
 export default MiniModal;
-

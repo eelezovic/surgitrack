@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./SearchBar.module.css";
 
-function SearchBar ({setQuery}) {
+function SearchBar ({setQuery,handlePagination}) {
 
   return (
     <div className={styles.inputWrapper}>
@@ -10,7 +10,11 @@ function SearchBar ({setQuery}) {
       type="text" 
       placeholder="Search..." 
       className={styles.search}
-      onChange={(e) => setQuery(e.target.value)} 
+      onChange={(e) => {
+        setQuery(e.target.value)
+        handlePagination(1)
+      } 
+    } 
       />
     </div>
   );
