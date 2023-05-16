@@ -23,6 +23,9 @@ th, td {
 th {
   background-color: #7793d4;
   color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-family: "Gill Sans", sans-serif;
 }
 
 tr:nth-child(even){
@@ -102,8 +105,8 @@ tr:hover {
 
 h3 {
   color: rgb(21, 54, 111);
-  margin-bottom: 4px;
-  font-size: 0.7rem;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
   left: 10px;
 }
 
@@ -123,6 +126,13 @@ h3 {
     height: 150px;
     margin: 10px;
     border: 1px solid grey;
+  }
+  th {
+    background-color: #7793d4;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-family: "Gill Sans", sans-serif;
   }
 }
  

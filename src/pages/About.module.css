@@ -4,7 +4,7 @@
   font-family: verdana;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: cente;
   margin: 2% auto;
   padding: 20px;
   background-color: rgb(190, 236, 242);
@@ -21,10 +21,26 @@
 }
 
 .aboutCountainer p {
+  text-indent: 50px;
   font-size: 20px;
   font-weight: normal;
   display: flex;
   justify-content: center;
-  text-align: center;
+  text-align: justify;
+  line-height: 1.8;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+  .aboutCountainer p {
+    text-indent:25px;
+    font-size: 20px;
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+    line-height: 1.4;
+  }
 }
 

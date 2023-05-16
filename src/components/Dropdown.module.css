@@ -55,6 +55,7 @@
   width: 150px;
   user-select:text;
   margin: 8px;
+  z-index: -1;
   }
 .dropdown .dropdownButton {
   padding: 8px;

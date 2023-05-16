@@ -11,7 +11,7 @@ function Navbar() {
         <img src="/images/logo.png"alt="" className={styles.logoImage} />
         <h2 className={styles.logoName}>SurgiTrack</h2>
       </div>
-    
+
       <ul
         className={isMobile ? styles.navLinkMobile : styles.navLinks}
         onClick={() => setIsMobile(false)}
@@ -21,9 +21,6 @@ function Navbar() {
         </Link>
         <Link to="/about" className={styles.about}>
           About
-        </Link>
-        <Link to="/contact" className={styles.contact}>
-          Contact
         </Link>
       </ul>
       <button

@@ -17,7 +17,7 @@
 .pageItem a {
   color:#5774ba;
   float: left;
-  padding: 8px 16px; 
+  padding: 6px 12px; 
   margin: 0 2px; 
 }
 
@@ -40,7 +40,7 @@
   border-radius: 5px;
   color: #333;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   margin-right: 10px;
   padding: 5px 10px;
   transition: all 0.3s ease;
