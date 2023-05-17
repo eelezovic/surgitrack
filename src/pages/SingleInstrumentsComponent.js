@@ -46,14 +46,8 @@ function SingleInstrumentsComponent() {
       )
     );
   }
-  
-  
 
-  const handlePagination = (pageNumbers) => {
-  setCurrentPage(pageNumbers);
-  window.scrollTo(0, 0);
-};
-
+  const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
 
   const allPosts = getDataWithSearchString(setData);
   const indexOfLastPost = currentPage * postsPerPage;
@@ -69,6 +63,7 @@ function SingleInstrumentsComponent() {
         setData={setSetData}
         editRow={handleEditRow}
         query={query}
+        handlePagination={handlePagination}
       />
       {miniModalOpen && (
         <MiniModal

@@ -23,13 +23,13 @@ const InstrumentSetComponent = () => {
   const [miniModalOpen, setMiniModalOpen] = useState(false);
   const [rowToEdit, setRowToEdit] = useState(null);
   const [setData, setSetData] = useState(InstrumentSetData);
-console.log(setData)
+
   const handleEditRow = (item) => {
     setRowToEdit(item);
     setMiniModalOpen(true);
   };
 
-  const handleSubmit = (newRow, instrumentSet) => {
+  const handleSubmit = (newRow) => {
     if (rowToEdit === null) {
       setSetData([...setData, newRow]); // Add new item to the data array
     } else {
@@ -50,7 +50,8 @@ console.log(setData)
     );
   };
 
-  const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
+   const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
+
 
   const allPosts = getDataWithSearchString(setData);
   const indexOfLastPost = currentPage * postsPerPage;
@@ -70,6 +71,7 @@ console.log(setData)
           selectedSpecialty={selected}
           editRow={handleEditRow}
           setData={setSetData}
+          handlePagination={handlePagination}
         />
         {miniModalOpen && (
           <MiniModal

@@ -5,7 +5,7 @@ export const setData = [
     "set_id": "G2000",
     "set_quantity": "1",
     "set_location": "OR",
-    "set_image": "https://us.evocdn.io/dealer/1152/catalog/product/images/400%2010-162.png",
+    "set_image": "https://www.sklarcorp.com/pub/media/catalog/product/cache/b6f6a48314bb94984020f23b26e546e0/4/0/40-6000_30.jpg",
     "select_specialty": "Orthopedic",
     "set_contents": { "Mosquito": 2, "Hemostat": 2, "Allis": 2, "Kocher": 2, "Sponge stick": 1, "Lower": 2, "Nursing scissor": 1,  "Suture scissor": 1,  "Curved mayo scissor": 1, "Metzenbaum scissor": 1, "Needle driver": 3,  "Towel clip": 6 }
   },
@@ -15,6 +15,7 @@ export const setData = [
     "set_id": "G2001",
     "set_quantity": "2",
     "set_location": "OR",
+    "set_image":  "https://ringlemedicalsupply.com/wp-content/uploads/2022/02/DSCN9966.jpg",
     "select_specialty": "Orthopedic",
     "set_contents": { "Wire K/C Trocar 1.0 x 150mm": 1, "Wire K/C Trocar 1.25 x 150mm": 10, "Wire K/C Trocar 1.6 x 150mm": 8, "Wire K/C Trocar 2.0mm x 150mm": 10, "Wire K/C Trocar 2.5mm x 150mm": 10, "Wire K/C Trocar 3.0mm x 150mm": 10, "Wire Coil 1.25mm x 10 meters": 1,  "Wiretightener (3pcs)": 1,  "Wire Coil 1.0 mm x 10 meters": 1, "Wirecerclage/C Eye 1.0mm x 280mm Long": 10, "Wirecerclage/C Eye 1.25mm x 280mm (778105)": 20, "2.5mm Drillbit Gold": 1,  "Guide Drill 2.5-3.5": 1, "Forcep Holding": 1 }
   },
@@ -24,6 +25,7 @@ export const setData = [
     "set_id": "G2002",
     "set_quantity": "4",
     "set_location": "OR",
+    "set_image": "https://i.ebayimg.com/images/g/rzAAAOxyTMdTNllz/s-l1600.jpg",
     "select_specialty": "Plastics",
     "set_contents": { "Mosquito": 6, "Hemostat": 6, "Allis": 6, "Kocher": 2, "Sponge stick": 2, "Lower": 2, "Nursing scissor": 1,  "Suture scissor": 2,  "Curved mayo scissor": 1, "Metzenbaum scissor": 1, "Stiven scissor": 1, "Needle driver": 3,  "Towel clip": 6, "Scalpel handle": 4, "Bulldogs": 3 }
   },
@@ -51,6 +53,7 @@ export const setData = [
     "set_id": "G2005",
     "set_quantity": "2",
     "set_location": "Carousel",
+    "set_image": "https://i.ebayimg.com/images/g/VfcAAOxyFjNSQAcr/s-l1600.jpg",
     "select_specialty": "Plastics",
     "set_contents": { "Beaver Handle": 1, "Forceps, Micro Tissue": 2, "Micro Tissue Forceps 40 Deg. JFAL 3-18B": 2, "Micro Tissue Forceps FRS 18 Rm-8": 2, "Micro Tissue Forceps CAF4": 2, "Forceps, Micro Tissue JFAL-3D.3 Curved or Straight": 2, "Dilator, Vessel FR5-15RM-8D.3": 1, "Micro Needle Driver": 2, "Scissor, Westcott Tenetomy Sharp": 1, "Small Single Clips": 2,"Medium Single Clips": 4,"Clips, Large Single": 2,"Clips Large Double": 1,"Medium Double Clips": 1, "Double Clips Small": 1, "Tip, Suction Micro #3": 1, "5 Fr Baron Suction Catheter": 1,}
   },

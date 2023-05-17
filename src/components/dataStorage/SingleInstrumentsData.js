@@ -82,7 +82,7 @@ export const SingleInstrumentsData = [
   {
     "id":11,
     "instrument_name": "Caliper",
-    "instrument_id": "G1009",
+    "instrument_id": "G109",
     "instrument_quantity": "1",
     "instrument_location": "Sterilization",
   },
