@@ -1,15 +1,13 @@
 .aboutCountainer {
-  border: 1px solid black;
   display: block;
   font-family: verdana;
   flex-direction: column;
   justify-content: center;
   align-items: cente;
-  margin: 2% auto;
+  margin: 5px auto;
   padding: 20px;
   background-color: rgb(190, 236, 242);
   color: #20325e;
-  height: 50%;
   width: 70%;
 }
 
@@ -30,6 +28,30 @@
   line-height: 1.8;
 }
 
+.iconsContainer {
+  width: 8%;
+  margin: auto;
+  display: flex;
+  justify-content:center;
+  padding: 5px;
+}
+
+.gitHubIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color:  #171515 ;
+  padding: 5px;
+}
+
+.linkedinIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #0072b1;
+}
 
 
 @media screen and (max-width: 1000px) {

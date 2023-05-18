@@ -7,12 +7,13 @@ table {
   border-collapse: collapse;
   display: flex;
   width: 100%;
-  text-align:start;
+  text-align: start;
   margin: 5px;
-  color:#1e436b;
+  color: #1e436b;
 }
 
-th, td {
+th,
+td {
   letter-spacing: 1.5px;
   padding: 8px;
   text-align: left;
@@ -21,14 +22,14 @@ th, td {
 }
 
 th {
-  background-color: #7793d4;
+  background-color:#819ee5;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.3rem;
   font-family: "Times New Roman", Times, serif;
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
@@ -41,7 +42,7 @@ tr:hover {
   font-size: 1.2rem;
   margin-bottom: 10px;
   color: #352424;
-  font-style: italic; 
+  font-style: italic;
   padding: 4px;
   border: 1px solid #7793d4;
 }
@@ -52,15 +53,15 @@ tr:hover {
   flex-direction: column;
   margin: 5px;
   color: #242935;
-  font-style: italic; 
+  font-style: italic;
 }
 
 .contents li {
   padding: 5px;
   font-size: 1rem;
   color: rgb(56, 93, 187);
-  list-style:  square;
-  font-style:oblique;
+  list-style: square;
+  font-style: oblique;
 }
 
 .imageMagnifier {
@@ -70,7 +71,7 @@ tr:hover {
   border: 1px solid grey;
 }
 
- .iconButton {
+.iconButton {
   font-size: 1rem;
   color: #5eacff;
   background-color: transparent;
@@ -110,15 +111,14 @@ h3 {
   left: 10px;
 }
 
-
 @media screen and (max-width: 1000px) {
-.paragraph {
-  width: 50%;
-  font-size: 1.2rem;
-  color: #352424;
-  font-style: italic; 
-  padding: 4px;
-  border: 1px solid #7793d4;
+  .paragraph {
+    width: 50%;
+    font-size: 1.2rem;
+    color: #352424;
+    font-style: italic;
+    padding: 4px;
+    border: 1px solid #7793d4;
   }
 
   .imageMagnifier {
@@ -135,4 +135,3 @@ h3 {
     font-family: "Gill Sans", sans-serif;
   }
 }
- 

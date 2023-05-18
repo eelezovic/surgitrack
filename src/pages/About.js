@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../pages/About.module.css";
+import { FaLinkedin, FaGithub} from "react-icons/fa";
 
 function About() {
   return (
@@ -10,6 +11,15 @@ function About() {
 I know firsthand the challenges of keeping track of instruments during a surgery, which is why I designed this app to be as user-friendly and efficient as possible. This helps to save time and increase efficiency, which is crucial in the fast-paced environment of the operating room.
 
 I'm constantly working to improve and update this app to meet the needs of healthcare professionals like myself. I welcome your feedback and suggestions on how I can make this app even better.</p>
+<div className={styles.iconsContainer}>
+        <a href="https://github.com/eelezovic" className={styles.gitHubIcon}>
+          <FaGithub />
+        </a>
+        <a href="https://www.linkedin.com/in/emir-elezović-67160a264" className={styles.linkedinIcon}>
+          <FaLinkedin />
+        </a>
+      </div>
+
     </div>
   );
 }
