@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import { FaPen, FaTrash } from "react-icons/fa";
 import ReactImageMagnify from 'react-image-magnify';
 
-function Table({ data, headers, selectedSpecialty, editRow, setData,handlePagination }) {
+function Table({ data, headers, selectedSpecialty, editRow, handleDelete}) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState(null);
@@ -17,13 +17,6 @@ function Table({ data, headers, selectedSpecialty, editRow, setData,handlePagina
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
-
-  const handleDelete = (event, item) => {
-    event.stopPropagation();
-    handlePagination(1)
-    const updatedData = data.filter((dataItem) => dataItem.id !== item.id);
-    setData(updatedData);
   };
 
   const filteredData =
@@ -61,8 +54,7 @@ function Table({ data, headers, selectedSpecialty, editRow, setData,handlePagina
                           <>
                             <button
                               onClick={(event) => {
-                                event.stopPropagation();
-                                editRow(item);
+                                editRow(event, item);
                               }}
                               className={`${styles.iconButton} ${styles.edit}`}
                             >

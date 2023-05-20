@@ -21,9 +21,16 @@ function SingleInstrumentsComponent() {
   const [rowToEdit, setRowToEdit] = useState(null);
   const [miniModalOpen, setMiniModalOpen] = useState(false);
 
-  const handleEditRow = (item) => {
+  const handleEditRow = (event,item) => {
+    event.stopPropagation();
     setRowToEdit(item);
     setMiniModalOpen(true);
+  };
+
+  const handleDelete = (event, item) => {
+    event.stopPropagation();
+    const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
+    setSetData(updatedData);
   };
 
   const handleSubmit = (newRow) => {
@@ -54,16 +61,15 @@ function SingleInstrumentsComponent() {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
+
   return (
     <div className={styles.singleInstrumentContainer}>
       <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
       <Table
         data={currentPosts}
         headers={headers}
-        setData={setSetData}
         editRow={handleEditRow}
-        query={query}
-        handlePagination={handlePagination}
+        handleDelete={handleDelete}
       />
       {miniModalOpen && (
         <MiniModal
