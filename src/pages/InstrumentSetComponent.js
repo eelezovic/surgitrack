@@ -29,6 +29,12 @@ const InstrumentSetComponent = () => {
     setMiniModalOpen(true);
   };
 
+  const handleDelete = (event, item) => {
+    event.stopPropagation();
+    const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
+    setSetData(updatedData);
+  };
+
   const handleSubmit = (newRow) => {
     if (rowToEdit === null) {
       setSetData([...setData, newRow]); // Add new item to the data array
@@ -52,7 +58,6 @@ const InstrumentSetComponent = () => {
 
    const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
 
-
   const allPosts = getDataWithSearchString(setData);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -70,8 +75,7 @@ const InstrumentSetComponent = () => {
           data={currentPosts}
           selectedSpecialty={selected}
           editRow={handleEditRow}
-          setData={setSetData}
-          handlePagination={handlePagination}
+          handleDelete={handleDelete}
         />
         {miniModalOpen && (
           <MiniModal
