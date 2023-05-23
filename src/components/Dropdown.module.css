@@ -1,9 +1,7 @@
 .dropdown {
+  display: block;
   width: 250px;
-  user-select: none;
   margin: 50px;
-  position: relative;
-
 }
 
 .dropdown .dropdownButton {
@@ -19,7 +17,6 @@
 }
 
 .dropdownContent {
-  position: absolute;
   top: 110%;
   left: 0;
   padding: 10px;
@@ -28,7 +25,6 @@
   font-weight: 500;
   color: #333;
   width: 100%;
-  z-index: 1;
   height: 400px; 
   overflow-y: scroll; 
 }
@@ -52,10 +48,10 @@
 @media screen and (max-width: 1000px) {
 .dropdown {
   display: flex;
+  position: block;
   width: 150px;
   user-select:text;
   margin: 8px;
-  z-index: -1;
   }
 .dropdown .dropdownButton {
   padding: 8px;

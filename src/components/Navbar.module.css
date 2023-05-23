@@ -6,6 +6,7 @@
   justify-content: space-between;
   align-items: center;
   height: 90px;
+  z-index: 10;
 }
 
 .logoContainer {
@@ -62,6 +63,7 @@
     justify-content: space-around;
     align-items: center;
     height: 80px;
+    z-index: 10;
   }
   .logoContainer {
     display: flex;
