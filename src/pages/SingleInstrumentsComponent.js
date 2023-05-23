@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
 import { SingleInstrumentsData } from "../components/dataStorage/SingleInstrumentsData";
 import Pagination from "../components/Pagination";
-import MiniModal from "../components/MiniModal";
+import MiniModal from "../components/MiniModal"; 
 
 function SingleInstrumentsComponent() {
   const headers = [
@@ -29,9 +29,10 @@ function SingleInstrumentsComponent() {
 
   const handleDelete = (event, item) => {
     event.stopPropagation();
-    const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
+    const updatedData = setData.filter((dataItem) => dataItem.id !== item.id);
     setSetData(updatedData);
   };
+  
 
   const handleSubmit = (newRow) => {
     if (rowToEdit === null) {

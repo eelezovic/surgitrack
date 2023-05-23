@@ -3,7 +3,6 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Home from "../pages/Home";
 import About from "../pages/About";
-import Contact from "../pages/Contact";
 import { Route, Routes } from "react-router-dom";
 import ButtonComponent from "./ButtonComponent";
 import SingleInstrumentsComponent from "../pages/SingleInstrumentsComponent";

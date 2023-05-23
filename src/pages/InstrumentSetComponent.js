@@ -31,9 +31,10 @@ const InstrumentSetComponent = () => {
 
   const handleDelete = (event, item) => {
     event.stopPropagation();
-    const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
+    const updatedData = setData.filter((dataItem) => dataItem.id !== item.id);
     setSetData(updatedData);
   };
+  
 
   const handleSubmit = (newRow) => {
     if (rowToEdit === null) {

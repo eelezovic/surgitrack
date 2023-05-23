@@ -33,7 +33,7 @@ function Table({ data, headers, selectedSpecialty, editRow, handleDelete}) {
           <tbody>
             <tr>
               {headers.map((header) => (
-                <th key={header}>{header.name}</th>
+                <th key={header.name}>{header.name}</th>
               ))}
             </tr>
 
