@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
-
 function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
   return (
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
-        <img src="/images/logo.png"alt="" className={styles.logoImage} />
+        <img
+          src={process.env.PUBLIC_URL + "/images/logo.png"}
+          alt=""
+          className={styles.logoImage}
+        />
         <h2 className={styles.logoName}>SurgiTrack</h2>
       </div>
 

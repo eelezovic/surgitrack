@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import { Route, Routes } from "react-router-dom";
-import ButtonComponent from "./ButtonComponent";
 import SingleInstrumentsComponent from "../pages/SingleInstrumentsComponent";
 import InstrumentSetComponent from "../pages/InstrumentSetComponent";
 
@@ -17,7 +16,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
       </Routes>
-    <ButtonComponent />
     <Routes>
       <Route path="/singleinstrumentscomponent" element={<SingleInstrumentsComponent />} />
       <Route path="/InstrumentSetComponent" element={<InstrumentSetComponent />} />
