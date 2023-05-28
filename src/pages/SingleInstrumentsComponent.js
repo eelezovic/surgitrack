@@ -6,6 +6,7 @@ import { SingleInstrumentsData } from "../components/dataStorage/SingleInstrumen
 import Pagination from "../components/Pagination";
 import MiniModal from "../components/MiniModal"; 
 
+
 function SingleInstrumentsComponent() {
   const headers = [
     { name: "Instrument Name", accessor: "instrument_name" },
@@ -29,7 +30,7 @@ function SingleInstrumentsComponent() {
 
   const handleDelete = (event, item) => {
     event.stopPropagation();
-    const updatedData = setData.filter((dataItem) => dataItem.id !== item.id);
+    const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
     setSetData(updatedData);
   };
   

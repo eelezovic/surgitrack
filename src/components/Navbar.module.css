@@ -24,99 +24,98 @@
   font-size: 1.5rem;
   display: flex;
   margin: 5px;
- }
+}
 
 .navLinks {
   display: flex;
-  justify-content:flex-end;
+  justify-content: flex-end;
   list-style: none;
   width: 75%;
 }
 
 .home,
-.about,
-.contact {
+.about {
   text-decoration: none;
   color: white;
   font-size: 20px;
   padding: 10px 20px;
   margin: 0 10px;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .home:hover,
-.about:hover,
-.contact:hover {
+.about:hover {
   color: #a6c7fc;
 }
-
 
 .mobileMenuIcon {
   display: none;
 }
 
-@media screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px) {
   .navbar {
     background-color: #39559e;
     color: white;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 170px;
     z-index: 10;
   }
-  .logoContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+
   .logoName {
-    font-size: 1.2rem;
+    font-size: 2.7rem;
     display: flex;
-    position: absolute;
-    left: 15%;
     align-items: center;
-   }
-  .logoImage {
-    display: flex;
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 15px;
-    left: 5px;
+    margin-left: 0;
   }
+
+  .logoImage {
+    width: 105px;
+    height: 105px;
+    margin: 0 30px;
+  }
+
   .navLinks {
     display: none;
   }
+
   .navLinkMobile {
     position: absolute;
     display: grid;
+    justify-content: center;
     list-style: none;
     background-color: #39559e;
-    left: 0;
-    top: 10px;
-    transition: all 0.5s ease-out;
     width: 100%;
+    padding-top: 100px;
+    transition: all 0.5s ease-out;
   }
-.home,
-.about,
-.contact {
-  color: white;
-  text-align: center;
-  padding: 32px;
-  width: 100%;
-  transition: all 0.5s ease;
-}
-.mobileMenuIcon {
-  display: block;
-  position: absolute;
-  font-size: 30px;
-  color: white;
-  background-color: #39559e;
-  border: none;
-  outline: none;
-  top: 15px;
-  right: 25px;
-  cursor: pointer;
-}
+
+  .home,
+  .about {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+    width: 20%;
+    transition: all 0.5s ease;
+    margin: auto;
+    padding: 40px;
+  }
+
+  .mobileMenuIcon {
+    display: block;
+    position: absolute;
+    font-size: 70px;
+    color: white;
+    background-color: #39559e;
+    border: none;
+    outline: none;
+    right: 50px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+  }
 }

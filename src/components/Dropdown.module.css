@@ -47,11 +47,10 @@
 
 @media screen and (max-width: 1000px) {
 .dropdown {
-  display: flex;
-  position: block;
-  width: 150px;
+  display:block;
+  width: 300px;
   user-select:text;
-  margin: 8px;
+  margin: 10px;
   }
 .dropdown .dropdownButton {
   padding: 8px;
@@ -63,7 +62,10 @@
   align-items: center;
   cursor: pointer;
   justify-content: space-between;
+  width: 300px;
+  font-size: 1.5rem;
   }
+  
 }
 
 

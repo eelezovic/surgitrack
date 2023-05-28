@@ -43,37 +43,30 @@
   justify-content: center;
 }
 
-.modalImage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.modalImage img {
-  width: 500px;
-  height: 600px;
-}
-
 @media screen and (max-width: 1000px) {
   .modal {
     position: fixed;
     z-index: 1;
     width: 80%;
-    height: 84%;
+    height: 70%;
     overflow: auto;
     background-color: #dfe6f9;
     margin-top: 5px;
   }
   .modalContent {
     background-color: #dfe6f9;
-    padding: 5px;
+    padding: 10px;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
   }
   .modalHeader h2 {
     margin: auto;
     color: #fff;
-    font-size: 2rem;
+    font-size: 3rem;
+  }
+  .modalButton {
+    font-size: 1.5rem;
   }
 }
 

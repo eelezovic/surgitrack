@@ -32,7 +32,7 @@ const InstrumentSetComponent = () => {
 
   const handleDelete = (event, item) => {
     event.stopPropagation();
-    const updatedData = setData.filter((dataItem) => dataItem.id !== item.id);
+    const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
     setSetData(updatedData);
   };
   

@@ -68,14 +68,29 @@
 @media screen and (max-width: 1000px) {
   .instrumentSetContainer {
     width: 100%;
-    height: 100%;
+    height: 80vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:flex-start;
   }
+
+  .mainContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dropDown {
+    display: flex;
+    margin-top: 5%;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .addButton {
     display: flex;
-    margin: 0.6rem;
+    margin: 0.8rem;
     border: none;
     background-color: #39559e;
     color: white;
@@ -83,10 +98,11 @@
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 3px 4px #ccc;
+    font-size: 1.6rem;
+    
   }
   .dropDown {
     display: flex;
-    margin-left: 10%;
     flex-direction: column;
     align-items: center;
   }

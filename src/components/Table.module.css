@@ -1,15 +1,17 @@
 .tableContainer {
-  margin: 5px 0 20px 0;
   display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 10px;
 }
+
 table {
   border: 1px solid hsl(0, 3%, 78%);
   border-collapse: collapse;
-  display: flex;
-  width: 100%;
   text-align: start;
-  margin: 5px;
   color: #1e436b;
+  width: 50%;
+  font-size: 1.2rem;
 }
 
 th,
@@ -22,10 +24,9 @@ td {
 }
 
 th {
-  background-color:#819ee5;
+  background-color: #819ee5;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.3rem;
   font-family: "Times New Roman", Times, serif;
 }
 
@@ -65,8 +66,8 @@ tr:hover {
 }
 
 .imageMagnifier {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   margin: 10px;
   border: 1px solid grey;
 }
@@ -112,6 +113,24 @@ h3 {
 }
 
 @media screen and (max-width: 1000px) {
+  .tableContainer {
+    display: flex;
+    width: 100%;
+    margin: 20px;
+
+
+  }
+
+  table {
+    border: 1px solid hsl(0, 3%, 78%);
+    border-collapse: collapse;
+    text-align: start;
+    color: #1e436b;
+    width: 90%;
+    font-size: 1.7rem;
+    justify-content: center;
+  }
+
   .paragraph {
     width: 50%;
     font-size: 1.2rem;
@@ -122,16 +141,27 @@ h3 {
   }
 
   .imageMagnifier {
-    width: 150px;
-    height: 150px;
-    margin: 10px;
+    width: 300px;
+    height: 300px;
     border: 1px solid grey;
   }
+  
   th {
     background-color: #7793d4;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     font-family: "Gill Sans", sans-serif;
+    height: 4vh;
+  }
+  
+  td {
+    letter-spacing: 1.5px;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    height: 4vh;
   }
 }
+

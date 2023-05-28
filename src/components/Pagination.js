@@ -6,6 +6,11 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
+
+  const handlePaginationClick = (event, id) => {
+    event.preventDefault();
+    paginate(id);
+  };
  
   return (
     <div className={styles.paginationContainer}>
@@ -17,7 +22,11 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
               currentPage === id ? styles.active : ""
             }`}
           >
-            <a onClick={() => paginate(id)} href="#!" className="pageLink">
+            <a
+              href="/"
+              onClick={(event) => handlePaginationClick(event, id)}
+              className="pageLink"
+            >
               {id}
             </a>
           </li>
@@ -44,4 +53,5 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
 };
 
 export default Pagination;
+
 

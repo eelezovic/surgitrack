@@ -35,10 +35,10 @@ input:focus {
   .inputWrapper {
     background-color: white;
     width: 50%;
-    border-radius: 7px;
-    height: 2rem;
+    border-radius: 20px;
+    height: 4rem;
     padding: 0 15px;
-    margin: 10px;
+    margin: 50px;
     box-shadow: 0 0 8px #ddd;
     display: flex;
     align-items: center;
