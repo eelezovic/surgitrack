@@ -3,19 +3,20 @@
   font-family: verdana;
   flex-direction: column;
   justify-content: center;
-  align-items: cente;
+  align-items: center;
   margin: 5px auto;
   padding: 20px;
   background-color: rgb(190, 236, 242);
   color: #20325e;
-  width: 70%;
+  width: 80%;
+  height: 80vh;
 }
 
 .aboutCountainer h1 {
   font-size: 32px;
-  margin-bottom: 20px;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .aboutCountainer p {
@@ -24,8 +25,9 @@
   font-weight: normal;
   display: flex;
   justify-content: center;
-  text-align: justify;
+  text-align:center;
   line-height: 1.8;
+
 }
 
 .iconsContainer {
@@ -55,14 +57,28 @@
 
 
 @media screen and (max-width: 1000px) {
+  .aboutCountainer {
+    width: 90%;
+    height: 100vh;
+  }
   .aboutCountainer p {
     text-indent:25px;
-    font-size: 20px;
+    font-size: 2.5rem;
     font-weight: normal;
     display: flex;
     justify-content: center;
     text-align: justify;
-    line-height: 1.4;
   }
+  .aboutCountainer h1 {
+    font-size: 3rem;
+    padding: 10px;
+  }
+  .gitHubIcon {
+    font-size: 4rem;
+  }
+  .linkedinIcon {
+    font-size: 4rem;
+  }
+
 }
 

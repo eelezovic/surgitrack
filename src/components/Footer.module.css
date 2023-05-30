@@ -1,11 +1,11 @@
 footer {
   display: flex;
-  position: fixed;
-  justify-content: center;
+  position: relative;
   align-items: center;
+  justify-content: center;
   bottom: 0;
   width: 100%;
-  min-height: 8vh;
+  min-height: 7vh;
   background-color: #39559e;
 }
 
@@ -20,10 +20,13 @@ footer p {
     align-items: center;
     bottom: 0px;
     width: 100%;
-    min-height: 6vh;
+    height: 7vh;
     display: flex;
     position: relative;
-    margin-top: 17px;
     background-color: #39559e;
+  }
+  footer p {
+    color: #9a8f8f;
+    font-size: 1.7rem;
   }
 }

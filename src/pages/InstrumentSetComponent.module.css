@@ -1,6 +1,6 @@
 .instrumentSetContainer {
   width: 100%;
-  height: 100%;
+  height: 80vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -23,7 +23,7 @@
 
 .addButton {
   display: flex;
-  margin: 1rem;
+  margin: 0.5rem;
   border: none;
   background-color: #39559e;
   color: white;
@@ -38,7 +38,6 @@
 }
 
 .editButton {
-  background-color: #4caf50;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -68,7 +67,7 @@
 @media screen and (max-width: 1000px) {
   .instrumentSetContainer {
     width: 100%;
-    height: 80vh;
+    height: 82vh;
     display: flex;
     flex-direction: column;
     justify-content:flex-start;
@@ -83,27 +82,11 @@
 
   .dropDown {
     display: flex;
-    margin-top: 5%;
-    flex-direction: column;
     align-items: center;
   }
 
   .addButton {
-    display: flex;
-    margin: 0.8rem;
-    border: none;
-    background-color: #39559e;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 3px 4px #ccc;
-    font-size: 1.6rem;
-    
-  }
-  .dropDown {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-size: 2.5rem;
+    margin: 15px;
   }
 }

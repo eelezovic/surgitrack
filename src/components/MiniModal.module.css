@@ -34,15 +34,44 @@
 .formGroup {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  color: #39559e;
+  font-weight: 700;
 }
 
 .formGroup input {
-  border: 1px solid black;
-  border-radius: 0.3rem;
-  font-size: 1rem;
+  border: 1px solid rgb(77, 77, 77);
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  color: #696969;
 }
 
 .formGroup label {
   margin-bottom: 0.2rem;
 }
+ 
+@media screen and (max-width: 1000px) {
+  .miniModalContainer {
+    display: flex;
+    width: 100%;
+  }
+  .miniModal {
+    width: 70%;
+  }
+  .miniModal .button {
+    padding: 15px;
+    font-size: 2rem;
+  }
+  .formGroup input {
+    border: 1px solid rgb(77, 77, 77);
+    font-size: 3rem;
+    border-radius: 1rem;
+    margin-bottom: 20px;
+    color: #696969;
+  }
+  .formGroup {
+    font-size: 3rem;
+    color: #39559e;
+    font-weight: 700;
+  }
+} 

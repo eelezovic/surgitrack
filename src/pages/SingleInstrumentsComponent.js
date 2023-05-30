@@ -6,7 +6,6 @@ import { SingleInstrumentsData } from "../components/dataStorage/SingleInstrumen
 import Pagination from "../components/Pagination";
 import MiniModal from "../components/MiniModal"; 
 
-
 function SingleInstrumentsComponent() {
   const headers = [
     { name: "Instrument Name", accessor: "instrument_name" },

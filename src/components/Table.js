@@ -99,8 +99,8 @@ function Table({ data, headers, selectedSpecialty, editRow, handleDelete}) {
         },
         largeImage: {
           src: selectedItem.set_image || selectedItem.instrument_image,
-          width: 500,
-          height: 800,
+          width: 600,
+          height: 1000,
         },
        
       }}

@@ -2,7 +2,7 @@ export const setData = [
   {
     id: 1,
     set_name: "Hip minor",
-    set_id: "G2000",
+    set_id: "G21",
     set_quantity: "1",
     set_location: "OR",
     set_image:
@@ -26,7 +26,7 @@ export const setData = [
   {
     id: 2,
     set_name: "A.O Periprosthetic Fracture",
-    set_id: "G2001",
+    set_id: "G22",
     set_quantity: "2",
     set_location: "OR",
     set_image:
@@ -52,7 +52,7 @@ export const setData = [
   {
     id: 3,
     set_name: "Plastic major",
-    set_id: "G2002",
+    set_id: "G23",
     set_quantity: "4",
     set_location: "OR",
     set_image: "https://i.ebayimg.com/images/g/rzAAAOxyTMdTNllz/s-l1600.jpg",
@@ -78,7 +78,7 @@ export const setData = [
   {
     id: 4,
     set_name: "Radical Prostate Extras",
-    set_id: "G2003",
+    set_id: "G23",
     set_quantity: "2",
     set_location: "Sterilization",
     select_specialty: "Urology",
@@ -100,7 +100,7 @@ export const setData = [
   {
     id: 5,
     set_name: "Minor Plastic (Module K)",
-    set_id: "G2004",
+    set_id: "G24",
     set_quantity: "1",
     set_location: "Sterilization",
     select_specialty: "Plastics",
@@ -121,7 +121,7 @@ export const setData = [
   {
     id: 6,
     set_name: "Micro Plastic Instruments",
-    set_id: "G2005",
+    set_id: "G25",
     set_quantity: "2",
     set_location: "Carousel",
     set_image: "https://i.ebayimg.com/images/g/VfcAAOxyFjNSQAcr/s-l1600.jpg",
@@ -149,7 +149,7 @@ export const setData = [
   {
     id: 7,
     set_name: "Basic Plastic Instrument",
-    set_id: "G2006",
+    set_id: "G26",
     set_quantity: "3",
     set_location: "Carousel",
     select_specialty: "Plastics",
@@ -183,7 +183,7 @@ export const setData = [
   {
     id: 8,
     set_name: "Flap Plastic Instrument",
-    set_id: "G2007",
+    set_id: "G27",
     set_quantity: "5",
     set_location: "OR",
     select_specialty: "Plastics",
@@ -218,7 +218,7 @@ export const setData = [
   {
     id: 9,
     set_name: "MIS, Gynecology",
-    set_id: "G2008",
+    set_id: "G28",
     set_quantity: "1",
     set_location: "OR",
     select_specialty: "Gynecology",

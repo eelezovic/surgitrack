@@ -19,7 +19,6 @@ I'm constantly working to improve and update this app to meet the needs of healt
           <FaLinkedin />
         </a>
       </div>
-
     </div>
   );
 }

@@ -5,7 +5,7 @@ function SearchBar ({setQuery,handlePagination}) {
 
   return (
     <div className={styles.inputWrapper}>
-      <i className="fa-solid fa-magnifying-glass"></i>
+      <i className={`${styles.iconStyles} fa-solid fa-magnifying-glass`}></i>
       <input 
       type="text" 
       placeholder="Search..." 
