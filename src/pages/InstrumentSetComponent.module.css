@@ -70,7 +70,7 @@
     height: 82vh;
     display: flex;
     flex-direction: column;
-    justify-content:flex-start;
+    justify-content:center;
   }
 
   .mainContainer {
@@ -86,7 +86,7 @@
   }
 
   .addButton {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin: 15px;
   }
 }

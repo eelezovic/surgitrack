@@ -278,14 +278,14 @@ export const SingleInstrumentsData = [
   },
   {
     id: 36,
-    instrument_name: "Plucker/Rommel",
+    instrument_name: "Plucker",
     instrument_id: "G35",
     instrument_quantity: "1",
     instrument_location: "OR",
   },
   {
     id: 37,
-    instrument_name: "Probe/groove",
+    instrument_name: "Probe",
     instrument_id: "G36",
     instrument_quantity: "1",
     instrument_location: "Sterilization",
@@ -413,7 +413,7 @@ export const SingleInstrumentsData = [
   },
   {
     id: 55,
-    instrument_name: "Sympathectomy forceps",
+    instrument_name: "Tonsil Forceps",
     instrument_id: "G54",
     instrument_quantity: "1",
     instrument_location: "Sterilization",

@@ -12,6 +12,8 @@
 
 .pageItem {
   text-decoration: none;
+  margin: 4px;
+  font-size: 1.3rem;
 }
 
 .pageItem a {
@@ -31,6 +33,7 @@
 .active {
   background-color: #c3c6ca;
   color: #fff;
+  margin: 4px;
 }
 
 .paginationButtons {
@@ -79,15 +82,16 @@
   }
   .pageItem a {
     color:#5774ba;
-    float: left;
-
-    font-size: 3.5rem;
+  }
+  .pageItem {
+    font-size: 4rem;
+    margin: 4px;
   }
   .active {
     background-color: #ccc;
     color: #fff;
     padding: 0;
-    margin: 0;
+    margin: 4px;
   }
 }
 

@@ -64,9 +64,9 @@
   .modalHeader h2 {
     margin: auto;
     color: #fff;
-    font-size: 3.5rem;
+    font-size: 4rem;
   }
-  .modalButton {
+  .modalButtons .modalButton {
     font-size: 2rem;
   }
 }
