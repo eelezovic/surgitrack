@@ -44,30 +44,24 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 1000px) {
+@media only screen and (max-width: 767px) {
   .modal {
-    position: fixed;
     z-index: 1;
-    width: 80%;
-    height: 72%;
-    overflow: auto;
+    width: 90%;
+    height: 55%;
     background-color: #dfe6f9;
-    margin-top: 5px;
   }
   .modalContent {
     background-color: #dfe6f9;
-    padding: 10px;
-    justify-content: center;
     display: flex;
     flex-direction: column;
   }
   .modalHeader h2 {
-    margin: auto;
     color: #fff;
-    font-size: 4rem;
+    font-size: 2.5rem;
   }
   .modalButtons .modalButton {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 

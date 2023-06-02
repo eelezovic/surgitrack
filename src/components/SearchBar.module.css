@@ -1,9 +1,9 @@
 .inputWrapper {
   background-color: white;
   border-radius: 7px;
-  height: 2.5rem;
-  padding: 0 18px;
-  margin: 8px;
+  height: 2rem;
+  padding: 4px 18px;
+  margin: 20px;
   box-shadow: 0 0 8px #ddd;
   display: flex;
   align-items: center;
@@ -36,35 +36,33 @@ input:focus {
   font-size: 1.4rem;
 }
 
-@media screen and (max-width: 1000px) {
+@media only screen and (max-width: 767px){
   .inputWrapper {
     background-color: white;
-    width: 50%;
+    width: 40%;
     border-radius: 20px;
-    height: 4rem;
-    padding: 0 15px;
     box-shadow: 0 0 8px #ddd;
     display: flex;
     align-items: center;
     border: 1px solid rgb(179, 179, 179);
-    font-size: 3rem;
+    font-size: 1rem;
   }
   input {
     background-color: transparent;
     border: none;
     height:  100%;
-    font-size: 2rem;
+    font-size: 1.5rem;
     width: 100%;
     margin-left:  10px;
     color: rgb(96, 96, 96);
   }
   .search {
     background-color: rgb(255, 255, 255);
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
   .iconStyles {
     color: #5774ba;
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
   input:focus {
     outline: none;

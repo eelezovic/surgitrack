@@ -24,7 +24,9 @@ const InstrumentSetComponent = () => {
   const [rowToEdit, setRowToEdit] = useState(null);
   const [setData, setSetData] = useState(InstrumentSetData);
 
-  const handleEditRow = (event,item) => {
+
+
+  const handleEditRow = (event, item) => {
     event.stopPropagation();
     setRowToEdit(item);
     setMiniModalOpen(true);
@@ -35,11 +37,10 @@ const InstrumentSetComponent = () => {
     const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
     setSetData(updatedData);
   };
-  
 
   const handleSubmit = (newRow) => {
     if (rowToEdit === null) {
-      setSetData([...setData, newRow]); // Add new item to the data array
+      setSetData([...setData, newRow]);
     } else {
       const updatedData = setData.map((currentRow) =>
         currentRow.set_id === rowToEdit.set_id ? newRow : currentRow
@@ -58,8 +59,7 @@ const InstrumentSetComponent = () => {
     );
   };
 
-   const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
-
+  const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
   const allPosts = getDataWithSearchString(setData);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -68,7 +68,7 @@ const InstrumentSetComponent = () => {
   return (
     <div className={styles.instrumentSetContainer}>
       <div className={styles.dropDown}>
-        <Dropdown selected={selected} setSelected={setSelected} />
+        <Dropdown selected={selected} setSelected={setSelected}  totalPosts={allPosts.length}/>
       </div>
       <div className={styles.mainContainer}>
         <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
@@ -78,6 +78,7 @@ const InstrumentSetComponent = () => {
           selectedSpecialty={selected}
           editRow={handleEditRow}
           handleDelete={handleDelete}
+          handlePagination={handlePagination}
         />
         {miniModalOpen && (
           <MiniModal
@@ -93,9 +94,9 @@ const InstrumentSetComponent = () => {
                     setId: rowToEdit.set_id,
                     setQuantity: rowToEdit.set_quantity,
                     setLocation: rowToEdit.set_location,
-                    setImage:rowToEdit.set_image,
-                    setContent:rowToEdit.set_content,
-                    id: rowToEdit.id
+                    setImage: rowToEdit.set_image,
+                    setContent: rowToEdit.set_content,
+                    id: rowToEdit.id,
                   }
                 : null
             }

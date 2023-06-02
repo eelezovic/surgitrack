@@ -73,7 +73,7 @@ tr:hover {
 }
 
 .iconButton {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #5eacff;
   background-color: transparent;
   margin: 0 5px;
@@ -112,66 +112,58 @@ h3 {
   left: 10px;
 }
 
-@media screen and (max-width: 1000px) {
+@media only screen and (max-width: 767px) {
   .tableContainer {
     display: flex;
     width: 100%;
-    margin: 40px;
-  }
-
-  table {
-    border: 1px solid hsl(0, 3%, 78%);
-    border-collapse: collapse;
-    text-align: start;
-    color: #1e436b;
-    width: 97%;
-    justify-content: center;
-  }
-
-  .paragraph {
-    width: 50%;
-    font-size: 3rem;
-    color: #1e436b;
-    font-style: italic;
-    padding: 4px;
-    border: 1px solid #7793d4;
-  }
-
-  .imageMagnifier {
-    width: 350px;
-    height: 350px;
-    border: 1px solid grey;
   }
   
+  table {
+    border: 1px solid hsl(15, 4%, 78%);
+    border-collapse: collapse;
+    color: #1e436b;
+  }
+
   th {
     background-color: #7793d4;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 2.1rem;
-    font-family: "Gill Sans", sans-serif;
-    height: 4vh;
+    font-size: 0.9rem;
+    
   }
-  
   td {
-    padding-left: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
     cursor: pointer;
+    font-size: 17px;
     height: 4vh;
-    font-size: 2.7rem;
   }
   .iconButton {
-    font-size: 2.5rem;
+    font-size: 1.2rem;
   }
+
+  .imageMagnifier {
+    width: 50%;
+    height: 50%;
+    border: 1px solid grey;
+  }
+
   h3 {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
   .contents {
-    font-size: 3rem;
+    font-size: 2rem;
   }
   .contents li {
-    font-size: 2.7rem;
+    font-size: 1.5rem;
+  }
+  .paragraph {
+    font-size: 1.5rem;
+    color: #1e436b;
+    font-style: italic;
+    border: 1px solid #7793d4;
   }
 
 }
+
 

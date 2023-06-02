@@ -68,24 +68,24 @@
   float: right;
 }
 
-@media screen and (max-width: 1000px) {
+@media only screen and (max-width: 767px){
   .paginationButtons {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
     color: #848484;
     cursor: pointer;
-    font-size: 2.5rem;
-    margin-right: 6px;
-    padding: 5px 6px;
+    font-size: 1rem;
+    margin-right: 4px;
+    padding: 0 4px;
     transition: all 0.3s ease;
   }
   .pageItem a {
     color:#5774ba;
   }
   .pageItem {
-    font-size: 4rem;
-    margin: 4px;
+    font-size: 1rem;
+ 
   }
   .active {
     background-color: #ccc;

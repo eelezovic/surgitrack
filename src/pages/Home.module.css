@@ -2,6 +2,16 @@
   margin: 0;
   padding: 0;
 }
+.mainContainer {
+  background: #fff;
+  cursor: pointer;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
 .singleinstrumentscomponent,
 .instrumentsetcomponent {
@@ -20,7 +30,8 @@
 
 .singleinstrumentscomponent:hover,
 .instrumentsetcomponent:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
   background-color: #576895; /* Green */
   color: white;
 }
@@ -29,18 +40,7 @@
   display: flex;
   width: 150px;
   height: 150px;
-}
-
-.mainContainer {
-  background: #fff;
-  cursor: pointer;
-  width: 100%;
-  height: 80vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
+  margin: 50px;
 }
 
 .container {
@@ -49,54 +49,35 @@
   gap: 100px;
 }
 
-.searchBarIcon {
-  justify-content: center;
-  font-size: 1.25rem;
-  width: 100%;
-  border-radius: 7px;
-  height: 2rem;
-  padding: 0 15px;
-  margin: 10px;
-  align-items: center;
-}
-
-@media screen and (max-width: 1000px) {
+@media only screen and (max-width: 767px){
   .mainContainer {
     background: white;
     cursor: pointer;
     width: 100%;
+    height: 100vh;
     display: flex;
-    justify-content:center;
-    flex-direction: column;
-  }
-  
-  .singleinstrumentscomponent,
-  .instrumentsetcomponent {
-    text-align: center;
-    font-size: 2rem;
-  }
 
-  .InstrumentIcon {
-    width: 250px;
-    height: 250px;
   }
-
   .container {
     display: flex;
     flex-direction: column;
+   
+  }
+  .singleinstrumentscomponent,
+  .instrumentsetcomponent {
+    display: flex;
+    font-size: 1rem;
+    border-radius: 20px;
+    transition-duration: 0.6s;
+  }
+  .iconContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 15px;
+  }
+  .iconContainer:hover {
+    opacity: 0.6;
   }
 }
-
-.iconContainer {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  width: 100%;
-}
-
-.iconContainer:hover {
-  opacity: 0.6;
-}
-
-
 

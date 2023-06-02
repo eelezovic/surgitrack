@@ -11,7 +11,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
     event.preventDefault();
     paginate(id);
   };
- 
+
   return (
     <div className={styles.paginationContainer}>
       <ul className={styles.pagination}>

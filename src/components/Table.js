@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import styles from "./Table.module.css";
 import Modal from "./Modal";
 import { FaPen, FaTrash } from "react-icons/fa";
-import ReactImageMagnify from 'react-image-magnify';
+import ReactImageMagnify from "react-image-magnify";
 
-function Table({ data, headers, selectedSpecialty, editRow, handleDelete}) {
+function Table({
+  data,
+  headers,
+  selectedSpecialty,
+  editRow,
+  handleDelete,
+  handlePagination,
+}) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState(null);
@@ -13,7 +20,6 @@ function Table({ data, headers, selectedSpecialty, editRow, handleDelete}) {
     setSelectedItem(item);
     setIsModalOpen(true);
   };
-
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -25,7 +31,6 @@ function Table({ data, headers, selectedSpecialty, editRow, handleDelete}) {
         ? data
         : data.filter((item) => item.select_specialty === selectedSpecialty)
       : data;
-
   return (
     <>
       <div className={styles.tableContainer}>
@@ -39,7 +44,7 @@ function Table({ data, headers, selectedSpecialty, editRow, handleDelete}) {
 
             {filteredData.map((item) => (
               <tr
-                key={item.id }
+                key={item.id}
                 onClick={() => handleItemClick(item)}
                 onMouseEnter={() => setHoveredItemId(item.id)}
                 onMouseLeave={() => setHoveredItemId(null)}
@@ -89,24 +94,26 @@ function Table({ data, headers, selectedSpecialty, editRow, handleDelete}) {
           }
           content={
             <>
-            <div className={styles.imageMagnifier}>
-              <ReactImageMagnify
-      {...{
-        smallImage: {
-          src: selectedItem.set_image || selectedItem.instrument_image,
-          alt: selectedItem.set_name || selectedItem.instrument_name,
-          isFluidWidth: true,
-        },
-        largeImage: {
-          src: selectedItem.set_image || selectedItem.instrument_image,
-          width: 600,
-          height: 1000,
-        },
-       
-      }}
-    />
-    </div>
-    <h3>Enlarge image on hover</h3>
+              <div className={styles.imageMagnifier}>
+                <ReactImageMagnify
+                  {...{
+                    smallImage: {
+                      src:
+                        selectedItem.set_image || selectedItem.instrument_image,
+                      alt:
+                        selectedItem.set_name || selectedItem.instrument_name,
+                      isFluidWidth: true,
+                    },
+                    largeImage: {
+                      src:
+                        selectedItem.set_image || selectedItem.instrument_image,
+                      width: 600,
+                      height: 1000,
+                    },
+                  }}
+                />
+              </div>
+              <h3>Enlarge image on hover</h3>
               {selectedItem.set_name && (
                 <>
                   <p className={styles.paragraph}>

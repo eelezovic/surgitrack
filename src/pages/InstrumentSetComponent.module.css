@@ -1,6 +1,6 @@
 .instrumentSetContainer {
   width: 100%;
-  height: 80vh;
+  height: 88vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -64,13 +64,13 @@
   border-radius: 4px;
 }
 
-@media screen and (max-width: 1000px) {
+@media only screen and (max-width: 767px){
   .instrumentSetContainer {
     width: 100%;
-    height: 82vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content:flex-start;
   }
 
   .mainContainer {
@@ -86,7 +86,6 @@
   }
 
   .addButton {
-    font-size: 3rem;
-    margin: 15px;
+    font-size: 1rem;
   }
 }
