@@ -44,11 +44,11 @@
   justify-content: center;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px){
   .modal {
     z-index: 1;
     width: 90%;
-    height: 55%;
+    height: 60%;
     background-color: #dfe6f9;
   }
   .modalContent {

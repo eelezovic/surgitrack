@@ -49,29 +49,30 @@
 .formGroup label {
   margin-bottom: 0.2rem;
 }
- 
-@media only screen and (max-width: 767px) {
+
+@media only screen and (max-width: 600px) {
   .miniModalContainer {
     display: flex;
     width: 100%;
+    z-index: 9999;
   }
   .miniModal {
-    width: 70%;
+    display: flex;
+    justify-content: center;
+    width: 80%;
   }
   .miniModal .button {
-    padding: 15px;
-    font-size: 2rem;
+    padding: 10px;
+    font-size: 1rem;
   }
   .formGroup input {
     border: 1px solid rgb(77, 77, 77);
-    font-size: 3rem;
+    font-size: 1rem;
     border-radius: 1rem;
-    margin-bottom: 20px;
     color: #696969;
   }
   .formGroup {
-    font-size: 3rem;
+    font-size: 1.2rem;
     color: #39559e;
-    font-weight: 700;
   }
 } 

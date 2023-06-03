@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./Dropdown.module.css";
 
-function Dropdown({ selected, setSelected }) {
+function Dropdown({ selected, setSelected}) {
   const [isActive, setIsActive] = useState(false);
   const options = [
     "All",
@@ -39,9 +39,7 @@ function Dropdown({ selected, setSelected }) {
     <div className={styles.dropdown} ref={dropdownRef}>
       <div
         className={styles.dropdownButton}
-        onClick={(e) =>
-           setIsActive(!isActive)
-        }
+        onClick={(e) => setIsActive(!isActive)}
       >
         {selected}
         <span className="fas fa-caret-down"></span>
@@ -55,9 +53,7 @@ function Dropdown({ selected, setSelected }) {
                 onClick={(e) => {
                   setSelected(option);
                   setIsActive(false);
-
                 }}
-                
                 className={styles.dropdownItem}
               >
                 {option}

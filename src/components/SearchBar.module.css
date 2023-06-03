@@ -36,10 +36,10 @@ input:focus {
   font-size: 1.4rem;
 }
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 600px){
   .inputWrapper {
     background-color: white;
-    width: 40%;
+    width: 50%;
     border-radius: 20px;
     box-shadow: 0 0 8px #ddd;
     display: flex;
@@ -58,13 +58,11 @@ input:focus {
   }
   .search {
     background-color: rgb(255, 255, 255);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   .iconStyles {
     color: #5774ba;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
-  input:focus {
-    outline: none;
-  }
+
 }

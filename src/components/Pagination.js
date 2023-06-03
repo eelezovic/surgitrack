@@ -37,7 +37,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
           className={styles.paginationButtons}
           onClick={() => paginate(currentPage - 1)}
         >
-          Previous
+          Prev
         </button>
       )}
       {currentPage < pageNumbers.length && (

@@ -6,7 +6,7 @@
   background-color: rgb(190, 236, 242);
   color: #20325e;
   width: 80%;
-  height: 72vh;
+  height: 80vh;
 }
 
 .aboutCountainer h1 {
@@ -48,7 +48,7 @@
 }
 
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 600px){
   .aboutCountainer {
   display: block;
   font-family: verdana;

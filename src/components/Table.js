@@ -9,8 +9,7 @@ function Table({
   headers,
   selectedSpecialty,
   editRow,
-  handleDelete,
-  handlePagination,
+  handleDelete
 }) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,18 +29,20 @@ function Table({
       ? selectedSpecialty === "All"
         ? data
         : data.filter((item) => item.select_specialty === selectedSpecialty)
-      : data;
+      : data
+
   return (
     <>
       <div className={styles.tableContainer}>
         <table>
-          <tbody>
+          <thead>
             <tr>
               {headers.map((header) => (
                 <th key={header.name}>{header.name}</th>
               ))}
             </tr>
-
+            </thead>
+            <tbody>
             {filteredData.map((item) => (
               <tr
                 key={item.id}
@@ -80,7 +81,7 @@ function Table({
                 ))}
               </tr>
             ))}
-          </tbody>
+            </tbody>
         </table>
       </div>
       {selectedItem && (

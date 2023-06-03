@@ -54,7 +54,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
   .navbar {
     background-color: #39559e;
     color: white;

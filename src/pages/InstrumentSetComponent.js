@@ -59,6 +59,12 @@ const InstrumentSetComponent = () => {
     );
   };
 
+  const handleDropdownSelect = (option) => {
+    setSelected(option);
+    setCurrentPage(1);
+    handlePagination(1)
+  };
+
   const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
   const allPosts = getDataWithSearchString(setData);
   const indexOfLastPost = currentPage * postsPerPage;
@@ -68,7 +74,7 @@ const InstrumentSetComponent = () => {
   return (
     <div className={styles.instrumentSetContainer}>
       <div className={styles.dropDown}>
-        <Dropdown selected={selected} setSelected={setSelected}  totalPosts={allPosts.length}/>
+        <Dropdown selected={selected} setSelected={handleDropdownSelect} />
       </div>
       <div className={styles.mainContainer}>
         <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
@@ -78,7 +84,6 @@ const InstrumentSetComponent = () => {
           selectedSpecialty={selected}
           editRow={handleEditRow}
           handleDelete={handleDelete}
-          handlePagination={handlePagination}
         />
         {miniModalOpen && (
           <MiniModal

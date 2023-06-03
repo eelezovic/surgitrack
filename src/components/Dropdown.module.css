@@ -41,7 +41,7 @@
   background: #eeeded;
 }
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 600px){
   .dropdown {
     display: block;
     justify-content: center;
