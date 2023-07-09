@@ -61,11 +61,6 @@ const InstrumentSetComponent = () => {
     setSelected(option);
     setCurrentPage(1);
     handlePagination(1);
-  };
-
-  const test = (option) => {
-    setSelected(option);
-    setCurrentPage(1);
     handlePagination(1);
   };
 
