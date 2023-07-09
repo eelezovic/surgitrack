@@ -4,9 +4,7 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
-app.listen(3000, () => {
-  console.log("running on port 3000")
-})
+
 // Serve static files from the build folder
 app.use(express.static(path.join(__dirname, "build")));
 
