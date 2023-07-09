@@ -61,6 +61,7 @@ const InstrumentSetComponent = () => {
     setSelected(option);
     setCurrentPage(1);
     handlePagination(1);
+    handlePagination(1);
   };
 
   const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
