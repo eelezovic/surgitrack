@@ -62,6 +62,7 @@ const InstrumentSetComponent = () => {
   const handleDropdownSelect = (option) => {
     setSelected(option);
     setCurrentPage(1);
+    handlePagination(1);
     handlePagination(1)
   };
 
