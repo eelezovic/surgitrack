@@ -24,8 +24,6 @@ const InstrumentSetComponent = () => {
   const [rowToEdit, setRowToEdit] = useState(null);
   const [setData, setSetData] = useState(InstrumentSetData);
 
-
-
   const handleEditRow = (event, item) => {
     event.stopPropagation();
     setRowToEdit(item);
