@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/surgitrack/static/css/main.dfc3bd41.css",
+    "main.js": "/surgitrack/static/js/main.a11d7a69.js",
+    "index.html": "/surgitrack/index.html",
+    "main.dfc3bd41.css.map": "/surgitrack/static/css/main.dfc3bd41.css.map",
+    "main.a11d7a69.js.map": "/surgitrack/static/js/main.a11d7a69.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dfc3bd41.css",
+    "static/js/main.a11d7a69.js"
+  ]
+}
