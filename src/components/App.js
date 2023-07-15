@@ -3,6 +3,8 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Home from "../pages/Home";
 import About from "../pages/About";
+//import Login from "./login";
+//import Register from "./register";
 import { Route, Routes } from "react-router-dom";
 import SingleInstrumentsComponent from "../pages/SingleInstrumentsComponent";
 import InstrumentSetComponent from "../pages/InstrumentSetComponent";
