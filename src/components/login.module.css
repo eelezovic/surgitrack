@@ -1,3 +1,139 @@
-.login {
-  color: green;
+.loginPage {
+  display: flex;
+  height: 80vh;
+  width: 100%;
+  justify-content: center;
+  border: 1px solid red;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 7px 10px rgb(214, 223, 213);
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction:column;
+  height: 75vh;
+  width: 60%;
+  margin: auto;
+  border-radius: 10px;
+  background: hsl(0, 0%, 91%);
+}
+
+.formDiv {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: auto;
+  gap: 1.5rem;
+  transform: translateY(-1rem);
+}
+
+.headerDiv {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.headerDiv h3 {
+  font-size: 25px;
+  color: #39559e;
+  font-weight: 600;
+
+}
+
+.formGrid {
+  gap: 1rem;
+}
+
+.formGrid .inputDiv .userIcon {
+  color: grey;
+
+}
+
+input {
+  background: none;
+  outline: none;
+  border: none;
+  width: 200px;
+}
+
+label {
+  color: black;
+  font-weight: 400;
+  font-size: 20px;
+  padding: .5rem 0;
+  display: block;
+}
+
+.inputFlex {
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.loginButton {
+  padding: .8rem;
+  margin-top: 20px;
+  background: white;
+  border-radius: 10px;
+  color: #39559e;
+  align-items: center;
+  font-size: 16px;
+  width: 100%;
+  transition: .3s ease;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: #819ee5;
+  color: white;
+}
+
+.forgotPassword {
+  font-size: 16px;
+  color: #819ee5;
+  opacity: .7;
+  text-align: center;
+}
+
+.forgotPassword a {
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 1;
+  color: gray;
+}
+
+.forgotPassword a:hover {
+  color: #39559e;
+}
+
+
+.footerDiv {
+  display: flex;
+  padding: 0 1rem;
+  background: rgb(255, 255, 255, 0.248);
+  align-items: center;
+  backdrop-filter: blur(1px);
+  border-radius: 10px;
+  margin: auto;
+}
+
+.footerText {
+  padding-right: 5px;
+  color:#5774ba;
+}
+
+.signUpButton {
+  background-color: white;
+  color: #39559e;
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 400;
+  transition: .3s ease;
+  cursor: pointer;
+}
+
+.signUpButton:hover {
+  color: white;
+  background-color: #819ee5;
 }
