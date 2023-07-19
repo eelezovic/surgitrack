@@ -14,9 +14,9 @@ function Login() {
             <h3>Welcome Back!</h3>
           </div>
           <form action="" className={styles.formGrid}>
-            <span className={styles.displayMessage}>Login Status...</span>
+            <span className={styles.displayMessage}> Login Status... </span>
             <div className={styles.inputDiv}>
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username"> Username </label>
               <div className={styles.inputFlex}>
                 <FaUserShield className={styles.userIcon} />
                 <input

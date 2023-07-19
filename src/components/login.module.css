@@ -3,7 +3,6 @@
   height: 80vh;
   width: 100%;
   justify-content: center;
-  border: 1px solid red;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 7px 10px rgb(214, 223, 213);
@@ -38,6 +37,15 @@
   color: #39559e;
   font-weight: 600;
 
+}
+
+.displayMessage {
+  display: block;
+  padding: 10px;
+  color: white;
+  background: red;
+  border-radius: 3px;
+  text-align: center;
 }
 
 .formGrid {
