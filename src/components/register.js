@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Register.module.css";
 import { Link } from "react-router-dom";
 import { MdMarkEmailRead } from "react-icons/md";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
 import { FaUserShield } from "react-icons/fa";
+import { Axios } from "axios";
 
 function Register() {
+  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const createUser = () => {
+    Axios.post("http://localhost:8000/register", {
+      Email: email,
+      UserName: userName,
+      Password: password
+    }).then(() => {
+      console.log("User has been created")
+    })
+  }
+
   return (
     <div className={styles.registerPage}>
       <div className={styles.registerContainer}>
@@ -18,12 +33,15 @@ function Register() {
             <div className={styles.inputDiv}>
               <label htmlFor="email"> Email </label>
               <div className={styles.inputFlex}>
-                <MdMarkEmailRead  className={styles.userIcon} />
+                <MdMarkEmailRead className={styles.userIcon} />
                 <input
                   className={styles.userName}
                   type="email"
                   id="email"
                   placeholder="Enter Email"
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                  }}
                 />
               </div>
             </div>
@@ -36,7 +54,10 @@ function Register() {
                   className={styles.userName}
                   type="text"
                   id="username"
-                  placeholder="Enter Username"
+                  placeholder="Enter Username" 
+                  onChange={(event) => {
+                    setUserName(event.target.value);
+                  }}
                 />
               </div>
             </div>
@@ -50,11 +71,14 @@ function Register() {
                   type="password"
                   id="password"
                   placeholder="Enter Password"
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                  }}
                 />
               </div>
             </div>
 
-            <button type="submit" className={styles.registerButton}>
+            <button type="submit" className={styles.registerButton} onClick={createUser}>
               <span> Register </span>
               <AiOutlineSwapRight className={styles.registerIcon} />
             </button>

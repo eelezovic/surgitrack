@@ -54,7 +54,7 @@
 
 .formGrid .inputDiv .userIcon {
   color: grey;
-
+  font-size: 20px;
 }
 
 input {
@@ -73,10 +73,12 @@ label {
 }
 
 .inputFlex {
+  display: flex;
   gap: 0.5rem;
   padding: 0.5rem;
   background-color: white;
   border-radius: 10px;
+  align-items: center;
 }
 
 .loginButton {
@@ -98,8 +100,8 @@ label {
 }
 
 .forgotPassword {
-  font-size: 16px;
-  color: #819ee5;
+  font-size: 18px;
+  color: #142c6b;
   opacity: .7;
   text-align: center;
 }
@@ -112,14 +114,15 @@ label {
 }
 
 .forgotPassword a:hover {
-  color: #39559e;
+  color: #09266f;
+  text-decoration: underline;
 }
 
 
 .footerDiv {
   display: flex;
   padding: 0 1rem;
-  background: rgb(255, 255, 255, 0.248);
+  background: rgba(255, 255, 255, 0.248);
   align-items: center;
   backdrop-filter: blur(1px);
   border-radius: 10px;
@@ -129,6 +132,7 @@ label {
 .footerText {
   padding-right: 5px;
   color:#5774ba;
+  font-size: 20px;
 }
 
 .signUpButton {
@@ -136,7 +140,7 @@ label {
   color: #39559e;
   padding: 0.5rem 1.2rem;
   border-radius: 10px;
-  font-weight: 400;
+  font-weight: 500;
   transition: .3s ease;
   cursor: pointer;
 }
