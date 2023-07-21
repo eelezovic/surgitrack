@@ -5,7 +5,8 @@ import { MdMarkEmailRead } from "react-icons/md";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
 import { FaUserShield } from "react-icons/fa";
-import { Axios } from "axios";
+import axios from "axios";
+
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -13,14 +14,16 @@ function Register() {
   const [password, setPassword] = useState("");
 
   const createUser = () => {
-    Axios.post("http://localhost:8000/register", {
-      Email: email,
-      UserName: userName,
-      Password: password
-    }).then(() => {
-      console.log("User has been created")
-    })
-  }
+    axios
+      .post("http://localhost:8000/register", {
+        Email: email,
+        UserName: userName,
+        Password: password,
+      })
+      .then(() => {
+        console.log("User has been created");
+      });
+  };
 
   return (
     <div className={styles.registerPage}>
@@ -54,7 +57,7 @@ function Register() {
                   className={styles.userName}
                   type="text"
                   id="username"
-                  placeholder="Enter Username" 
+                  placeholder="Enter Username"
                   onChange={(event) => {
                     setUserName(event.target.value);
                   }}
@@ -78,7 +81,11 @@ function Register() {
               </div>
             </div>
 
-            <button type="submit" className={styles.registerButton} onClick={createUser}>
+            <button
+              type="submit"
+              className={styles.registerButton}
+              onClick={createUser}
+            >
               <span> Register </span>
               <AiOutlineSwapRight className={styles.registerIcon} />
             </button>
