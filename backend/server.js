@@ -3,13 +3,16 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 
+app.use(express.json());
+
+
 const dbconnection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'Kazahstan_1',
   database : 'surgitrack_schema'
 });
- 
+
 dbconnection.connect();
  
 /*dbconnection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
@@ -18,12 +21,12 @@ dbconnection.connect();
 }); */
 
 app.post("/register", (req, res) => {
-  const sentEmail = req.body.sentEmail;
+  const sentEmail = req.body.Email;
   const sentUserName = req.body.UserName;
   const sentPassword = req.body.Password;
+ 
 
-
-const sql = "INSERT INTO User (email, username, password) VALUES (?,?,?)"
+const sql = "INSERT INTO users (email, username, password) VALUES (?,?,?)"
 const values = [sentEmail,sentUserName,sentPassword];
 
 dbconnection.query(sql, values, (err, results) => {
@@ -31,6 +34,7 @@ dbconnection.query(sql, values, (err, results) => {
     res.send(err)
   } else{
     console.log("User entered successfully")
+    res.send({message:"User Added!"})
   }
 })
 })

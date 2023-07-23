@@ -5,7 +5,6 @@ import { MdMarkEmailRead } from "react-icons/md";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
 import { FaUserShield } from "react-icons/fa";
-import axios from "axios";
 
 
 function Register() {
@@ -13,17 +12,30 @@ function Register() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  const createUser = () => {
-    axios
-      .post("http://localhost:8000/register", {
-        Email: email,
-        UserName: userName,
-        Password: password,
-      })
-      .then(() => {
-        console.log("User has been created");
-      });
-  };
+const createUser = (event) => {
+  event.preventDefault()
+  return fetch("/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      Email: email,
+      UserName: userName,
+      Password: password,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("User has been created", data);
+      return data;  
+    })
+    .catch((error) => {
+      console.error("Error creating user:", error);
+      throw error; 
+    });
+};
+
 
   return (
     <div className={styles.registerPage}>
