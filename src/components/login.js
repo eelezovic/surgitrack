@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { FaUserShield } from "react-icons/fa";
@@ -6,6 +6,33 @@ import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
 
 function Login() {
+  const [loginUserName, setLoginUserName] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const loginUser = (event) => {
+    event.preventDefault()
+    return fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        LoginUserName: loginUserName,
+        LoginPassword: loginPassword,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("", data);
+        return data;  
+      })
+      .catch((error) => {
+        console.error("", error);
+        throw error; 
+      });
+  };
+
+
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginContainer}>
@@ -14,7 +41,7 @@ function Login() {
             <h3>Welcome Back!</h3>
           </div>
           <form action="" className={styles.formGrid}>
-            <span className={styles.displayMessage}> Login Status... </span>
+            {/*<span className={styles.displayMessage}> Login Status... </span>*/}
             <div className={styles.inputDiv}>
               <label htmlFor="username"> Username </label>
               <div className={styles.inputFlex}>
@@ -24,6 +51,9 @@ function Login() {
                   type="text"
                   id="username"
                   placeholder="Enter Username"
+                  onChange={(event) => {
+                    setLoginUserName(event.target.value);
+                  }}
                 />
               </div>
             </div>
@@ -37,11 +67,14 @@ function Login() {
                   type="password"
                   id="password"
                   placeholder="Enter Password"
+                  onChange={(event) => {
+                    setLoginPassword(event.target.value)
+                  }}
                 />
               </div>
             </div>
 
-            <button type="submit" className={styles.loginButton}>
+            <button type="submit" className={styles.loginButton} onClick={loginUser}>
               <span> Login </span>
               <AiOutlineSwapRight className={styles.loginIcon} />
             </button>
