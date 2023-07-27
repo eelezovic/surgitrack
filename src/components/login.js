@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Login.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
 
-function Login() {
+function Login({ setIsLoggedIn }) {
   const [loginUserName, setLoginUserName] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const navigateTo = useNavigate();
+  const [loginStatus, setLoginStatus] = useState("");
+  const [statusHolder, setStatusHolder] = useState("message");
 
   const loginUser = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     return fetch("/login", {
       method: "POST",
       headers: {
@@ -23,15 +26,35 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("", data);
-        return data;  
+        console.log(data);
+        if (data.message || loginUserName === "" || loginPassword === "") {
+          setLoginStatus("Credentials Don't Exist!");
+        } else {
+          setIsLoggedIn(true); // Call the setIsLoggedIn function from props
+          navigateTo("/");
+        }
+        return data;
       })
       .catch((error) => {
         console.error("", error);
-        throw error; 
+        throw error;
       });
   };
 
+  useEffect(() => {
+    if(loginStatus !== ""){
+      setStatusHolder("displayMessage")
+      setTimeout(() => {
+        setStatusHolder("message")
+      }, 4000);
+    }
+  }, [loginStatus]);
+
+  const onSubmit = () => {
+    setLoginUserName('');
+    setLoginPassword("");
+    setLoginStatus("");
+  }
 
   return (
     <div className={styles.loginPage}>
@@ -40,8 +63,12 @@ function Login() {
           <div className={styles.headerDiv}>
             <h3>Welcome Back!</h3>
           </div>
-          <form action="" className={styles.formGrid}>
-            {/*<span className={styles.displayMessage}> Login Status... </span>*/}
+          <form action="" className={styles.formGrid} onSubmit={onSubmit}>
+          {loginStatus && ( // Conditionally render the displayMessage element
+            <span className={`${styles.displayMessage} ${statusHolder}`}>
+              {loginStatus}
+            </span>
+          )}
             <div className={styles.inputDiv}>
               <label htmlFor="username"> Username </label>
               <div className={styles.inputFlex}>

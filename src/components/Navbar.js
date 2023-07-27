@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
+  const navigateTo = useNavigate(); 
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    navigateTo("/login");
+  };
+  
   return (
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
@@ -25,7 +33,11 @@ function Navbar() {
         <Link to="/about" className={styles.about}>
           About
         </Link>
+        <button onClick={handleLogout} className={styles.logoutButton}>
+        Logout
+      </button>
       </ul>
+      
       <button
         className={styles.mobileMenuIcon}
         onClick={() => setIsMobile(!isMobile)}
@@ -41,3 +53,11 @@ function Navbar() {
 }
 
 export default Navbar;
+
+
+
+
+
+
+
+

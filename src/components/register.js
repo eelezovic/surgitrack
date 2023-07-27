@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Register.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdMarkEmailRead } from "react-icons/md";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
@@ -11,6 +11,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const navigateTo = useNavigate();
 
 const createUser = (event) => {
   event.preventDefault()
@@ -27,12 +28,16 @@ const createUser = (event) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      navigateTo("/login"); // Redirecting to the login page
+      setEmail("");
+      setUserName("");
+      setPassword("");
       console.log("User has been created", data);
       return data;  
     })
     .catch((error) => {
       console.error("Error creating user:", error);
-      throw error; 
+      throw error;
     });
 };
 

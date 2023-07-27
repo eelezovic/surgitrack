@@ -20,7 +20,7 @@ dbconnection.connect();
 }); */
 
 app.post("/register", (req, res) => {
-  const sentEmail = req.body.sentEmail;
+  const sentEmail = req.body.Email;
   const sentUserName = req.body.UserName;
   const sentPassword = req.body.Password;
 
@@ -55,11 +55,10 @@ app.post("/login", (req, res) => {
   });
 });
 //Running the server.
-app.get("/",(req,res) => {
+/*app.get("/",(req,res) => {
   res.send("Welcome to Surgitrack")
 });
-
-/*app.listen(8000, () => {
+*/
+app.listen(8000, () => {
   console.log("Server started on port 8000");
 });
-*/
