@@ -15,6 +15,12 @@ function Register() {
 
 const createUser = (event) => {
   event.preventDefault()
+  
+  if (!email || !userName || !password) {
+    alert("Please fill out all fields!");
+    return false;
+  } 
+
   return fetch("/register", {
     method: "POST",
     headers: {
@@ -28,7 +34,7 @@ const createUser = (event) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      navigateTo("/login"); // Redirecting to the login page
+      navigateTo("/"); // Redirecting to the login page
       setEmail("");
       setUserName("");
       setPassword("");
@@ -106,10 +112,6 @@ const createUser = (event) => {
               <span> Register </span>
               <AiOutlineSwapRight className={styles.registerIcon} />
             </button>
-
-            <span className={styles.forgotPassword}>
-              Forgot your password? <a href=""> Click Here </a>
-            </span>
           </form>
         </div>
 

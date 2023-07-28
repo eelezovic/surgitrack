@@ -9,7 +9,7 @@ function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
-    navigateTo("/login");
+    navigateTo("/");
   };
   
   return (
@@ -27,7 +27,7 @@ function Navbar() {
         className={isMobile ? styles.navLinkMobile : styles.navLinks}
         onClick={() => setIsMobile(false)}
       >
-        <Link to="/" className={styles.home}>
+        <Link to="/home" className={styles.home}>
           Home
         </Link>
         <Link to="/about" className={styles.about}>

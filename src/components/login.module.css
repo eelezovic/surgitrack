@@ -10,7 +10,7 @@
 
 .loginContainer {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   height: 75vh;
   width: 60%;
   margin: auto;
@@ -36,7 +36,6 @@
   font-size: 25px;
   color: #39559e;
   font-weight: 600;
-
 }
 
 .displayMessage {
@@ -61,14 +60,14 @@ input {
   background: none;
   outline: none;
   border: none;
-  width: 200px;
+  color: rgb(70, 74, 82);
 }
 
 label {
-  color: black;
+  color: #39559e;
   font-weight: 400;
   font-size: 20px;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   display: block;
 }
 
@@ -82,7 +81,7 @@ label {
 }
 
 .loginButton {
-  padding: .8rem;
+  padding: 0.8rem;
   margin-top: 20px;
   background: white;
   border-radius: 10px;
@@ -90,7 +89,7 @@ label {
   align-items: center;
   font-size: 16px;
   width: 100%;
-  transition: .3s ease;
+  transition: 0.3s ease;
   cursor: pointer;
 }
 
@@ -98,26 +97,6 @@ label {
   background-color: #819ee5;
   color: white;
 }
-
-.forgotPassword {
-  font-size: 18px;
-  color: #142c6b;
-  opacity: .7;
-  text-align: center;
-}
-
-.forgotPassword a {
-  text-decoration: none;
-  cursor: pointer;
-  opacity: 1;
-  color: gray;
-}
-
-.forgotPassword a:hover {
-  color: #09266f;
-  text-decoration: underline;
-}
-
 
 .footerDiv {
   display: flex;
@@ -131,7 +110,7 @@ label {
 
 .footerText {
   padding-right: 5px;
-  color:#5774ba;
+  color: #5774ba;
   font-size: 20px;
 }
 
@@ -141,11 +120,33 @@ label {
   padding: 0.5rem 1.2rem;
   border-radius: 10px;
   font-weight: 500;
-  transition: .3s ease;
+  transition: 0.3s ease;
   cursor: pointer;
 }
 
 .signUpButton:hover {
   color: white;
   background-color: #819ee5;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .inputFlex {
+    display: flex;
+    margin: auto;
+    width: 90%;
+  }
+  .loginButton {
+    width: 90%;
+    margin: 15px;
+  }
+  .footerText {
+    padding-right: 5px;
+    color: #5774ba;
+    font-size: 16px;
+  }
+  .signUpButton {
+    padding: 0.3rem 1rem;
+  }
+ 
 }

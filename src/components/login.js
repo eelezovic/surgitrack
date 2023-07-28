@@ -5,7 +5,7 @@ import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
 
-function Login({ setIsLoggedIn }) {
+function Login() {
   const [loginUserName, setLoginUserName] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const navigateTo = useNavigate();
@@ -30,8 +30,7 @@ function Login({ setIsLoggedIn }) {
         if (data.message || loginUserName === "" || loginPassword === "") {
           setLoginStatus("Credentials Don't Exist!");
         } else {
-          setIsLoggedIn(true); // Call the setIsLoggedIn function from props
-          navigateTo("/");
+          navigateTo("/home");
         }
         return data;
       })
@@ -64,7 +63,7 @@ function Login({ setIsLoggedIn }) {
             <h3>Welcome Back!</h3>
           </div>
           <form action="" className={styles.formGrid} onSubmit={onSubmit}>
-          {loginStatus && ( // Conditionally render the displayMessage element
+          {loginStatus && ( 
             <span className={`${styles.displayMessage} ${statusHolder}`}>
               {loginStatus}
             </span>
@@ -106,9 +105,6 @@ function Login({ setIsLoggedIn }) {
               <AiOutlineSwapRight className={styles.loginIcon} />
             </button>
 
-            <span className={styles.forgotPassword}>
-              Forgot your password? <a href=""> Click Here </a>
-            </span>
           </form>
         </div>
 

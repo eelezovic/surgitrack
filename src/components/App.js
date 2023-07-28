@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Home from "../pages/Home";
@@ -10,19 +10,16 @@ import SingleInstrumentsComponent from "../pages/SingleInstrumentsComponent";
 import InstrumentSetComponent from "../pages/InstrumentSetComponent";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   return (
     <>
-      <Navbar isLoggedIn={isLoggedIn} />
+       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route
-          path="/login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />} // Pass setIsLoggedIn as a prop
-        />
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+      </Routes>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/singleinstrumentscomponent"
           element={<SingleInstrumentsComponent />}
@@ -38,4 +35,3 @@ function App() {
 }
 
 export default App;
-
