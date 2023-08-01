@@ -5,7 +5,7 @@ import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
 
-function Login() {
+function Login({ signin }) {
   const [loginUserName, setLoginUserName] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const navigateTo = useNavigate();
@@ -30,15 +30,16 @@ function Login() {
         if (data.message || loginUserName === "" || loginPassword === "") {
           setLoginStatus("Credentials Don't Exist!");
         } else {
+          signin();
           navigateTo("/home");
         }
-        return data;
       })
       .catch((error) => {
         console.error("", error);
         throw error;
       });
   };
+  
 
   useEffect(() => {
     if(loginStatus !== ""){

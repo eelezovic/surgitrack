@@ -34,11 +34,16 @@ const createUser = (event) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      if (data.message === "User with this email or username already exists.") {
+        // Display the alert message
+        alert(data.message);
+      } else {
       navigateTo("/"); // Redirecting to the login page
       setEmail("");
       setUserName("");
       setPassword("");
       console.log("User has been created", data);
+      }
       return data;  
     })
     .catch((error) => {
