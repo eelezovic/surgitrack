@@ -3,8 +3,23 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
+const session = require("express-session");
 
 app.use(express.json());
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      path: "/",
+      _expires: null,
+      originalMaxAge: null,
+      httpOnly: true,
+      sameSite: true,
+    },
+  })
+);
 
 const dbconnection = mysql.createConnection({
   host: "localhost",
@@ -76,6 +91,9 @@ app.post("/login", (req, res) => {
       res.send({ error: err });
     }
     if (results.length > 0) {
+      //Storing user data in the session
+      req.session.userId = results[0].id;
+      req.session.username = results[0].username
       res.send(results);
     } else {
       res.send({ message: "Credentials Entered Don't Match!" });

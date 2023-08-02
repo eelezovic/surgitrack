@@ -47,14 +47,14 @@ function App() {
           }
         />
 
-        {/*<Route
+        <Route
           path="/singleinstrumentscomponent"
           element={<SingleInstrumentsComponent />}
         />
         <Route
           path="/InstrumentSetComponent"
-          element={<InstrumentSetComponent />}
-        />*/}
+          element={<PrivateRoutes><InstrumentSetComponent /></PrivateRoutes>}
+        />
       </Routes>
       <Footer />
     </>

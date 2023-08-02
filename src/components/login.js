@@ -30,6 +30,9 @@ function Login({ signin }) {
         if (data.message || loginUserName === "" || loginPassword === "") {
           setLoginStatus("Credentials Don't Exist!");
         } else {
+             // Store session data in a cookie
+             document.cookie = `userId=${data[0].id}; path=/`;
+             document.cookie = `username=${data[0].username}; path=/`;
           signin();
           navigateTo("/home");
         }
@@ -39,6 +42,21 @@ function Login({ signin }) {
         throw error;
       });
   };
+
+    const checkLoginStatus = () => {
+      const cookies = document.cookie.split("; ");
+      console.log(cookies);
+      const loggedInUser = cookies.find((cookie) => cookie.startsWith("userId="));
+      if (loggedInUser) {
+        signin();
+        navigateTo("/home");
+      }
+    };
+
+    useEffect(() => {
+      checkLoginStatus();
+    }, []);
+  
   
 
   useEffect(() => {
