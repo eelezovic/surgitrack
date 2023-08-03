@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <Navbar signout={signout}/>
+    <Navbar signout={signout} />
       <Routes>
         <Route path="/" element={<Login signin={signin} />} />
         <Route path="/register" element={<Register />} />
@@ -46,14 +46,21 @@ function App() {
             </PrivateRoutes>
           }
         />
-
         <Route
           path="/singleinstrumentscomponent"
-          element={<SingleInstrumentsComponent />}
+          element={
+            <PrivateRoutes isSignedIn={isSignedIn}>
+              <SingleInstrumentsComponent />
+            </PrivateRoutes>
+          }
         />
         <Route
           path="/InstrumentSetComponent"
-          element={<PrivateRoutes><InstrumentSetComponent /></PrivateRoutes>}
+          element={
+            <PrivateRoutes isSignedIn={isSignedIn}>
+              <InstrumentSetComponent />
+            </PrivateRoutes>
+          }
         />
       </Routes>
       <Footer />

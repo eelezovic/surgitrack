@@ -30,10 +30,6 @@ const dbconnection = mysql.createConnection({
 
 dbconnection.connect();
 
-/*dbconnection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-  if (error) throw error;
-  console.log('The solution is: ', results[0].solution);
-}); */
 app.post("/register", (req, res) => {
   const sentEmail = req.body.Email;
   const sentUserName = req.body.UserName;
@@ -85,26 +81,33 @@ app.post("/login", (req, res) => {
   const sentLoginPassword = req.body.LoginPassword;
 
   const sql = "SELECT * FROM users WHERE username = ?";
-  const values = [sentLoginUserName, sentLoginPassword];
+  const values = [sentLoginUserName];
   dbconnection.query(sql, values, (err, results) => {
     if (err) {
       res.send({ error: err });
+      return;
     }
     if (results.length > 0) {
-      //Storing user data in the session
+      const isPasswordCorrect = bcrypt.compareSync(
+        sentLoginPassword,
+        results[0].password
+      );
+      if (!isPasswordCorrect) {
+        res.status(400).json({ message: "Wrong Username or Password!" });
+        return;
+      }
+
+      // Password is correct, store user data in the session
       req.session.userId = results[0].id;
-      req.session.username = results[0].username
+      req.session.username = results[0].username;
       res.send(results);
     } else {
-      res.send({ message: "Credentials Entered Don't Match!" });
+      res.status(400).json({ message: "Credentials Entered Don't Match!" });
     }
   });
 });
-//Running the server.
-/*app.get("/",(req,res) => {
-  res.send("Welcome to Surgitrack")
-});
-*/
+
+
 app.listen(8000, () => {
   console.log("Server started on port 8000");
 });

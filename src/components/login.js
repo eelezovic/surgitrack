@@ -14,6 +14,12 @@ function Login({ signin }) {
 
   const loginUser = (event) => {
     event.preventDefault();
+    //Preventing sending empty data to server
+    if (loginUserName === "" || loginPassword === ""){
+      setLoginStatus("Credentials don't exist!")
+    return;
+    }
+
     return fetch("/login", {
       method: "POST",
       headers: {
@@ -28,7 +34,7 @@ function Login({ signin }) {
       .then((data) => {
         console.log(data);
         if (data.message || loginUserName === "" || loginPassword === "") {
-          setLoginStatus("Credentials Don't Exist!");
+          setLoginStatus("Credentials don't exist!");
         } else {
              // Store session data in a cookie
              document.cookie = `userId=${data[0].id}; path=/`;
