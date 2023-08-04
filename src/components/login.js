@@ -32,13 +32,9 @@ function Login({ signin }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.message || loginUserName === "" || loginPassword === "") {
           setLoginStatus("Credentials don't exist!");
         } else {
-             // Store session data in a cookie
-             document.cookie = `userId=${data[0].id}; path=/`;
-             document.cookie = `username=${data[0].username}; path=/`;
           signin();
           navigateTo("/home");
         }

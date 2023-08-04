@@ -51,12 +51,12 @@ app.post("/register", (req, res) => {
             message: "User with this email or username already exists.",
           });
         } else {
-          const salt = bcrypt.genSaltSync(10);
-          const hash = bcrypt.hashSync(req.body.Password, salt);
           // If No existing user found, register
           const insertUserSql =
             "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
           const insertUserValues = [sentEmail, sentUserName, hash];
+          const salt = bcrypt.genSaltSync(10);
+          const hash = bcrypt.hashSync(req.body.Password, salt);
 
           dbconnection.query(
             insertUserSql,
