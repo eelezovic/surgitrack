@@ -15,9 +15,9 @@ function Login({ signin }) {
   const loginUser = (event) => {
     event.preventDefault();
     //Preventing sending empty data to server
-    if (loginUserName === "" || loginPassword === ""){
-      setLoginStatus("Credentials don't exist!")
-    return;
+    if (loginUserName === "" || loginPassword === "") {
+      setLoginStatus("Credentials don't exist!");
+      return;
     }
 
     return fetch("/login", {
@@ -45,36 +45,34 @@ function Login({ signin }) {
       });
   };
 
-    const checkLoginStatus = () => {
-      const cookies = document.cookie.split("; ");
-      console.log(cookies);
-      const loggedInUser = cookies.find((cookie) => cookie.startsWith("userId="));
-      if (loggedInUser) {
-        signin();
-        navigateTo("/home");
-      }
-    };
-
-    useEffect(() => {
-      checkLoginStatus();
-    }, []);
-  
-  
+  const checkLoginStatus = () => {
+    const cookies = document.cookie.split("; ");
+    console.log(cookies);
+    const loggedInUser = cookies.find((cookie) => cookie.startsWith("userId="));
+    if (loggedInUser) {
+      signin();
+      navigateTo("/home");
+    }
+  };
 
   useEffect(() => {
-    if(loginStatus !== ""){
-      setStatusHolder("displayMessage")
+    checkLoginStatus();
+  }, []);
+
+  useEffect(() => {
+    if (loginStatus !== "") {
+      setStatusHolder("displayMessage");
       setTimeout(() => {
-        setStatusHolder("message")
+        setStatusHolder("message");
       }, 4000);
     }
   }, [loginStatus]);
 
   const onSubmit = () => {
-    setLoginUserName('');
+    setLoginUserName("");
     setLoginPassword("");
     setLoginStatus("");
-  }
+  };
 
   return (
     <div className={styles.loginPage}>
@@ -84,11 +82,11 @@ function Login({ signin }) {
             <h3>Welcome Back!</h3>
           </div>
           <form action="" className={styles.formGrid} onSubmit={onSubmit}>
-          {loginStatus && ( 
-            <span className={`${styles.displayMessage} ${statusHolder}`}>
-              {loginStatus}
-            </span>
-          )}
+            {loginStatus && (
+              <span className={`${styles.displayMessage} ${statusHolder}`}>
+                {loginStatus}
+              </span>
+            )}
             <div className={styles.inputDiv}>
               <label htmlFor="username"> Username </label>
               <div className={styles.inputFlex}>
@@ -115,17 +113,20 @@ function Login({ signin }) {
                   id="password"
                   placeholder="Enter Password"
                   onChange={(event) => {
-                    setLoginPassword(event.target.value)
+                    setLoginPassword(event.target.value);
                   }}
                 />
               </div>
             </div>
 
-            <button type="submit" className={styles.loginButton} onClick={loginUser}>
+            <button
+              type="submit"
+              className={styles.loginButton}
+              onClick={loginUser}
+            >
               <span> Login </span>
               <AiOutlineSwapRight className={styles.loginIcon} />
             </button>
-
           </form>
         </div>
 

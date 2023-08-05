@@ -32,7 +32,7 @@ function SingleInstrumentsComponent() {
     const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
     setSetData(updatedData);
   };
-  
+ 
 
   const handleSubmit = (newRow) => {
     if (rowToEdit === null) {

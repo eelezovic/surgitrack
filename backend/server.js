@@ -54,9 +54,10 @@ app.post("/register", (req, res) => {
           // If No existing user found, register
           const insertUserSql =
             "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
-          const insertUserValues = [sentEmail, sentUserName, hash];
-          const salt = bcrypt.genSaltSync(10);
+            const salt = bcrypt.genSaltSync(10);
           const hash = bcrypt.hashSync(req.body.Password, salt);
+          const insertUserValues = [sentEmail, sentUserName, hash];
+          
 
           dbconnection.query(
             insertUserSql,
@@ -107,7 +108,79 @@ app.post("/login", (req, res) => {
   });
 });
 
+//Single Instruments 
+// to fetch all single instruments from the table
+app.get("/api/single-instruments", (req, res) => {
+  const query = "SELECT * FROM single_instruments_table";
+  dbconnection.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching data from the database:", error);
+      res.status(500).json({error: "Error fetching data from the database"});
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// to isert a new instrument into the table
+app.post("/api/single-instruments", (req, res) => {
+  const instrumentName = req.body.instrument_name;
+  const instrumentId = req.body.instrument_id;
+  const instrumentQuantity = req.body.instrument_quantity;
+  const instrumentLocation = req.body.instrument_location;
+
+  const insertInstrumentSql = "INSERT INTO single_instruments_table (instrument_name, instrument_id, instrument_quantity, instrument_location) VALUES (?, ?, ?, ?)";
+  const insertInstrumentValues = [instrumentName, instrumentId, instrumentQuantity, instrumentLocation];
+
+  dbconnection.query(insertInstrumentSql, insertInstrumentValues, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: "Error inserting new instrument into the database" });
+    } else {
+      res.json({ message: "New instrument inserted successfully" });
+    }
+  });
+});
+
+// to update an exisiting instrument table.
+app.put("/api/single-instruments/:id", (req, res) => {
+  const primaryKeyId = req.params.id;
+  const instrumentName = req.body.instrument_name;
+  const instrumentId = req.body.instrument_id;
+  const instrumentQuantity = req.body.instrument_quantity;
+  const instrumentLocation = req.body.instrument_location;
+
+  const updateInstrumentSql = "UPDATE single_instruments_table SET instrument_name = ?, instrument_id = ?, instrument_quantity = ?, instrument_location = ? WHERE id = ?";
+  const updateInstrumentValues = [instrumentName, instrumentId, instrumentQuantity, instrumentLocation, primaryKeyId];
+
+  dbconnection.query(updateInstrumentSql, updateInstrumentValues, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: "Error updating instrument in the database" });
+    } else {
+      res.json({ message: "Instrument updated successfully" });
+    }
+  });
+});
+
+// to delete an instrument from the database
+app.delete("/api/single-instruments/:id", (req, res) => {
+  const primaryKeyId = req.params.id;
+
+  const deleteInstrumentSql = "DELETE FROM single_instruments_table WHERE id = ?";
+  const deleteInstrumentValues = [primaryKeyId];
+
+  dbconnection.query(deleteInstrumentSql, deleteInstrumentValues, (err, results) => {
+    if (err) {
+      res.status(500).json({error: "Error from deleting instrument from the database"});
+    } else {
+      res.json({message: "You have successully deleted an instrument!"})
+    }
+  });
+});
+
+
 
 app.listen(8000, () => {
   console.log("Server started on port 8000");
 });
+
+
