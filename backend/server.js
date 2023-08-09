@@ -57,7 +57,7 @@ app.post("/register", (req, res) => {
             const salt = bcrypt.genSaltSync(10);
           const hash = bcrypt.hashSync(req.body.Password, salt);
           const insertUserValues = [sentEmail, sentUserName, hash];
-          
+
 
           dbconnection.query(
             insertUserSql,
@@ -166,10 +166,11 @@ app.delete("/api/single-instruments/:id", (req, res) => {
   const primaryKeyId = req.params.id;
 
   const deleteInstrumentSql = "DELETE FROM single_instruments_table WHERE id = ?";
-  const deleteInstrumentValues = [primaryKeyId];
+  const deleteInstrumentValues = [parseInt(primaryKeyId, 10)];
 
   dbconnection.query(deleteInstrumentSql, deleteInstrumentValues, (err, results) => {
     if (err) {
+      console.log (err)
       res.status(500).json({error: "Error from deleting instrument from the database"});
     } else {
       res.json({message: "You have successully deleted an instrument!"})

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../pages/SingleInstrumentsComponent.module.css";
 import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
@@ -17,7 +17,7 @@ function SingleInstrumentsComponent() {
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
-  const [setData, setSetData] = useState(SingleInstrumentsData);
+  const [setData, setSetData] = useState([]); 
   const [rowToEdit, setRowToEdit] = useState(null);
   const [miniModalOpen, setMiniModalOpen] = useState(false);
 
@@ -29,9 +29,20 @@ function SingleInstrumentsComponent() {
 
   const handleDelete = (event, item) => {
     event.stopPropagation();
+    fetch(`/api/single-instruments/${item.id}`, {
+      method: "DELETE",
+    })
+    .then((response) => response.json())
+    .then((responseData) => {
+      console.log(responseData);
+     /* const updatedData = allPosts.filter((dataItem) => dataItem.id !== item)
+      setSetData(updateData); */
+    })
+  }
+/*
     const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
     setSetData(updatedData);
-  };
+  }; */
  
 
   const handleSubmit = (newRow) => {
@@ -61,7 +72,18 @@ function SingleInstrumentsComponent() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+ 
+  //fetching data from the API
+  const fetchData = () => {
+    fetch("api/single-instruments")
+    .then((response) => response.json())
+    .then((data) => setSetData(data))
+    .catch((error) => console.error("Error fetching data:", error))
+  };
 
+  useEffect(() => {
+    fetchData();
+  },[]);
 
   return (
     <div className={styles.singleInstrumentContainer}>
