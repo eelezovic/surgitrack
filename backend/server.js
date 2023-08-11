@@ -110,7 +110,7 @@ app.post("/login", (req, res) => {
 
 //Single Instruments 
 // to fetch all single instruments from the table
-app.get("/api/single-instruments", (req, res) => {
+app.get("/singleInstruments", (req, res) => {
   const query = "SELECT * FROM single_instruments_table";
   dbconnection.query(query, (error, results) => {
     if (error) {
@@ -123,11 +123,11 @@ app.get("/api/single-instruments", (req, res) => {
 });
 
 // to isert a new instrument into the table
-app.post("/api/single-instruments", (req, res) => {
-  const instrumentName = req.body.instrument_name;
-  const instrumentId = req.body.instrument_id;
-  const instrumentQuantity = req.body.instrument_quantity;
-  const instrumentLocation = req.body.instrument_location;
+app.post("/singleInstruments", (req, res) => {
+  const instrumentName = req.body.instrumentName;
+  const instrumentId = req.body.instrumentId;
+  const instrumentQuantity = req.body.instrumentQuantity;
+  const instrumentLocation = req.body.instrumentLocation;
 
   const insertInstrumentSql = "INSERT INTO single_instruments_table (instrument_name, instrument_id, instrument_quantity, instrument_location) VALUES (?, ?, ?, ?)";
   const insertInstrumentValues = [instrumentName, instrumentId, instrumentQuantity, instrumentLocation];
@@ -142,12 +142,12 @@ app.post("/api/single-instruments", (req, res) => {
 });
 
 // to update an exisiting instrument table.
-app.put("/api/single-instruments/:id", (req, res) => {
+app.put("/singleInstruments/:id", (req, res) => {
   const primaryKeyId = req.params.id;
-  const instrumentName = req.body.instrument_name;
-  const instrumentId = req.body.instrument_id;
-  const instrumentQuantity = req.body.instrument_quantity;
-  const instrumentLocation = req.body.instrument_location;
+  const instrumentName = req.body.instrumentName;
+  const instrumentId = req.body.instrumentId;
+  const instrumentQuantity = req.body.instrumentQuantity;
+  const instrumentLocation = req.body.instrumentLocation;
 
   const updateInstrumentSql = "UPDATE single_instruments_table SET instrument_name = ?, instrument_id = ?, instrument_quantity = ?, instrument_location = ? WHERE id = ?";
   const updateInstrumentValues = [instrumentName, instrumentId, instrumentQuantity, instrumentLocation, primaryKeyId];
@@ -162,7 +162,7 @@ app.put("/api/single-instruments/:id", (req, res) => {
 });
 
 // to delete an instrument from the database
-app.delete("/api/single-instruments/:id", (req, res) => {
+app.delete("/singleInstruments/:id", (req, res) => {
   const primaryKeyId = req.params.id;
 
   const deleteInstrumentSql = "DELETE FROM single_instruments_table WHERE id = ?";

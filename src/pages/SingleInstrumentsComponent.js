@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
 import { SingleInstrumentsData } from "../components/dataStorage/SingleInstrumentsData";
 import Pagination from "../components/Pagination";
-import MiniModal from "../components/MiniModal"; 
+import MiniModal from "../components/MiniModal";
 
 function SingleInstrumentsComponent() {
   const headers = [
@@ -17,43 +17,62 @@ function SingleInstrumentsComponent() {
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
-  const [setData, setSetData] = useState([]); 
+  const [setData, setSetData] = useState([]);
   const [rowToEdit, setRowToEdit] = useState(null);
   const [miniModalOpen, setMiniModalOpen] = useState(false);
 
-  const handleEditRow = (event,item) => {
+  const handleEditRow = (event, item) => {
     event.stopPropagation();
     setRowToEdit(item);
     setMiniModalOpen(true);
   };
 
+  const updateInstrumentOnServer = (newRow) => {
+    const updatedData = {
+      instrumentName: newRow.instrument_name,
+      instrumentId: newRow.instrument_id,
+      instrumentQuantity: newRow.instrument_quantity,
+      instrumentLocation: newRow.instrument_location,
+    };
+
+    return fetch(`/singleInstruments/${newRow.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
+  };
+
   const handleDelete = (event, item) => {
     event.stopPropagation();
-    fetch(`/api/single-instruments/${item.id}`, {
+    fetch(`/singleInstruments/${item.id}`, {
       method: "DELETE",
     })
-    .then((response) => response.json())
-    .then((responseData) => {
-      console.log(responseData);
-     /* const updatedData = allPosts.filter((dataItem) => dataItem.id !== item)
-      setSetData(updateData); */
-    })
-  }
-/*
-    const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
-    setSetData(updatedData);
-  }; */
- 
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData);
+        const updatedData = allPosts.filter(
+          (dataItem) => dataItem.id !== item.id
+        );
+        setSetData(updatedData);
+      });
+  };
 
-  const handleSubmit = (newRow) => {
+  const handleSubmit = async (newRow) => {
     if (rowToEdit === null) {
       setSetData([...setData, newRow]);
     } else {
-      const updatedData = setData.map((currentRow) =>
-        currentRow.instrument_id === rowToEdit.instrument_id ? newRow : currentRow
-      );
-      setSetData(updatedData);
-      setRowToEdit(null);
+      try {
+        await updateInstrumentOnServer(newRow); 
+        const updatedData = setData.map((currentRow) =>
+          currentRow.instrument_id === rowToEdit.instrument_id ? newRow : currentRow
+        );
+        setSetData(updatedData);
+        setRowToEdit(null);
+      } catch (error) {
+        console.error("Error updating instrument:", error);
+      }
     }
     setMiniModalOpen(false);
   };
@@ -72,18 +91,18 @@ function SingleInstrumentsComponent() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
- 
+
   //fetching data from the API
   const fetchData = () => {
-    fetch("api/single-instruments")
-    .then((response) => response.json())
-    .then((data) => setSetData(data))
-    .catch((error) => console.error("Error fetching data:", error))
+    fetch("/singleInstruments")
+      .then((response) => response.json())
+      .then((data) => setSetData(data))
+      .catch((error) => console.error("Error fetching data:", error));
   };
 
   useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
   return (
     <div className={styles.singleInstrumentContainer}>
@@ -104,14 +123,14 @@ function SingleInstrumentsComponent() {
           onSubmit={handleSubmit}
           defaultValue={
             rowToEdit
-            ? {
-              setName: rowToEdit.instrument_name,
-                    setId: rowToEdit.instrument_id,
-                    setQuantity: rowToEdit.instrument_quantity,
-                    setLocation: rowToEdit.instrument_location,
-                    id: rowToEdit.id
-            }
-            : null
+              ? {
+                  setName: rowToEdit.instrument_name,
+                  setId: rowToEdit.instrument_id,
+                  setQuantity: rowToEdit.instrument_quantity,
+                  setLocation: rowToEdit.instrument_location,
+                  id: rowToEdit.id,
+                }
+              : null
           }
         />
       )}

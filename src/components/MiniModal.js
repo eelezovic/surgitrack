@@ -54,7 +54,7 @@ function MiniModal({ closeMiniModal, onSubmit, defaultValue, componentType }) {
     e.preventDefault();
     if (!validateForm()) return;
 
-    const dataObject = componentType
+    const updatedData = componentType
       ? {
           id: formState.id,
           instrument_id: formState.setId,
@@ -72,7 +72,7 @@ function MiniModal({ closeMiniModal, onSubmit, defaultValue, componentType }) {
           set_content: formState.setContent,
         };
 
-    onSubmit(dataObject);
+    onSubmit(updatedData );
     closeMiniModal();
   };
 
