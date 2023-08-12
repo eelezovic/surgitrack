@@ -122,7 +122,7 @@ app.get("/singleInstruments", (req, res) => {
   });
 });
 
-// to isert a new instrument into the table
+// to insert a new instrument into the table
 app.post("/singleInstruments", (req, res) => {
   const instrumentName = req.body.instrumentName;
   const instrumentId = req.body.instrumentId;
@@ -134,6 +134,7 @@ app.post("/singleInstruments", (req, res) => {
 
   dbconnection.query(insertInstrumentSql, insertInstrumentValues, (err, results) => {
     if (err) {
+      console.error('Database error:', err); // Log the error object
       res.status(500).json({ error: "Error inserting new instrument into the database" });
     } else {
       res.json({ message: "New instrument inserted successfully" });

@@ -27,6 +27,7 @@ function SingleInstrumentsComponent() {
     setMiniModalOpen(true);
   };
 
+  // to update an exisiting instrument 
   const updateInstrumentOnServer = (newRow) => {
     const updatedData = {
       instrumentName: newRow.instrument_name,
@@ -60,22 +61,40 @@ function SingleInstrumentsComponent() {
   };
 
   const handleSubmit = async (newRow) => {
-    if (rowToEdit === null) {
-      setSetData([...setData, newRow]);
-    } else {
-      try {
-        await updateInstrumentOnServer(newRow); 
+    try {
+      if (rowToEdit === null) {
+        const newInstrumentData = {
+          instrumentName: newRow.instrument_name,
+          instrumentId: newRow.instrument_id,
+          instrumentQuantity: newRow.instrument_quantity,
+          instrumentLocation: newRow.instrument_location
+        };
+        console.log(newRow);
+        const response = await fetch('/singleInstruments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newInstrumentData)
+        });
+        const responseData = await response.json();
+        console.log(responseData.message);
+  
+        setSetData([...setData, newRow]);
+      } else {
+        await updateInstrumentOnServer(newRow);
         const updatedData = setData.map((currentRow) =>
           currentRow.instrument_id === rowToEdit.instrument_id ? newRow : currentRow
         );
         setSetData(updatedData);
         setRowToEdit(null);
-      } catch (error) {
-        console.error("Error updating instrument:", error);
       }
+    } catch (error) {
+      console.error("Error:", error);
     }
     setMiniModalOpen(false);
   };
+  
 
   function getDataWithSearchString(data) {
     return data.filter((item) =>
