@@ -1,5 +1,27 @@
-//Dependencies
 const express = require("express");
+const app = express();
+const UserController = require("./controllers/UserController");
+const InstrumentController = require("./controllers/InstrumentController");
+
+app.use(express.json());
+
+// User Routes
+app.post("/register", UserController.register);
+app.post("/login", UserController.login);
+
+// Instrument Routes
+app.get("/singleInstruments", InstrumentController.getAllInstruments);
+app.post("/singleInstruments", InstrumentController.addInstrument);
+app.put("/singleInstruments/:id", InstrumentController.updateInstrument);
+app.delete("/singleInstruments/:id", InstrumentController.deleteInstrument);
+
+app.listen(8000, () => {
+  console.log("Server started on port 8000");
+});
+
+
+//Dependencies
+/*const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
@@ -183,6 +205,7 @@ app.delete("/singleInstruments/:id", (req, res) => {
 app.listen(8000, () => {
   console.log("Server started on port 8000");
 });
+*/
 
 
 

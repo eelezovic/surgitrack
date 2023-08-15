@@ -6,13 +6,16 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 7px 10px rgb(214, 223, 213);
+  background-image: url('/images/surgeon.jpg'); 
+  background-size: cover;
+  background-repeat: no-repeat; 
 }
 
 .registerContainer {
   display: flex;
   flex-direction: column;
   height: 75vh;
-  width: 60%;
+  width: 40%;
   margin: auto;
   border-radius: 10px;
   background: hsl(0, 0%, 91%);
@@ -121,6 +124,9 @@ label {
 }
 
 @media only screen and (max-width: 600px) {
+  .registerContainer {
+    width: 80%;
+  }
   .inputFlex {
     display: flex;
     margin: auto;
