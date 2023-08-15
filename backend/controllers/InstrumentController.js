@@ -1,7 +1,8 @@
 const InstrumentModel = require("../models/InstrumentModel");
 
+
 const InstrumentController = {
-  
+
   getAllInstruments: async (req, res) => {
     try {
       const instruments = await InstrumentModel.getAllInstruments();

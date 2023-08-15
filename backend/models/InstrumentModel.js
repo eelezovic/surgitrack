@@ -1,4 +1,4 @@
-const dbconnection = require("./dbconnection"); 
+const dbconnection = require("../db"); 
 
 const InstrumentModel = {
   getAllInstruments: async () => {
@@ -30,11 +30,11 @@ const InstrumentModel = {
     });
   },
 
-  updateInstrument: async (instrumentId, updatedData) => {
+  updateInstrument: async (instrumentIdToUpdate, updatedData) => {
     return new Promise((resolve, reject) => {
       const { instrumentName, instrumentId, instrumentQuantity, instrumentLocation } = updatedData;
       const updateInstrumentSql = "UPDATE single_instruments_table SET instrument_name = ?, instrument_id = ?, instrument_quantity = ?, instrument_location = ? WHERE id = ?";
-      const updateInstrumentValues = [instrumentName, instrumentId, instrumentQuantity, instrumentLocation, instrumentId];
+      const updateInstrumentValues = [instrumentName, instrumentId, instrumentQuantity, instrumentLocation, instrumentIdToUpdate];
 
       dbconnection.query(updateInstrumentSql, updateInstrumentValues, (err, results) => {
         if (err) {
