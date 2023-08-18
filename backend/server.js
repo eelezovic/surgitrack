@@ -1,23 +1,36 @@
 const express = require("express");
+const session = require("express-session");
 const app = express();
-const UserController = require("./controllers/UserController");
-const InstrumentController = require("./controllers/InstrumentController");
+
 
 app.use(express.json());
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      path: "/",
+      _expires: null,
+      originalMaxAge: null,
+      httpOnly: true,
+      sameSite: true,
+    },
+  })
+);
 
-// User Routes
-app.post("/register", UserController.register);
-app.post("/login", UserController.login);
+const singleInstrumentsApi = require("./views/InstrumentsViews.js");
+const usersApi = require("./views/users.js");
 
-// Instrument Routes
-app.get("/singleInstruments", InstrumentController.getAllInstruments);
-app.post("/singleInstruments", InstrumentController.addInstrument);
-app.put("/singleInstruments/:id", InstrumentController.updateInstrument);
-app.delete("/singleInstruments/:id", InstrumentController.deleteInstrument);
+singleInstrumentsApi(app);
+usersApi(app);
+
 
 app.listen(8000, () => {
   console.log("Server started on port 8000");
 });
+
+
 
 
 //Dependencies
