@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from "../pages/SingleInstrumentsComponent.module.css";
 import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
-import { SingleInstrumentsData } from "../components/dataStorage/SingleInstrumentsData";
 import Pagination from "../components/Pagination";
 import MiniModal from "../components/MiniModal";
 

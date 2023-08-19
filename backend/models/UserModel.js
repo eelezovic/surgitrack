@@ -28,6 +28,21 @@ const UserModel = {
       });
     });
   },
+  
+  getUserByUsername: async (username) => {
+    return new Promise((resolve, reject) => {
+      const query = "SELECT * FROM users WHERE username = ?";
+      dbconnection.query(query, [username], (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results[0]);
+        }
+      });
+    });
+  },
+
+  
 };
 
 module.exports = UserModel;

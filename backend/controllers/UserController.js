@@ -32,22 +32,22 @@ const UserController = {
 
 //login function 
   login: async (req, res) => {
-    const { LoginUserName, LoginPassword } = req.body;
 
+    const { LoginUserName, LoginPassword } = req.body;
     try {
       const user = await UserModel.getUserByUsername(LoginUserName);
+      console.log(user);
       if (!user) {
         res.status(400).json({ message: "Username not found." });
         return;
       }
-
+      
       const isPasswordCorrect = bcrypt.compareSync(LoginPassword, user.password);
       if (!isPasswordCorrect) {
         res.status(400).json({ message: "Wrong Username or Password!" });
         return;
       }
-
-
+      console.log("isPasswordCorrect:", isPasswordCorrect);
       req.session.userId = user.id; 
       req.session.username = user.username;
 
