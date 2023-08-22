@@ -32,6 +32,7 @@ function Login({ signin }) {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("Response Data:", data);
         if (data.message || loginUserName === "" || loginPassword === "") {
           setLoginStatus("Credentials don't exist!");
         } else {
@@ -54,19 +55,6 @@ function Login({ signin }) {
       navigateTo("/home");
     }
   };
-
-  useEffect(() => {
-    checkLoginStatus();
-  }, []);
-
-  useEffect(() => {
-    if (loginStatus !== "") {
-      setStatusHolder("displayMessage");
-      setTimeout(() => {
-        setStatusHolder("message");
-      }, 4000);
-    }
-  }, [loginStatus]);
 
   const onSubmit = () => {
     setLoginUserName("");

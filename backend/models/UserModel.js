@@ -1,4 +1,3 @@
-
 const dbconnection = require("../db"); 
 
 const UserModel = {
@@ -28,14 +27,16 @@ const UserModel = {
       });
     });
   },
-  
+
   getUserByUsername: async (username) => {
     return new Promise((resolve, reject) => {
       const query = "SELECT * FROM users WHERE username = ?";
+      //console.log("Executing query:", query);
       dbconnection.query(query, [username], (error, results) => {
         if (error) {
           reject(error);
         } else {
+          //console.log("Query results:", results); 
           resolve(results[0]);
         }
       });

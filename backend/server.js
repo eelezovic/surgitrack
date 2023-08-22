@@ -1,23 +1,33 @@
 const express = require("express");
+const session = require("express-session");
 const app = express();
-const UserController = require("./controllers/UserController");
-const InstrumentController = require("./controllers/InstrumentController");
+const singleInstrumentsApi = require("./views/InstrumentsViews.js");
+const userRoutes = require("./views/users.js");
+
 
 app.use(express.json());
 
-// User Routes
-app.post("/register", UserController.register);
-app.post("/login", UserController.login);
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      path: "/",
+      _expires: null,
+      originalMaxAge: null,
+      httpOnly: true,
+      sameSite: true,
+    },
+  })
+);
 
-// Instrument Routes
-app.get("/singleInstruments", InstrumentController.getAllInstruments);
-app.post("/singleInstruments", InstrumentController.addInstrument);
-app.put("/singleInstruments/:id", InstrumentController.updateInstrument);
-app.delete("/singleInstruments/:id", InstrumentController.deleteInstrument);
+singleInstrumentsApi(app);
+userRoutes(app);
 
 app.listen(8000, () => {
   console.log("Server started on port 8000");
-})
+});
 
 /*const express = require("express");
 const session = require("express-session");
