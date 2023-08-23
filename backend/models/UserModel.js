@@ -1,4 +1,24 @@
-const dbconnection = require("../db"); 
+const {query, dbconnection } = require("../db");
+
+const UserModel = {
+  async getUserByEmail(email) {
+    return query("SELECT * FROM users WHERE email = ?", [email]);
+  },
+
+  async createUser({email, username, password}) {
+    return query("INSERT INTO users (email, username, password) VALUES (?, ?, ?)", [email, username, password]);
+  },
+
+  async  getUserByUsername(username) {
+    return query("SELECT * FROM users WHERE username = ?", [username])
+  }
+};
+
+module.exports = UserModel;
+
+
+
+/*const dbconnection = require("../db"); 
 
 const UserModel = {
   getUserByEmail: async (email) => {
@@ -47,3 +67,4 @@ const UserModel = {
 };
 
 module.exports = UserModel;
+*/

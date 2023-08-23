@@ -1,4 +1,29 @@
-const dbconnection = require("../db"); 
+const {query} = require("../db");
+
+const InstrumentModel = {
+  async getAllInstruments() {
+    return query("SELECT * FROM single_instruments_table")
+  },
+
+  async  addInstrument(instrumentData) {
+    const { instrumentName, instrumentId, instrumentQuantity, instrumentLocation } = instrumentData;
+    return query("INSERT INTO single_instruments_table (instrument_name, instrument_id, instrument_quantity, instrument_location) VALUES (?, ?, ?, ?)", [instrumentName, instrumentId, instrumentQuantity, instrumentLocation]);
+},
+
+  async  updateInstrument(instrumentIdToUpdate, updatedData) {
+    const { instrumentName, instrumentId, instrumentQuantity, instrumentLocation } = updatedData;
+    return query("UPDATE single_instruments_table SET instrument_name = ?, instrument_id = ?, instrument_quantity = ?, instrument_location = ? WHERE id = ?", [instrumentName, instrumentId, instrumentQuantity, instrumentLocation, instrumentIdToUpdate])
+  }
+
+  async deleteInstrument(instrumentId) {
+    return query("DELETE FROM single_instruments_table WHERE id = ?", [instrumentId]);
+  },
+};
+
+module.exports = InstrumentModel;
+
+
+/*const dbconnection = require("../db"); 
 
 const InstrumentModel = {
   getAllInstruments: async () => {
@@ -63,4 +88,4 @@ const InstrumentModel = {
 };
 
 module.exports = InstrumentModel;
-
+*/

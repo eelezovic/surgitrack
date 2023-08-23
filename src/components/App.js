@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Home from "../pages/Home";
 import About from "../pages/About";
-import Login from "./Login";
+import Login from "./login";
 import Register from "./Register";
 import { Route, Routes } from "react-router-dom";
 import SingleInstrumentsComponent from "../pages/SingleInstrumentsComponent";

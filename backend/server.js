@@ -1,9 +1,6 @@
 const express = require("express");
 const session = require("express-session");
 const app = express();
-const singleInstrumentsApi = require("./views/InstrumentsViews.js");
-const userRoutes = require("./views/users.js");
-
 
 app.use(express.json());
 
@@ -21,6 +18,9 @@ app.use(
     },
   })
 );
+
+const singleInstrumentsApi = require("./views/InstrumentsViews.js");
+const userRoutes = require("./views/users.js");
 
 singleInstrumentsApi(app);
 userRoutes(app);
