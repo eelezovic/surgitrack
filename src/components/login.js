@@ -33,7 +33,8 @@ function Login({ signin }) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Response Data:", data);
-        if (data.message || loginUserName === "" || loginPassword === "") {
+        console.log(data.message || loginUserName === "" || loginPassword === "")
+        if (data.message === "" || loginUserName === "" || loginPassword === "") {
           setLoginStatus("Credentials don't exist!");
         } else {
           signin();

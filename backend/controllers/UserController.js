@@ -36,11 +36,15 @@ const UserController = {
     try {
       const user = await UserModel.getUserByUsername(LoginUserName);
       //console.log(user);
+      //console.log("User Password:", user.password);
+
+      console.log("User:", user, LoginUserName)
       if (!user) {
         res.status(400).json({ message: "Username not found." });
         return;
       }
-      
+      console.log("LoginPassword:", LoginPassword);
+      console.log("User Password:", user.password);
       const isPasswordCorrect = bcrypt.compareSync(LoginPassword, user.password);
       if (!isPasswordCorrect) {
         res.status(400).json({ message: "Wrong Username or Password!" });

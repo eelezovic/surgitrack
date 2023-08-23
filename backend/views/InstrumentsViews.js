@@ -1,10 +1,10 @@
 const InstrumentController = require("../controllers/InstrumentController");
 
 const singleInstrumentsApi = (app) => {
-  app.get("/single-instruments", InstrumentController.getAllInstruments);
-  app.post("/single-instruments", InstrumentController.addInstrument);
-  app.put("/single-instruments/:id", InstrumentController.updateInstrument);
-  app.delete("/single-instruments/:id", InstrumentController.deleteInstrument);
+  app.get("/singleInstruments", InstrumentController.getAllInstruments);
+  app.post("/singleInstruments", InstrumentController.addInstrument);
+  app.put("/singleInstruments/:id", InstrumentController.updateInstrument);
+  app.delete("/singleInstruments/:id", InstrumentController.deleteInstrument);
 };
 
 module.exports = singleInstrumentsApi;

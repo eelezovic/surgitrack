@@ -2,7 +2,7 @@ const {query, dbconnection } = require("../db");
 
 const UserModel = {
   async getUserByEmail(email) {
-    return query("SELECT * FROM users WHERE email = ?", [email]);
+    return ( await query("SELECT * FROM users WHERE email = ?", [email]))[0];
   },
 
   async createUser({email, username, password}) {
@@ -10,7 +10,7 @@ const UserModel = {
   },
 
   async  getUserByUsername(username) {
-    return query("SELECT * FROM users WHERE username = ?", [username])
+    return ( await query("SELECT * FROM users WHERE username = ? ", [username]))[0];
   }
 };
 

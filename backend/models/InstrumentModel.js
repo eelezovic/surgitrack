@@ -13,7 +13,7 @@ const InstrumentModel = {
   async  updateInstrument(instrumentIdToUpdate, updatedData) {
     const { instrumentName, instrumentId, instrumentQuantity, instrumentLocation } = updatedData;
     return query("UPDATE single_instruments_table SET instrument_name = ?, instrument_id = ?, instrument_quantity = ?, instrument_location = ? WHERE id = ?", [instrumentName, instrumentId, instrumentQuantity, instrumentLocation, instrumentIdToUpdate])
-  }
+  },
 
   async deleteInstrument(instrumentId) {
     return query("DELETE FROM single_instruments_table WHERE id = ?", [instrumentId]);
