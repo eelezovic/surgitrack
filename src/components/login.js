@@ -32,9 +32,11 @@ function Login({ signin }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Response Data:", data);
-        console.log(data.message || loginUserName === "" || loginPassword === "")
-        if (data.message === "" || loginUserName === "" || loginPassword === "") {
+        if (
+          data.message === "" ||
+          loginUserName === "" ||
+          loginPassword === ""
+        ) {
           setLoginStatus("Credentials don't exist!");
         } else {
           signin();
@@ -42,7 +44,7 @@ function Login({ signin }) {
         }
       })
       .catch((error) => {
-        console.error("", error);
+        console.error("Error", error);
         throw error;
       });
   };
@@ -130,4 +132,4 @@ function Login({ signin }) {
   );
 }
 
-export default Login;
+export default Login; 

@@ -15,16 +15,19 @@ import { FaLaptopHouse } from "react-icons/fa";
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const signin = () => {
+  const [userName, setUserName] = useState("");
+  const signin = (name) => {
     setIsSignedIn(true);
+    setUserName(name);
   };
   const signout = () => {
     setIsSignedIn(false);
+    setUserName("");
   };
 
   return (
     <>
-    <Navbar signout={signout} />
+    <Navbar signout={signout} user={userName} />
       <Routes>
         <Route path="/" element={<Login signin={signin} />} />
         <Route path="/register" element={<Register />} />

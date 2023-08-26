@@ -56,7 +56,8 @@ const UserController = {
       req.session.userId = user.id; 
       req.session.username = user.username;
 
-      res.json({ message: "Login successful!", user: user });
+      //res.json({ message: "Login successful!", user: user });
+      res.json({ message: "Login successful!", user: user.username });
     } catch (error) {
       console.error("Error during login:", error);
       res.status(500).json({ error: "Error during login" });

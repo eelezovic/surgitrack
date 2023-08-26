@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
-
-function Navbar({signout}) {
+function Navbar({ signout, user }) {
   const [isMobile, setIsMobile] = useState(false);
-  const navigateTo = useNavigate(); 
+  const navigateTo = useNavigate();
 
   const handleLogout = () => {
     document.cookie = "userId=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    document.cookie = "username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
- 
+    document.cookie =
+      "username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+
     signout();
     navigateTo("/");
   };
-  
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
@@ -36,11 +36,13 @@ function Navbar({signout}) {
         <Link to="/about" className={styles.about}>
           About
         </Link>
+        {user && <li className={styles.userName}>Welcome, {user}</li>}
+
         <button onClick={handleLogout} className={styles.logoutButton}>
-        Logout
-      </button>
+          Logout
+        </button>
       </ul>
-      
+
       <button
         className={styles.mobileMenuIcon}
         onClick={() => setIsMobile(!isMobile)}
@@ -56,11 +58,3 @@ function Navbar({signout}) {
 }
 
 export default Navbar;
-
-
-
-
-
-
-
-
