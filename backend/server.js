@@ -21,9 +21,11 @@ app.use(
 
 const singleInstrumentsApi = require("./views/InstrumentsViews.js");
 const userRoutes = require("./views/users.js");
+const currentUser = require("./views/currentUser.js")
 
 singleInstrumentsApi(app);
 userRoutes(app);
+
 
 app.listen(8000, () => {
   console.log("Server started on port 8000");
