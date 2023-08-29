@@ -21,7 +21,7 @@ app.use(
 
 const singleInstrumentsApi = require("./views/InstrumentsViews.js");
 const userRoutes = require("./views/users.js");
-const currentUser = require("./views/currentUser.js")
+
 
 singleInstrumentsApi(app);
 userRoutes(app);
