@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Home from "../pages/Home";
@@ -15,19 +15,32 @@ import { FaLaptopHouse } from "react-icons/fa";
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const [userName, setUserName] = useState("");
-  const signin = (name) => {
+  //const [userName, setUserName] = useState("");
+  const signin = () => {
     setIsSignedIn(true);
-    setUserName(name);
+    /*setUserName(name);*/
   };
   const signout = () => {
     setIsSignedIn(false);
-    setUserName("");
+    /*setUserName("");*/
   };
+
+  useEffect(() => {
+    fetch("/user")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data !== null) {
+          setIsSignedIn(true);
+        }
+      })
+      .catch((error) => {
+        console.error("Error checking user authentication:", error);
+      });
+  }, []);
 
   return (
     <>
-    <Navbar signout={signout} user={userName} />
+    <Navbar signout={signout} /*user={userName}*/ />
       <Routes>
         <Route path="/" element={<Login signin={signin} />} />
         <Route path="/register" element={<Register />} />
