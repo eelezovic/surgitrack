@@ -14,14 +14,15 @@ import { MdTrendingUp } from "react-icons/md";
 import { FaLaptopHouse } from "react-icons/fa";
 
 function App() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isUserLoading, setIsUserLoading]= useState(true);
+  const [user, setUser] = useState(null);
   //const [userName, setUserName] = useState("");
   const signin = () => {
-    setIsSignedIn(true);
+    setUser(true);
     /*setUserName(name);*/
   };
   const signout = () => {
-    setIsSignedIn(false);
+    setUser(false);
     /*setUserName("");*/
   };
 
@@ -30,13 +31,16 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         if (data !== null) {
-          setIsSignedIn(true);
+          setUser(data);
         }
+        setIsUserLoading(false);
       })
       .catch((error) => {
         console.error("Error checking user authentication:", error);
       });
   }, []);
+
+  if (isUserLoading) return "Loading..."
 
   return (
     <>
@@ -49,7 +53,7 @@ function App() {
         <Route
           path="/home"
           element={
-            <PrivateRoutes isSignedIn={isSignedIn}>
+            <PrivateRoutes isSignedIn={user}>
               <Home />
             </PrivateRoutes>
           }
@@ -57,7 +61,7 @@ function App() {
         <Route
           path="/about"
           element={
-            <PrivateRoutes isSignedIn={isSignedIn}>
+            <PrivateRoutes isSignedIn={user}>
               <About />
             </PrivateRoutes>
           }
@@ -65,7 +69,7 @@ function App() {
         <Route
           path="/singleinstrumentscomponent"
           element={
-            <PrivateRoutes isSignedIn={isSignedIn}>
+            <PrivateRoutes isSignedIn={user}>
               <SingleInstrumentsComponent />
             </PrivateRoutes>
           }
@@ -73,7 +77,7 @@ function App() {
         <Route
           path="/InstrumentSetComponent"
           element={
-            <PrivateRoutes isSignedIn={isSignedIn}>
+            <PrivateRoutes isSignedIn={user}>
               <InstrumentSetComponent />
             </PrivateRoutes>
           }

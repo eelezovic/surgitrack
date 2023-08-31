@@ -30,22 +30,29 @@ const UserController = {
     }
   },
 
-//login function 
+  //login function
   login: async (req, res) => {
-    const  { LoginUserName, LoginPassword } = req.body;
+    const { LoginUserName, LoginPassword } = req.body;
+    req.session.user = null
     try {
       const user = await UserModel.getUserByUsername(LoginUserName);
       //console.log(user);
       //console.log("User Password:", user.password);
 
-      console.log("User:", user, LoginUserName)
+      console.log("User:", user, LoginUserName);
       if (!user) {
         res.status(400).json({ message: "Username not found." });
         return;
       }
       console.log("LoginPassword:", LoginPassword);
       console.log("User Password:", user.password);
-      const isPasswordCorrect = bcrypt.compareSync(LoginPassword, user.password);
+      const isPasswordCorrect = bcrypt.compareSync(
+        LoginPassword,
+        user.password
+        
+      );
+
+    console.log(isPasswordCorrect)
       if (!isPasswordCorrect) {
         res.status(400).json({ message: "Wrong Username or Password!" });
         return;
@@ -53,8 +60,7 @@ const UserController = {
       //console.log("isPasswordCorrect:", isPasswordCorrect);
       //console.log("User ID:", user.id);
       //console.log("Username:", user.username);
-      req.session.userId = user.id; 
-      req.session.username = user.username;
+      req.session.user = user;
 
       //res.json({ message: "Login successful!", user: user });
       res.json({ message: "Login successful!", user: user.username });
