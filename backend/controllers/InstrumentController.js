@@ -14,6 +14,8 @@ const InstrumentController = {
 
   addInstrument: async (req, res) => {
     const instrumentData = req.body;
+    const currentUser = req.session.user; 
+    
     try {
       await InstrumentModel.addInstrument(instrumentData);
       res.json({ message: "New instrument added successfully" });
@@ -37,6 +39,7 @@ const InstrumentController = {
 
   deleteInstrument: async (req, res) => {
     const instrumentId = req.params.id;
+    //should i add const currentUser = req.session.user.id;?
     try {
       await InstrumentModel.deleteInstrument(instrumentId);
       res.json({ message: "Instrument deleted successfully" });
