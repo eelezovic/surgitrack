@@ -8,9 +8,9 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 function Login({ signin }) {
   const [loginUserName, setLoginUserName] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const navigateTo = useNavigate();
   const [loginStatus, setLoginStatus] = useState("");
   const [statusHolder, setStatusHolder] = useState("message");
+  const navigateTo = useNavigate();
 
   const loginUser = (event) => {
     event.preventDefault();
