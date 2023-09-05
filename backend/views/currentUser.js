@@ -1,7 +1,7 @@
 currentUserHandler = (req, res) => {
   const currentlyLoggedinUser = req.session.user;
 
-  if (currentlyLoggedinUser === undefined) {
+  if (!currentlyLoggedinUser) {
     res.json(null); 
   } else {
     res.json({

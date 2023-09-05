@@ -12,7 +12,7 @@ function Login({ signin }) {
   const [statusHolder, setStatusHolder] = useState("message");
   const navigateTo = useNavigate();
 
-  const loginUser = (event) => {
+  const loginUser = async (event) => {
     event.preventDefault();
     //Preventing sending empty data to server
     if (loginUserName === "" || loginPassword === "") {
@@ -20,7 +20,7 @@ function Login({ signin }) {
       return;
     }
 
-    return fetch("/login", {
+    const response = await fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,23 +30,24 @@ function Login({ signin }) {
         LoginPassword: loginPassword,
       }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (
-          data.message === "" ||
-          loginUserName === "" ||
-          loginPassword === ""
-        ) {
-          setLoginStatus("Credentials don't exist!");
-        } else {
-          signin();
-          navigateTo("/home");
-        }
-      })
-      .catch((error) => {
-        console.error("Error", error);
-        throw error;
-      });
+    if (response.status === 400) {
+      setLoginStatus("Worong username or password");
+      return
+    }
+
+    const data = await response.json()
+
+    if (
+      data.message === "" ||
+      loginUserName === "" ||
+      loginPassword === ""
+    ) {
+      setLoginStatus("Credentials don't exist!");
+    } else {
+      signin();
+      navigateTo("/home");
+    } 
+      
   };
 
   const checkLoginStatus = () => {
