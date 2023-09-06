@@ -15,6 +15,11 @@ const InstrumentController = {
   addInstrument: async (req, res) => {
     const instrumentData = req.body;
     const currentUser = req.session.user; 
+
+    // function to check if the current user is the Admin and not Viewer.
+    if (currentUser.role !== "ADMIN") {
+      return res.status(403).json({error: "Only Admin can add instruments."});
+    }
     
     try {
       await InstrumentModel.addInstrument(instrumentData,currentUser.id); //should i add currentUser here?
@@ -29,6 +34,11 @@ const InstrumentController = {
     const instrumentId = req.params.id;
     const updatedData = req.body;
     const currentUser = req.session.user;
+
+        // Also checking if the current user is the Admin and not Viewer.
+        if (currentUser.role !== "ADMIN") {
+          return res.status(403).json({error: "Only Admin can update instruments."});
+        }
     
     try {
       await InstrumentModel.updateInstrument(instrumentId, updatedData, currentUser); //should i add currentUser here?
@@ -43,12 +53,13 @@ const InstrumentController = {
     const instrumentId = req.params.id;
     const currentUser = req.session.user.id;
 
+    // Only admins can delete instruments
+    if (currentUser.role !== "ADMIN") {
+      return res.status(403).json({error: "Only Admin can delete instruments."});
+    }
+
     try {
-      //const instrument =  await InstrumentModel.getInstrumentById(instrumentId);
-      //if(!instrument) { return res.status(404)}
-      await InstrumentModel.deleteInstrument(instrumentId, currentUser);
-      [instrumentId,currentUser]
-      console.log(currentUser);
+      await InstrumentModel.deleteInstrument(instrumentId);
       res.json({ message: "Instrument deleted successfully" });
     } catch (error) {
       console.error("Error deleting instrument:", error);

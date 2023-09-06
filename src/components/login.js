@@ -31,7 +31,7 @@ function Login({ signin }) {
       }),
     })
     if (response.status === 400) {
-      setLoginStatus("Worong username or password");
+      setLoginStatus("Wrong Username or Password!");
       return
     }
 
