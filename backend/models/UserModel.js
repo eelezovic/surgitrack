@@ -5,8 +5,8 @@ const UserModel = {
     return ( await query("SELECT * FROM users WHERE email = ?", [email]))[0];
   },
 
-  async createUser({email, username, password}) {
-    return query("INSERT INTO users (email, username, password) VALUES (?, ?, ?)", [email, username, password]);
+  async createUser({email, username, password, role = "ADMIN"}) {
+    return query("INSERT INTO users (email, username, password, role) VALUES (?, ?, ?, ?)", [email, username, password, role]);
   },
 
   async  getUserByUsername(username) {

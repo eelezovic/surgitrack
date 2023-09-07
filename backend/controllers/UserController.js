@@ -20,7 +20,9 @@ const UserController = {
         email: Email,
         username: UserName,
         password: hash,
+        role: "ADMIN", // .. default role to "VIEWER"
       };
+
 
       await UserModel.createUser(userData);
       res.json({ message: "User Added!" });
@@ -60,10 +62,13 @@ const UserController = {
       //console.log("isPasswordCorrect:", isPasswordCorrect);
       //console.log("User ID:", user.id);
       //console.log("Username:", user.username);
-      req.session.user = user;
+
+      const userRole = "ADMIN";
+      req.session.user = { ...user, role: userRole };
+      //req.session.user = user;
 
       //res.json({ message: "Login successful!", user: user });
-      res.json({ message: "Login successful!", user: user.username });
+      res.json({ message: "Login successful!", user: user.username, role: userRole });
     } catch (error) {
       console.error("Error during login:", error);
       res.status(500).json({ error: "Error during login" });

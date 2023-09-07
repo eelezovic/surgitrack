@@ -5,7 +5,7 @@ import Table from "../components/Table";
 import Pagination from "../components/Pagination";
 import MiniModal from "../components/MiniModal";
 
-function SingleInstrumentsComponent() {
+function SingleInstrumentsComponent({ userRole }) {
   const headers = [
     { name: "Instrument Name", accessor: "instrument_name" },
     { name: "ID", accessor: "instrument_id" },
@@ -13,6 +13,9 @@ function SingleInstrumentsComponent() {
     { name: "Location", accessor: "instrument_location" },
     { name: "Action", accessor: "set_action" },
   ];
+
+  const canPerformActions = userRole === "ADMIN"; 
+
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
@@ -128,8 +131,10 @@ function SingleInstrumentsComponent() {
       <Table
         data={currentPosts}
         headers={headers}
-        editRow={handleEditRow}
-        handleDelete={handleDelete}
+        editRow={canPerformActions ? handleEditRow : null}
+        handleDelete={canPerformActions ? handleDelete : null}
+        //editRow={handleEditRow}
+        //handleDelete={handleDelete}
       />
       {miniModalOpen && (
         <MiniModal
