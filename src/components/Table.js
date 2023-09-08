@@ -9,7 +9,8 @@ function Table({
   headers,
   selectedSpecialty,
   editRow,
-  handleDelete
+  handleDelete,
+  canPerformActions 
 }) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +39,9 @@ function Table({
           <thead>
             <tr>
               {headers.map((header) => (
+                (header.accessor !== "set_action" || canPerformActions) &&  (
                 <th key={header.name}>{header.name}</th>
+                )
               ))}
             </tr>
             </thead>
@@ -56,7 +59,7 @@ function Table({
                       item[header.accessor]
                     ) : (
                       <>
-                        {hoveredItemId === item.id && (
+                        {hoveredItemId === item.id &&  canPerformActions && (
                           <>
                             <button
                               onClick={(event) => {

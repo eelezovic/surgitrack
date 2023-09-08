@@ -14,7 +14,8 @@ function SingleInstrumentsComponent({ userRole }) {
     { name: "Action", accessor: "set_action" },
   ];
 
-  const canPerformActions = userRole === "ADMIN"; 
+  const canPerformActions = userRole === "ADMIN";
+  console.log(canPerformActions);
 
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,7 +30,7 @@ function SingleInstrumentsComponent({ userRole }) {
     setMiniModalOpen(true);
   };
 
-  // to update an exisiting instrument 
+  // to update an exisiting instrument
   const updateInstrumentOnServer = (newRow) => {
     const updatedData = {
       instrumentName: newRow.instrument_name,
@@ -69,24 +70,26 @@ function SingleInstrumentsComponent({ userRole }) {
           instrumentName: newRow.instrument_name,
           instrumentId: newRow.instrument_id,
           instrumentQuantity: newRow.instrument_quantity,
-          instrumentLocation: newRow.instrument_location
+          instrumentLocation: newRow.instrument_location,
         };
         console.log(newRow);
-        const response = await fetch('/singleInstruments', {
-          method: 'POST',
+        const response = await fetch("/singleInstruments", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(newInstrumentData)
+          body: JSON.stringify(newInstrumentData),
         });
         const responseData = await response.json();
         console.log(responseData.message);
-  
+
         setSetData([...setData, newRow]);
       } else {
         await updateInstrumentOnServer(newRow);
         const updatedData = setData.map((currentRow) =>
-          currentRow.instrument_id === rowToEdit.instrument_id ? newRow : currentRow
+          currentRow.instrument_id === rowToEdit.instrument_id
+            ? newRow
+            : currentRow
         );
         setSetData(updatedData);
         setRowToEdit(null);
@@ -96,7 +99,6 @@ function SingleInstrumentsComponent({ userRole }) {
     }
     setMiniModalOpen(false);
   };
-  
 
   function getDataWithSearchString(data) {
     return data.filter((item) =>
@@ -133,6 +135,7 @@ function SingleInstrumentsComponent({ userRole }) {
         headers={headers}
         editRow={canPerformActions ? handleEditRow : null}
         handleDelete={canPerformActions ? handleDelete : null}
+        canPerformActions={userRole === "ADMIN"}
         //editRow={handleEditRow}
         //handleDelete={handleDelete}
       />
@@ -157,12 +160,14 @@ function SingleInstrumentsComponent({ userRole }) {
           }
         />
       )}
-      <button
-        className={styles.addButton}
-        onClick={() => setMiniModalOpen(true)}
-      >
-        Add
-      </button>
+      {userRole === "ADMIN" && (
+        <button
+          className={styles.addButton}
+          onClick={() => setMiniModalOpen(true)}
+        >
+          Add
+        </button>
+      )}
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={allPosts.length}
