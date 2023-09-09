@@ -9,9 +9,7 @@ import { Route, Routes } from "react-router-dom";
 import SingleInstrumentsComponent from "../pages/SingleInstrumentsComponent";
 import InstrumentSetComponent from "../pages/InstrumentSetComponent";
 import PrivateRoutes from "./PrivateRoutes";
-import { toBeRequired } from "@testing-library/jest-dom/dist/matchers";
-import { MdTrendingUp } from "react-icons/md";
-import { FaLaptopHouse } from "react-icons/fa";
+
 
 function App() {
   const [isUserLoading, setIsUserLoading]= useState(true);

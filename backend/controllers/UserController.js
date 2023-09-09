@@ -65,6 +65,7 @@ const UserController = {
 
       const userRole = "ADMIN";
       req.session.user = { ...user, role: userRole };
+      console.log(userRole);
       //req.session.user = user;
 
       //res.json({ message: "Login successful!", user: user });

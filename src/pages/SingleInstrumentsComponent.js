@@ -15,7 +15,7 @@ function SingleInstrumentsComponent({ userRole }) {
   ];
 
   const canPerformActions = userRole === "ADMIN";
-  console.log(canPerformActions);
+console.log(userRole)
 
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserShield } from "react-icons/fa";
@@ -9,7 +9,6 @@ function Login({ signin }) {
   const [loginUserName, setLoginUserName] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
-  const [statusHolder, setStatusHolder] = useState("message");
   const navigateTo = useNavigate();
 
   const loginUser = async (event) => {
@@ -31,7 +30,7 @@ function Login({ signin }) {
       }),
     })
     if (response.status === 400) {
-      setLoginStatus("Wrong Username or Password!");
+      setLoginStatus("Username or Password is Incorrect!");
       return
     }
 
@@ -50,16 +49,6 @@ function Login({ signin }) {
       
   };
 
-  const checkLoginStatus = () => {
-    const cookies = document.cookie.split("; ");
-    console.log(cookies);
-    const loggedInUser = cookies.find((cookie) => cookie.startsWith("userId="));
-    if (loggedInUser) {
-      signin();
-      navigateTo("/home");
-    }
-  };
-
   const onSubmit = () => {
     setLoginUserName("");
     setLoginPassword("");
@@ -75,7 +64,7 @@ function Login({ signin }) {
           </div>
           <form action="" className={styles.formGrid} onSubmit={onSubmit}>
             {loginStatus && (
-              <span className={`${styles.displayMessage} ${statusHolder}`}>
+              <span className={`${styles.displayMessage}`}>
                 {loginStatus}
               </span>
             )}
