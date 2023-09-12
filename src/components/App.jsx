@@ -15,8 +15,8 @@ function App() {
   const [isUserLoading, setIsUserLoading]= useState(true);
   const [user, setUser] = useState(null);
   //const [userName, setUserName] = useState("");
-  const signin = () => {
-    setUser(true);
+  const signin = ({currentUser}) => {
+    setUser(currentUser);
     /*setUserName(name);*/
   };
   const signout = () => {
@@ -25,7 +25,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("/user")
+    fetch("/api/user")
       .then((response) => response.json())
       .then((data) => {
         if (data !== null) {
@@ -68,7 +68,7 @@ function App() {
           path="/singleinstrumentscomponent"
           element={
             <PrivateRoutes isSignedIn={user}>
-              <SingleInstrumentsComponent />
+              <SingleInstrumentsComponent user={user} />
             </PrivateRoutes>
           }
         />

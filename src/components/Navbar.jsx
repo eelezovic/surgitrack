@@ -6,8 +6,6 @@ function Navbar({ signout, user }) {
   const [isMobile, setIsMobile] = useState(false);
   const navigateTo = useNavigate();
 
-  
-
   const handleLogout = () => {
     document.cookie = "userId=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     document.cookie =
@@ -20,11 +18,7 @@ function Navbar({ signout, user }) {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
-        <img
-          src={process.env.PUBLIC_URL + "/images/logo.png"}
-          alt=""
-          className={styles.logoImage}
-        />
+        <img src={"/images/logo.png"} alt="" className={styles.logoImage} />
         <h2 className={styles.logoName}>SurgiTrack</h2>
       </div>
 

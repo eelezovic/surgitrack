@@ -7,6 +7,7 @@ currentUserHandler = (req, res) => {
     res.json({
       username: currentlyLoggedinUser.username,
       id: currentlyLoggedinUser.id,
+      role: currentlyLoggedinUser.role
     });
   }
 };

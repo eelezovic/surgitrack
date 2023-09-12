@@ -20,9 +20,8 @@ const UserController = {
         email: Email,
         username: UserName,
         password: hash,
-        role: "ADMIN", // .. default role to "VIEWER"
+        role: "VIEWER", // .. defaulttin role to "VIEWER"
       };
-
 
       await UserModel.createUser(userData);
       res.json({ message: "User Added!" });
@@ -35,7 +34,7 @@ const UserController = {
   //login function
   login: async (req, res) => {
     const { LoginUserName, LoginPassword } = req.body;
-    req.session.user = null
+    req.session.user = null;
     try {
       const user = await UserModel.getUserByUsername(LoginUserName);
       //console.log(user);
@@ -51,10 +50,9 @@ const UserController = {
       const isPasswordCorrect = bcrypt.compareSync(
         LoginPassword,
         user.password
-        
       );
 
-    console.log(isPasswordCorrect)
+      console.log(isPasswordCorrect);
       if (!isPasswordCorrect) {
         res.status(400).json({ message: "Wrong Username or Password!" });
         return;
@@ -63,13 +61,12 @@ const UserController = {
       //console.log("User ID:", user.id);
       //console.log("Username:", user.username);
 
-      const userRole = "ADMIN";
-      req.session.user = { ...user, role: userRole };
-      console.log(userRole);
+      req.session.user = user;
+
       //req.session.user = user;
 
       //res.json({ message: "Login successful!", user: user });
-      res.json({ message: "Login successful!", user: user.username, role: userRole });
+      res.json({ message: "Login successful!", currentUser: user });
     } catch (error) {
       console.error("Error during login:", error);
       res.status(500).json({ error: "Error during login" });

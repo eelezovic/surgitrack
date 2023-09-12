@@ -5,7 +5,7 @@ import Table from "../components/Table";
 import Pagination from "../components/Pagination";
 import MiniModal from "../components/MiniModal";
 
-function SingleInstrumentsComponent({ userRole }) {
+function SingleInstrumentsComponent({ user }) {
   const headers = [
     { name: "Instrument Name", accessor: "instrument_name" },
     { name: "ID", accessor: "instrument_id" },
@@ -14,9 +14,8 @@ function SingleInstrumentsComponent({ userRole }) {
     { name: "Action", accessor: "set_action" },
   ];
 
-  const canPerformActions = userRole === "ADMIN";
-console.log(userRole)
-
+  const canPerformActions = user?.role === "ADMIN";
+  console.log(user);
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
@@ -39,7 +38,7 @@ console.log(userRole)
       instrumentLocation: newRow.instrument_location,
     };
 
-    return fetch(`/singleInstruments/${newRow.id}`, {
+    return fetch(`/api/singleInstruments/${newRow.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -117,7 +116,7 @@ console.log(userRole)
 
   //fetching data from the API
   const fetchData = () => {
-    fetch("/singleInstruments")
+    fetch("/api/singleInstruments")
       .then((response) => response.json())
       .then((data) => setSetData(data))
       .catch((error) => console.error("Error fetching data:", error));
@@ -135,7 +134,7 @@ console.log(userRole)
         headers={headers}
         editRow={canPerformActions ? handleEditRow : null}
         handleDelete={canPerformActions ? handleDelete : null}
-        canPerformActions={userRole === "ADMIN"}
+        canPerformActions={user?.role === "ADMIN"}
         //editRow={handleEditRow}
         //handleDelete={handleDelete}
       />
@@ -160,7 +159,7 @@ console.log(userRole)
           }
         />
       )}
-      {userRole === "ADMIN" && (
+      {user?.role === "ADMIN" && (
         <button
           className={styles.addButton}
           onClick={() => setMiniModalOpen(true)}

@@ -21,7 +21,7 @@ const createUser = (event) => {
     return false;
   } 
 
-  return fetch("/register", {
+  return fetch("/api/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

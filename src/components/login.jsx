@@ -19,7 +19,7 @@ function Login({ signin }) {
       return;
     }
 
-    const response = await fetch("/login", {
+    const response = await fetch("/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ function Login({ signin }) {
     ) {
       setLoginStatus("Credentials don't exist!");
     } else {
-      signin();
+      signin(data);
       navigateTo("/home");
     } 
       
