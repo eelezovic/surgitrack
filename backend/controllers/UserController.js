@@ -37,8 +37,6 @@ const UserController = {
     req.session.user = null;
     try {
       const user = await UserModel.getUserByUsername(LoginUserName);
-      //console.log(user);
-      //console.log("User Password:", user.password);
 
       console.log("User:", user, LoginUserName);
       if (!user) {
@@ -57,15 +55,9 @@ const UserController = {
         res.status(400).json({ message: "Wrong Username or Password!" });
         return;
       }
-      //console.log("isPasswordCorrect:", isPasswordCorrect);
-      //console.log("User ID:", user.id);
-      //console.log("Username:", user.username);
 
       req.session.user = user;
 
-      //req.session.user = user;
-
-      //res.json({ message: "Login successful!", user: user });
       res.json({ message: "Login successful!", currentUser: user });
     } catch (error) {
       console.error("Error during login:", error);

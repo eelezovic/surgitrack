@@ -54,7 +54,7 @@ const InstrumentController = {
     //const currentUser = req.session.user.id; ?
     const currentUser = req.session.user;
 
-    // Only admins can delete instruments
+    // Only admin can delete instruments
     if (currentUser.role !== "ADMIN") {
       return res.status(403).json({error: "Only Admin can delete instruments."});
     }
