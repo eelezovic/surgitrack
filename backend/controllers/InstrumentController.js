@@ -22,7 +22,7 @@ const InstrumentController = {
     }
     console.log(currentUser.role);
     try {
-      await InstrumentModel.addInstrument(instrumentData,currentUser.id); //should i add currentUser here?
+      await InstrumentModel.addInstrument(instrumentData,currentUser.id);
       res.json({ message: "New instrument added successfully" });
     } catch (error) {
       console.error("Error adding instrument:", error);
