@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import { BiSolidUser } from "react-icons/bi";
 
 function Navbar({ signout, user }) {
   const [isMobile, setIsMobile] = useState(false);
@@ -32,11 +33,15 @@ function Navbar({ signout, user }) {
         <Link to="/about" className={styles.about}>
           About
         </Link>
-        {user && <li className={styles.userName}>Welcome, {user}</li>}
-
         <button onClick={handleLogout} className={styles.logoutButton}>
           Logout
         </button>
+        {user && (
+          <li className={styles.displayUserName}>
+            {" "}
+            <BiSolidUser size={20} /> {user.username}
+          </li>
+        )}
       </ul>
 
       <button

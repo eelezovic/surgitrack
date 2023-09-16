@@ -33,7 +33,14 @@
   list-style: none;
   width: 75%;
 }
-
+.displayUserName {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 1.3rem;
+  font-style: italic;
+}
 .home,
 .about {
   text-decoration: none;

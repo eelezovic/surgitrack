@@ -14,7 +14,7 @@ import PrivateRoutes from "./PrivateRoutes";
 function App() {
   const [isUserLoading, setIsUserLoading]= useState(true);
   const [user, setUser] = useState(null);
-  //const [userName, setUserName] = useState("");
+
   const signin = ({currentUser}) => {
     setUser(currentUser);
     /*setUserName(name);*/
@@ -42,7 +42,7 @@ function App() {
 
   return (
     <>
-    <Navbar signout={signout} /*user={userName}*/ />
+    <Navbar signout={signout} user={user} />
       <Routes>
         <Route path="/" element={<Login signin={signin} />} />
         <Route path="/register" element={<Register />} />
