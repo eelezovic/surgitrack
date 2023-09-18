@@ -38,7 +38,6 @@ function Navbar({ signout, user }) {
         </button>
         {user && (
           <li className={styles.displayUserName}>
-            {" "}
             <BiSolidUser size={20} /> {user.username}
           </li>
         )}

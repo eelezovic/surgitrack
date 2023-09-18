@@ -20,12 +20,12 @@ app.use(
   })
 );
 
-//Api route handlers 
-const instrumentSetsApi = require ("./views/InstrumentSetView.js");
+//Api route handlers
+const instrumentSetsApi = require("./views/InstrumentSetView.js");
 const singleInstrumentsApi = require("./views/InstrumentsViews.js");
 const userRoutes = require("./views/users.js");
 
-instrumentSetsApi(app)
+instrumentSetsApi(app);
 singleInstrumentsApi(app);
 userRoutes(app);
 
@@ -180,7 +180,7 @@ app.post("/login", (req, res) => {
 //Single Instruments 
 // to fetch all single instruments from the table
 app.get("/singleInstruments", (req, res) => {
-  const query = "SELECT * FROM single_instruments_table";
+  const query = "SELECT * FROM instruments";
   dbconnection.query(query, (error, results) => {
     if (error) {
       console.error("Error fetching data from the database:", error);
@@ -198,7 +198,7 @@ app.post("/singleInstruments", (req, res) => {
   const instrumentQuantity = req.body.instrumentQuantity;
   const instrumentLocation = req.body.instrumentLocation;
 
-  const insertInstrumentSql = "INSERT INTO single_instruments_table (instrument_name, instrument_id, instrument_quantity, instrument_location) VALUES (?, ?, ?, ?)";
+  const insertInstrumentSql = "INSERT INTO instruments (instrument_name, instrument_id, instrument_quantity, instrument_location) VALUES (?, ?, ?, ?)";
   const insertInstrumentValues = [instrumentName, instrumentId, instrumentQuantity, instrumentLocation];
 
   dbconnection.query(insertInstrumentSql, insertInstrumentValues, (err, results) => {
@@ -219,7 +219,7 @@ app.put("/singleInstruments/:id", (req, res) => {
   const instrumentQuantity = req.body.instrumentQuantity;
   const instrumentLocation = req.body.instrumentLocation;
 
-  const updateInstrumentSql = "UPDATE single_instruments_table SET instrument_name = ?, instrument_id = ?, instrument_quantity = ?, instrument_location = ? WHERE id = ?";
+  const updateInstrumentSql = "UPDATE instruments SET instrument_name = ?, instrument_id = ?, instrument_quantity = ?, instrument_location = ? WHERE id = ?";
   const updateInstrumentValues = [instrumentName, instrumentId, instrumentQuantity, instrumentLocation, primaryKeyId];
 
   dbconnection.query(updateInstrumentSql, updateInstrumentValues, (err, results) => {
@@ -235,7 +235,7 @@ app.put("/singleInstruments/:id", (req, res) => {
 app.delete("/singleInstruments/:id", (req, res) => {
   const primaryKeyId = req.params.id;
 
-  const deleteInstrumentSql = "DELETE FROM single_instruments_table WHERE id = ?";
+  const deleteInstrumentSql = "DELETE FROM instruments WHERE id = ?";
   const deleteInstrumentValues = [parseInt(primaryKeyId, 10)];
 
   dbconnection.query(deleteInstrumentSql, deleteInstrumentValues, (err, results) => {
@@ -253,6 +253,3 @@ app.listen(8000, () => {
   console.log("Server started on port 8000");
 });
 */
-
-
-
