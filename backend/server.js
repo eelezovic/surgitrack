@@ -21,7 +21,7 @@ app.use(
 );
 
 //Api route handlers
-const instrumentSetsApi = require("./views/InstrumentSetView.js");
+const instrumentSetsApi = require("./views/SetView.js");
 const singleInstrumentsApi = require("./views/InstrumentsViews.js");
 const userRoutes = require("./views/users.js");
 

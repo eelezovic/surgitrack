@@ -41,7 +41,7 @@ const InstrumentController = {
         }
 
     try {
-      await InstrumentModel.updateInstrument(instrumentId, updatedData, currentUser.id); //should i add currentUser.id here?
+      await InstrumentModel.updateInstrument(instrumentId, updatedData, currentUser.id);
       res.json({ message: "Instrument updated successfully" });
     } catch (error) {
       console.error("Error updating instrument:", error);
@@ -51,7 +51,6 @@ const InstrumentController = {
 
   deleteInstrument: async (req, res) => {
     const instrumentId = req.params.id;
-    //const currentUser = req.session.user.id; ?
     const currentUser = req.session.user;
 
     // Only admin can delete instruments

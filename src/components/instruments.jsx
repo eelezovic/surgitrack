@@ -17,7 +17,7 @@ function instruments() {
 
   return (
     <div>
-      <h1> Instruments </h1>
+      <h6> Instruments </h6>
       <ul>
         {instruments.map((instrument) => (
           <li key={instrument.id}>{instrument.name}</li>

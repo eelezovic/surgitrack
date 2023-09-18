@@ -15,7 +15,7 @@ function SingleInstrumentsComponent({ user }) {
   ];
 
   const canPerformActions = user?.role === "ADMIN";
-  console.log(user);
+
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
