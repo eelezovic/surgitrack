@@ -76,7 +76,7 @@ function App() {
           path="/InstrumentSetComponent"
           element={
             <PrivateRoutes isSignedIn={user}>
-              <InstrumentSetComponent />
+              <InstrumentSetComponent user={user} />
             </PrivateRoutes>
           }
         />

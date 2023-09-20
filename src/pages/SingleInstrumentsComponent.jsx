@@ -48,9 +48,14 @@ function SingleInstrumentsComponent({ user }) {
   };
 
   const handleDelete = (event, item) => {
+    console.log(`/singleInstruments/${item.id}`);
+    console.log(item.id);
+    console.log("Deleting item:", item);
+
     event.stopPropagation();
-    fetch(`/singleInstruments/${item.id}`, {
+    fetch(`/api/singleInstruments/${item.id}`, {
       method: "DELETE",
+      
     })
       .then((response) => response.json())
       .then((responseData) => {
@@ -72,7 +77,7 @@ function SingleInstrumentsComponent({ user }) {
           instrumentLocation: newRow.instrument_location,
         };
         console.log(newRow);
-        const response = await fetch("/singleInstruments", {
+        const response = await fetch("/api/singleInstruments", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -135,8 +140,6 @@ function SingleInstrumentsComponent({ user }) {
         editRow={canPerformActions ? handleEditRow : null}
         handleDelete={canPerformActions ? handleDelete : null}
         canPerformActions={user?.role === "ADMIN"}
-        //editRow={handleEditRow}
-        //handleDelete={handleDelete}
       />
       {miniModalOpen && (
         <MiniModal

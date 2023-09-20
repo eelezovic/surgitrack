@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import styles from "../pages/InstrumentSetComponent.module.css";
 import { setData as InstrumentSetData } from "../components/dataStorage/InstrumentSetData";
 import Dropdown from "../components/Dropdown";
@@ -7,7 +7,7 @@ import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
 import MiniModal from "../components/MiniModal";
 
-const InstrumentSetComponent = () => {
+const InstrumentSetComponent = ({ user }) => {
   const headers = [
     { name: "Set Name", accessor: "set_name" },
     { name: "ID", accessor: "set_id" },
@@ -16,13 +16,15 @@ const InstrumentSetComponent = () => {
     { name: "Action", accessor: "set_action" },
   ];
 
+  const canPerformActions = user?.role === "ADMIN";
+
   const [selected, setSelected] = useState("Select specialty");
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [miniModalOpen, setMiniModalOpen] = useState(false);
   const [rowToEdit, setRowToEdit] = useState(null);
-  const [setData, setSetData] = useState(InstrumentSetData);
+  const [setData, setSetData] = useState([]);
 
   const handleEditRow = (event, item) => {
     event.stopPropagation();
@@ -30,13 +32,78 @@ const InstrumentSetComponent = () => {
     setMiniModalOpen(true);
   };
 
-  const handleDelete = (event, item) => {
-    event.stopPropagation();
-    const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);
-    setSetData(updatedData);
+  const updateSetOnServer = (newRow) => {
+    const updatedData = {
+      setName: newRow.set_name,
+      setId: newRow.set_id,
+      setQuantity: newRow.set_quantity, 
+      setLocation: newRow.set_location,
+    };
+
+    return fetch(`/api/instrumentSets/${newRow.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
   };
 
-  const handleSubmit = (newRow) => {
+
+  const handleDelete = (event, item) => {
+    event.stopPropagation();
+    fetch(`/instrumentSets/${item.id}`, {
+      method: "DELETE",
+    })
+    .then((response) => response.json())
+    .then((responseData) => {
+      console.log(responseData);
+      const updatedData = allPosts.filter(
+        (dataItem) => dataItem.id !== isInputElement.id
+      );
+      setSetData(updatedData);
+    })
+    /*const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);*/
+  };
+
+  const handleSubmit = async (newRow) => {
+    try {
+      if (rowToEdit === null) {
+        const newSetData = {
+          setName: newRow.set_name,
+          setId: newRow.set_id,
+          setQuantity: newRow.set_quantity, 
+          setLocation: newRow.set_location,
+        };
+        console.log(newRow);
+        const response = await fetch("/instrumentSets", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newSetData),
+        });
+        const responseData = await response.json();
+        console.log(responseData.message);
+
+        setSetData([...setData, newRow]);
+      } else {
+        await updateSetOnServer(newRow);
+        const updatedData = setData.map((currentRow) =>
+          currentRow.set_id === rowToEdit.set_id
+            ? newRow
+            : currentRow
+        );
+        setSetData(updatedData);
+        setRowToEdit(null);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+    setMiniModalOpen(false);
+  };
+
+  /*const handleSubmit = (newRow) => {
     if (rowToEdit === null) {
       setSetData([...setData, newRow]);
     } else {
@@ -47,7 +114,7 @@ const InstrumentSetComponent = () => {
       setRowToEdit(null);
     }
     setMiniModalOpen(false);
-  };
+  };*/
 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
@@ -69,6 +136,18 @@ const InstrumentSetComponent = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
+  //fetching data from the API
+  const fetchData = () => {
+    fetch("/api/instrumentSets")
+    .then((response) => response.json())
+    .then((data) => setSetData(data))
+    .catch((error) => console.error("Error fetching data:", error));
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className={styles.instrumentSetContainer}>
       <div className={styles.dropDown}>
@@ -77,11 +156,12 @@ const InstrumentSetComponent = () => {
       <div className={styles.mainContainer}>
         <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
         <Table
+         data={currentPosts}
           headers={headers}
-          data={currentPosts}
+          editRow={canPerformActions ? handleEditRow : null}
+          handleDelete={canPerformActions ? handleDelete : null}
+          canPerformActions={user?.role === "ADMIN"}
           selectedSpecialty={selected}
-          editRow={handleEditRow}
-          handleDelete={handleDelete}
         />
         {miniModalOpen && (
           <MiniModal
@@ -89,6 +169,7 @@ const InstrumentSetComponent = () => {
               setMiniModalOpen(false);
               setRowToEdit(null);
             }}
+            componentType="instrumentSets"
             onSubmit={handleSubmit}
             defaultValue={
               rowToEdit
@@ -105,12 +186,14 @@ const InstrumentSetComponent = () => {
             }
           />
         )}
+        {user?.role === "ADMIN" && (
         <button
           className={styles.addButton}
           onClick={() => setMiniModalOpen(true)}
         >
           Add
         </button>
+      )}
         <Pagination
           postsPerPage={postsPerPage}
           totalPosts={allPosts.length}
