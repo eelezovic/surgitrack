@@ -12,18 +12,29 @@ const SetModel = {
       [setName, setId, setQuantity, setLocation]
     );
   },
+  
 
   async updateSet(setIdToUpdate, updatedData) {
-    const { setName, setId, setQuantity, setLocation } = updatedData;
+    const {
+      setName,
+      setId,
+      setQuantity,
+      setLocation,
+    } = updatedData;
     return query(
       "UPDATE sets SET set_name = ?, set_id = ?, set_quantity = ?, set_location = ? WHERE id = ?",
-      [setName, setId, setQuantity, setLocation, setIdToUpdate]
+      [
+        setName,
+        setIdId,
+        setQuantity,
+        setLocation,
+        setIdToUpdate,
+      ]
     );
   },
-
+  
   async deleteSet(setId) {
-    return query( "DELETE FROM sets WHERE id = ?", [setId])
+    return query("DELETE FROM sets WHERE id = ?", [setId]);
   },
-
 };
 module.exports = SetModel;

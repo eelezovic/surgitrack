@@ -15,10 +15,13 @@ const SetController = {
 addSet: async (req, res) => {
   const setData =  req.body;
   const currentUser = req.session.user;
+console.log(setData);
+  console.log("Current user:", currentUser); 
+  if (currentUser.role !== "ADMIN") {
 
-  if (currentUser.role !== "Admin") {
-    return res.status(403).json({error: "Only Admin can add sets"});
+    return res.status(403).json({error: "Only Admin can add sets."});
   }
+  console.log(currentUser.role);
   try {
     await SetModel.addSet(setData, currentUser.id);
     res.json({ message: "New set added successfully"});
@@ -32,7 +35,7 @@ updateSet: async (req, res) => {
   const setId = req.params.id;
   const updatedData = req.body;
   const currentUser = req.session.user;
-
+console.log(updatedData)
   if (currentUser.role !== "ADMIN") {
     return res.status(403).json({error: "Only Admin can update sets."});
   }

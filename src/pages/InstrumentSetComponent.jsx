@@ -40,30 +40,38 @@ const InstrumentSetComponent = ({ user }) => {
       setLocation: newRow.set_location,
     };
 
+    console.log("updatedData:", updatedData);
+    console.log("newRow:", newRow);
+
+
     return fetch(`/api/instrumentSets/${newRow.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedData),
+      
     });
   };
 
+ const handleDelete = (event, item) => {
+    console.log(`/instrumentSets/${item.id}`);
+    console.log(item.id);
+    console.log("Deleting item:", item);
 
-  const handleDelete = (event, item) => {
     event.stopPropagation();
-    fetch(`/instrumentSets/${item.id}`, {
+    fetch(`/api/instrumentSets/${item.id}`, {
       method: "DELETE",
+      
     })
-    .then((response) => response.json())
-    .then((responseData) => {
-      console.log(responseData);
-      const updatedData = allPosts.filter(
-        (dataItem) => dataItem.id !== isInputElement.id
-      );
-      setSetData(updatedData);
-    })
-    /*const updatedData = allPosts.filter((dataItem) => dataItem.id !== item.id);*/
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData);
+        const updatedData = allPosts.filter(
+          (dataItem) => dataItem.id !== item.id
+        );
+        setSetData(updatedData);
+      });
   };
 
   const handleSubmit = async (newRow) => {
@@ -72,11 +80,12 @@ const InstrumentSetComponent = ({ user }) => {
         const newSetData = {
           setName: newRow.set_name,
           setId: newRow.set_id,
-          setQuantity: newRow.set_quantity, 
+          setQuantity: newRow.set_quantity,
           setLocation: newRow.set_location,
         };
+        console.log(newSetData)
         console.log(newRow);
-        const response = await fetch("/instrumentSets", {
+        const response = await fetch("/api/instrumentSets", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -103,26 +112,15 @@ const InstrumentSetComponent = ({ user }) => {
     setMiniModalOpen(false);
   };
 
-  /*const handleSubmit = (newRow) => {
-    if (rowToEdit === null) {
-      setSetData([...setData, newRow]);
-    } else {
-      const updatedData = setData.map((currentRow) =>
-        currentRow.set_id === rowToEdit.set_id ? newRow : currentRow
-      );
-      setSetData(updatedData);
-      setRowToEdit(null);
-    }
-    setMiniModalOpen(false);
-  };*/
 
-  const getDataWithSearchString = (data) => {
-    return data.filter((item) =>
-      ["set_name", "set_id", "set_location"].some((key) =>
-        item[key].toUpperCase().includes(query.toUpperCase())
-      )
-    );
-  };
+const getDataWithSearchString = (data) => {
+  return data.filter((item) =>
+    ["set_name", "set_id", "set_location"].some((key) =>
+      item[key] && item[key].toUpperCase().includes(query.toUpperCase())
+    )
+  );
+};
+
 
   const handleDropdownSelect = (option) => {
     setSelected(option);
