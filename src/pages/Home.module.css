@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-.singleinstrumentscomponent,
+.instrumentListComponent,
 .instrumentsetcomponent {
   border-radius: 10px;
   background-color: #819ee5;
@@ -27,9 +27,9 @@
   transition-duration: 0.6s;
 }
 
-.singleinstrumentscomponent:hover,
+.instrumentListComponent:hover,
 .instrumentsetcomponent:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+  box-shadow: 0 12px 16px 0 rgba(233, 2, 2, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
   background-color: #576895; /* Green */
   color: white;
@@ -63,7 +63,7 @@
     flex-direction: column;
    
   }
-  .singleinstrumentscomponent,
+  .instrumentListComponent,
   .instrumentsetcomponent {
     display: flex;
     justify-content: center;

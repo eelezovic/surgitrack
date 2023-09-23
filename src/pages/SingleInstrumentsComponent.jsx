@@ -37,7 +37,7 @@ function SingleInstrumentsComponent({ user }) {
       instrumentQuantity: newRow.instrument_quantity,
       instrumentLocation: newRow.instrument_location,
     };
-
+    console.log(newRow);
     return fetch(`/api/singleInstruments/${newRow.id}`, {
       method: "PUT",
       headers: {

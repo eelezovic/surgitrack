@@ -8,11 +8,11 @@ function Home() {
   return (
     <div className={styles.mainContainer}>
       < div className={styles.container}>
-      <div className={styles.singleInstrumentContainer}>
+      <div className={styles.instrumentsListContainer}>
         <div className={styles.iconContainer}>
-        <Link to="/singleinstrumentscomponent"> <img src="https://cdn-icons-png.flaticon.com/512/8638/8638209.png" alt="Instrument icon" className={styles.InstrumentIcon} /> </Link> 
+        <Link to="/instruments"> <img src="https://cdn-icons-png.flaticon.com/512/8638/8638209.png" alt="Instrument icon" className={styles.InstrumentIcon} /> </Link> 
         </div>
-        <Link to="/singleinstrumentscomponent" className={styles.singleinstrumentscomponent}><ButtonComponent name="Single Instruments"/></Link>
+        <Link to="/instruments" className={styles.instrumentListComponent}><ButtonComponent name="Single Instruments"/></Link>
       </div>
 
       <div className={styles.instrumentSetContainer}>

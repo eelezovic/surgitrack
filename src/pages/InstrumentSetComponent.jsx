@@ -40,9 +40,7 @@ const InstrumentSetComponent = ({ user }) => {
       setLocation: newRow.set_location,
     };
 
-    console.log("updatedData:", updatedData);
-    console.log("newRow:", newRow);
-
+    console.log(newRow); //Trying to understand where does the data come from
 
     return fetch(`/api/instrumentSets/${newRow.id}`, {
       method: "PUT",
@@ -83,8 +81,7 @@ const InstrumentSetComponent = ({ user }) => {
           setQuantity: newRow.set_quantity,
           setLocation: newRow.set_location,
         };
-        console.log(newSetData)
-        console.log(newRow);
+      
         const response = await fetch("/api/instrumentSets", {
           method: "POST",
           headers: {

@@ -15,7 +15,7 @@ const SetController = {
 addSet: async (req, res) => {
   const setData =  req.body;
   const currentUser = req.session.user;
-console.log(setData);
+
   console.log("Current user:", currentUser); 
   if (currentUser.role !== "ADMIN") {
 
@@ -35,7 +35,11 @@ updateSet: async (req, res) => {
   const setId = req.params.id;
   const updatedData = req.body;
   const currentUser = req.session.user;
-console.log(updatedData)
+ 
+  console.log("Received data in updateSet:", updatedData);
+  console.log("setId:", setId);
+
+
   if (currentUser.role !== "ADMIN") {
     return res.status(403).json({error: "Only Admin can update sets."});
   }

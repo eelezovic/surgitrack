@@ -6,8 +6,9 @@ import About from "../pages/About";
 import Login from "./login";
 import Register from "./Register";
 import { Route, Routes } from "react-router-dom";
-import SingleInstrumentsComponent from "../pages/SingleInstrumentsComponent";
 import InstrumentSetComponent from "../pages/InstrumentSetComponent";
+import InstrumentsListPage from "../pages/InstrumentsListPage";
+import InstrumentPage from "../pages/InstrumentPage";
 import PrivateRoutes from "./PrivateRoutes";
 
 
@@ -65,17 +66,25 @@ function App() {
           }
         />
         <Route
-          path="/singleinstrumentscomponent"
+          path="/instruments"
           element={
             <PrivateRoutes isSignedIn={user}>
-              <SingleInstrumentsComponent user={user} />
+              <InstrumentsListPage />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/instrument/:id"
+          element={
+            <PrivateRoutes isSignedIn={user} >
+              <InstrumentPage user={user} />
             </PrivateRoutes>
           }
         />
         <Route
           path="/InstrumentSetComponent"
           element={
-            <PrivateRoutes isSignedIn={user}>
+            <PrivateRoutes isSignedIn={user} >
               <InstrumentSetComponent user={user} />
             </PrivateRoutes>
           }

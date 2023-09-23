@@ -25,7 +25,7 @@ const SetModel = {
       "UPDATE sets SET set_name = ?, set_id = ?, set_quantity = ?, set_location = ? WHERE id = ?",
       [
         setName,
-        setIdId,
+        setId,
         setQuantity,
         setLocation,
         setIdToUpdate,
