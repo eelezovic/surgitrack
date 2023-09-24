@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../pages/InstrumentPage.module.css";
 import Table from "../components/Table";
 
-function InstrumentPage({user}) {
+function InstrumentPage({user, setData, setSetData, allPosts}) {
 
   const canPerformActions = user?.role === "ADMIN";
 
@@ -11,7 +11,7 @@ function InstrumentPage({user}) {
   const handleEditRow = (event, item) => {
     event.stopPropagation();
     setRowToEdit(item);
-    setMiniModalOpen(true);
+   // setMiniModalOpen(true);
   };
 
   // to update an exisiting instrument
@@ -87,7 +87,7 @@ function InstrumentPage({user}) {
     } catch (error) {
       console.error("Error:", error);
     }
-    setMiniModalOpen(false);
+    //setMiniModalOpen(false);
   };
 
   return (

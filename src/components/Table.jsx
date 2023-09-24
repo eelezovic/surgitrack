@@ -10,7 +10,8 @@ function Table({
   selectedSpecialty,
   editRow,
   handleDelete,
-  canPerformActions 
+  canPerformActions,
+  onRowClick,
 }) {
   const [selectedItem, setSelectedItem] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +31,7 @@ function Table({
       ? selectedSpecialty === "All"
         ? data
         : data.filter((item) => item.select_specialty === selectedSpecialty)
-      : data
+      : data;
 
   return (
     <>
@@ -38,18 +39,22 @@ function Table({
         <table>
           <thead>
             <tr>
-              {headers.map((header) => (
-                (header.accessor !== "set_action" || canPerformActions) &&  (
-                <th key={header.name}>{header.name}</th>
-                )
-              ))}
+              {headers.map(
+                (header) =>
+                  (header.accessor !== "set_action" || canPerformActions) && (
+                    <th key={header.name}>{header.name}</th>
+                  )
+              )}
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             {filteredData.map((item) => (
               <tr
                 key={item.id}
-                onClick={() => handleItemClick(item)}
+                onClick={() => {
+                  handleItemClick(item);
+                  onRowClick(item); 
+                }}
                 onMouseEnter={() => setHoveredItemId(item.id)}
                 onMouseLeave={() => setHoveredItemId(null)}
               >
@@ -59,7 +64,7 @@ function Table({
                       item[header.accessor]
                     ) : (
                       <>
-                        {hoveredItemId === item.id &&  canPerformActions && (
+                        {hoveredItemId === item.id && canPerformActions && (
                           <>
                             <button
                               onClick={(event) => {
@@ -84,7 +89,7 @@ function Table({
                 ))}
               </tr>
             ))}
-            </tbody>
+          </tbody>
         </table>
       </div>
       {selectedItem && (

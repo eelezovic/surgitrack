@@ -18,6 +18,13 @@ function InstrumentsListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   const [setData, setSetData] = useState([]);
+  const [openInstrumentPage, setOpenInstrument] = useState(false);
+  const [selectedInstrument, setSelectedInstrument] = useState(null);
+
+  const handleInstrumentClick = (instrument) => {
+    setSelectedInstrument(instrument);
+    setOpenInstrument(true);
+  };
 
   function getDataWithSearchString(data) {
     return data.filter((item) =>
@@ -48,19 +55,41 @@ function InstrumentsListPage() {
 
   return (
     <div className={styles.instrumentsListPageContainer}>
-       <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
-       <Table
+      <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
+      <Table
         data={currentPosts}
         headers={headers}
+        onRowClick={handleInstrumentClick}
       />
-       <Pagination
+      <Pagination
         postsPerPage={postsPerPage}
         totalPosts={allPosts.length}
         paginate={handlePagination}
         currentPage={currentPage}
       />
+      {openInstrumentPage && selectedInstrument && (
+        <InstrumentPage
+          instrument={selectedInstrument}
+          closeInstrumentPage={() => {
+            setOpenInstrument(false);
+            setSelectedInstrument(null);
+          }}
+          setData={setData}
+          setSetData={setSetData}
+          allPosts={allPosts}
+        />
+
+        /*{user?.role === "ADMIN" && (
+          <button
+            className={styles.addButton}
+            onClick={() => setMiniModalOpen(true)}
+          >
+            Add
+          </button>
+        )}*/ //Should i keep the miniModal for adding new instrument?
+      )}
     </div>
   );
-};
+}
 
 export default InstrumentsListPage;
