@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "../pages/InstrumentPage.module.css";
 import Table from "../components/Table";
+import { useParams } from "react-router-dom"; //Imported params hook
 
-function InstrumentPage({user, setData, setSetData, allPosts}) {
+function InstrumentPage({ user, setData, setSetData, allPosts }) {
+  const [instrumentData, setInstrumentData] = useState(null);
+  const { id } = useParams(); //i have prop called "id"
 
   const canPerformActions = user?.role === "ADMIN";
 
@@ -11,7 +14,7 @@ function InstrumentPage({user, setData, setSetData, allPosts}) {
   const handleEditRow = (event, item) => {
     event.stopPropagation();
     setRowToEdit(item);
-   // setMiniModalOpen(true);
+    // setMiniModalOpen(true);
   };
 
   // to update an exisiting instrument
@@ -32,7 +35,7 @@ function InstrumentPage({user, setData, setSetData, allPosts}) {
     });
   };
 
- //To Delete an existing instrument
+  //To Delete an existing instrument
   const handleDelete = (event, item) => {
     console.log(`/singleInstruments/${item.id}`);
     console.log(item.id);
@@ -41,7 +44,6 @@ function InstrumentPage({user, setData, setSetData, allPosts}) {
     event.stopPropagation();
     fetch(`/api/singleInstruments/${item.id}`, {
       method: "DELETE",
-      
     })
       .then((response) => response.json())
       .then((responseData) => {
@@ -90,15 +92,39 @@ function InstrumentPage({user, setData, setSetData, allPosts}) {
     //setMiniModalOpen(false);
   };
 
+  //Fetching instrument data using the "id" parameter 
+  useEffect(() => {
+    console.log("ID:", id); 
+    if (id) {
+      fetch(`/api/singleInstruments/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setInstrumentData(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching instrument data:", error);
+        });
+    }
+  }, [id]);
+
   return (
     <div className={styles.InstrumentPageContainer}>
+      {instrumentData ? ( 
+        <div>
+          <h2>Instrument Details</h2>
+          <p>Instrument Name: {instrumentData.instrument_name}</p>
+          <p>Instrument ID: {instrumentData.instrument_id}</p>
+          <p>Quantity: {instrumentData.instrument_quantity}</p>
+          <p>Location: {instrumentData.instrument_location}</p>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
       <Table
         editRow={canPerformActions ? handleEditRow : null}
         handleDelete={canPerformActions ? handleDelete : null}
         canPerformActions={user?.role === "ADMIN"}
       />
-
-
     </div>
   );
 }

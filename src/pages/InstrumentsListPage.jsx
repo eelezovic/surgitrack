@@ -3,7 +3,8 @@ import styles from "../pages/InstrumentsListPage.module.css";
 import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
 import Pagination from "../components/Pagination";
-import InstrumentPage from "../pages/InstrumentPage";
+import {  useNavigate } from "react-router-dom"; //I have imported useNavigate in order to navigate on click
+
 
 function InstrumentsListPage() {
   const headers = [
@@ -18,12 +19,10 @@ function InstrumentsListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   const [setData, setSetData] = useState([]);
-  const [openInstrumentPage, setOpenInstrument] = useState(false);
-  const [selectedInstrument, setSelectedInstrument] = useState(null);
+  const navigateTo = useNavigate(); // added this in order to make navigation work
 
-  const handleInstrumentClick = (instrument) => {
-    setSelectedInstrument(instrument);
-    setOpenInstrument(true);
+  const handleInstrumentClick = (instrument) => { //I have a function that will navigate to corresponding instrument when clicked 
+    navigateTo(`/instruments/${instrument.id}`);
   };
 
   function getDataWithSearchString(data) {
@@ -67,27 +66,19 @@ function InstrumentsListPage() {
         paginate={handlePagination}
         currentPage={currentPage}
       />
-      {openInstrumentPage && selectedInstrument && (
-        <InstrumentPage
-          instrument={selectedInstrument}
-          closeInstrumentPage={() => {
-            setOpenInstrument(false);
-            setSelectedInstrument(null);
-          }}
-          setData={setData}
-          setSetData={setSetData}
-          allPosts={allPosts}
-        />
+      
 
-        /*{user?.role === "ADMIN" && (
-          <button
-            className={styles.addButton}
-            onClick={() => setMiniModalOpen(true)}
-          >
-            Add
-          </button>
-        )}*/ //Should i keep the miniModal for adding new instrument?
-      )}
+      {/* 
+{user?.role === "ADMIN" && (
+  <button
+    className={styles.addButton}
+    onClick={() => setMiniModalOpen(true)}
+  >
+    Add
+  </button>
+)}
+*/}
+      
     </div>
   );
 }

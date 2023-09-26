@@ -17,9 +17,16 @@ function Table({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState(null);
 
-  const handleItemClick = (item) => {
+ /* const handleItemClick = (item) => {
     setSelectedItem(item);
     setIsModalOpen(true);
+  };*/
+
+  const handleItemClick = (item) => {
+    // Perform actions related to clicking on a row
+    if (onRowClick) {
+      onRowClick(item);
+    }
   };
 
   const closeModal = () => {

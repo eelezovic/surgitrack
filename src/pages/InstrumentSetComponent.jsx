@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../pages/InstrumentSetComponent.module.css";
 import { setData as InstrumentSetData } from "../components/dataStorage/InstrumentSetData";
 import Dropdown from "../components/Dropdown";
@@ -36,7 +36,7 @@ const InstrumentSetComponent = ({ user }) => {
     const updatedData = {
       setName: newRow.set_name,
       setId: newRow.set_id,
-      setQuantity: newRow.set_quantity, 
+      setQuantity: newRow.set_quantity,
       setLocation: newRow.set_location,
     };
 
@@ -48,11 +48,10 @@ const InstrumentSetComponent = ({ user }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedData),
-      
     });
   };
 
- const handleDelete = (event, item) => {
+  const handleDelete = (event, item) => {
     console.log(`/instrumentSets/${item.id}`);
     console.log(item.id);
     console.log("Deleting item:", item);
@@ -60,7 +59,6 @@ const InstrumentSetComponent = ({ user }) => {
     event.stopPropagation();
     fetch(`/api/instrumentSets/${item.id}`, {
       method: "DELETE",
-      
     })
       .then((response) => response.json())
       .then((responseData) => {
@@ -81,7 +79,7 @@ const InstrumentSetComponent = ({ user }) => {
           setQuantity: newRow.set_quantity,
           setLocation: newRow.set_location,
         };
-      
+
         const response = await fetch("/api/instrumentSets", {
           method: "POST",
           headers: {
@@ -96,9 +94,7 @@ const InstrumentSetComponent = ({ user }) => {
       } else {
         await updateSetOnServer(newRow);
         const updatedData = setData.map((currentRow) =>
-          currentRow.set_id === rowToEdit.set_id
-            ? newRow
-            : currentRow
+          currentRow.set_id === rowToEdit.set_id ? newRow : currentRow
         );
         setSetData(updatedData);
         setRowToEdit(null);
@@ -109,15 +105,14 @@ const InstrumentSetComponent = ({ user }) => {
     setMiniModalOpen(false);
   };
 
-
-const getDataWithSearchString = (data) => {
-  return data.filter((item) =>
-    ["set_name", "set_id", "set_location"].some((key) =>
-      item[key] && item[key].toUpperCase().includes(query.toUpperCase())
-    )
-  );
-};
-
+  const getDataWithSearchString = (data) => {
+    return data.filter((item) =>
+      ["set_name", "set_id", "set_location"].some(
+        (key) =>
+          item[key] && item[key].toUpperCase().includes(query.toUpperCase())
+      )
+    );
+  };
 
   const handleDropdownSelect = (option) => {
     setSelected(option);
@@ -134,9 +129,9 @@ const getDataWithSearchString = (data) => {
   //fetching data from the API
   const fetchData = () => {
     fetch("/api/instrumentSets")
-    .then((response) => response.json())
-    .then((data) => setSetData(data))
-    .catch((error) => console.error("Error fetching data:", error));
+      .then((response) => response.json())
+      .then((data) => setSetData(data))
+      .catch((error) => console.error("Error fetching data:", error));
   };
 
   useEffect(() => {
@@ -151,7 +146,7 @@ const getDataWithSearchString = (data) => {
       <div className={styles.mainContainer}>
         <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
         <Table
-         data={currentPosts}
+          data={currentPosts}
           headers={headers}
           editRow={canPerformActions ? handleEditRow : null}
           handleDelete={canPerformActions ? handleDelete : null}
@@ -164,7 +159,6 @@ const getDataWithSearchString = (data) => {
               setMiniModalOpen(false);
               setRowToEdit(null);
             }}
-            componentType="instrumentSets"
             onSubmit={handleSubmit}
             defaultValue={
               rowToEdit
@@ -182,13 +176,13 @@ const getDataWithSearchString = (data) => {
           />
         )}
         {user?.role === "ADMIN" && (
-        <button
-          className={styles.addButton}
-          onClick={() => setMiniModalOpen(true)}
-        >
-          Add
-        </button>
-      )}
+          <button
+            className={styles.addButton}
+            onClick={() => setMiniModalOpen(true)}
+          >
+            Add
+          </button>
+        )}
         <Pagination
           postsPerPage={postsPerPage}
           totalPosts={allPosts.length}
