@@ -1,11 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+function InstrumentPage() {
+  const { id } = useParams(); // Getting the instrument ID from the URL params (InstrumentListPage)
+  const [instrument, setInstrument] = useState();
+
+  useEffect(() => {
+    console.log("Instrument ID:", id); 
+
+    // Fetch the instrument details by  ID..
+    fetch(`/api/singleInstruments/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Fetched instrument data:", data);
+        setInstrument(data);
+      })
+      .catch((error) => console.error("Error fetching instrument data:", error));
+  }, [id]);
+
+  if (!instrument) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <h2>Instrument Details</h2>
+      <p>ID: {instrument.instrument_id}</p>
+      <p>Name: {instrument.instrument_name}</p>
+      <p>Quantity: {instrument.instrument_quantity}</p>
+      <p>Location: {instrument.instrument_location}</p>
+    </div>
+  );
+}
+
+export default InstrumentPage;
+
+
+
+/*import React, { useState, useEffect } from "react";
 import styles from "../pages/InstrumentPage.module.css";
 import Table from "../components/Table";
 import { useParams } from "react-router-dom"; //Imported params hook
 
 function InstrumentPage({ user, setData, setSetData, allPosts }) {
   const [instrumentData, setInstrumentData] = useState(null);
-  const { id } = useParams(); //i have prop called "id"
+  const { id } = useParams(); //i have prop
 
   const canPerformActions = user?.role === "ADMIN";
 
@@ -92,7 +131,7 @@ function InstrumentPage({ user, setData, setSetData, allPosts }) {
     //setMiniModalOpen(false);
   };
 
-  //Fetching instrument data using the "id" parameter 
+  //Fetching instrument data using the "id" parameter
   useEffect(() => {
     console.log("ID:", id); 
     if (id) {
@@ -130,3 +169,4 @@ function InstrumentPage({ user, setData, setSetData, allPosts }) {
 }
 
 export default InstrumentPage;
+*/

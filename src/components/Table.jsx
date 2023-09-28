@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./Table.module.css";
-import Modal from "./Modal";
 import { FaPen, FaTrash } from "react-icons/fa";
 import ReactImageMagnify from "react-image-magnify";
 
@@ -13,24 +12,12 @@ function Table({
   canPerformActions,
   onRowClick,
 }) {
-  const [selectedItem, setSelectedItem] = useState();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState(null);
 
- /* const handleItemClick = (item) => {
-    setSelectedItem(item);
-    setIsModalOpen(true);
-  };*/
-
   const handleItemClick = (item) => {
-    // Perform actions related to clicking on a row
     if (onRowClick) {
       onRowClick(item);
     }
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   const filteredData =
@@ -60,7 +47,7 @@ function Table({
                 key={item.id}
                 onClick={() => {
                   handleItemClick(item);
-                  onRowClick(item); 
+                  onRowClick(item);
                 }}
                 onMouseEnter={() => setHoveredItemId(item.id)}
                 onMouseLeave={() => setHoveredItemId(null)}
@@ -99,75 +86,6 @@ function Table({
           </tbody>
         </table>
       </div>
-      {selectedItem && (
-        <Modal
-          isOpen={isModalOpen}
-          closeModal={closeModal}
-          title={
-            selectedItem.set_name
-              ? `${selectedItem.set_name}`
-              : `${selectedItem.instrument_name}`
-          }
-          content={
-            <>
-              <div className={styles.imageMagnifier}>
-                <ReactImageMagnify
-                  {...{
-                    smallImage: {
-                      src:
-                        selectedItem.set_image || selectedItem.instrument_image,
-                      alt:
-                        selectedItem.set_name || selectedItem.instrument_name,
-                      isFluidWidth: true,
-                    },
-                    largeImage: {
-                      src:
-                        selectedItem.set_image || selectedItem.instrument_image,
-                      width: 600,
-                      height: 1000,
-                    },
-                  }}
-                />
-              </div>
-              <h3>Enlarge image on hover</h3>
-              {selectedItem.set_name && (
-                <>
-                  <p className={styles.paragraph}>
-                    Set ID: {selectedItem.set_id}
-                  </p>
-                  <p className={styles.paragraph}>
-                    Quantity: {selectedItem.set_quantity}
-                  </p>
-                  <p className={styles.paragraph}>
-                    Location: {selectedItem.set_location}
-                  </p>
-                  <p className={styles.contents}>
-                    Contents:{" "}
-                    {Object.entries(selectedItem.set_contents || {}).map(
-                      ([name, quantity]) => (
-                        <li key={name}>{`${name} (${quantity})`}</li>
-                      )
-                    )}
-                  </p>
-                </>
-              )}
-              {selectedItem.instrument_name && (
-                <>
-                  <p className={styles.paragraph}>
-                    Instrument ID: {selectedItem.instrument_id}
-                  </p>
-                  <p className={styles.paragraph}>
-                    Location: {selectedItem.instrument_location}
-                  </p>
-                  <p className={styles.paragraph}>
-                    Quantity: {selectedItem.instrument_quantity}
-                  </p>
-                </>
-              )}
-            </>
-          }
-        />
-      )}
     </>
   );
 }

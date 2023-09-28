@@ -42,15 +42,20 @@ function InstrumentsListPage() {
 
   //fetching data from the API
   const fetchData = () => {
-    fetch("/api/singleInstruments")
+    fetch("/api/singleInstruments/") // Do you think i should add 'id' at the end like this "fetch("/api/singleInstruments/id")"
       .then((response) => response.json())
-      .then((data) => setSetData(data))
+      .then((data) => {
+        console.log( data);
+        setSetData(data);
+      })
       .catch((error) => console.error("Error fetching data:", error));
   };
-
+  
   useEffect(() => {
     fetchData();
   }, []);
+
+
 
   return (
     <div className={styles.instrumentsListPageContainer}>

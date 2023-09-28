@@ -11,12 +11,11 @@ import InstrumentsListPage from "../pages/InstrumentsListPage";
 import InstrumentPage from "../pages/InstrumentPage";
 import PrivateRoutes from "./PrivateRoutes";
 
-
 function App() {
-  const [isUserLoading, setIsUserLoading]= useState(true);
+  const [isUserLoading, setIsUserLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  const signin = ({currentUser}) => {
+  const signin = ({ currentUser }) => {
     setUser(currentUser);
     /*setUserName(name);*/
   };
@@ -39,11 +38,11 @@ function App() {
       });
   }, []);
 
-  if (isUserLoading) return "Loading..."
+  if (isUserLoading) return "Loading...";
 
   return (
     <>
-    <Navbar signout={signout} user={user} />
+      <Navbar signout={signout} user={user} />
       <Routes>
         <Route path="/" element={<Login signin={signin} />} />
         <Route path="/register" element={<Register />} />
@@ -74,17 +73,18 @@ function App() {
           }
         />
         <Route
-          path="/instrument/:id"
+          path="/instruments/:id"
           element={
-            <PrivateRoutes isSignedIn={user} >
-              <InstrumentPage user={user} />
+            <PrivateRoutes isSignedIn={user}>
+              <InstrumentPage />
             </PrivateRoutes>
           }
         />
+
         <Route
           path="/InstrumentSetComponent"
           element={
-            <PrivateRoutes isSignedIn={user} >
+            <PrivateRoutes isSignedIn={user}>
               <InstrumentSetComponent user={user} />
             </PrivateRoutes>
           }
