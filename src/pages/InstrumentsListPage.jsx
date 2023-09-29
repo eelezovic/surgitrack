@@ -6,7 +6,7 @@ import Pagination from "../components/Pagination";
 import {  useNavigate } from "react-router-dom"; //I have imported useNavigate in order to navigate on click
 
 
-function InstrumentsListPage() {
+function InstrumentsListPage({user}) {
   const headers = [
     { name: "Instrument Name", accessor: "instrument_name" },
     { name: "ID", accessor: "instrument_id" },
@@ -42,7 +42,8 @@ function InstrumentsListPage() {
 
   //fetching data from the API
   const fetchData = () => {
-    fetch("/api/singleInstruments/") // Do you think i should add 'id' at the end like this "fetch("/api/singleInstruments/id")"
+    fetch(`/api/singleInstruments`)
+ // Do you think i should add 'id' at the end like this "fetch("/api/singleInstruments/id")"
       .then((response) => response.json())
       .then((data) => {
         console.log( data);
@@ -71,6 +72,14 @@ function InstrumentsListPage() {
         paginate={handlePagination}
         currentPage={currentPage}
       />
+        {user?.role === "ADMIN" && (
+          <button
+            className={styles.addButton}
+            onClick={() => setMiniModalOpen(true)}
+          >
+            Add New Instrument
+          </button>
+        )}
       
 
       {/* 

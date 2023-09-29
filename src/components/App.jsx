@@ -67,8 +67,8 @@ function App() {
         <Route
           path="/instruments"
           element={
-            <PrivateRoutes isSignedIn={user}>
-              <InstrumentsListPage />
+            <PrivateRoutes isSignedIn={user} >
+              <InstrumentsListPage  user={user}/>
             </PrivateRoutes>
           }
         />

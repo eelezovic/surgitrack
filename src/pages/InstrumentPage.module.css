@@ -1,8 +1,42 @@
 
-.InstrumentPageContainer {
-  padding: 20px;
-  background-color: #f5f5f5;
-  border: 2px solid red;
+.tableContainer {
+  margin: 60px;
+  height: 70vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
+
+.header {
+  display: flex;
+  margin: 20px;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #39559e;
+  text-decoration: underline;
+}
+
+.table {
+  width: 50%;
+  border-collapse: collapse;
+}
+
+.table, .cell {
+  border: 1px solid #ccc;
+}
+
+@media only screen and (max-width: 600px) {
+  .table {
+    width: 90%;
+    border-collapse: collapse;
+  }
+  .header{
+    font-size: 1.6rem;
+  }
+}
+
+
 
 

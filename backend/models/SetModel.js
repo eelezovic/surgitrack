@@ -1,6 +1,11 @@
 const { query } = require("../db");
 
 const SetModel = {
+
+  async getInstrumentById(instrumentId) {
+    return query("SELECT * FROM instruments WHERE id = ?", [instrumentId]);
+  },
+
   async getAllSets() {
     return query("SELECT * FROM sets");
   },

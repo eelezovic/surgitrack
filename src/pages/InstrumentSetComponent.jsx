@@ -180,7 +180,7 @@ const InstrumentSetComponent = ({ user }) => {
             className={styles.addButton}
             onClick={() => setMiniModalOpen(true)}
           >
-            Add
+            Add New Instrument
           </button>
         )}
         <Pagination

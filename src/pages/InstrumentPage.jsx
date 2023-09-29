@@ -1,39 +1,53 @@
 import React, { useEffect, useState } from "react";
+import styles from "../pages/InstrumentPage.module.css";
 import { useParams } from "react-router-dom";
 
 function InstrumentPage() {
-  const { id } = useParams(); // Getting the instrument ID from the URL params (InstrumentListPage)
-  const [instrument, setInstrument] = useState();
+  const { id } = useParams(); // Getting the instrument id from the Url params
 
+
+  const [instrumentData, setInstrumentData] = useState({});
+
+  // Fetching instrument data based on the id
   useEffect(() => {
-    console.log("Instrument ID:", id); 
-
-    // Fetch the instrument details by  ID..
     fetch(`/api/singleInstruments/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched instrument data:", data);
-        setInstrument(data);
+        console.log(data);
+        setInstrumentData(data);
       })
-      .catch((error) => console.error("Error fetching instrument data:", error));
-  }, [id]);
-
-  if (!instrument) {
-    return <div>Loading...</div>;
-  }
+      .catch((error) => console.error("Error fetching data:", error));
+  }, [id]); 
 
   return (
     <div>
-      <h2>Instrument Details</h2>
-      <p>ID: {instrument.instrument_id}</p>
-      <p>Name: {instrument.instrument_name}</p>
-      <p>Quantity: {instrument.instrument_quantity}</p>
-      <p>Location: {instrument.instrument_location}</p>
+    <h2 className={styles.header}>Instrument Details</h2>
+    <div className={styles.tableContainer}>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th className="id">ID</th>
+            <th className="name">Name</th>
+            <th className="quantity">Quantity</th>
+            <th className="location">Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{id}</td>
+            <td>{instrumentData.instrument_name}</td>
+            <td>{instrumentData.instrument_quantity}</td>
+            <td>{instrumentData.instrument_location}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
   );
-}
+};
 
 export default InstrumentPage;
+
 
 
 
