@@ -44,7 +44,7 @@ function Login({ signin }) {
       setLoginStatus("Credentials don't exist!");
     } else {
       signin(data);
-      navigateTo("/home");
+      navigateTo("/dashboard");
     } 
       
   };

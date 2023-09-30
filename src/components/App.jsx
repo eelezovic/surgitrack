@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Home from "../pages/Home";
+import Dashboard from "../pages/Dashboard";
 import About from "../pages/About";
 import Login from "./login";
 import Register from "./Register";
@@ -44,15 +45,16 @@ function App() {
     <>
       <Navbar signout={signout} user={user} />
       <Routes>
-        <Route path="/" element={<Login signin={signin} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login signin={signin} />} />
         <Route path="/register" element={<Register />} />
       </Routes>
       <Routes>
         <Route
-          path="/home"
+          path="/dashboard"
           element={
             <PrivateRoutes isSignedIn={user}>
-              <Home />
+              <Dashboard />
             </PrivateRoutes>
           }
         />
@@ -76,7 +78,7 @@ function App() {
           path="/instruments/:id"
           element={
             <PrivateRoutes isSignedIn={user}>
-              <InstrumentPage />
+              <InstrumentPage user={user}/>
             </PrivateRoutes>
           }
         />

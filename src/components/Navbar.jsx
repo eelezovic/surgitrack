@@ -27,7 +27,7 @@ function Navbar({ signout, user }) {
         className={isMobile ? styles.navLinkMobile : styles.navLinks}
         onClick={() => setIsMobile(false)}
       >
-        <Link to="/home" className={styles.home}>
+        <Link to="/" className={styles.home}>
           Home
         </Link>
         <Link to="/about" className={styles.about}>

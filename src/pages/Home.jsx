@@ -3,28 +3,26 @@ import { Link } from "react-router-dom";
 import ButtonComponent from "../components/ButtonComponent";
 import styles from "../pages/Home.module.css";
 
-
 function Home() {
   return (
-    <div className={styles.mainContainer}>
-      < div className={styles.container}>
-      <div className={styles.instrumentsListContainer}>
-        <div className={styles.iconContainer}>
-        <Link to="/instruments"> <img src="https://cdn-icons-png.flaticon.com/512/8638/8638209.png" alt="Instrument icon" className={styles.InstrumentIcon} /> </Link> 
+    <div className={styles.homeContainer}>
+      <div className={styles.content}>
+        <img src="./images/ja.jpg" alt="Image" />
         </div>
-        <Link to="/instruments" className={styles.instrumentListComponent}><ButtonComponent name="Single Instruments"/></Link>
-      </div>
-
-      <div className={styles.instrumentSetContainer}>
-        <div className={styles.iconContainer}>
-        <Link to="/instrumentsetcomponent"> <img src="https://cdn-icons-png.flaticon.com/512/2804/2804765.png" alt="InstrumentSet icon" className={styles.InstrumentIcon} /> </Link>
+        <div className={styles.textContent}>
+        <h1> Hello, I'm Emir</h1>
+        <h2> I am a Full Stack Developer.</h2>
+          <p>
+          <br />
+            As part of my journey in learning web development, I decided to
+            build SurgiTrack, a real-life application that combines my nursing
+            background with technologies such as React.js, Node.js, Express.js,
+            and MySQL, I've been able to create a valuable tool for healthcare
+            professionals.
+        </p>
         </div>
-        <Link to="/instrumentsetcomponent" className={styles.instrumentsetcomponent}><ButtonComponent name="Instrument Sets"/></Link>
-      </div>
-      </div>
-    </div> 
+    </div>
   );
 }
 
 export default Home;
-

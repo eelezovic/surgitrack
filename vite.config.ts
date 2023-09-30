@@ -14,5 +14,10 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react()],
+  plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
+  build: {
+    // Set the correct path for the public directory
+    outDir: 'dist',       // Your output directory
+    assetsDir: 'public',  // The path to your public directory
+  },
 });
