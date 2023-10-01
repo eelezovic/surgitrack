@@ -11,7 +11,6 @@ function Navbar({ signout, user }) {
     document.cookie = "userId=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     document.cookie =
       "username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-
     signout();
     navigateTo("/");
   };
@@ -30,16 +29,29 @@ function Navbar({ signout, user }) {
         <Link to="/" className={styles.home}>
           Home
         </Link>
-        <Link to="/about" className={styles.about}>
-          About
-        </Link>
-        <button onClick={handleLogout} className={styles.logoutButton}>
-          Logout
-        </button>
-        {user && (
-          <li className={styles.displayUserName}>
-            <BiSolidUser size={20} /> {user.username}
-          </li>
+        {user ? (
+          // Displaying links when the user is authenticated
+          <>
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              Logout
+            </button>
+            <li className={styles.displayUserName}>
+              <BiSolidUser size={20} /> {user.username}
+            </li>
+          </>
+        ) : (
+          // Displaying this links when the user is not authenticated
+          <>
+            <Link to="/about" className={styles.aboutMe}>
+              About Me
+            </Link>
+            <Link to="/aboutproject" className={styles.aboutProject}>
+              Project
+            </Link>
+            <Link to="/login" className={styles.login}>
+              Login
+            </Link>
+          </>
         )}
       </ul>
 
@@ -58,3 +70,4 @@ function Navbar({ signout, user }) {
 }
 
 export default Navbar;
+

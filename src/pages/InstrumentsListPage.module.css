@@ -7,6 +7,22 @@
   align-items: center;
 }
 
+.addButton {
+  display: flex;
+  margin: 0.5rem;
+  border: none;
+  background-color: #39559e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
+}
+
+.addButton:hover {
+  background-color: #819ee5;
+}
+
 @media only screen and (max-width: 600px){
   .singleInstrumentContainer {
     display: flex;

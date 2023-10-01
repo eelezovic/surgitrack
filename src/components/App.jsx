@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import About from "../pages/About";
+import AboutProject from "../pages/AboutProject";
 import Login from "./login";
 import Register from "./Register";
 import { Route, Routes } from "react-router-dom";
@@ -63,6 +64,14 @@ function App() {
           element={
             <PrivateRoutes isSignedIn={user}>
               <About />
+            </PrivateRoutes>
+          }
+        />
+         <Route
+          path="/aboutproject"
+          element={
+            <PrivateRoutes isSignedIn={user}>
+              <AboutProject />
             </PrivateRoutes>
           }
         />

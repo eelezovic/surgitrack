@@ -10,7 +10,7 @@ function InstrumentPage() {
 
   // Fetching instrument data based on the id
   useEffect(() => {
-    fetch(`/api/singleInstruments/${id}`)
+    fetch("/api/singleInstruments/${id}")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

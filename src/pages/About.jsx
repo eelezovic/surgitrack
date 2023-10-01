@@ -1,8 +1,34 @@
 import React from "react";
 import styles from "../pages/About.module.css";
-import { FaLinkedin, FaGithub} from "react-icons/fa";
+//import { FaLinkedin, FaGithub} from "react-icons/fa";
+
 
 function About() {
+  return (
+<div className={styles.AboutContainer}>
+<div className={styles.content}>
+  <img src="./images/ja.jpg" alt="Image" />
+  </div>
+  <div className={styles.textContent}>
+  <h1> Hello, I'm Emir</h1>
+  <h2> I am a Full Stack Developer.</h2>
+    <p>
+    <br />
+      As part of my journey in learning web development, I decided to
+      build SurgiTrack, a real-life application that combines my nursing
+      background with technologies such as React.js, Node.js, Express.js,
+      and MySQL, I've been able to create a valuable tool for healthcare
+      professionals.
+  </p>
+  </div>
+</div>
+  );
+}
+export default About;
+
+
+
+/*function About() {
   return (
     <div className={styles.aboutCountainer}>
       <h1>About</h1>
@@ -23,4 +49,4 @@ I'm constantly working to improve and update this app to meet the needs of healt
   );
 }
 
-export default About;
+export default About;*/

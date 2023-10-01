@@ -42,7 +42,7 @@ function InstrumentsListPage({user}) {
 
   //fetching data from the API
   const fetchData = () => {
-    fetch(`/api/singleInstruments`)
+    fetch("/api//singleInstruments/:id")
  // Do you think i should add 'id' at the end like this "fetch("/api/singleInstruments/id")"
       .then((response) => response.json())
       .then((data) => {
@@ -80,19 +80,6 @@ function InstrumentsListPage({user}) {
             Add New Instrument
           </button>
         )}
-      
-
-      {/* 
-{user?.role === "ADMIN" && (
-  <button
-    className={styles.addButton}
-    onClick={() => setMiniModalOpen(true)}
-  >
-    Add
-  </button>
-)}
-*/}
-      
     </div>
   );
 }
