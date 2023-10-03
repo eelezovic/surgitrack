@@ -17,13 +17,8 @@ function App() {
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  const signin = ({ currentUser }) => {
-    setUser(currentUser);
-    /*setUserName(name);*/
-  };
   const signout = () => {
     setUser(false);
-    /*setUserName("");*/
   };
 
   useEffect(() => {
@@ -47,7 +42,7 @@ function App() {
       <Navbar signout={signout} user={user} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login signin={signin} />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
       <Routes>

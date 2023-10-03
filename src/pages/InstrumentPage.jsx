@@ -5,51 +5,50 @@ import { useParams } from "react-router-dom";
 function InstrumentPage() {
   const { id } = useParams(); // Getting the instrument id from the Url params
 
-
   const [instrumentData, setInstrumentData] = useState({});
+
 
   // Fetching instrument data based on the id
   useEffect(() => {
-    fetch("/api/singleInstruments/${id}")
+    fetch(`/api/singleInstruments/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setInstrumentData(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
-  }, [id]); 
+  }, [id]);
+
+
 
   return (
     <div>
-    <h2 className={styles.header}>Instrument Details</h2>
-    <div className={styles.tableContainer}>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th className="id">ID</th>
-            <th className="name">Name</th>
-            <th className="quantity">Quantity</th>
-            <th className="location">Location</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{id}</td>
-            <td>{instrumentData.instrument_name}</td>
-            <td>{instrumentData.instrument_quantity}</td>
-            <td>{instrumentData.instrument_location}</td>
-          </tr>
-        </tbody>
-      </table>
+      <h2 className={styles.header}>Instrument Details</h2>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th className="name">Name</th>
+              <th className="instumentId">Instrument ID</th>
+              <th className="quantity">Quantity</th>
+              <th className="location">Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{instrumentData.instrument_name}</td>
+              <td>{instrumentData.instrument_id}</td>
+              <td>{instrumentData.instrument_quantity}</td>
+              <td>{instrumentData.instrument_location}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
   );
-};
+}
 
 export default InstrumentPage;
-
-
-
 
 /*import React, { useState, useEffect } from "react";
 import styles from "../pages/InstrumentPage.module.css";

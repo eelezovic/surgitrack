@@ -12,6 +12,17 @@ const InstrumentController = {
     }
   },
 
+  getInstrument: async (req, res) => {
+    try {
+      const {id} = req.params
+      const instruments = await InstrumentModel.getInstrument(id);
+      res.json(instruments[0]);
+    } catch (error) {
+      console.error("Error fetching instruments:", error);
+      res.status(500).json({ error: "Error fetching instruments from the database" });
+    }
+  },
+
   addInstrument: async (req, res) => {
     const instrumentData = req.body;
     const currentUser = req.session.user; 

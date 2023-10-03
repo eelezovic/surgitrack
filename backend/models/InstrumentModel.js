@@ -5,6 +5,10 @@ const InstrumentModel = {
     return query("SELECT * FROM instruments");
   },
 
+ async getInstrument(id) {
+  return query("SELECT * FROM instruments WHERE id=?", [id]);
+ },
+
   async addInstrument(instrumentData) {
     const {
       instrumentName,

@@ -2,7 +2,8 @@ const InstrumentController = require("../controllers/InstrumentController");
 const isAuthenticated = require("../isAuthenticated");
 
 const singleInstrumentsApi = (app) => {
-  app.get("/singleInstruments/:id", isAuthenticated, InstrumentController.getAllInstruments); 
+  app.get("/singleInstruments", isAuthenticated, InstrumentController.getAllInstruments); 
+  app.get("/singleInstruments/:id", isAuthenticated, InstrumentController.getInstrument); 
   app.put("/singleInstruments/:id", isAuthenticated, InstrumentController.updateInstrument);
   app.delete("/singleInstruments/:id", isAuthenticated, InstrumentController.deleteInstrument);
 };
