@@ -2,24 +2,68 @@ import React, { useEffect, useState } from "react";
 import styles from "../pages/InstrumentPage.module.css";
 import { useParams } from "react-router-dom";
 
-function InstrumentPage() {
-  const { id } = useParams(); // Getting the instrument id from the Url params
+function InstrumentPage({ user }) {
+  const { id } = useParams();
 
   const [instrumentData, setInstrumentData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
 
+  const handleEdit = (field, value) => {
+    setInstrumentData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
+
+  const updateInstrumentOnServer = async (newRow) => {
+    try {
+      const updatedData = {
+        instrumentName: newRow.instrument_name,
+        instrumentId: newRow.instrument_id,
+        instrumentQuantity: newRow.instrument_quantity,
+        instrumentLocation: newRow.instrument_location,
+      };
+
+      const response = await fetch(`/api/singleInstruments/${newRow.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      });
+
+      if (response.ok) {
+        console.log("Instrument updated successfully");
+        setIsEditing(false);
+      } else {
+        console.error("Error updating instrument:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error updating instrument:", error);
+    }
+  };
+
+  const handleSave = async () => {
+    if (user?.role === "ADMIN") {
+      const response = await updateInstrumentOnServer(instrumentData);
+      if (response.ok) {
+        console.log("Instrument updated successfully");
+        setIsEditing(false);
+      } else {
+        console.error("Error updating instrument:", response.statusText);
+      }
+    }
+  };
 
   // Fetching instrument data based on the id
   useEffect(() => {
     fetch(`/api/singleInstruments/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setInstrumentData(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, [id]);
-
-
 
   return (
     <div>
@@ -32,23 +76,82 @@ function InstrumentPage() {
               <th className="instumentId">Instrument ID</th>
               <th className="quantity">Quantity</th>
               <th className="location">Location</th>
+              {isEditing && <th className="save">Save</th>}
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{instrumentData.instrument_name}</td>
-              <td>{instrumentData.instrument_id}</td>
-              <td>{instrumentData.instrument_quantity}</td>
-              <td>{instrumentData.instrument_location}</td>
+              <td>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={instrumentData.instrument_name}
+                    onChange={(e) =>
+                      handleEdit("instrument_name", e.target.value)
+                    }
+                  />
+                ) : (
+                  instrumentData.instrument_name
+                )}
+              </td>
+              <td>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={instrumentData.instrument_id}
+                    onChange={(e) =>
+                      handleEdit("instrument_id", e.target.value)
+                    }
+                  />
+                ) : (
+                  instrumentData.instrument_id
+                )}
+              </td>
+              <td>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={instrumentData.instrument_quantity}
+                    onChange={(e) =>
+                      handleEdit("instrument_quantity", e.target.value)
+                    }
+                  />
+                ) : (
+                  instrumentData.instrument_quantity
+                )}
+              </td>
+              <td>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={instrumentData.instrument_location}
+                    onChange={(e) =>
+                      handleEdit("instrument_location", e.target.value)
+                    }
+                  />
+                ) : (
+                  instrumentData.instrument_location
+                )}
+              </td>
+              {isEditing && (
+                <td>
+                  <button className={styles.saveButton} onClick={handleSave}>Save</button>
+                </td>
+              )}
             </tr>
           </tbody>
         </table>
+        {!isEditing && (
+          <button     className={styles.editButton} onClick={() => setIsEditing(true)}>Edit</button>
+        )}
       </div>
     </div>
   );
 }
 
 export default InstrumentPage;
+
+
 
 /*import React, { useState, useEffect } from "react";
 import styles from "../pages/InstrumentPage.module.css";

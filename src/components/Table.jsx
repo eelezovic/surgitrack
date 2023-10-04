@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Table.module.css";
 import { FaPen, FaTrash } from "react-icons/fa";
-import ReactImageMagnify from "react-image-magnify";
+
 
 function Table({
   data,

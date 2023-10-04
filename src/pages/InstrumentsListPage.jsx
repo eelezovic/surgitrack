@@ -3,10 +3,9 @@ import styles from "../pages/InstrumentsListPage.module.css";
 import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
 import Pagination from "../components/Pagination";
-import {  useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
-
-function InstrumentsListPage({user}) {
+function InstrumentsListPage({ user }) {
   const headers = [
     { name: "Instrument Name", accessor: "instrument_name" },
     { name: "ID", accessor: "instrument_id" },
@@ -21,7 +20,7 @@ function InstrumentsListPage({user}) {
   const [setData, setSetData] = useState([]);
   const navigateTo = useNavigate();
 
-  const handleInstrumentClick = (instrument) => { 
+  const handleInstrumentClick = (instrument) => {
     navigateTo(`/instruments/${instrument.id}`);
   };
 
@@ -45,17 +44,15 @@ function InstrumentsListPage({user}) {
     fetch("/api/singleInstruments")
       .then((response) => response.json())
       .then((data) => {
-        console.log( data);
+        console.log(data);
         setSetData(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
-  
+
   useEffect(() => {
     fetchData();
   }, []);
-
-
 
   return (
     <div className={styles.instrumentsListPageContainer}>
@@ -71,14 +68,14 @@ function InstrumentsListPage({user}) {
         paginate={handlePagination}
         currentPage={currentPage}
       />
-        {user?.role === "ADMIN" && (
-          <button
-            className={styles.addButton}
-            onClick={() => setMiniModalOpen(true)}
-          >
-            Add New Instrument
-          </button>
-        )}
+      {user?.role === "ADMIN" && (
+        <button
+          className={styles.addButton}
+          onClick={() => setMiniModalOpen(true)}
+        >
+          Add New Instrument
+        </button>
+      )}
     </div>
   );
 }

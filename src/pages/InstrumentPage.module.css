@@ -27,6 +27,53 @@
   border: 1px solid #ccc;
 }
 
+input {
+  background-color: transparent;
+  color: #39559e;
+  margin: 0 5px;
+  border: 1px solid rgb(213, 213, 213);
+  font-size: 20px;
+}
+
+input:hover {
+  color: rgb(171, 170, 170);
+}
+
+.saveButton {
+  display: flex;
+  border: none;
+  background-color: #39559e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
+}
+
+.saveButton:hover {
+  background-color: #819ee5;
+}
+
+.editButton {
+  display: flex;
+  margin: 0.5rem;
+  border: none;
+  background-color: #39559e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
+}
+
+.editButton:hover {
+  background-color: #819ee5;
+}
+
+.addButton:hover {
+  background-color: #0056b3;
+}
+
 @media only screen and (max-width: 600px) {
   .table {
     width: 90%;
