@@ -1,0 +1,78 @@
+.instrumentModalContainer {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0 ,0.4);
+}
+
+.instrumentModal {
+  border-radius: 5px;
+  padding: 2rem;
+  background-color: white;
+  width: 25em;
+}
+
+.instrumentModal .button {
+  margin: auto;
+  display: block;
+  margin-top: 1rem;
+  border: none;
+  background-color: #39559e;;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  color: #39559e;
+  font-weight: 700;
+}
+
+.formGroup input {
+  border: 1px solid rgb(77, 77, 77);
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  color: #696969;
+}
+
+.formGroup label {
+  margin-bottom: 0.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .instrumentModalContainer {
+    display: flex;
+    width: 100%;
+    z-index: 9999;
+  }
+  .instrumentModal {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+  }
+  .instrumentModal .button {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  .formGroup input {
+    border: 1px solid rgb(77, 77, 77);
+    font-size: 1rem;
+    border-radius: 1rem;
+    color: #696969;
+  }
+  .formGroup {
+    font-size: 1.2rem;
+    color: #39559e;
+  }
+} 

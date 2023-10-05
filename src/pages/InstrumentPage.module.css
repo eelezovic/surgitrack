@@ -27,7 +27,7 @@
   border: 1px solid #ccc;
 }
 
-input {
+.tableContainer input {
   background-color: transparent;
   color: #39559e;
   margin: 0 5px;
@@ -35,7 +35,7 @@ input {
   font-size: 20px;
 }
 
-input:hover {
+.tableContainer input:hover {
   color: rgb(171, 170, 170);
 }
 

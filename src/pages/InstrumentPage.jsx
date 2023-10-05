@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "../pages/InstrumentPage.module.css";
 import { useParams } from "react-router-dom";
+import InstrumentPageList from "../pages/InstrumentsListPage";
 
 function InstrumentPage({ user }) {
   const { id } = useParams();
 
   const [instrumentData, setInstrumentData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const handleEdit = (field, value) => {
     setInstrumentData((prevData) => ({
@@ -23,7 +25,7 @@ function InstrumentPage({ user }) {
         instrumentQuantity: newRow.instrument_quantity,
         instrumentLocation: newRow.instrument_location,
       };
-
+console.log( updatedData)
       const response = await fetch(`/api/singleInstruments/${newRow.id}`, {
         method: "PUT",
         headers: {
@@ -54,6 +56,26 @@ function InstrumentPage({ user }) {
       }
     }
   };
+
+  const handleDelete = () => {
+    const deleteUrl = `/api/singleInstruments/${id}`;
+
+    // Sending a DELETE request to delete the instrument
+    fetch(deleteUrl, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (response.ok) {
+          setIsDeleted(true); 
+        } else {
+          console.error('Error deleting instrument:', response.statusText);
+        }
+      })
+      .catch((error) => {
+        console.error('Error deleting instrument:', error);
+      });
+  };
+  
 
   // Fetching instrument data based on the id
   useEffect(() => {
@@ -136,13 +158,15 @@ function InstrumentPage({ user }) {
               {isEditing && (
                 <td>
                   <button className={styles.saveButton} onClick={handleSave}>Save</button>
+                  <button onClick={handleDelete}>Delete</button>
                 </td>
               )}
             </tr>
           </tbody>
         </table>
         {!isEditing && (
-          <button     className={styles.editButton} onClick={() => setIsEditing(true)}>Edit</button>
+         
+          <button className={styles.editButton} onClick={() => setIsEditing(true)}>Edit</button>
         )}
       </div>
     </div>
