@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "../pages/InstrumentPage.module.css";
 import { useParams } from "react-router-dom";
-import InstrumentPageList from "../pages/InstrumentsListPage";
+import { useNavigate } from 'react-router-dom';
 
 function InstrumentPage({ user }) {
   const { id } = useParams();
+  const navigate = useNavigate();
+
 
   const [instrumentData, setInstrumentData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
@@ -37,6 +39,7 @@ console.log( updatedData)
       if (response.ok) {
         console.log("Instrument updated successfully");
         setIsEditing(false);
+        navigate('/instruments');
       } else {
         console.error("Error updating instrument:", response.statusText);
       }
@@ -58,6 +61,9 @@ console.log( updatedData)
   };
 
   const handleDelete = () => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this instrument?");
+
+    if (isConfirmed) {
     const deleteUrl = `/api/singleInstruments/${id}`;
 
     // Sending a DELETE request to delete the instrument
@@ -67,6 +73,7 @@ console.log( updatedData)
       .then((response) => {
         if (response.ok) {
           setIsDeleted(true); 
+          navigate('/instruments');
         } else {
           console.error('Error deleting instrument:', response.statusText);
         }
@@ -74,9 +81,9 @@ console.log( updatedData)
       .catch((error) => {
         console.error('Error deleting instrument:', error);
       });
+    }
   };
   
-
   // Fetching instrument data based on the id
   useEffect(() => {
     fetch(`/api/singleInstruments/${id}`)
@@ -88,7 +95,7 @@ console.log( updatedData)
   }, [id]);
 
   return (
-    <div>
+    <div className={styles.tableWrapper}>
       <h2 className={styles.header}>Instrument Details</h2>
       <div className={styles.tableContainer}>
         <table className={styles.table}>
@@ -158,19 +165,22 @@ console.log( updatedData)
               {isEditing && (
                 <td>
                   <button className={styles.saveButton} onClick={handleSave}>Save</button>
-                  <button onClick={handleDelete}>Delete</button>
                 </td>
               )}
             </tr>
           </tbody>
         </table>
         {!isEditing && (
-         
           <button className={styles.editButton} onClick={() => setIsEditing(true)}>Edit</button>
         )}
+         {isEditing && (
+        <button className={styles.deleteButton} onClick={handleDelete}>Delete</button>
+      )}
       </div>
+     
     </div>
   );
+  
 }
 
 export default InstrumentPage;

@@ -47,7 +47,6 @@ table tbody tr td .iconButton.delete {
   border: none;
 }
 
-
 table tbody tr td .iconButton.delete:hover {
   color: #e37883;
   cursor: pointer;
