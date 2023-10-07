@@ -40,7 +40,7 @@ const InstrumentSetComponent = ({ user }) => {
       setLocation: newRow.set_location,
     };
 
-    console.log(newRow); //Trying to understand where does the data come from
+    console.log(newRow); 
 
     return fetch(`/api/instrumentSets/${newRow.id}`, {
       method: "PUT",

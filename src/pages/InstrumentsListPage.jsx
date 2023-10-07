@@ -24,13 +24,6 @@ function InstrumentsListPage({ user }) {
 
   const [newInstrumentData, setNewInstrumentData] = useState({})
 
-   /*const [newInstrumentData, setNewInstrumentData] = useState({
-    instrument_name: "",
-    instrument_id: "",
-    instrument_quantity: "",
-    instrument_location: "",
-  });*/
-
   const handleInstrumentClick = (instrument) => {
     navigateTo(`/instruments/${instrument.id}`);
   };

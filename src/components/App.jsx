@@ -11,7 +11,10 @@ import { Route, Routes } from "react-router-dom";
 import InstrumentSetComponent from "../pages/InstrumentSetComponent";
 import InstrumentsListPage from "../pages/InstrumentsListPage";
 import InstrumentPage from "../pages/InstrumentPage";
+import SetsListPage from "../pages/SetsListPage";
+import SetsPage from "../pages/SetsPage";
 import PrivateRoutes from "./PrivateRoutes";
+
 
 function App() {
   const [isUserLoading, setIsUserLoading] = useState(true);
@@ -88,10 +91,18 @@ function App() {
         />
 
         <Route
-          path="/InstrumentSetComponent"
+          path="/sets"
           element={
             <PrivateRoutes isSignedIn={user}>
-              <InstrumentSetComponent user={user} />
+              <SetsListPage user={user} />
+            </PrivateRoutes>
+          }
+        />
+         <Route
+          path="/sets/:id"
+          element={
+            <PrivateRoutes isSignedIn={user}>
+              <SetsPage user={user} />
             </PrivateRoutes>
           }
         />
