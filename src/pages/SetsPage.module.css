@@ -1,0 +1,93 @@
+.setWrapper {
+  height: 100vh; 
+  background-color: aliceblue;
+  border: 1px solid aliceblue;
+}
+.tableContainer {
+  margin: 40px;
+  height: 70vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  margin: 20px;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #39559e;
+  text-decoration: underline;
+}
+
+.table {
+  width: 50%;
+  border-collapse: collapse;
+}
+
+.table, .cell {
+  border: 1px solid #ccc;
+}
+
+.tableContainer input {
+  background-color: transparent;
+  color: #39559e;
+  margin: 0 5px;
+  border: 1px solid rgb(213, 213, 213);
+  font-size: 20px;
+}
+
+.tableContainer input:hover {
+  color: rgb(171, 170, 170);
+}
+
+.saveButton {
+  display: flex;
+  border: none;
+  background-color: #39559e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
+}
+
+.saveButton:hover {
+  background-color: #87de55;
+}
+
+.editButton, .deleteButton {
+  display: flex;
+  margin: 0.5rem;
+  border: none;
+  background-color: #39559e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
+}
+
+.deleteButton:hover {
+  background-color: #ef6060;
+}
+
+.editButton:hover {
+  background-color: #819ee5;
+}
+
+.addButton:hover {
+  background-color: #0056b3;
+}
+
+@media only screen and (max-width: 600px) {
+  .table {
+    width: 90%;
+    border-collapse: collapse;
+  }
+  .header{
+    font-size: 1.6rem;
+  }
+}

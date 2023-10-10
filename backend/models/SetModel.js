@@ -10,6 +10,10 @@ const SetModel = {
     return query("SELECT * FROM sets");
   },
 
+  async getSet(id) {
+    return query("SELECT * FROM sets WHERE id=?", [id]);
+   },
+
   async addSet(setData) {
     const { setName, setId, setQuantity, setLocation } = setData;
     return query(

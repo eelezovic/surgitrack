@@ -38,6 +38,12 @@ function SetsListPage({ user }) {
     );
   };
 
+  const handleDropdownSelect = (option) => {
+    setSelected(option);
+    setCurrentPage(1);
+    handlePagination(1);
+  };
+
   const handlePagination = (pageNumbers) => setCurrentPage(pageNumbers);
   const allPosts = getDataWithSearchString(setData);
   const indexOfLastPost = currentPage * postsPerPage;
@@ -58,6 +64,9 @@ function SetsListPage({ user }) {
 
   return (
     <div div className={styles.setsListPageContainer}>
+      <div className={styles.dropDown}>
+        <Dropdown selected={selected} setSelected={handleDropdownSelect} />
+      </div>
       <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
       <Table
         data={currentPosts}

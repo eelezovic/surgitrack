@@ -50,7 +50,7 @@ console.log( updatedData)
 
   const handleSave = async () => {
     if (user?.role === "ADMIN") {
-      const response = await updateInstrumentOnServer(instrumentData);
+      const response = await updateInstrumentOnServer(setData);
       if (response.ok) {
         console.log("Instrument updated successfully");
         setIsEditing(false);

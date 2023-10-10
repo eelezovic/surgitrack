@@ -12,6 +12,17 @@ const SetController = {
   }
 },
 
+getSet: async (req, res) => {
+  try {
+    const {id} = req.params
+    const sets = await SetModel.getSet(id);
+    res.json(sets[0]);
+  } catch (error) {
+    console.error("Error fetching sets:", error);
+    res.status(500).json({ error: "Error fetching sets from the database" });
+  }
+},
+
 addSet: async (req, res) => {
   const setData =  req.body;
   const currentUser = req.session.user;
