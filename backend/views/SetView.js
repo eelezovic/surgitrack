@@ -8,6 +8,10 @@ const instrumentSetsApi = (app) => {
   app.post("/instrumentSets", isAuthenticated, SetController.addSet);
   app.put("/instrumentSets/:id", isAuthenticated, SetController.updateSet);
   app.delete("/instrumentSets/:id", isAuthenticated, SetController.deleteSet);
+
+  app.post("/instrumentSets/:setId/instruments", isAuthenticated, SetController.addInstrumentToSet);
+  app.delete("/instrumentSets/:setId/instruments/:instrumentId", isAuthenticated, SetController.deleteInstrumentFromSet);
+
 }
 
 module.exports = instrumentSetsApi;
