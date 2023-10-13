@@ -2,6 +2,14 @@ const { query } = require("../db");
 
 const SetModel = {
 
+  async addInstrumentToSetById(instrumentId, setId) { 
+  //I have added to parameters which are representing IDs of the instrument and set. it inserts a new recordinto the instruments_sets table
+    return query(
+      "INSERT INTO instruments_sets (instrument_id, set_id) VALUES (?, ?)",
+      [instrumentId, setId]
+    );
+  },
+
   async getInstrumentById(instrumentId) {
     return query("SELECT * FROM instruments WHERE id = ?", [instrumentId]);
   },

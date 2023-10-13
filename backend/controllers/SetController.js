@@ -2,6 +2,24 @@ const SetModel = require("../models/SetModel");
 
 const SetController = {
 
+  addInstrumentToSet: async (req, res) => {
+    const { instrumentId, setId } = req.body;
+    const currentUser = req.session.user;
+  
+    if (currentUser.role !== "ADMIN") {
+      return res.status(403).json({ error: "Only Admin can add instruments to sets." });
+    }
+
+    try {
+      await SetModel.addInstrumentToSet(instrumentId, setId);
+      res.json({ message: "Instrument added to the set successfully" });
+    } catch (error) {
+      console.error("Error adding instrument to set:", error);
+      res.status(500).json({ error: "Error adding instrument to the set in the database" });
+    }
+  },
+  
+
   getAllSets: async (req, res) => {
     try {
       const sets = await SetModel.getAllSets();
@@ -17,6 +35,7 @@ getSet: async (req, res) => {
     const {id} = req.params
     const sets = await SetModel.getSet(id);
     res.json(sets[0]);
+    
   } catch (error) {
     console.error("Error fetching sets:", error);
     res.status(500).json({ error: "Error fetching sets from the database" });
