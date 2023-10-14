@@ -8,13 +8,28 @@ const SetController = {
   
     if (currentUser.role !== "ADMIN") {
       return res.status(403).json({ error: "Only Admin can add instruments to sets." });
-    } try {
+    }
+  
+    try {
       await SetModel.addInstrumentToSetById(instrumentId, setId);
       res.json({ message: "Instrument added to the set successfully" });
     } catch (error) {
       console.error("Error adding instrument to set:", error);
       res.status(500).json({ error: "Error adding instrument to the set in the database" });
     }
+  },
+  
+
+  getInstrumentsInSet: async(req, res) => {
+    try {
+      const setId = req.params.setId
+      const instruments = await SetModel.getInstrumentsInSet(setId);
+      res.json(instruments);
+    } catch (error) {
+      console.error("Error fetching instruments in the set:", error);
+      res.status(500).json({error:" Error fetching instruments from the database"});
+    }
+
   },
   
 
@@ -44,12 +59,10 @@ addSet: async (req, res) => {
   const setData =  req.body;
   const currentUser = req.session.user;
 
-  console.log("Current user:", currentUser); 
   if (currentUser.role !== "ADMIN") {
-
     return res.status(403).json({error: "Only Admin can add sets."});
   }
-  console.log(currentUser.role);
+
   try {
     await SetModel.addSet(setData, currentUser.id);
     res.json({ message: "New set added successfully"});

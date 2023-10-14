@@ -23,6 +23,7 @@
   background-color: #819ee5;
 }
 
+
 @media only screen and (max-width: 600px){
   .singleInstrumentContainer {
     display: flex;

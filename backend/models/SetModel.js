@@ -2,11 +2,21 @@ const { query } = require("../db");
 
 const SetModel = {
 
-  async addInstrumentToSetById(instrumentId, setId) { 
-  //I have added to parameters which are representing IDs of the instrument and set. it inserts a new recordinto the instruments_sets table
+    //I have added to parameters which are representing IDs of the instrument and set. it inserts a new recordinto the instruments_sets table
+    async addInstrumentToSetById(instrumentId, setId) { 
+      return query(
+        "INSERT INTO instruments_sets (instrument_id, set_id) VALUES (?, ?)",
+        [instrumentId, setId]
+      );
+    },
+
+  //function to fetch the instruments that are associated with a particular set.
+  async getInstrumentsInSet(setId) {
     return query(
-      "INSERT INTO instruments_sets (instrument_id, set_id) VALUES (?, ?)",
-      [instrumentId, setId]
+      "SELECT instruments.* FROM instruments " +
+      "INNER JOIN instruments_sets ON instruments.id = instruments_sets.instrument_id " +
+      "WHERE instruments_sets.set_id = ?",
+      [setId]
     );
   },
 

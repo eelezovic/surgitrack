@@ -3,13 +3,14 @@ import styles from "../pages/SetsPage.module.css";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function SetsPage({user}) {
+function SetsPage({ user }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [setData, setSetData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [instruments, setInstruments] = useState([]); // news state for instruments
 
   const handleEdit = (field, value) => {
     setSetData((prevData) => ({
@@ -22,7 +23,7 @@ function SetsPage({user}) {
     try {
       const updatedData = {
         setName: newRow.set_name,
-        setId:  newRow.set_id,
+        setId: newRow.set_id,
         setQuantity: newRow.set_quantity,
         setLocation: newRow.set_location,
       };
@@ -34,7 +35,7 @@ function SetsPage({user}) {
         body: JSON.stringify(updatedData),
       });
 
-      if(response.ok) {
+      if (response.ok) {
         setIsEditing(false);
         navigate("/sets");
       } else {
@@ -46,7 +47,7 @@ function SetsPage({user}) {
   };
 
   const handleSave = async () => {
-    if( user?.role === "ADMIN") {
+    if (user?.role === "ADMIN") {
       const response = await updateSetOnServer(setData);
       if (response) {
         console.log("Set updated successfully");
@@ -58,27 +59,27 @@ function SetsPage({user}) {
   };
 
   const handleDelete = () => {
-  const isConfirmed = window.confirm("Are you sure you want to delete this instrument?");
-   
-  if(isConfirmed) {
-    const deleteUrl = `/api/instrumentSets/${id}`;
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this instrument?"
+    );
 
-
-    // Sending a DELETE request to delete the set
-    fetch(deleteUrl, {
-      method: 'DELETE',
-    })
-      .then((response) => {
-        if (response.ok) {
-          setIsDeleted(true); 
-          navigate('/sets');
-        } else {
-          console.error('Error deleting set:', response.statusText);
-        }
+    if (isConfirmed) {
+      const deleteUrl = `/api/instrumentSets/${id}`;
+      // Sending a DELETE request to delete the set
+      fetch(deleteUrl, {
+        method: "DELETE",
       })
-      .catch((error) => {
-        console.error('Error deleting set:', error);
-      });
+        .then((response) => {
+          if (response.ok) {
+            setIsDeleted(true);
+            navigate("/sets");
+          } else {
+            console.error("Error deleting set:", response.statusText);
+          }
+        })
+        .catch((error) => {
+          console.error("Error deleting set:", error);
+        });
     }
   };
 
@@ -91,7 +92,27 @@ function SetsPage({user}) {
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, [id]);
- 
+
+  // fetching instruments related to the set
+  useEffect(() => {
+    fetch(`/api/instrumentSets/${id}/instruments`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch instruments.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setInstruments(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching instruments:", error);
+      });
+  }, [id]);
+
+  console.log(instruments);
+
   return (
     <div className={styles.setWrapper}>
       <h2 className={styles.header}>Set Details</h2>
@@ -135,9 +156,7 @@ function SetsPage({user}) {
                   <input
                     type="number"
                     value={setData.set_quantity}
-                    onChange={(e) =>
-                      handleEdit("set_quantity", e.target.value)
-                    }
+                    onChange={(e) => handleEdit("set_quantity", e.target.value)}
                   />
                 ) : (
                   setData.set_quantity
@@ -148,9 +167,7 @@ function SetsPage({user}) {
                   <input
                     type="text"
                     value={setData.set_location}
-                    onChange={(e) =>
-                      handleEdit("set_location", e.target.value)
-                    }
+                    onChange={(e) => handleEdit("set_location", e.target.value)}
                   />
                 ) : (
                   setData.set_location
@@ -180,6 +197,27 @@ function SetsPage({user}) {
           </button>
         )}
       </div>
+      <h3 className={styles.instrumentsHeader}>Instruments in this Set</h3>
+      <ul className={styles.instrumentsList}>
+        {instruments.map((instrument) => (
+          <li key={instrument.id} className={styles.instrumentItem}>
+            <div className={styles.instrumentInfo}>
+              <span className={styles.instrumentName}>
+                {instrument.instrument_name}
+              </span>
+              <span className={styles.instrumentID}>
+                ID: {instrument.instrument_id}
+              </span>
+              <span className={styles.instrumentQuantity}>
+                Quantity: {instrument.instrument_quantity}
+              </span>
+              <span className={styles.instrumentLocation}>
+                Location: {instrument.instrument_location}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
