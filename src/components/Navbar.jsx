@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { BiSolidUser } from "react-icons/bi";
+import { FaBars } from "react-icons/fa";
+import { AiOutlineBars } from "react-icons/ai";
 
-function Navbar({ signout, user }) {
+function Navbar({ user, toggleSideBar }) {
   const [isMobile, setIsMobile] = useState(false);
-  const navigateTo = useNavigate();
 
-  const handleLogout = () => {
-    document.cookie = "userId=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    document.cookie =
-      "username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    signout();
-    navigateTo("/");
-  };
+
 
   return (
     <nav className={styles.navbar}>
+       {user && (
+        <div className={styles.burger} onClick={() => toggleSideBar()}>
+          <AiOutlineBars />
+        </div>
+      )}
       <div className={styles.logoContainer}>
         <img src={"/images/logo.png"} alt="" className={styles.logoImage} />
         <h2 className={styles.logoName}>SurgiTrack</h2>
@@ -32,12 +32,9 @@ function Navbar({ signout, user }) {
         {user ? (
           // Displaying links when the user is authenticated
           <>
-            <button onClick={handleLogout} className={styles.logoutButton}>
-              Logout
-            </button>
-            <li className={styles.displayUserName}>
-              <BiSolidUser size={20} /> {user.username}
-            </li>
+            <div className={styles.burger} >
+              <FaBars />
+            </div>
           </>
         ) : (
           // Displaying this links when the user is not authenticated
@@ -70,4 +67,3 @@ function Navbar({ signout, user }) {
 }
 
 export default Navbar;
-

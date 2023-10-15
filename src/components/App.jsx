@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import SideBar from "./SideBar";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import About from "../pages/About";
@@ -15,10 +16,10 @@ import SetsListPage from "../pages/SetsListPage";
 import SetsPage from "../pages/SetsPage";
 import PrivateRoutes from "./PrivateRoutes";
 
-
 function App() {
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [sideBar, setSideBar] = useState(false);
 
   const signout = () => {
     setUser(false);
@@ -42,13 +43,31 @@ function App() {
 
   return (
     <>
-      <Navbar signout={signout} user={user} />
+      <Navbar
+        signout={signout}
+        user={user}
+        toggleSideBar={() => setSideBar(!sideBar)}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
       <Routes>
+        <Route
+          path="/sidebar"
+          element={
+            <PrivateRoutes isSignedIn={user}>
+              <SideBar
+                user={user}
+                signout={signout}
+                sideBar={sideBar}
+                toggleSideBar={() => setSideBar(!sideBar)}
+              />
+            </PrivateRoutes>
+          }
+        />
+
         <Route
           path="/dashboard"
           element={
@@ -65,7 +84,7 @@ function App() {
             </PrivateRoutes>
           }
         />
-         <Route
+        <Route
           path="/aboutproject"
           element={
             <PrivateRoutes isSignedIn={user}>
@@ -76,8 +95,8 @@ function App() {
         <Route
           path="/instruments"
           element={
-            <PrivateRoutes isSignedIn={user} >
-              <InstrumentsListPage  user={user}/>
+            <PrivateRoutes isSignedIn={user}>
+              <InstrumentsListPage user={user} />
             </PrivateRoutes>
           }
         />
@@ -85,7 +104,7 @@ function App() {
           path="/instruments/:id"
           element={
             <PrivateRoutes isSignedIn={user}>
-              <InstrumentPage user={user}/>
+              <InstrumentPage user={user} />
             </PrivateRoutes>
           }
         />
@@ -98,7 +117,7 @@ function App() {
             </PrivateRoutes>
           }
         />
-         <Route
+        <Route
           path="/sets/:id"
           element={
             <PrivateRoutes isSignedIn={user}>

@@ -103,15 +103,15 @@ function SetsPage({ user }) {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setInstruments(data);
+        console.log(data);
       })
       .catch((error) => {
         console.error("Error fetching instruments:", error);
       });
   }, [id]);
 
-  console.log(instruments);
+  
 
   return (
     <div className={styles.setWrapper}>

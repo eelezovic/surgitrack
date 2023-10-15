@@ -30,6 +30,13 @@
   margin: 5px;
 }
 
+.burger {
+  font-size: 2rem;
+  color: white;
+  padding-left: 20px;
+
+}
+
 .navLinks {
   display: flex;
   justify-content: flex-end;
