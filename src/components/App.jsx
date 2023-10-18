@@ -16,6 +16,11 @@ import SetsListPage from "../pages/SetsListPage";
 import SetsPage from "../pages/SetsPage";
 import PrivateRoutes from "./PrivateRoutes";
 
+const fetchUser = () => {
+  return fetch("/api/user")
+  .then((response) => response.json())
+}
+
 function App() {
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -25,18 +30,16 @@ function App() {
     setUser(false);
   };
 
+  const onLogin = async () => {
+     const data = await fetchUser();
+     if (data !== null) {
+       setUser(data);
+     }
+     setIsUserLoading(false);
+  }
+
   useEffect(() => {
-    fetch("/api/user")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data !== null) {
-          setUser(data);
-        }
-        setIsUserLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error checking user authentication:", error);
-      });
+  onLogin()
   }, []);
 
   if (isUserLoading) return "Loading...";
@@ -48,22 +51,23 @@ function App() {
         user={user}
         toggleSideBar={() => setSideBar(!sideBar)}
       />
+       <SideBar
+                user={user}
+                signout={signout}
+                sideBar={sideBar}
+                toggleSideBar={() => setSideBar(!sideBar)}
+              />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login onLogin={onLogin} />} />
+        <Route path="/register" element={<Register />}  />
       </Routes>
       <Routes>
         <Route
           path="/sidebar"
           element={
             <PrivateRoutes isSignedIn={user}>
-              <SideBar
-                user={user}
-                signout={signout}
-                sideBar={sideBar}
-                toggleSideBar={() => setSideBar(!sideBar)}
-              />
+             
             </PrivateRoutes>
           }
         />

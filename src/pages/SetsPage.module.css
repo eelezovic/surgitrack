@@ -19,7 +19,6 @@
   font-weight: bold;
   font-size: 2rem;
   color: #39559e;
-  text-decoration: underline;
 }
 
 .table {
@@ -82,6 +81,49 @@
   background-color: #0056b3;
 }
 
+.instrumentsHeader {
+  display: flex;
+  margin: 20px;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #39559e;
+}
+
+.instrumentsTable {
+  width: 50%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.instrumentsTable th {
+  background-color: #39559e;
+  color: white;
+  text-align: left;
+  padding: 10px;
+}
+
+.instrumentsTable th:first-child {
+  border-radius: 5px 0 0 0;
+}
+
+.instrumentsTable th:last-child {
+  border-radius: 0 5px 0 0;
+}
+
+.instrumentsTable td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+}
+
+.instrumentsTable tr:nth-child(even) {
+  background-color: #e0e0e0;
+}
+
+.instrumentsTable tr:hover {
+  background-color: #ccc;
+}
 
 
 @media only screen and (max-width: 600px) {

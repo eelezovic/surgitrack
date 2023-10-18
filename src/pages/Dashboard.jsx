@@ -25,7 +25,7 @@ function Dashboard() {
 
         <div className={styles.instrumentSetContainer}>
           <div className={styles.iconContainer}>
-            <Link to="/instrumentsetcomponent">
+            <Link to="/sets">
               {" "}
               <img
                 src="https://cdn-icons-png.flaticon.com/512/2804/2804765.png"
@@ -35,7 +35,7 @@ function Dashboard() {
             </Link>
           </div>
           <Link
-            to="/instrumentsetcomponent"
+            to="/sets"
             className={styles.instrumentsetcomponent}
           >
             <ButtonComponent name="Instrument Sets" />

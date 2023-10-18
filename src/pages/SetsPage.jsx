@@ -10,7 +10,7 @@ function SetsPage({ user }) {
   const [setData, setSetData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
-  const [instruments, setInstruments] = useState([]); // news state for instruments
+  const [instruments, setInstruments] = useState([]); 
 
   const handleEdit = (field, value) => {
     setSetData((prevData) => ({
@@ -111,7 +111,7 @@ function SetsPage({ user }) {
       });
   }, [id]);
 
-  
+  console.log(instruments);
 
   return (
     <div className={styles.setWrapper}>
@@ -196,28 +196,29 @@ function SetsPage({ user }) {
             Delete
           </button>
         )}
-      </div>
+     
       <h3 className={styles.instrumentsHeader}>Instruments in this Set</h3>
-      <ul className={styles.instrumentsList}>
-        {instruments.map((instrument) => (
-          <li key={instrument.id} className={styles.instrumentItem}>
-            <div className={styles.instrumentInfo}>
-              <span className={styles.instrumentName}>
-                {instrument.instrument_name}
-              </span>
-              <span className={styles.instrumentID}>
-                ID: {instrument.instrument_id}
-              </span>
-              <span className={styles.instrumentQuantity}>
-                Quantity: {instrument.instrument_quantity}
-              </span>
-              <span className={styles.instrumentLocation}>
-                Location: {instrument.instrument_location}
-              </span>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <table className={styles.instrumentsTable}>
+  <thead>
+    <tr>
+      <th>Instrument Name</th>
+      <th>Instrument ID</th>
+      <th>Quantity</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    {instruments.map((instrument) => (
+      <tr key={instrument.id} className={styles.instrumentItem}>
+        <td>{instrument.instrument_name}</td>
+        <td>{instrument.instrument_id}</td>
+        <td>{instrument.instrument_quantity}</td>
+        <td>{instrument.instrument_location}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+</div>
     </div>
   );
 }
