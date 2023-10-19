@@ -63,14 +63,7 @@ function App() {
         <Route path="/register" element={<Register />}  />
       </Routes>
       <Routes>
-        <Route
-          path="/sidebar"
-          element={
-            <PrivateRoutes isSignedIn={user}>
-             
-            </PrivateRoutes>
-          }
-        />
+      
 
         <Route
           path="/dashboard"

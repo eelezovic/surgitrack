@@ -111,7 +111,6 @@ function SetsPage({ user }) {
       });
   }, [id]);
 
-  console.log(instruments);
 
   return (
     <div className={styles.setWrapper}>
