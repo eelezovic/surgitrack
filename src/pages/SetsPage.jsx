@@ -58,6 +58,7 @@ function SetsPage({ user }) {
     }
   };
 
+// Function to delete Set from db
   const handleDelete = () => {
     const isConfirmed = window.confirm(
       "Are you sure you want to delete this instrument?"
@@ -110,6 +111,24 @@ function SetsPage({ user }) {
         console.error("Error fetching instruments:", error);
       });
   }, [id]);
+
+  //Function to delete an instrumenent from the Set
+  const handleDeleteInstrument = async (instrumentId) => {
+    try {
+      const response = await fetch(`/api/instrumentSets/${id}/deleteInstrument/${instrumentId}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        console.log("Instrument deleted from the set successfully");
+        
+      } else {
+        console.error("Error deleting instrument from the set:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error deleting instrument from the set:", error);
+    }
+  };
 
 
   return (
@@ -204,6 +223,7 @@ function SetsPage({ user }) {
       <th>Instrument ID</th>
       <th>Quantity</th>
       <th>Location</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -213,6 +233,9 @@ function SetsPage({ user }) {
         <td>{instrument.instrument_id}</td>
         <td>{instrument.instrument_quantity}</td>
         <td>{instrument.instrument_location}</td>
+        <td>
+                <button onClick={() => handleDeleteInstrument(instrument.id)}>Delete</button>
+              </td>
       </tr>
     ))}
   </tbody>

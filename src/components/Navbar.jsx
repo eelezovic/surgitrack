@@ -29,14 +29,7 @@ function Navbar({ user, toggleSideBar }) {
         <Link to="/" className={styles.home}>
           Home
         </Link>
-        {user ? (
-          // Displaying links when the user is authenticated
-          <>
-            <div className={styles.burger} >
-              <FaBars />
-            </div>
-          </>
-        ) : (
+        {!user && (
           // Displaying this links when the user is not authenticated
           <>
             <Link to="/about" className={styles.aboutMe}>

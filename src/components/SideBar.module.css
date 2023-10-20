@@ -1,7 +1,8 @@
 .sidebar {
   position: fixed;
   top: 90px;
-  left: -250px;
+  left: 0; /* Change the initial position */
+  transform: translateX(-100%);
   width: 250px;
   height: 100%;
   background-color: #39559e;
@@ -11,7 +12,7 @@
 }
 
 .sidebar.open {
-  left: 0;
+  transform: translateX(0);
 }
 
 .sidebar ul {

@@ -1,15 +1,16 @@
 .setWrapper {
   height: 100vh; 
   background-color: aliceblue;
-  border: 1px solid aliceblue;
+  border: 1px solid red;
 }
 .tableContainer {
-  margin: 40px;
+
   height: 70vh; 
   display: flex;
-  flex-direction: column;
+  flex-direction:row;
   justify-content: start;
   align-items: center;
+  border: 1px solid purple;
 }
 
 .header {

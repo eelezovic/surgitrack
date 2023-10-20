@@ -8,10 +8,10 @@ const instrumentSetsApi = (app) => {
   app.put("/instrumentSets/:id", isAuthenticated, SetController.updateSet);
   app.delete("/instrumentSets/:id", isAuthenticated, SetController.deleteSet);
 
-  //  added a new route for fetching and displaying instruments in a set
-  app.get("/instrumentSets/:setId/instruments", isAuthenticated, SetController.getInstrumentsInSet);
-  app.post('/instrumentSets/:setId/addInstruments', isAuthenticated, SetController.addInstrumentToSetById);
-
-}
+  //  added a new route for fetching and displaying instruments in a set and deleting an instrument from the set
+  app.get("/instrumentSets/:setId/instruments",isAuthenticated,SetController.getInstrumentsInSet);
+  app.post("/instrumentSets/:setId/addInstruments/:instrumentId",isAuthenticated,SetController.addInstrumentToSetById);
+  app.delete("/instrumentSets/:setId/deleteInstruments/:instrumentId",isAuthenticated,SetController.deleteInstrumentFromSetById);
+};
 
 module.exports = instrumentSetsApi;

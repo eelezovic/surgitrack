@@ -1,11 +1,29 @@
 // In SideBar.jsx
-import React from "react";
+import React, {useRef, useEffect} from "react";
 import styles from "./SideBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { BiHome, BiBarChart, BiLogOut, BiSolidUser } from "react-icons/bi";
 
 function SideBar({ user, signout, sideBar, toggleSideBar }) {
   const navigate = useNavigate();
+  const sidebarRef = useRef();
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      console.log("Clicked outside the sidebar.");
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        toggleSideBar();
+      }
+    }
+  
+    document.addEventListener("mousedown", handleClickOutside);
+  
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [toggleSideBar]);
+  
+
 
   const handleLogout = () => {
     document.cookie = "userId=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
