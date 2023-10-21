@@ -15,9 +15,7 @@ const SetController = {
   },
 
   addInstrumentToSetById: async (req, res) => {
-    const setId = req.params.setId;
-    const instrumentId = req.params.instrumentId;
-    //const { instrumentId, setId } = req.body;
+    const { instrumentId, setId } = req.body; 
     const currentUser = req.session.user;
   
     if (currentUser.role !== "ADMIN") {
@@ -33,10 +31,16 @@ const SetController = {
     }
   },
   
+  
   deleteInstrumentFromSetById: async(req, res) => {
     const setId = req.params.setId;
     const instrumentId = req.params.instrumentId;
     const currentUser = req.session.user;
+
+    console.log(setId);
+    console.log(instrumentId);
+
+
 
     if (currentUser.role !== "ADMIN") {
       return res.status(403).json({error: "Only Admin can delete instrument from the set."});

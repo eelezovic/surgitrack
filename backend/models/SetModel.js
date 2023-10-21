@@ -20,7 +20,7 @@ const SetModel = {
     );
   },
 
-  // function to delete an instrument from the set while preserving the instrument itself in the instrument table
+  // function to delete an instrument from the set
   async deleteInstrumentFromSetById(instrumentId, setId) {
     return query(
       "DELETE FROM instruments_sets WHERE instrument_id = ? AND set_id = ?", [instrumentId, setId]

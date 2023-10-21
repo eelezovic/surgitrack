@@ -11,6 +11,13 @@ function SetsPage({ user }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   const [instruments, setInstruments] = useState([]); 
+  const [newInstrumentData, setNewInstrumentData] = useState({
+    instrumentName: "",
+    instrumentId: "",
+    instrumentQuantity: "",
+    instrumentLocation: "",
+  });
+
 
   const handleEdit = (field, value) => {
     setSetData((prevData) => ({
@@ -114,8 +121,10 @@ function SetsPage({ user }) {
 
   //Function to delete an instrumenent from the Set
   const handleDeleteInstrument = async (instrumentId) => {
+    console.log( instrumentId); // Log the instrumentId
+    console.log(id); 
     try {
-      const response = await fetch(`/api/instrumentSets/${id}/deleteInstrument/${instrumentId}`, {
+      const response = await fetch(`/api/instrumentSets/${instrumentId}/deleteInstrument/${id}`, {
         method: "DELETE",
       });
 
@@ -130,7 +139,35 @@ function SetsPage({ user }) {
     }
   };
 
-
+//function to add a new instrument to set
+  const handleAddInstrument = async () => {
+    try {
+      const response = await fetch(`/api/instrumentSets/${id}/addNewInstrument`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newInstrumentData),
+      });
+  
+      if (response.ok) {
+        // Refresh the instruments data
+        fetchInstruments();
+        // Clear the form
+        setNewInstrumentData({
+          instrumentName: "",
+          instrumentId: "",
+          instrumentQuantity: "",
+          instrumentLocation: "",
+        });
+      } else {
+        console.error("Error adding instrument to the set:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error adding instrument to the set:", error);
+    }
+  };
+  
   return (
     <div className={styles.setWrapper}>
       <h2 className={styles.header}>Set Details</h2>
@@ -234,8 +271,8 @@ function SetsPage({ user }) {
         <td>{instrument.instrument_quantity}</td>
         <td>{instrument.instrument_location}</td>
         <td>
-                <button onClick={() => handleDeleteInstrument(instrument.id)}>Delete</button>
-              </td>
+          <button onClick={() => handleDeleteInstrument(instrument.id)}>Delete</button>
+        </td>
       </tr>
     ))}
   </tbody>
