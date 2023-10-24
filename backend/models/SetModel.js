@@ -12,14 +12,22 @@ const SetModel = {
     );
   },
 
-  //I have added to parameters which are representing IDs of the instrument and set. it inserts a new recordinto the instruments_sets table
-  async addInstrumentToSetById(instrumentId, setId) {
-    return query(
-      "INSERT INTO instruments_sets (instrument_id, set_id) VALUES (?, ?)",
-      [instrumentId, setId]
+//funnction to add new instrument to set
+  async addNewInstrumentToSet(setId, newInstrumentData) {
+    const { instrumentName, instrumentId, instrumentQuantity, instrumentLocation } = newInstrumentData;
+    const result = await query(
+      "INSERT INTO instruments (instrument_name, instrument_id, instrument_quantity, instrument_location) VALUES (?, ?, ?, ?)",
+      [instrumentName, instrumentId, instrumentQuantity, instrumentLocation]
     );
-  },
 
+    const newInstrumentId = result.insertId;
+    console.log(newInstrumentId)
+
+    await query("INSERT INTO instruments_sets (set_id, instrument_id) VALUES (?, ?)", [setId, newInstrumentId]);
+  
+    return newInstrumentId;
+  },
+  
   // function to delete an instrument from the set
   async deleteInstrumentFromSetById(instrumentId, setId) {
     return query(

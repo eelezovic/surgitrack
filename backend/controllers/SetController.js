@@ -14,22 +14,26 @@ const SetController = {
 
   },
 
-  addInstrumentToSetById: async (req, res) => {
-    const { instrumentId, setId } = req.body; 
+  addNewInstrumentToSet: async (req, res) => {
+    const { setId } = req.params;
+    console.log( setId); 
+     const newInstrumentData = req.body;
+    console.log( newInstrumentData);
     const currentUser = req.session.user;
   
     if (currentUser.role !== "ADMIN") {
-      return res.status(403).json({ error: "Only Admin can add instruments to sets." });
+      return res.status(403).json({ error: "Only Admin can add new instruments to a set." });
     }
   
     try {
-      await SetModel.addInstrumentToSetById(instrumentId, setId);
-      res.json({ message: "Instrument added to the set successfully" });
+      const newInstrumentId = await SetModel.addNewInstrumentToSet(setId, newInstrumentData);
+      res.json({ message: "New instrument added to the set successfully", newInstrumentId });
     } catch (error) {
-      console.error("Error adding instrument to set:", error);
-      res.status(500).json({ error: "Error adding instrument to the set in the database" });
+      console.error("Error adding new instrument to the set:", error);
+      res.status(500).json({ error: "Error adding new instrument to the set in the database" });
     }
   },
+  
   
   
   deleteInstrumentFromSetById: async(req, res) => {
@@ -39,9 +43,7 @@ const SetController = {
 
     console.log(setId);
     console.log(instrumentId);
-
-
-
+    
     if (currentUser.role !== "ADMIN") {
       return res.status(403).json({error: "Only Admin can delete instrument from the set."});
     }

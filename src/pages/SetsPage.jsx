@@ -121,7 +121,7 @@ function SetsPage({ user }) {
 
   //Function to delete an instrumenent from the Set
   const handleDeleteInstrument = async (instrumentId) => {
-    console.log( instrumentId); // Log the instrumentId
+    console.log( instrumentId); 
     console.log(id); 
     try {
       const response = await fetch(`/api/instrumentSets/${instrumentId}/deleteInstrument/${id}`, {
@@ -140,37 +140,37 @@ function SetsPage({ user }) {
   };
 
 //function to add a new instrument to set
-  const handleAddInstrument = async () => {
-    try {
-      const response = await fetch(`/api/instrumentSets/${id}/addNewInstrument`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newInstrumentData),
+const handleAddInstrument = async () => {
+  console.log( newInstrumentData);
+  try {
+    const response = await fetch(`/api/instrumentSets/${id}/addNewInstrument`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newInstrumentData),
+    });
+
+    if (response.ok) {
+      fetchInstruments();
+      // to Clear the form
+      setNewInstrumentData({
+        instrumentName: "",
+        instrumentId: "",
+        instrumentQuantity: "",
+        instrumentLocation: "",
       });
-  
-      if (response.ok) {
-        // Refresh the instruments data
-        fetchInstruments();
-        // Clear the form
-        setNewInstrumentData({
-          instrumentName: "",
-          instrumentId: "",
-          instrumentQuantity: "",
-          instrumentLocation: "",
-        });
-      } else {
-        console.error("Error adding instrument to the set:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error adding instrument to the set:", error);
+    } else {
+      console.error("Error adding instrument to the set:", response.statusText);
     }
-  };
+  } catch (error) {
+    console.error("Error adding instrument to the set:", error);
+  }
+};
   
   return (
     <div className={styles.setWrapper}>
-      <h2 className={styles.header}>Set Details</h2>
+      <div className={styles.header}>{setData.set_name} Set</div>
       <div className={styles.tableContainer}>
         <table className={styles.table}>
           <thead>
@@ -252,7 +252,6 @@ function SetsPage({ user }) {
           </button>
         )}
      
-      <h3 className={styles.instrumentsHeader}>Instruments in this Set</h3>
       <table className={styles.instrumentsTable}>
   <thead>
     <tr>
@@ -271,10 +270,47 @@ function SetsPage({ user }) {
         <td>{instrument.instrument_quantity}</td>
         <td>{instrument.instrument_location}</td>
         <td>
-          <button onClick={() => handleDeleteInstrument(instrument.id)}>Delete</button>
+          <button className={styles.deleteInstrumentBtn} onClick={() => handleDeleteInstrument(instrument.id)}>Delete</button>
         </td>
       </tr>
     ))}
+    <tr className={styles.instrumentItem}>
+    <td>
+      <input
+        type="text"
+        value={newInstrumentData.instrumentName}
+        onChange={(e) => setNewInstrumentData({ ...newInstrumentData, instrumentName: e.target.value })}
+        placeholder="Instrument Name"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        value={newInstrumentData.instrumentId}
+        onChange={(e) => setNewInstrumentData({ ...newInstrumentData, instrumentId: e.target.value })}
+        placeholder="Instrument ID"
+      />
+    </td>
+    <td>
+      <input
+        type="number"
+        value={newInstrumentData.instrumentQuantity}
+        onChange={(e) => setNewInstrumentData({ ...newInstrumentData, instrumentQuantity: e.target.value })}
+        placeholder="Quantity"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        value={newInstrumentData.instrumentLocation}
+        onChange={(e) => setNewInstrumentData({ ...newInstrumentData, instrumentLocation: e.target.value })}
+        placeholder="Location"
+      />
+    </td>
+    <td>
+      <button className={styles.addInstrumentBtn} onClick={handleAddInstrument}>Add Instrument</button>
+    </td>
+  </tr>
   </tbody>
 </table>
 </div>

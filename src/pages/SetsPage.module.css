@@ -1,25 +1,24 @@
 .setWrapper {
   height: 100vh; 
   background-color: aliceblue;
-  border: 1px solid red;
 }
 .tableContainer {
 
   height: 70vh; 
   display: flex;
-  flex-direction:row;
+  flex-direction:column;
   justify-content: start;
   align-items: center;
-  border: 1px solid purple;
 }
 
-.header {
+.header  {
   display: flex;
   margin: 20px;
   justify-content: center;
   font-weight: bold;
   font-size: 2rem;
   color: #39559e;
+  text-decoration: underline;
 }
 
 .table {
@@ -43,6 +42,17 @@
   color: rgb(171, 170, 170);
 }
 
+.deleteInstrumentBtn, .addInstrumentBtn {
+  display: flex;
+  border: none;
+  background-color: #39559e;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
+}
+
 .saveButton {
   display: flex;
   border: none;
@@ -54,7 +64,7 @@
   box-shadow: 0 5px 5px #ccc;
 }
 
-.saveButton:hover {
+.saveButton:hover,.addInstrumentBtn:hover  {
   background-color: #87de55;
 }
 
@@ -70,7 +80,7 @@
   box-shadow: 0 5px 5px #ccc;
 }
 
-.deleteButton:hover {
+.deleteButton:hover, .deleteInstrumentBtn:hover{
   background-color: #ef6060;
 }
 
