@@ -4,7 +4,7 @@ import styles from "./SideBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { BiHome, BiBarChart, BiLogOut, BiSolidUser } from "react-icons/bi";
 
-function SideBar({ user, signout, sideBar, toggleSideBar }) {
+function SideBar({ user, signout, sideBar, toggleSideBar, closeSideBar }) {
   const navigate = useNavigate();
   const sidebarRef = useRef();
 
@@ -12,7 +12,7 @@ function SideBar({ user, signout, sideBar, toggleSideBar }) {
     function handleClickOutside(event) {
       console.log("Clicked outside the sidebar.");
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        toggleSideBar();
+        closeSideBar();
       }
     }
   
@@ -21,7 +21,7 @@ function SideBar({ user, signout, sideBar, toggleSideBar }) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [toggleSideBar]);
+  }, [closeSideBar]);
   
 
 
@@ -37,7 +37,7 @@ function SideBar({ user, signout, sideBar, toggleSideBar }) {
   };
 
   return (
-    <div className={`${styles.sidebar} ${sideBar ? styles.open : ""}`}>
+    <div className={`${styles.sidebar} ${sideBar ? styles.open : ""}`} ref={sidebarRef}>
       <div className={styles.closeButton} onClick={() => toggleSideBar()}>
         <i className="fas fa-times"></i>
       </div>

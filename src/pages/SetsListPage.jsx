@@ -5,6 +5,7 @@ import Table from "../components/Table";
 import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
+import SetModal from "../components/SetModal";
 
 function SetsListPage({ user }) {
   const headers = [
@@ -21,9 +22,9 @@ function SetsListPage({ user }) {
   const [postsPerPage] = useState(5);
   const [setData, setSetData] = useState([]);
   const [setModalOpen, setSetModalOpen] = useState(false);
+  const [newSetData, setNewSetData] = useState({});
   const navigateTo = useNavigate();
 
-  const [newSetData, setNewSetData] = useState({});
 
   const handleSetClick = (set) => {
      navigateTo(`/sets/${set.id}`);
@@ -50,6 +51,46 @@ function SetsListPage({ user }) {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
+  const handleSubmit = async (newRow) => {
+    try {
+      const newSetData = {
+        setName: newRow.set_name,
+        setId: newRow.set_id,
+        setQuantity: newRow.set_quantity,
+        setLocation: newRow.set_location,
+      };
+  console.log(newSetData)
+  const response = await fetch("/api/instrumentSets", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newSetData),
+      });
+      const responseData = await response.json();
+      console.log(responseData.message);
+
+      setSetData([...setData, newRow]);
+      if (response.ok) {
+        fetchData(); 
+        setSetModalOpen(false); 
+
+        // Clear the form fields if needed
+        setNewSetData({
+          set_name: "",
+          set_id: "",
+          set_quantity: "",
+          set_location: "",
+        });
+      } else {
+        const data = await response.json();
+        console.error("Error adding  set:", data.error);
+      }
+    } catch (error) {
+      console.error("Error adding  set:", error);
+    }
+  };
+  
   //fetching data from the API
   const fetchData = () => {
     fetch("/api/instrumentSets")
@@ -73,10 +114,25 @@ function SetsListPage({ user }) {
         headers={headers}
         onRowClick={handleSetClick}
       />
+      {setModalOpen && (
+        <SetModal
+          closeSetModal={() => {
+            setSetModalOpen(false);
+          }}
+          onSubmit={handleSubmit}
+          defaultValue={{
+            setName: newSetData.set_name,
+            setId: newSetData.set_id,
+            setQuantity: newSetData.set_quantity,
+            setLocation: newSetData.set_location,
+            id: newSetData.id,
+          }}
+        />
+      )}
       {user?.role && (
         <button
           className={styles.addButton}
-          onClick={() => setInstrumentModalOpen(true)}
+          onClick={() => setSetModalOpen(true)}
         >
           Add New Set
         </button>

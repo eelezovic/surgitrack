@@ -83,7 +83,6 @@ function InstrumentsListPage({ user }) {
     }
   };
   
-
   //fetching data from the API
   const fetchData = () => {
     fetch("/api/singleInstruments")

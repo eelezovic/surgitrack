@@ -35,7 +35,6 @@ const SetController = {
   },
   
   
-  
   deleteInstrumentFromSetById: async(req, res) => {
     const setId = req.params.setId;
     const instrumentId = req.params.instrumentId;

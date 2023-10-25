@@ -153,7 +153,7 @@ const handleAddInstrument = async () => {
 
     if (response.ok) {
       fetchInstruments();
-      // to Clear the form
+
       setNewInstrumentData({
         instrumentName: "",
         instrumentId: "",

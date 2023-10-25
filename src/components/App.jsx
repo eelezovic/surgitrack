@@ -56,6 +56,9 @@ function App() {
                 signout={signout}
                 sideBar={sideBar}
                 toggleSideBar={() => setSideBar(!sideBar)}
+                closeSideBar={() => {
+                  setSideBar(false);
+                }}
               />
       <Routes>
         <Route path="/" element={<Home />} />
