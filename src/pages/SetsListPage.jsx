@@ -13,7 +13,6 @@ function SetsListPage({ user }) {
     { name: "ID", accessor: "set_id" },
     { name: "Quantity", accessor: "set_quantity" },
     { name: "Location", accessor: "set_location" },
-    { name: "Action", accessor: "set_action" },
   ];
 
   const [selected, setSelected] = useState("Select specialty");
@@ -21,15 +20,18 @@ function SetsListPage({ user }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [setData, setSetData] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
   const [setModalOpen, setSetModalOpen] = useState(false);
+  const [setInput, setSetInput] = useState();
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
+const [editedData, setEditedData] = useState({});
   const [newSetData, setNewSetData] = useState({});
   const navigateTo = useNavigate();
 
-
-  const handleSetClick = (set) => {
+  /* const handleSetClick = (set) => {
      navigateTo(`/sets/${set.id}`);
-  }
-
+  } */
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
       ["set_name", "set_id", "set_location"].some(
@@ -59,8 +61,8 @@ function SetsListPage({ user }) {
         setQuantity: newRow.set_quantity,
         setLocation: newRow.set_location,
       };
-  console.log(newSetData)
-  const response = await fetch("/api/instrumentSets", {
+      console.log(newSetData);
+      const response = await fetch("/api/instrumentSets", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,8 +74,8 @@ function SetsListPage({ user }) {
 
       setSetData([...setData, newRow]);
       if (response.ok) {
-        fetchData(); 
-        setSetModalOpen(false); 
+        fetchData();
+        setSetModalOpen(false);
 
         // Clear the form fields if needed
         setNewSetData({
@@ -90,7 +92,7 @@ function SetsListPage({ user }) {
       console.error("Error adding  set:", error);
     }
   };
-  
+
   //fetching data from the API
   const fetchData = () => {
     fetch("/api/instrumentSets")
@@ -103,17 +105,131 @@ function SetsListPage({ user }) {
     fetchData();
   }, []);
 
+  const handleEdit = (index, item) => {
+    setEditingIndex(index);
+    setEditedData({ ...item });
+  };
+
+  const handleSave = async () => {
+    try {
+      const response = await fetch(`/api/instrumentSets/${editedData.set_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editedData),
+      });
+      if (response.ok) {
+        // Update the data in your state or re-fetch the data
+        fetchData();
+        setEditingIndex(null);
+      } else {
+        const data = await response.json();
+        console.error("Error updating set:", data.error);
+      }
+    } catch (error) {
+      console.error("Error updating set:", error);
+    }
+  };
+  
+
+  const handleDelete = async (setId) => {
+    try {
+      const response = await fetch(`/api/instrumentSets/${setId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        // Update the data in your state or re-fetch the data
+        fetchData();
+      } else {
+        const data = await response.json();
+        console.error("Error deleting set:", data.error);
+      }
+    } catch (error) {
+      console.error("Error deleting set:", error);
+    }
+  };
+  
+  
+
   return (
     <div div className={styles.setsListPageContainer}>
       <div className={styles.dropDown}>
         <Dropdown selected={selected} setSelected={handleDropdownSelect} />
       </div>
       <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
-      <Table
+      {/*<Table
         data={currentPosts}
         headers={headers}
         onRowClick={handleSetClick}
-      />
+  />*/}
+      <div className={styles.tableContainer}>
+        <table>
+          <thead>
+            <tr>
+              {headers.map((header) => (
+                <th key={header.accessor}>{header.name}</th>
+              ))}
+              {isEditing && <th className="save">Save</th>}
+            </tr>
+          </thead>
+          <tbody>
+          {currentPosts.map((item, index) => (
+  <tr key={item.setId}>
+    {headers.map((header) => (
+      <td key={header.accessor}>
+        {editingIndex === index ? (
+          <input
+            type="text"
+            value={editedData[header.accessor]}
+            onChange={(e) =>
+              setEditedData({
+                ...editedData,
+                [header.accessor]: e.target.value,
+              })
+            }
+          />
+        ) : (
+          item[header.accessor]
+        )}
+      </td>
+    ))}
+    {editingIndex === index ? (
+      <td>
+        <button className={styles.saveButton} onClick={() => handleSave(item.setId)}>
+          Save
+        </button>
+        <button className={styles.deleteButton} onClick={() => handleDelete(item.setId)}>
+          Delete
+        </button>
+      </td>
+    ) : (
+      <td>
+        <button className={styles.editButton} onClick={() => handleEdit(index, item)}>
+          Edit
+        </button>
+        <button className={styles.deleteButton} onClick={() => handleDelete(item.setId)}>
+          Delete
+        </button>
+      </td>
+    )}
+  </tr>
+))}
+
+          </tbody>
+        </table>
+        {!isEditing && (
+          <button
+            className={styles.editButton}
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            Edit
+          </button>
+        )}
+      </div>
+
       {setModalOpen && (
         <SetModal
           closeSetModal={() => {
@@ -136,7 +252,7 @@ function SetsListPage({ user }) {
         >
           Add New Set
         </button>
-        )}
+      )}
     </div>
   );
 }

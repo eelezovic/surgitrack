@@ -44,7 +44,7 @@ function SetsPage({ user }) {
 
       if (response.ok) {
         setIsEditing(false);
-        navigate("/sets");
+        /*navigate("/sets");*/
       } else {
         console.error("Error updating set:", response.statusText);
       }

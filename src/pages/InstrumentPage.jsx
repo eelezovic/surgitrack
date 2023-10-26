@@ -59,7 +59,8 @@ console.log( updatedData)
       }
     }
   };
-
+  
+ //function to delete an instrument 
   const handleDelete = () => {
     const isConfirmed = window.confirm("Are you sure you want to delete this instrument?");
 

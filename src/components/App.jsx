@@ -28,6 +28,7 @@ function App() {
 
   const signout = () => {
     setUser(false);
+    setSideBar(false);
   };
 
   const onLogin = async () => {
