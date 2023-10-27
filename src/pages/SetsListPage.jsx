@@ -20,18 +20,16 @@ function SetsListPage({ user }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [setData, setSetData] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
   const [setModalOpen, setSetModalOpen] = useState(false);
-  const [setInput, setSetInput] = useState();
-  const [isDeleted, setIsDeleted] = useState(false);
-  const [editingIndex, setEditingIndex] = useState(null);
-const [editedData, setEditedData] = useState({});
   const [newSetData, setNewSetData] = useState({});
+  const [editingRows, setEditingRows] = useState([]);
+  const [editedData, setEditedData] = useState({});
+
   const navigateTo = useNavigate();
 
-  /* const handleSetClick = (set) => {
+  const handleSetClick = (set) => {
      navigateTo(`/sets/${set.id}`);
-  } */
+  } 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
       ["set_name", "set_id", "set_location"].some(
@@ -104,43 +102,44 @@ const [editedData, setEditedData] = useState({});
   useEffect(() => {
     fetchData();
   }, []);
-
-  const handleEdit = (index, item) => {
-    setEditingIndex(index);
-    setEditedData({ ...item });
-  };
-
-  const handleSave = async () => {
-    try {
-      const response = await fetch(`/api/instrumentSets/${editedData.set_id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editedData),
-      });
-      if (response.ok) {
-        // Update the data in your state or re-fetch the data
-        fetchData();
-        setEditingIndex(null);
-      } else {
-        const data = await response.json();
-        console.error("Error updating set:", data.error);
-      }
-    } catch (error) {
-      console.error("Error updating set:", error);
-    }
-  };
   
 
-  const handleDelete = async (setId) => {
+  // 
+  const handleEditFieldChange = (rowId, field, value) => {
+    // Update the edited data in the state
+    setEditedData((prevData) => ({
+      ...prevData,
+      [rowId]: {
+        ...prevData[rowId],
+        [field]: value,
+      },
+    }));
+  };
+
+  //This also seems to be working fine 
+  const toggleEditMode = (rowId) => {
+    if (editingRows.includes(rowId)) {
+      setEditingRows(editingRows.filter((id) => id !== rowId));
+    } else {
+      setEditingRows([...editingRows, rowId]);
+    }
+  };
+
+  // This function is working fine, I am able to delete set from the table and db
+  const handleDeleteClick = async (setId) => {
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this set?"
+    );
+    if (isConfirmed) {
     try {
       const response = await fetch(`/api/instrumentSets/${setId}`, {
         method: "DELETE",
       });
+  
       if (response.ok) {
-        // Update the data in your state or re-fetch the data
-        fetchData();
+
+        setSetData((prevData) => prevData.filter((item) => item.id !== setId));
+        navigate("/sets");
       } else {
         const data = await response.json();
         console.error("Error deleting set:", data.error);
@@ -148,9 +147,53 @@ const [editedData, setEditedData] = useState({});
     } catch (error) {
       console.error("Error deleting set:", error);
     }
+  }
   };
-  
-  
+
+
+  // This is where i am having some issues. I have created updatedData in order to
+ // update db with the new data. I am then inserting in the fetch ${editedItem.id} 
+  const updateSetOnServer = async (editedItem) => {
+    try {
+      const updatedData = {
+        setName: editedItem.set_name,
+        setId: editedItem.set_id,
+        setQuantity: editedItem.set_quantity,
+        setLocation: editedItem.set_location,
+      };
+
+      console.log(updatedData)  //It returns undefined data (emopty object)
+
+      const response = await fetch(`/api/instrumentSets/${editedItem.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData), //I am strinfying the updatedData 
+      });
+      setSetData([...setData, editedItem]);  //here i am adding new data to the exsisting array
+      if (response.ok) {
+        setIsEditing(false);
+        /*navigate("/sets");*/
+      } else {
+        console.error("Error updating set:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error updating set:", error);
+    }
+  };
+
+  const handleSave = async () => {
+    if (user?.role === "ADMIN") {
+      const response = await updateSetOnServer(setData);
+      if (response) {
+        console.log("Set updated successfully");
+        setIsEditing(false);
+      } else {
+        console.error("Error updating set:", response);
+      }
+    }
+  };
 
   return (
     <div div className={styles.setsListPageContainer}>
@@ -164,71 +207,47 @@ const [editedData, setEditedData] = useState({});
         onRowClick={handleSetClick}
   />*/}
       <div className={styles.tableContainer}>
-        <table>
-          <thead>
-            <tr>
-              {headers.map((header) => (
-                <th key={header.accessor}>{header.name}</th>
-              ))}
-              {isEditing && <th className="save">Save</th>}
-            </tr>
-          </thead>
-          <tbody>
-          {currentPosts.map((item, index) => (
-  <tr key={item.setId}>
-    {headers.map((header) => (
-      <td key={header.accessor}>
-        {editingIndex === index ? (
-          <input
-            type="text"
-            value={editedData[header.accessor]}
-            onChange={(e) =>
-              setEditedData({
-                ...editedData,
-                [header.accessor]: e.target.value,
-              })
-            }
-          />
-        ) : (
-          item[header.accessor]
-        )}
-      </td>
-    ))}
-    {editingIndex === index ? (
-      <td>
-        <button className={styles.saveButton} onClick={() => handleSave(item.setId)}>
-          Save
-        </button>
-        <button className={styles.deleteButton} onClick={() => handleDelete(item.setId)}>
-          Delete
-        </button>
-      </td>
-    ) : (
-      <td>
-        <button className={styles.editButton} onClick={() => handleEdit(index, item)}>
-          Edit
-        </button>
-        <button className={styles.deleteButton} onClick={() => handleDelete(item.setId)}>
-          Delete
-        </button>
-      </td>
-    )}
-  </tr>
-))}
-
-          </tbody>
-        </table>
-        {!isEditing && (
-          <button
-            className={styles.editButton}
-            onClick={() => {
-              setIsEditing(true);
-            }}
-          >
-            Edit
-          </button>
-        )}
-      </div>
+      <table>
+      <thead>
+        <tr>
+          {headers.map((header) => (
+            <th key={header.accessor}>{header.name}</th>
+          ))}
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {currentPosts.map((item) => (
+          <tr key={item.id}>
+            {headers.map((header) => (
+              <td key={header.accessor}>
+                {editingRows.includes(item.id) ? (
+                  <input
+                    type="text"
+                    value={editedData[item.id] ? editedData[item.id][header.accessor] : item[header.accessor]}
+                    onChange={(e) => handleEditFieldChange(item.id, header.accessor, e.target.value)}
+                  />
+                ) : (
+                  item[header.accessor]
+                )}
+              </td>
+            ))}
+            <td>
+              {editingRows.includes(item.id) ? (
+              <button onClick={() => handleSave(item.id)}>Save</button>
+              ) : (
+                <button onClick={() => toggleEditMode(item.id)}>Edit</button>
+              )}
+            </td>
+            <td>
+              <button onClick={() => handleDeleteClick(item.id)}>Delete</button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    </div>
 
       {setModalOpen && (
         <SetModal
