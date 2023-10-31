@@ -4,10 +4,11 @@ const SetModel = {
 
   //function to fetch the instruments that are associated with a particular set.
   async getInstrumentsInSet(setId) {
+    console.log(setId); 
     return query(
       "SELECT instruments.* FROM instruments " +
-        "INNER JOIN instruments_sets ON instruments.id = instruments_sets.instrument_id " +
-        "WHERE instruments_sets.set_id = ?",
+      "INNER JOIN instruments_sets ON instruments.id = instruments_sets.instrument_id " +
+      "WHERE instruments_sets.set_id = ?",
       [setId]
     );
   },

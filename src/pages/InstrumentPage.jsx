@@ -27,7 +27,7 @@ function InstrumentPage({ user }) {
         instrumentQuantity: newRow.instrument_quantity,
         instrumentLocation: newRow.instrument_location,
       };
-console.log( updatedData)
+
       const response = await fetch(`/api/singleInstruments/${newRow.id}`, {
         method: "PUT",
         headers: {
@@ -59,7 +59,7 @@ console.log( updatedData)
       }
     }
   };
-  
+
  //function to delete an instrument 
   const handleDelete = () => {
     const isConfirmed = window.confirm("Are you sure you want to delete this instrument?");

@@ -35,7 +35,7 @@ const UserController = {
   login: async (req, res) => {
     const { LoginUserName, LoginPassword } = req.body;
     req.session.user = null;
-    try {
+    try { 
       const user = await UserModel.getUserByUsername(LoginUserName);
 
       console.log("User:", user, LoginUserName);
@@ -64,6 +64,7 @@ const UserController = {
       res.status(500).json({ error: "Error during login" });
     }
   },
+  
 };
 
 module.exports = UserController;

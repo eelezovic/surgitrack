@@ -28,8 +28,16 @@ function SetsListPage({ user }) {
   const navigateTo = useNavigate();
 
   const handleSetClick = (set) => {
-     navigateTo(`/sets/${set.id}`);
-  } 
+    console.log( set);
+    navigateTo(`/sets/${set.id}`);
+  }
+
+  const handleItemClick = (item) => {
+    if (handleSetClick) {
+      handleSetClick(item);
+    }
+  };
+
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
       ["set_name", "set_id", "set_location"].some(
@@ -116,14 +124,21 @@ function SetsListPage({ user }) {
     }));
   };
 
-  //This also seems to be working fine 
+
   const toggleEditMode = (rowId) => {
     if (editingRows.includes(rowId)) {
       setEditingRows(editingRows.filter((id) => id !== rowId));
     } else {
+      // Populating editedItem with the data from the editing row
+      const itemToEdit = setData.find((item) => item.id === rowId);
+      setEditedData({
+        ...editedData,
+        [rowId]: { ...itemToEdit },
+      });
       setEditingRows([...editingRows, rowId]);
     }
   };
+  
 
   // This function is working fine, I am able to delete set from the table and db
   const handleDeleteClick = async (setId) => {
@@ -150,29 +165,39 @@ function SetsListPage({ user }) {
   }
   };
 
+ const updateSetOnServer = async (editedItem) => {
+  try {
+    const updatedData = {
+      setName: editedItem.set_name,
+      setId: editedItem.set_id,
+      setQuantity: editedItem.set_quantity,
+      setLocation: editedItem.set_location,
+    };
+      
 
-  // This is where i am having some issues. I have created updatedData in order to
- // update db with the new data. I am then inserting in the fetch ${editedItem.id} 
-  const updateSetOnServer = async (editedItem) => {
-    try {
-      const updatedData = {
-        setName: editedItem.set_name,
-        setId: editedItem.set_id,
-        setQuantity: editedItem.set_quantity,
-        setLocation: editedItem.set_location,
-      };
-
-      console.log(updatedData)  //It returns undefined data (emopty object)
+      console.log(updatedData)  
+      console.log(setData)
+      console.log(editedItem);
 
       const response = await fetch(`/api/instrumentSets/${editedItem.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedData), //I am strinfying the updatedData 
+        body: JSON.stringify(updatedData),
       });
-      setSetData([...setData, editedItem]);  //here i am adding new data to the exsisting array
+      //setSetData([...setData, editedItem]);  //here i am adding new data to the exsisting array
+
       if (response.ok) {
+        //finding the index f the edited item in the setData arry
+        const index = setData.findIndex((item) => item.id === editedItem.id);
+
+// I am here creating a new array with the updated item
+        const newData = [...setData];
+        newData[index] = editedItem;
+
+        setSetData(newData);
+
         setIsEditing(false);
         /*navigate("/sets");*/
       } else {
@@ -183,14 +208,18 @@ function SetsListPage({ user }) {
     }
   };
 
-  const handleSave = async () => {
+  const handleSave = async (setId) => {
     if (user?.role === "ADMIN") {
-      const response = await updateSetOnServer(setData);
-      if (response) {
-        console.log("Set updated successfully");
-        setIsEditing(false);
-      } else {
-        console.error("Error updating set:", response);
+      const editedItem = editedData[setId];
+  
+      if (editedItem) {
+        const response = await updateSetOnServer(editedItem);
+        if (response) {
+          console.log("Set updated successfully");
+          setIsEditing(false);
+        } else {
+          console.error("Error updating set:", response);
+        }
       }
     }
   };
@@ -219,7 +248,7 @@ function SetsListPage({ user }) {
       </thead>
       <tbody>
         {currentPosts.map((item) => (
-          <tr key={item.id}>
+          <tr key={item.id} onClick={() => { handleSetClick(item) }}>
             {headers.map((header) => (
               <td key={header.accessor}>
                 {editingRows.includes(item.id) ? (

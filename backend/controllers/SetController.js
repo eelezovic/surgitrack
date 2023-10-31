@@ -11,7 +11,6 @@ const SetController = {
       console.error("Error fetching instruments in the set:", error);
       res.status(500).json({error:" Error fetching instruments from the database"});
     }
-
   },
 
   addNewInstrumentToSet: async (req, res) => {
