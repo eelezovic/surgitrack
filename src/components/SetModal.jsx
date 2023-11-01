@@ -8,10 +8,10 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
       setId: "",
       setQuantity: "",
       setLocation: "",
+      setSpecialty: "Urology",
       id: "",
     }
   );
-defaultValue
   const modalRef = useRef();
 
   useEffect(() => {
@@ -40,7 +40,8 @@ defaultValue
       formState.setName &&
       formState.setId &&
       formState.setLocation &&
-      formState.setQuantity
+      formState.setQuantity &&
+      formState.setSpecialty
     ) {
       return true;
     } else {
@@ -59,9 +60,10 @@ defaultValue
           set_name: formState.setName,
           set_quantity: formState.setQuantity,
           set_location: formState.setLocation,
+          select_specialty: formState.setSpecialty,
         }
     onSubmit(updatedData );
-    closesetModal();
+    closeSetModal();
   };
 
   return (
@@ -100,6 +102,25 @@ defaultValue
               value={formState.setLocation}
               onChange={handleChange}
             />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="setSpecialty">Set
+            Specialty </label>
+            <select name="setSpecialty" value={formState.setSpecialty} onChange={handleChange}>
+              <option value="Urology">Urology</option>
+              <option value="Orthopedic">Orthopedic</option>
+              <option value="Plastics">Plastics</option>
+              <option value="General">General</option>
+              <option value="Gynecology">Gynecology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Obstetrics">Obstetrics</option>
+              <option value="Opthamology">Opthamology</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Vascular">Vascular</option>
+              <option value="Robotics">Robotics</option>
+              <option value="Thoracic">Thoracic</option>
+              <option value="Dental">Dental</option>
+            </select>
           </div>
           <button
             type="submit"

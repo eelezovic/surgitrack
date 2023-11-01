@@ -3,12 +3,10 @@ import styles from "./Navbar.module.css";
 import { Link} from "react-router-dom";
 import { BiSolidUser } from "react-icons/bi";
 import { FaBars } from "react-icons/fa";
-import { AiOutlineBars } from "react-icons/ai";
+import { AiOutlineBars} from "react-icons/ai";
 
 function Navbar({ user, toggleSideBar }) {
   const [isMobile, setIsMobile] = useState(false);
-
-
 
   return (
     <nav className={styles.navbar}>
@@ -26,9 +24,7 @@ function Navbar({ user, toggleSideBar }) {
         className={isMobile ? styles.navLinkMobile : styles.navLinks}
         onClick={() => setIsMobile(false)}
       >
-        <Link to="/" className={styles.home}>
-          Home
-        </Link>
+     
         {!user && (
           // Displaying this links when the user is not authenticated
           <>

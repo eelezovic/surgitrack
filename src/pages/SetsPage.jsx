@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 function SetsPage({ user }) {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [instruments, setInstruments] = useState([]); 
   const [newInstrumentData, setNewInstrumentData] = useState({
     instrumentName: "",
@@ -29,7 +30,6 @@ function SetsPage({ user }) {
       .then((data) => {
         console.log(data);
         setInstruments(data);
-        console.log(data);
       })
       .catch((error) => {
         console.error("Error fetching instruments:", error);

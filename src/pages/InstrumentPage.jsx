@@ -50,9 +50,10 @@ function InstrumentPage({ user }) {
 
   const handleSave = async () => {
     if (user?.role === "ADMIN") {
-      const response = await updateInstrumentOnServer(setData);
+      const response = await updateInstrumentOnServer(instrumentData);
       if (response.ok) {
         console.log("Instrument updated successfully");
+        navigate('/instruments');
         setIsEditing(false);
       } else {
         console.error("Error updating instrument:", response.statusText);

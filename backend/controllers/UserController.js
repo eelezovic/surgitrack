@@ -65,6 +65,10 @@ const UserController = {
     }
   },
   
+  logout: (req, res) => {
+    req.session.user = null;
+    res.json({ message: "Logout successful" });
+  },
 };
 
 module.exports = UserController;

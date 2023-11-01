@@ -17,7 +17,6 @@ const InstrumentSetComponent = ({ user }) => {
   ];
 
   const canPerformActions = user?.role === "ADMIN";
-
   const [selected, setSelected] = useState("Select specialty");
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);

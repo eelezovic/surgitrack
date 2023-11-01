@@ -1,15 +1,81 @@
 .setsListPageContainer{
   width: 100%;
-  height: 100vh;
+  min-height: 80vh;
   display: flex;
-  flex-direction:column;
-  justify-content: flex-start;
+  flex-direction: row;
+
+}
+
+.dropDown {
+  display: flex;
+
+  margin-top: 2%;
+  flex-direction: column;
   align-items: center;
 }
 
+.mainContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContainer tr {
+  width: 200px;
+}
+
+.tableContainer{
+  width: 90%;
+
+}
+
+.tableContainer table {
+  width: 100%;
+  height: 100%;
+}
+
+.saveButton {
+  display: flex;
+  border: none;
+  background-color: #39559e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
+}
+
+.saveButton:hover {
+  background-color: #87de55;
+}
+
+.editButton, .deleteButton {
+  display: flex;
+  margin: 0.3rem;
+  border: none;
+  background-color: #39559e;
+  color: white;
+  padding: 0.5rem 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px #ccc;
+}
+
+.deleteButton:hover {
+  background-color: #ef6060;
+}
+
+.editButton:hover {
+  background-color: #819ee5;
+}
+
+
 .addButton {
   display: flex;
-  margin: 0.5rem;
+  margin: 1rem;
   border: none;
   background-color: #39559e;
   color: white;
@@ -25,10 +91,21 @@
 
 
 @media only screen and (max-width: 600px){
-  .singleInstrumentContainer {
-    display: flex;
+  .setsListPageContainer {
     width: 100%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
     justify-content:flex-start;
+  }
+  .mainContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .dropDown {
+    display: flex;
+    align-items: center;
   }
 }

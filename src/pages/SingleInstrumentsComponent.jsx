@@ -181,3 +181,20 @@ function SingleInstrumentsComponent({ user }) {
 }
 
 export default SingleInstrumentsComponent;
+
+
+<button
+className={styles.editButton}
+onClick={() => toggleEditMode(item.id)}
+>
+Edit
+</button>
+
+{canPerformActions ? (
+  <button
+  className={styles.saveButton}
+  onClick={() => handleSave(item.id)}
+>
+  Save
+</button>
+) : null}

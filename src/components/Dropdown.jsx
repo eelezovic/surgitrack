@@ -36,6 +36,7 @@ function Dropdown({ selected, setSelected}) {
   }, [dropdownRef]);
 
   return (
+    <div className={styles.dropdownContainer} >
     <div className={styles.dropdown} ref={dropdownRef}>
       <div
         className={styles.dropdownButton}
@@ -63,6 +64,7 @@ function Dropdown({ selected, setSelected}) {
         </div>
       )}
     </div>
+    </div> 
   );
 }
 

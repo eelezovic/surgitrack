@@ -24,13 +24,26 @@ function SideBar({ user, signout, sideBar, toggleSideBar, closeSideBar }) {
   }, [closeSideBar]);
   
 
+const handleLogout = async () => {
+  try {
+    const response = await fetch("/api/logout", {
+      method: "POST",
+    });
 
-  const handleLogout = () => {
-    document.cookie = "userId=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    document.cookie = "username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    signout();
-    navigate("/");
-  };
+    if (response.ok) {
+      // Successful logout on the server side
+      // Clearing cookies and navigate if needed
+      document.cookie = "userId=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+      document.cookie = "username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+      signout();
+      navigate("/");
+    } else {
+      console.error("Logout failed");
+    }
+  } catch (error) {
+    console.error("Error during logout:", error);
+  }
+};
 
   const handleLinkClick = () => {
     toggleSideBar(); 
