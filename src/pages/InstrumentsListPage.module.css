@@ -1,6 +1,9 @@
 .instrumentsListPageContainer{
   width: 100%;
   min-height: 80vh;
+  background-image: url('/images/background.jpg'); 
+  background-size: cover;
+  background-repeat: no-repeat; 
 }
 
 .instrumentWrapper {
@@ -15,6 +18,9 @@
  width: 50%;
  height: 100%;
  margin-bottom: 10px;
+ background-color: aliceblue;
+ border: 1px solid rgb(191, 199, 207);
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .instrumentWrapper th {

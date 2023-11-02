@@ -1,14 +1,14 @@
 .dropdownContainer {
   display: flex;
   width: 100%;
-  height: 100%;
 }
 
 .dropdown {
-  display: block;
-  width: 250px;
-  margin-left: 10px;
-  margin-top: 50px;
+ 
+  width: 60.5%;
+  align-items: center;
+  /*margin-left: 10px;
+  margin-top: 50px;*/
 }
 
 .dropdown .dropdownButton {
@@ -22,15 +22,17 @@
   cursor: pointer;
   justify-content: space-between;
   font-size: 1.2rem;
+  
 }
 
 .dropdownContent {
-  left: 0;
+  position: absolute;
+  display: flex;
   background: #fff;
   box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   font-weight: 500;
   color: #5774ba;
-  width: 100%;
+  width: 17%;
   height: 350px;
   overflow-y: scroll;
   font-size: 1.2rem;
@@ -49,11 +51,15 @@
 }
 
 @media only screen and (max-width: 600px){
+  .dropdownContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
   .dropdown {
-    display: block;
-    justify-content: center;
-    width: 50%;
-    height: 1vh;
+   position: absolute;
+   margin-top: 2.5%;
+    width: 38%;
     user-select: text;
     color: #20325e;
     z-index: 9999;
@@ -68,7 +74,10 @@
     cursor: pointer;
   }
   .dropdownContent {
-    font-size: 1.3rem;
-    color: #5774ba;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    overflow-y: scroll;
+    font-size: 1.2rem;
   }
 }

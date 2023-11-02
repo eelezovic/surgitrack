@@ -226,11 +226,12 @@ function SetsListPage({ user }) {
 
   return (
     <div div className={styles.setsListPageContainer}>
-      <div className={styles.dropDown}>
-        <Dropdown selected={selected} setSelected={handleDropdownSelect} />
-      </div>
+
       <div className={styles.mainContainer}>
+      <div className={styles.innerContainer}>
         <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
+         <Dropdown selected={selected} setSelected={handleDropdownSelect} />
+      </div>
         <div className={styles.tableContainer}>
           <table>
             <thead>
