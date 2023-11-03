@@ -62,7 +62,6 @@
     width: 38%;
     user-select: text;
     color: #20325e;
-    z-index: 9999;
   }
   .dropdownButton {
     background: #fff;

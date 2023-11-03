@@ -17,7 +17,7 @@
 }
 
 .pageItem a {
-  color:#5774ba;
+  color:#39559e;
   float: left;
   padding: 6px 12px; 
 }
@@ -27,11 +27,12 @@
 }
 
 .pagination a:hover {
-  background-color: #ddd;
+  background-color: #819ee5;
+  color: white;
 }
 
 .active {
-  background-color: #c3c6ca;
+  background-color: whitesmoke;
   color: #fff;
   margin: 4px;
 }
@@ -40,7 +41,7 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
-  color: #333;
+  color: #39559e;
   cursor: pointer;
   font-size: 14px;
   margin-right: 10px;
@@ -75,14 +76,14 @@
     border-radius: 5px;
     color: #848484;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-right: 4px;
     padding: 0 2px;
     transition: all 0.3s ease;
   }
   .pageItem a {
     color:#5774ba;
-    font-size: 0.8rem;
+    font-size: 1.5rem;
   }
 
   .active {

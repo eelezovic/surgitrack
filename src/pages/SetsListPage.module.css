@@ -3,9 +3,10 @@
   height: 90vh;
   display: flex;
   flex-direction: row;
-  background-image: url('/images/background.jpg'); 
+  background-color: aliceblue;
+  /*background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/images/background.jpg');
   background-size: cover;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;*/
 }
 
 .innerContainer {
