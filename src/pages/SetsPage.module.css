@@ -68,7 +68,7 @@
   background-color: #87de55;
 }
 
-.editButton, .deleteButton {
+.editButton, .deleteButton, .addButton {
   display: flex;
   margin: 0.5rem;
   border: none;
@@ -89,7 +89,7 @@
 }
 
 .addButton:hover {
-  background-color: #0056b3;
+  background-color: #819ee5;
 }
 
 .instrumentsHeader {

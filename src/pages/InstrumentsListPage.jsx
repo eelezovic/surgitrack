@@ -5,6 +5,7 @@ import Table from "../components/Table";
 import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
 import InstrumentModal from "../components/InstrumentModal";
+import InstrumentSearchModal from "../components/InstrumentSearchModal";
 
 function InstrumentsListPage({ user }) {
   const headers = [
@@ -20,8 +21,12 @@ function InstrumentsListPage({ user }) {
   const [setData, setSetData] = useState([]);
   const [instrumentModalOpen, setInstrumentModalOpen] = useState(false);
   const navigateTo = useNavigate();
-
   const [newInstrumentData, setNewInstrumentData] = useState({});
+
+  const [searchData, setSearchData] = useState([]);
+
+
+  console.log(setData)
 
   const handleInstrumentClick = (instrument) => {
     navigateTo(`/instruments/${instrument.id}`);
@@ -95,6 +100,7 @@ function InstrumentsListPage({ user }) {
       .then((data) => {
         console.log(data);
         setSetData(data);
+        setSearchData(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
@@ -128,6 +134,7 @@ function InstrumentsListPage({ user }) {
           ))}
         </tbody>
       </table>
+      <InstrumentSearchModal searchData={searchData} />
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={allPosts.length}
@@ -158,6 +165,8 @@ function InstrumentsListPage({ user }) {
           Add New Instrument
         </button>
       )}
+
+
       </div>
     </div>
   );

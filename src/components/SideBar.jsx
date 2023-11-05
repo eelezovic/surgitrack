@@ -10,7 +10,6 @@ function SideBar({ user, signout, sideBar, toggleSideBar, closeSideBar }) {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      console.log("Clicked outside the sidebar.");
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
         closeSideBar();
       }

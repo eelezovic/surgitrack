@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "../pages/SetsListPage.module.css";
 import Dropdown from "../components/Dropdown";
-import Table from "../components/Table";
 import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
 import SetModal from "../components/SetModal";
+
 function SetsListPage({ user }) {
   const headers = [
     { name: "Set Name", accessor: "set_name" },
@@ -226,12 +226,11 @@ function SetsListPage({ user }) {
 
   return (
     <div div className={styles.setsListPageContainer}>
-
       <div className={styles.mainContainer}>
-      <div className={styles.innerContainer}>
-        <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
-         <Dropdown selected={selected} setSelected={handleDropdownSelect} />
-      </div>
+        <div className={styles.innerContainer}>
+          <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
+          <Dropdown selected={selected} setSelected={handleDropdownSelect} />
+        </div>
         <div className={styles.tableContainer}>
           <table>
             <thead>
