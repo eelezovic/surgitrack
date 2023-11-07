@@ -3,17 +3,27 @@ import styles from "../components/InstrumentSearchModal.module.css";
 import SearchBar from "../components/SearchBar";
 
 function InstrumentSearchModal({
-  searchData,
   closeModal,
   onInstrumentSelect,
 }) {
   const [query, setQuery] = useState("");
+  const [searchData, setSearchData] = useState()
   const [searchResults, setSearchResults] = useState([]);
   const [selectedInstrument, setSelectedInstrument] = useState(null);
 
+  const fetchData = () => {
+    fetch("/api/singleInstruments")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+         setSearchData(data);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  };
+
   useEffect(() => {
-    console.log("searchData:", searchData);
-  }, [searchData]);
+    fetchData();
+  }, []);
 
   const handleSearch = () => {
     if (searchData) {
@@ -59,7 +69,7 @@ function InstrumentSearchModal({
               </tr>
             </thead>
             <tbody>
-              {searchResults.map((instrument) => (
+              {searchResults.slice(0,3).map((instrument) => (
                 <tr key={instrument.id} onClick={() => handleInstrumentClick(instrument)}>
                   <td>{instrument.instrument_name}</td>
                   <td>{instrument.instrument_id}</td>

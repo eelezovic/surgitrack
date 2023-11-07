@@ -75,7 +75,7 @@ function SetsListPage({ user }) {
         setLocation: newRow.set_location,
         setSpecialty: newRow.select_specialty,
       };
-      console.log(newSetData);
+      
       const response = await fetch("/api/instrumentSets", {
         method: "POST",
         headers: {
@@ -91,7 +91,6 @@ function SetsListPage({ user }) {
         fetchData();
         setSetModalOpen(false);
 
-        // Clear the form fields if needed
         setNewSetData({
           set_name: "",
           set_id: "",
@@ -135,7 +134,7 @@ function SetsListPage({ user }) {
     if (editingRows.includes(rowId)) {
       setEditingRows(editingRows.filter((id) => id !== rowId));
     } else {
-      // Populating editedItem with the data from the editing row
+
       const itemToEdit = setData.find((item) => item.id === rowId);
       setEditedData({
         ...editedData,

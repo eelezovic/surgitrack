@@ -64,7 +64,6 @@ function SetsPage({ user }) {
   };
   
 
-
   // fetching instruments related to the set
   useEffect(() => {
     console.log(id);

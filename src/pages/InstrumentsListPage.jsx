@@ -23,10 +23,10 @@ function InstrumentsListPage({ user }) {
   const navigateTo = useNavigate();
   const [newInstrumentData, setNewInstrumentData] = useState({});
 
-  const [searchData, setSearchData] = useState([]);
 
 
-  console.log(setData)
+
+  console.log(setData);
 
   const handleInstrumentClick = (instrument) => {
     navigateTo(`/instruments/${instrument.id}`);
@@ -100,7 +100,6 @@ function InstrumentsListPage({ user }) {
       .then((data) => {
         console.log(data);
         setSetData(data);
-        setSearchData(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
@@ -134,7 +133,7 @@ function InstrumentsListPage({ user }) {
           ))}
         </tbody>
       </table>
-      <InstrumentSearchModal searchData={searchData} />
+
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={allPosts.length}
