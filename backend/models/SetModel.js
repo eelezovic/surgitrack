@@ -13,8 +13,15 @@ const SetModel = {
     );
   },
 
+  //funnction to add existing instrument to set
+  async attachInstrumentToSet(setId, instrumentId) {
+    const result = await query("INSERT INTO instruments_sets (set_id, instrument_id) VALUES (?, ?)", [setId, instrumentId]);
+    return result.insertId;
+  },
+  
+
 //funnction to add new instrument to set
-  async addNewInstrumentToSet(setId, newInstrumentData) {
+  /*async attachNewInstrumentToSet(setId, newInstrumentData) {
     const { instrumentName, instrumentId, instrumentQuantity, instrumentLocation } = newInstrumentData;
     const result = await query(
       "INSERT INTO instruments (instrument_name, instrument_id, instrument_quantity, instrument_location) VALUES (?, ?, ?, ?)",
@@ -27,7 +34,7 @@ const SetModel = {
     await query("INSERT INTO instruments_sets (set_id, instrument_id) VALUES (?, ?)", [setId, newInstrumentId]);
   
     return newInstrumentId;
-  },
+  },*/
 
 
   // function to delete an instrument from the set

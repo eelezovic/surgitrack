@@ -14,7 +14,7 @@
 
 .header {
   display: flex;
-  margin: 20px;
+  padding: 20px;
   justify-content: center;
   font-weight: bold;
   font-size: 2rem;

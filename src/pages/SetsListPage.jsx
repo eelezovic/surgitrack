@@ -32,12 +32,6 @@ function SetsListPage({ user }) {
     navigateTo(`/sets/${set.id}`);
   };
 
-  const handleItemClick = (item) => {
-    if (handleSetClick) {
-      handleSetClick(item);
-    }
-  };
-
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
       ["set_name", "set_id", "set_location"].some(
@@ -75,7 +69,7 @@ function SetsListPage({ user }) {
         setLocation: newRow.set_location,
         setSpecialty: newRow.select_specialty,
       };
-      
+
       const response = await fetch("/api/instrumentSets", {
         method: "POST",
         headers: {
@@ -148,6 +142,7 @@ function SetsListPage({ user }) {
     const isConfirmed = window.confirm(
       "Are you sure you want to delete this set?"
     );
+    
     if (isConfirmed) {
       try {
         const response = await fetch(`/api/instrumentSets/${setId}`, {

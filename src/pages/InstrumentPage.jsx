@@ -98,8 +98,8 @@ function InstrumentPage({ user }) {
 
   return (
     <div className={styles.tableWrapper}>
-      <h2 className={styles.header}>Instrument Details</h2>
       <div className={styles.tableContainer}>
+      <h2 className={styles.header}>Instrument Details</h2>
         <table className={styles.table}>
           <thead>
             <tr>

@@ -12,28 +12,28 @@ const SetController = {
       res.status(500).json({error:" Error fetching instruments from the database"});
     }
   },
-
-  addNewInstrumentToSet: async (req, res) => {
+ 
+  //attach an existing instrument to a set
+  attachInstrumentToSet: async (req, res) => {
     const { setId } = req.params;
-    console.log( setId); 
-     const newInstrumentData = req.body;
-    console.log( newInstrumentData);
+    const { instrumentId } = req.body;
     const currentUser = req.session.user;
-  
+
+
     if (currentUser.role !== "ADMIN") {
-      return res.status(403).json({ error: "Only Admin can add new instruments to a set." });
+      return res.status(403).json({ error: "Only Admin can attach existing instruments to a set." });
     }
-  
+
     try {
-      const newInstrumentId = await SetModel.addNewInstrumentToSet(setId, newInstrumentData);
-      res.json({ message: "New instrument added to the set successfully", newInstrumentId });
+      const result = await SetModel.attachInstrumentToSet(setId, instrumentId);
+
+      res.json({ message: "Existing instrument attached to the set successfully", result });
     } catch (error) {
-      console.error("Error adding new instrument to the set:", error);
-      res.status(500).json({ error: "Error adding new instrument to the set in the database" });
+      console.error("Error attaching existing instrument to the set:", error);
+      res.status(500).json({ error: "Error attaching existing instrument to the set in the database" });
     }
   },
-  
-  
+
   deleteInstrumentFromSetById: async(req, res) => {
     const setId = req.params.setId;
     const instrumentId = req.params.instrumentId;

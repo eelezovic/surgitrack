@@ -1,21 +1,24 @@
 .searchModalContainer {
-  width: 50%;
-  height: 50%;
-  border: 1px solid grey;
-  position: fixed;
-  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position:absolute;
+  z-index: 10;
   background-color: white;
+  background-color: rgba(0, 0, 0 ,0.4);
 } 
 
 .searchModalWrapper {
   border-radius: 5px;
-
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 60%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  background-color: white;
 }
 
 .searchModalWrapper h2 {
@@ -25,12 +28,12 @@
   text-decoration: underline;
 }
 
-.buttons {
+.searchModalWrapper .buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
- width: 30%;
- margin-top: 50px;
+  width: 30%;
+  margin-top: 50px;
 }
 
  .saveButton, .closeModalButton {

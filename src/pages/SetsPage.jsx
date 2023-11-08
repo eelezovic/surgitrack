@@ -8,15 +8,9 @@ function SetsPage({ user }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
-
   const [instrumentSearchModal, setInstrumentSearchModal] = useState(false);
   const [instruments, setInstruments] = useState([]);
-  const [newInstrumentData, setNewInstrumentData] = useState({
-    instrumentName: "",
-    instrumentId: "",
-    instrumentQuantity: "",
-    instrumentLocation: "",
-  });
+
 
   const openSearchInstrumentModal = () => {
     setInstrumentSearchModal(true);
@@ -24,45 +18,34 @@ function SetsPage({ user }) {
 
   const handleSearchInstrumentSelect = async (instrument) => {
     try {
-      const instrumentData = {
-        instrumentName: instrument.instrument_name,
-        instrumentId: instrument.instrument_id,
-        instrumentQuantity: instrument.instrument_quantity,
-        instrumentLocation: instrument.instrument_location,
-      };
-  
-      const response = await fetch(`/api/instrumentSets/${id}/addNewInstrument`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(instrumentData),
-      });
-  
-      if (response.ok) {
+      const response = await fetch(
+        `/api/instrumentSets/${id}/attachExistingInstrument`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            instrumentId: instrument.id,
+          }),
+        }
+      );
 
+      if (response.ok) {
         setInstruments([...instruments, instrument]);
-  
-        // Reset the newInstrumentData state
-        setNewInstrumentData({
-          instrumentName: "",
-          instrumentId: "",
-          instrumentQuantity: "",
-          instrumentLocation: "",
-        });
+
         // Fetching the updated list of instruments in the set
-        fetchInstruments(); 
-  
+        fetchInstruments();
+
         setInstrumentSearchModal(false);
       } else {
         const data = await response.json();
-        console.error("Error adding instrument to set:", data.error);
+        console.error("Error attaching existing instrument to set:", data.error);
       }
     } catch (error) {
-      console.error("Error adding instrument to set:", error);
+      console.error("Error attaching existing instrument to set:", error);
     }
   };
-  
 
   // fetching instruments related to the set
   useEffect(() => {
@@ -85,68 +68,40 @@ function SetsPage({ user }) {
 
   //Function to delete an instrumenent from the Set
   const handleDeleteInstrument = async (instrumentId) => {
-    console.log(instrumentId);
-    console.log(id);
-    try {
-      const response = await fetch(
-        `/api/instrumentSets/${instrumentId}/deleteInstrument/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this instrument from the set?"
+    );
 
-      if (response.ok) {
-        console.log("Instrument deleted from the set successfully");
-      } else {
-        console.error(
-          "Error deleting instrument from the set:",
-          response.statusText
+    if (isConfirmed) {
+      try {
+        const response = await fetch(
+          `/api/instrumentSets/${instrumentId}/deleteInstrument/${id}`,
+          {
+            method: "DELETE",
+          }
         );
-      }
-    } catch (error) {
-      console.error("Error deleting instrument from the set:", error);
-    }
-  };
 
-  //function to add a new instrument to set
-  const handleAddInstrument = async () => {
-    console.log(newInstrumentData);
-    try {
-      const response = await fetch(
-        `/api/instrumentSets/${id}/addNewInstrument`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newInstrumentData),
+        if (response.ok) {
+          setInstruments(prevInstruments =>
+            prevInstruments.filter(instrument => instrument.id !== instrumentId)
+          );
+          console.log("Instrument deleted from the set successfully");
+        } else {
+          console.error(
+            "Error deleting instrument from the set:",
+            response.statusText
+          );
         }
-      );
-
-      if (response.ok) {
-        fetchInstruments();
-
-        setNewInstrumentData({
-          instrumentName: "",
-          instrumentId: "",
-          instrumentQuantity: "",
-          instrumentLocation: "",
-        });
-      } else {
-        console.error(
-          "Error adding instrument to the set:",
-          response.statusText
-        );
+      } catch (error) {
+        console.error("Error deleting instrument from the set:", error);
       }
-    } catch (error) {
-      console.error("Error adding instrument to the set:", error);
     }
   };
 
   return (
     <div className={styles.setWrapper}>
-      <div className={styles.header}>Instrument List</div>
       <div className={styles.tableContainer}>
+        <div className={styles.header}>Instrument List</div>
         <table className={styles.instrumentsTable}>
           <thead>
             <tr>
@@ -174,86 +129,24 @@ function SetsPage({ user }) {
                 </td>
               </tr>
             ))}
-            <tr className={styles.instrumentItem}>
-              <td>
-                <input
-                  type="text"
-                  value={newInstrumentData.instrumentName}
-                  onChange={(e) =>
-                    setNewInstrumentData({
-                      ...newInstrumentData,
-                      instrumentName: e.target.value,
-                    })
-                  }
-                  placeholder="Instrument Name"
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={newInstrumentData.instrumentId}
-                  onChange={(e) =>
-                    setNewInstrumentData({
-                      ...newInstrumentData,
-                      instrumentId: e.target.value,
-                    })
-                  }
-                  placeholder="Instrument ID"
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  value={newInstrumentData.instrumentQuantity}
-                  onChange={(e) =>
-                    setNewInstrumentData({
-                      ...newInstrumentData,
-                      instrumentQuantity: e.target.value,
-                    })
-                  }
-                  placeholder="Quantity"
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={newInstrumentData.instrumentLocation}
-                  onChange={(e) =>
-                    setNewInstrumentData({
-                      ...newInstrumentData,
-                      instrumentLocation: e.target.value,
-                    })
-                  }
-                  placeholder="Location"
-                />
-              </td>
-              <td>
-                <button
-                  className={styles.addInstrumentBtn}
-                  onClick={handleAddInstrument}
-                >
-                  Add Instrument
-                </button>
-              </td>
-            </tr>
           </tbody>
         </table>
-       
-         {user?.role === "ADMIN" && (
-              <button
-              className={styles.addButton}
-              onClick={openSearchInstrumentModal}
-            >
-              Add Instrument
-            </button>
-          )}
-          {instrumentSearchModal && (
-        <InstrumentSearchModal
-        closeModal={() => {
-          setInstrumentSearchModal(false);
-        }}
-        onInstrumentSelect={handleSearchInstrumentSelect}
-      />
+
+        {user?.role === "ADMIN" && (
+          <button
+            className={styles.addButton}
+            onClick={openSearchInstrumentModal}
+          >
+            Add Instrument
+          </button>
+        )}
+        {instrumentSearchModal && (
+          <InstrumentSearchModal
+            closeModal={() => {
+              setInstrumentSearchModal(false);
+            }}
+            onInstrumentSelect={handleSearchInstrumentSelect}
+          />
         )}
       </div>
     </div>

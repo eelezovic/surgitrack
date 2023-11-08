@@ -11,7 +11,7 @@ function InstrumentModal({ closeInstrumentModal, onSubmit, defaultValue }) {
       id: "",
     }
   );
-defaultValue
+
   const modalRef = useRef();
 
   useEffect(() => {
