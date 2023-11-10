@@ -23,17 +23,12 @@ function InstrumentsListPage({ user }) {
   const navigateTo = useNavigate();
   const [newInstrumentData, setNewInstrumentData] = useState({});
 
-
-
-
-  console.log(setData);
-
   const handleInstrumentClick = (instrument) => {
     navigateTo(`/instruments/${instrument.id}`);
   };
 
   const handleItemClick = (item) => {
-    if (handleInstrumentClick ) {
+    if (handleInstrumentClick) {
       handleInstrumentClick(item);
     }
   };
@@ -55,13 +50,16 @@ function InstrumentsListPage({ user }) {
 
   const handleSubmit = async (newRow) => {
     try {
+    
       const newInstrumentData = {
         instrumentName: newRow.instrument_name,
         instrumentId: newRow.instrument_id,
         instrumentQuantity: newRow.instrument_quantity,
         instrumentLocation: newRow.instrument_location,
+        instrumentImage: newRow.instrument_image, 
       };
-      console.log(newInstrumentData);
+  
+
       const response = await fetch("/api/singleInstruments", {
         method: "POST",
         headers: {
@@ -83,6 +81,7 @@ function InstrumentsListPage({ user }) {
           instrument_id: "",
           instrument_quantity: "",
           instrument_location: "",
+          instrumentImage: "",
         });
       } else {
         const data = await response.json();
@@ -98,7 +97,7 @@ function InstrumentsListPage({ user }) {
     fetch("/api/singleInstruments")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+
         setSetData(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
@@ -111,64 +110,78 @@ function InstrumentsListPage({ user }) {
   return (
     <div className={styles.instrumentsListPageContainer}>
       <div className={styles.instrumentWrapper}>
-      <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
-      <table>
-        <thead>
-        <tr>
-          {headers.map((header) => (
-            <th key={header.accessor}>{header.name}</th>
-          ))}
-        </tr>
-      </thead>
-        <tbody>
-          {currentPosts.map((item) => (
-            <tr key={item.id} onClick={() => {
-              handleItemClick(item);
-              handleInstrumentClick(item);
-            }}>
+        <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
+        <table>
+          <thead>
+            <tr>
               {headers.map((header) => (
-                <td key={header.accessor}>{item[header.accessor]}</td>
+                <th key={header.accessor}>{header.name}</th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+  {currentPosts.map((item) => (
+    <tr
+      key={item.id}
+      onClick={() => {
+        handleItemClick(item);
+        handleInstrumentClick(item);
+      }}
+    >
+      {headers.map((header) => (
+        <td key={header.accessor}>
+          {header.accessor === "instrumentImage" ? (
+            <img
+              src={item[header.accessor]} // Assuming item["instrumentImage"] contains the image URL
+              alt="Instrument Image"
+              style={{ maxWidth: "50px", maxHeight: "50px" }} // Adjust size as needed
+            />
+          ) : (
+            item[header.accessor]
+          )}
+        </td>
+      ))}
+    </tr>
+  ))}
+</tbody>
+        </table>
 
-      <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={allPosts.length}
-        paginate={handlePagination}
-        currentPage={currentPage}
-      />
-      {instrumentModalOpen && (
-        <InstrumentModal
-          closeInstrumentModal={() => {
-            setInstrumentModalOpen(false);
-          }}
-          onSubmit={handleSubmit}
-          defaultValue={{
-            setName: newInstrumentData.instrument_name,
-            setId: newInstrumentData.instrument_id,
-            setQuantity: newInstrumentData.instrument_quantity,
-            setLocation: newInstrumentData.instrument_location,
-            id: newInstrumentData.id,
-          }}
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={allPosts.length}
+          paginate={handlePagination}
+          currentPage={currentPage}
         />
-      )}
+        {instrumentModalOpen && (
+          <InstrumentModal
+            closeInstrumentModal={() => {
+              setInstrumentModalOpen(false);
+            }}
+            onSubmit={handleSubmit}
+            defaultValue={{
+              setName: newInstrumentData.instrument_name,
+              setId: newInstrumentData.instrument_id,
+              setQuantity: newInstrumentData.instrument_quantity,
+              setLocation: newInstrumentData.instrument_location,
+              setImage: newInstrumentData.instrumentImage, 
+              id: newInstrumentData.id,
+            }}
+          />
+        )}
 
-      {user?.role === "ADMIN" && (
-        <button
-          className={styles.addButton}
-          onClick={() => setInstrumentModalOpen(true)}
-        >
-          Add New Instrument
-        </button>
-      )}
-
-
+        {user?.role === "ADMIN" && (
+          <button
+            className={styles.addButton}
+            onClick={() => setInstrumentModalOpen(true)}
+          >
+            Add New Instrument
+          </button>
+        )}
       </div>
     </div>
   );
 }
 
 export default InstrumentsListPage;
+
+

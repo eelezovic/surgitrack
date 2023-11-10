@@ -8,11 +8,13 @@ function InstrumentModal({ closeInstrumentModal, onSubmit, defaultValue }) {
       instrumentId: "",
       instrumentQuantity: "",
       instrumentLocation: "",
+      instrumentImage: "",
       id: "",
     }
   );
 
   const modalRef = useRef();
+  const imageInputRef = useRef();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -35,12 +37,28 @@ function InstrumentModal({ closeInstrumentModal, onSubmit, defaultValue }) {
     });
   };
 
+  const handleImageChange = (e) => {
+    const imageFile = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const base64Image = reader.result;
+      setFormState({
+        ...formState,
+        instrumentImage: base64Image,
+      });
+    };
+
+    reader.readAsDataURL(imageFile);
+  };
+
   const validateForm = () => {
     if (
       formState.instrumentName &&
       formState.instrumentId &&
       formState.instrumentLocation &&
-      formState.instrumentQuantity
+      formState.instrumentQuantity 
+
     ) {
       return true;
     } else {
@@ -59,7 +77,10 @@ function InstrumentModal({ closeInstrumentModal, onSubmit, defaultValue }) {
           instrument_name: formState.instrumentName,
           instrument_quantity: formState.instrumentQuantity,
           instrument_location: formState.instrumentLocation,
-        }
+          instrument_image: formState.instrumentImage,
+        };
+
+        console.log(updatedData);
     onSubmit(updatedData );
     closeInstrumentModal();
   };
@@ -101,6 +122,16 @@ function InstrumentModal({ closeInstrumentModal, onSubmit, defaultValue }) {
               onChange={handleChange}
             />
           </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="instrumentImage">Instrument Image</label>
+            <input
+              ref={imageInputRef}
+              type="file"
+              accept="image/*"
+              name="instrumentImage"
+              onChange={handleImageChange}
+            />
+          </div>
           <button
             type="submit"
             className={styles.button}
@@ -115,3 +146,4 @@ function InstrumentModal({ closeInstrumentModal, onSubmit, defaultValue }) {
 }
 
 export default InstrumentModal;
+

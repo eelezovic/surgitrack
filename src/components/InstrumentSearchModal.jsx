@@ -85,7 +85,7 @@ function InstrumentSearchModal({
             </tr>
           </thead>
           <tbody>
-            {searchResults.length === 0 ? ( // Check if searchResults is empty
+            {searchResults.length === 0 ? ( 
               <tr>
                 <td colSpan="4">Search for instrument in the search bar...</td>
               </tr>

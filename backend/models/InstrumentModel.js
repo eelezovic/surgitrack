@@ -10,17 +10,18 @@ const InstrumentModel = {
  },
  
 
- 
   async addInstrument(instrumentData) {
     const {
       instrumentName,
       instrumentId,
       instrumentQuantity,
       instrumentLocation,
+      instrumentImage,
     } = instrumentData;
+
     return query(
-      "INSERT INTO instruments (instrument_name, instrument_id, instrument_quantity, instrument_location) VALUES (?, ?, ?, ?)",
-      [instrumentName, instrumentId, instrumentQuantity, instrumentLocation]
+      "INSERT INTO instruments (instrument_name, instrument_id, instrument_quantity, instrument_location, instrument_image) VALUES (?, ?, ?, ?, ?)",
+      [instrumentName, instrumentId, instrumentQuantity, instrumentLocation, instrumentImage]
     );
   },
 
@@ -30,14 +31,17 @@ const InstrumentModel = {
       instrumentId,
       instrumentQuantity,
       instrumentLocation,
+      instrumentImage,
     } = updatedData;
+    
     return query(
-      "UPDATE instruments SET instrument_name = ?, instrument_id = ?, instrument_quantity = ?, instrument_location = ? WHERE id = ?",
+      "UPDATE instruments SET instrument_name = ?, instrument_id = ?, instrument_quantity = ?, instrument_location = ?, instrument_image = ? WHERE id = ?",
       [
         instrumentName,
         instrumentId,
         instrumentQuantity,
         instrumentLocation,
+        instrumentImage,
         instrumentIdToUpdate,
       ]
     );

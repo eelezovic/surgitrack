@@ -31,9 +31,22 @@ const InstrumentController = {
     if (currentUser.role !== "ADMIN") {
       return res.status(403).json({error: "Only Admin can add instruments."});
     }
-    console.log(currentUser.role);
+
     try {
-      await InstrumentModel.addInstrument(instrumentData,currentUser.id);
+
+      const instrumentImage = req.file ? req.file.path : null; 
+
+       console.log( instrumentData);
+    console.log( instrumentImage);
+
+      const dataWithImage = {
+        ...instrumentData,
+        instrumentImage,
+      };
+
+      console.log( dataWithImage);
+
+      await InstrumentModel.addInstrument(dataWithImage);
       res.json({ message: "New instrument added successfully" });
     } catch (error) {
       console.error("Error adding instrument:", error);
@@ -54,6 +67,7 @@ const InstrumentController = {
     try {
       await InstrumentModel.updateInstrument(instrumentId, updatedData, currentUser.id);
       res.json({ message: "Instrument updated successfully" });
+
     } catch (error) {
       console.error("Error updating instrument:", error);
       res.status(500).json({ error: "Error updating instrument in the database" });
