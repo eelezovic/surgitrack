@@ -3,7 +3,7 @@ const session = require("express-session");
 
 const app = express();
 
-app.use(express.json({ limit: '50mb' }));
+app.use(express.json({ limit: '2000mb' }));
 
 app.use(express.json());
 

@@ -48,9 +48,10 @@ function InstrumentsListPage({ user }) {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
+
+  
   const handleSubmit = async (newRow) => {
     try {
-    
       const newInstrumentData = {
         instrumentName: newRow.instrument_name,
         instrumentId: newRow.instrument_id,

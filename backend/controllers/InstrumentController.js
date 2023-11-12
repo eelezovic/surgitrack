@@ -23,11 +23,11 @@ const InstrumentController = {
     }
   },
 
+  //here i am doing some console logging to check the data received from the instrumentModel and frontend
   addInstrument: async (req, res) => {
     const instrumentData = req.body;
     const currentUser = req.session.user; 
 
-    // function to check if the current user is the Admin and not Viewer.
     if (currentUser.role !== "ADMIN") {
       return res.status(403).json({error: "Only Admin can add instruments."});
     }
@@ -37,14 +37,14 @@ const InstrumentController = {
       const instrumentImage = req.file ? req.file.path : null; 
 
        console.log( instrumentData);
-    console.log( instrumentImage);
+       console.log( instrumentImage); //this console log  is returning image data
 
       const dataWithImage = {
         ...instrumentData,
         instrumentImage,
       };
 
-      console.log( dataWithImage);
+      console.log( dataWithImage); // Instrument data is returned but the image data is null
 
       await InstrumentModel.addInstrument(dataWithImage);
       res.json({ message: "New instrument added successfully" });

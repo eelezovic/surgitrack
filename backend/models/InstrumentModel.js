@@ -9,7 +9,7 @@ const InstrumentModel = {
   return query("SELECT * FROM instruments WHERE id=?", [id]);
  },
  
-
+//here I am adding image to the db
   async addInstrument(instrumentData) {
     const {
       instrumentName,
@@ -33,7 +33,7 @@ const InstrumentModel = {
       instrumentLocation,
       instrumentImage,
     } = updatedData;
-    
+
     return query(
       "UPDATE instruments SET instrument_name = ?, instrument_id = ?, instrument_quantity = ?, instrument_location = ?, instrument_image = ? WHERE id = ?",
       [
