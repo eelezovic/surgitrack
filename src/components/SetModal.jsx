@@ -9,10 +9,12 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
       setQuantity: "",
       setLocation: "",
       setSpecialty: "Urology",
+      setImage:"",
       id: "",
     }
   );
   const modalRef = useRef();
+  const imageInputRef = useRef();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -33,6 +35,21 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
       ...formState,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleImageChange = (e) => {
+    const imageFile = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const base64Image = reader.result;
+      setFormState({
+        ...formState,
+        setImage: base64Image,
+      });
+    };
+
+    reader.readAsDataURL(imageFile);
   };
 
   const validateForm = () => {
@@ -61,6 +78,7 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
           set_quantity: formState.setQuantity,
           set_location: formState.setLocation,
           select_specialty: formState.setSpecialty,
+          set_image: formState.setImage,
         }
     onSubmit(updatedData );
     closeSetModal();
@@ -121,6 +139,16 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
               <option value="Thoracic">Thoracic</option>
               <option value="Dental">Dental</option>
             </select>
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="setImage">Set Image</label>
+            <input
+              ref={imageInputRef}
+              type="file"
+              accept="image/*"
+              name="setImage"
+              onChange={handleImageChange}
+            />
           </div>
           <button
             type="submit"

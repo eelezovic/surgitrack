@@ -5,8 +5,6 @@ const app = express();
 
 app.use(express.json({ limit: '2000mb' }));
 
-app.use(express.json());
-
 app.use(
   session({
     secret: "keyboard cat",

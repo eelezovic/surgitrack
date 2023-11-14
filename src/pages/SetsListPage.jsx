@@ -13,6 +13,11 @@ function SetsListPage({ user }) {
     { name: "Quantity", accessor: "set_quantity" },
     { name: "Location", accessor: "set_location" },
     { name: "Specialty", accessor: "select_specialty" },
+    {
+      name: "Image",
+      accessor: "set_image",
+      render: (image) => <img src={`data:image/jpeg;base64,${image}`} alt="Set" style={{ width: '60px', height: '60px' }} />,
+    },
   ];
 
   const canPerformActions = user?.role === "ADMIN";
@@ -68,8 +73,9 @@ function SetsListPage({ user }) {
         setQuantity: newRow.set_quantity,
         setLocation: newRow.set_location,
         setSpecialty: newRow.select_specialty,
+        setImage: newRow.set_image, 
       };
-
+console.log(newSetData)
       const response = await fetch("/api/instrumentSets", {
         method: "POST",
         headers: {
@@ -91,6 +97,7 @@ function SetsListPage({ user }) {
           set_quantity: "",
           set_location: "",
           select_specialty: "",
+          set_image:"",
         });
       } else {
         const data = await response.json();
@@ -172,6 +179,7 @@ function SetsListPage({ user }) {
         setQuantity: editedItem.set_quantity,
         setLocation: editedItem.set_location,
         setSpecialty: editedItem.select_specialty,
+        setImage: editedItem.set_image,
       };
 
       const response = await fetch(`/api/instrumentSets/${editedItem.id}`, {
@@ -318,6 +326,7 @@ function SetsListPage({ user }) {
               setQuantity: newSetData.set_quantity,
               setLocation: newSetData.set_location,
               setSpecialty: newSetData.select_specialty,
+              setImage: newSetData.select_image,
               id: newSetData.id,
             }}
           />

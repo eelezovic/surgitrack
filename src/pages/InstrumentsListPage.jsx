@@ -5,7 +5,7 @@ import Table from "../components/Table";
 import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
 import InstrumentModal from "../components/InstrumentModal";
-import InstrumentSearchModal from "../components/InstrumentSearchModal";
+
 
 function InstrumentsListPage({ user }) {
   const headers = [
@@ -13,11 +13,16 @@ function InstrumentsListPage({ user }) {
     { name: "ID", accessor: "instrument_id" },
     { name: "Quantity", accessor: "instrument_quantity" },
     { name: "Location", accessor: "instrument_location" },
+    {
+      name: "Image",
+      accessor: "instrument_image",
+      render: (image) => <img src={`data:image/jpeg;base64,${image}`} alt="Instrument" style={{ width: '60px', height: '60px' }} />,
+    },
   ];
 
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(6);
+  const [postsPerPage] = useState(4);
   const [setData, setSetData] = useState([]);
   const [instrumentModalOpen, setInstrumentModalOpen] = useState(false);
   const navigateTo = useNavigate();
@@ -49,7 +54,7 @@ function InstrumentsListPage({ user }) {
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
 
-  
+
   const handleSubmit = async (newRow) => {
     try {
       const newInstrumentData = {
@@ -59,7 +64,7 @@ function InstrumentsListPage({ user }) {
         instrumentLocation: newRow.instrument_location,
         instrumentImage: newRow.instrument_image, 
       };
-  
+
 
       const response = await fetch("/api/singleInstruments", {
         method: "POST",
@@ -82,7 +87,7 @@ function InstrumentsListPage({ user }) {
           instrument_id: "",
           instrument_quantity: "",
           instrument_location: "",
-          instrumentImage: "",
+          instrument_image: "",
         });
       } else {
         const data = await response.json();
@@ -121,29 +126,21 @@ function InstrumentsListPage({ user }) {
             </tr>
           </thead>
           <tbody>
-  {currentPosts.map((item) => (
-    <tr
-      key={item.id}
-      onClick={() => {
-        handleItemClick(item);
-        handleInstrumentClick(item);
-      }}
-    >
-      {headers.map((header) => (
-        <td key={header.accessor}>
-          {header.accessor === "instrumentImage" ? (
-            <img
-              src={item[header.accessor]} // Assuming item["instrumentImage"] contains the image URL
-              alt="Instrument Image"
-              style={{ maxWidth: "50px", maxHeight: "50px" }} // Adjust size as needed
-            />
-          ) : (
-            item[header.accessor]
-          )}
-        </td>
-      ))}
-    </tr>
-  ))}
+          {currentPosts.map((item) => (
+  <tr
+    key={item.id}
+    onClick={() => {
+      handleItemClick(item);
+      handleInstrumentClick(item);
+    }}
+  >
+    {headers.map((header) => (
+      <td key={header.accessor}>
+        {header.render ? header.render(item[header.accessor]) : item[header.accessor]}
+      </td>
+    ))}
+  </tr>
+))}
 </tbody>
         </table>
 

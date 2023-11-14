@@ -9,7 +9,7 @@ const InstrumentModel = {
   return query("SELECT * FROM instruments WHERE id=?", [id]);
  },
  
-//here I am adding image to the db
+
   async addInstrument(instrumentData) {
     const {
       instrumentName,

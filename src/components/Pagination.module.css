@@ -69,6 +69,14 @@
   float: right;
 }
 
+.pageItemEllipsis {
+  color: #39559e;
+  font-weight: bold;
+  display: flex;
+  align-self: center;
+
+}
+
 @media only screen and (max-width: 600px){
   .paginationButtons {
     background-color: #fff;

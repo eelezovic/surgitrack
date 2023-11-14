@@ -57,18 +57,18 @@ const SetModel = {
   },
 
   async addSet(setData) {
-    const { setName, setId, setQuantity, setLocation, setSpecialty } = setData;
+    const { setName, setId, setQuantity, setLocation, setSpecialty, setImage } = setData;
     return query(
-      "INSERT INTO sets (set_name, set_id, set_quantity, set_location, select_specialty) VALUES (?, ?, ?, ?, ?)",
-      [setName, setId, setQuantity, setLocation, setSpecialty]
+      "INSERT INTO sets (set_name, set_id, set_quantity, set_location, select_specialty, set_image) VALUES (?, ?, ?, ?, ?, ?)",
+      [setName, setId, setQuantity, setLocation, setSpecialty, setImage]
     );
   },
 
   async updateSet(setIdToUpdate, updatedData) {
-    const { setName, setId, setQuantity, setLocation, setSpecialty } = updatedData;
+    const { setName, setId, setQuantity, setLocation, setSpecialty, setImage} = updatedData;
     return query(
-      "UPDATE sets SET set_name = ?, set_id = ?, set_quantity = ?, set_location = ?, set_specialty = ? WHERE id = ?",
-      [setName, setId, setQuantity, setLocation, setSpecialty, setIdToUpdate]
+      "UPDATE sets SET set_name = ?, set_id = ?, set_quantity = ?, set_location = ?, set_specialty = ?, set_image = ? WHERE id = ?",
+      [setName, setId, setQuantity, setLocation, setSpecialty, setImage, setIdToUpdate]
     );
   },
 

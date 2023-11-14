@@ -26,6 +26,7 @@ function InstrumentPage({ user }) {
         instrumentId: newRow.instrument_id,
         instrumentQuantity: newRow.instrument_quantity,
         instrumentLocation: newRow.instrument_location,
+        instrumentImage: newRow.instrument_image,
       };
 
       const response = await fetch(`/api/singleInstruments/${newRow.id}`, {
@@ -107,6 +108,7 @@ function InstrumentPage({ user }) {
               <th className="instumentId">Instrument ID</th>
               <th className="quantity">Quantity</th>
               <th className="location">Location</th>
+              <th className="image">Image</th>
               {isEditing && <th className="save">Save</th>}
             </tr>
           </thead>
@@ -162,6 +164,28 @@ function InstrumentPage({ user }) {
                   />
                 ) : (
                   instrumentData.instrument_location
+                )}
+              </td>
+              <td>
+                {isEditing ? (
+                  <input
+                    type="file"
+                    onChange={(e) => {
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        handleEdit("instrument_image", reader.result);
+                      };
+                      if (e.target.files[0]) {
+                        reader.readAsDataURL(e.target.files[0]);
+                      }
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={`data:image/jpeg;base64,${instrumentData.instrument_image}`}
+                    alt="Instrument"
+                    style={{ width: '60px', height: '60px' }}
+                  />
                 )}
               </td>
               {isEditing && (

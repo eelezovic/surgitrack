@@ -1,4 +1,5 @@
 const SetModel = require("../models/SetModel");
+const sharp = require("sharp");
 
 const SetController = {
 
@@ -80,12 +81,30 @@ addSet: async (req, res) => {
   const setData =  req.body;
   const currentUser = req.session.user;
 
+  console.log(setData)
+
   if (currentUser.role !== "ADMIN") {
     return res.status(403).json({error: "Only Admin can add sets."});
   }
 
   try {
-    await SetModel.addSet(setData, currentUser.id);
+
+    const base64Image = setData.setImage.replace(
+      /^data:image\/\w+;base64,/,
+      ""
+    );
+    const imageBuffer = Buffer.from(base64Image, "base64");
+
+    // Using sharp library to compress the image
+    const compressedImageBuffer = await sharp(imageBuffer)
+      .resize({ width: 400 })
+      .jpeg({ quality: 100 })
+      .toBuffer();
+
+    // here the original image data is replaced with the compressed one
+    setData.setImage = compressedImageBuffer.toString("base64");
+
+    await SetModel.addSet(setData);
     res.json({ message: "New set added successfully"});
   } catch (error) {
     console.error("Error adding set:", error);
