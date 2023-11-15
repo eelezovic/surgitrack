@@ -9,10 +9,11 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
       setQuantity: "",
       setLocation: "",
       setSpecialty: "Urology",
-      setImage:"",
+      setImage: "",
       id: "",
     }
   );
+
   const modalRef = useRef();
   const imageInputRef = useRef();
 
@@ -125,8 +126,9 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
             <label htmlFor="setSpecialty">Set
             Specialty </label>
             <select name="setSpecialty" value={formState.setSpecialty} onChange={handleChange}>
-              <option value="Urology">Urology</option>
+           
               <option value="Orthopedic">Orthopedic</option>
+              <option value="Urology">Urology</option>
               <option value="Plastics">Plastics</option>
               <option value="General">General</option>
               <option value="Gynecology">Gynecology</option>

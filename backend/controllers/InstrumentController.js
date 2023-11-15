@@ -66,10 +66,7 @@ const InstrumentController = {
     const updatedData = req.body;
     const currentUser = req.session.user;
 
-    console.log(instrumentId);
-    console.log(updatedData);
 
-    // Also checking if the current user is the Admin and not Viewer.
     if (currentUser.role !== "ADMIN") {
       return res
         .status(403)

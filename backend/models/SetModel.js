@@ -67,7 +67,7 @@ const SetModel = {
   async updateSet(setIdToUpdate, updatedData) {
     const { setName, setId, setQuantity, setLocation, setSpecialty, setImage} = updatedData;
     return query(
-      "UPDATE sets SET set_name = ?, set_id = ?, set_quantity = ?, set_location = ?, set_specialty = ?, set_image = ? WHERE id = ?",
+      "UPDATE sets SET set_name = ?, set_id = ?, set_quantity = ?, set_location = ?, select_specialty = ?, set_image = ? WHERE id = ?",
       [setName, setId, setQuantity, setLocation, setSpecialty, setImage, setIdToUpdate]
     );
   },

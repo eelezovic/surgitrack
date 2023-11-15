@@ -101,7 +101,6 @@ addSet: async (req, res) => {
       .jpeg({ quality: 100 })
       .toBuffer();
 
-    // here the original image data is replaced with the compressed one
     setData.setImage = compressedImageBuffer.toString("base64");
 
     await SetModel.addSet(setData);
@@ -111,27 +110,40 @@ addSet: async (req, res) => {
     res.status(500).json({ error: " Error adding set to the database"});
   }
 }, 
-
 updateSet: async (req, res) => {
-  const setId = req.params.id;
-  const updatedData = req.body;
-  const currentUser = req.session.user;
- 
-  console.log("Received data in updateSet:", updatedData);
-  console.log("setId:", setId);
-
-
-  if (currentUser.role !== "ADMIN") {
-    return res.status(403).json({error: "Only Admin can update sets."});
-  }
   try {
+    const setId = req.params.id;
+    const updatedData = req.body;
+    const currentUser = req.session.user;
+
+    console.log(setId); // Log setId
+    console.log(updatedData); // Log updatedData
+
+    if (currentUser.role !== "ADMIN") {
+      return res.status(403).json({ error: "Only Admin can update sets." });
+    }
+
+    const base64Image = updatedData.setImage.replace(
+      /^data:image\/\w+;base64,/,
+      ""
+    );
+    const imageBuffer = Buffer.from(base64Image, "base64");
+
+    const compressedImageBuffer = await sharp(imageBuffer)
+      .resize({ width: 400 })
+      .jpeg({ quality: 100 })
+      .toBuffer();
+
+    updatedData.setImage = compressedImageBuffer.toString("base64");
+
     await SetModel.updateSet(setId, updatedData, currentUser.id);
-    res.json({ message: "Set updated successfully"});
+    res.json({ message: "Set updated successfully" });
   } catch (error) {
-    console.error("Error updating set:". error);
-    res.status(500).json({error: " Error updating set in the database"});
+    console.error("Error updating set:", error);
+    res.status(500).json({ error: "Error updating set in the database" });
   }
 },
+
 
 deleteSet: async (req, res) => {
   const setId = req.params.id;

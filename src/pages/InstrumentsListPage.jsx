@@ -161,7 +161,7 @@ function InstrumentsListPage({ user }) {
               setId: newInstrumentData.instrument_id,
               setQuantity: newInstrumentData.instrument_quantity,
               setLocation: newInstrumentData.instrument_location,
-              setImage: newInstrumentData.instrumentImage, 
+              setImage: newInstrumentData.instrument_image, 
               id: newInstrumentData.id,
             }}
           />

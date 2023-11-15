@@ -79,8 +79,7 @@ function InstrumentModal({ closeInstrumentModal, onSubmit, defaultValue }) {
           instrument_location: formState.instrumentLocation,
           instrument_image: formState.instrumentImage,
         };
-
-        console.log(updatedData);
+        
     onSubmit(updatedData );
     closeInstrumentModal();
   };
