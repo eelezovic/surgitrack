@@ -70,6 +70,8 @@
 }
 
 .login {
+  display: flex;
+  justify-content: center;
   text-decoration: none;
   color: white;
   padding: 10px 10px;
@@ -171,6 +173,6 @@
   }
   .logoutButton {
     font-size: 2rem;
-    margin-bottom: 10px;
-  }
+    margin-bottom: 50px;
+  } 
 }

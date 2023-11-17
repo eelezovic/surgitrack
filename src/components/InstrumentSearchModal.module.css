@@ -47,3 +47,37 @@
   box-shadow: 0 5px 5px #ccc;
 }
 
+@media only screen and (max-width: 600px) {
+  .searchModalContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  } 
+  .searchModalWrapper {
+    border-radius: 5px;
+    width: 95%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: white;
+}
+
+.searchModalWrapper th  {
+  font-size: 1.1rem;
+}
+
+.searchModalWrapper td  {
+  font-size: 1rem;
+}
+
+.searchModalWrapper .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 40%;
+  margin-top: 50px;
+}
+
+}

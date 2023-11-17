@@ -31,6 +31,14 @@
   width: 200px;
 }
 
+.mainContainer th {
+  font-size: 1.5rem;
+}
+
+.mainContainer td {
+  font-size: 1.4rem;
+}
+
 .tableContainer{
   width: 70%;
   display: flex;
@@ -44,8 +52,6 @@
   border: 1px solid rgb(191, 199, 207);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-
 
 .saveButton {
   display: flex;
@@ -99,6 +105,10 @@
   background-color: #819ee5;
 }
 
+.setImageStyle {
+  width: 55px;
+  height: 55px;
+}
 
 @media only screen and (max-width: 600px){
   .setsListPageContainer {
@@ -121,5 +131,22 @@
   }
   .tableContainer{
     width: 100%;
+  }
+  .mainContainer th {
+    font-size: 0.9rem;
+  }
+  .mainContainer td {
+    font-size: 0.8rem;
+  }
+  .editButton, .deleteButton {
+    padding: 0.3rem 0.3rem;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 3px 3px #ccc;
+    font-size: 0.6rem;
+  }
+  .setImageStyle {
+    width: 45px;
+    height: 45px;
   }
 }

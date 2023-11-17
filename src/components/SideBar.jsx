@@ -83,3 +83,4 @@ const handleLogout = async () => {
 }
 
 export default SideBar;
+

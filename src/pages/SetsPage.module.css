@@ -1,6 +1,7 @@
 .setWrapper {
   height: 100vh; 
   background-color: aliceblue;
+  border: 1px solid aliceblue;
 }
 .tableContainer {
   height: 70vh; 
@@ -19,6 +20,7 @@
   color: #39559e;
   text-decoration: underline;
 }
+
 
 .table {
   width: 50%;

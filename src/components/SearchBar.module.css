@@ -1,3 +1,4 @@
+
 .inputWrapper {
   background-color: white;
   border-radius: 7px;
@@ -39,7 +40,7 @@ input:focus {
 @media only screen and (max-width: 600px){
   .inputWrapper {
     background-color: white;
-    width: 50%;
+    width: 80%;
     border-radius: 20px;
     box-shadow: 0 0 8px #ddd;
     display: flex;

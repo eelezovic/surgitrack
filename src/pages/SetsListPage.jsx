@@ -8,7 +8,7 @@ import SetModal from "../components/SetModal";
 
 function SetsListPage({ user }) {
   const headers = [
-    { name: "Set Name", accessor: "set_name" },
+    { name: "Set", accessor: "set_name" },
     { name: "ID", accessor: "set_id" },
     { name: "Quantity", accessor: "set_quantity" },
     { name: "Location", accessor: "set_location" },
@@ -28,8 +28,13 @@ function SetsListPage({ user }) {
   const [editedData, setEditedData] = useState({});
   const navigateTo = useNavigate();
 
-  const handleSetClick = (set) => {
-    if (event.target.tagName.toLowerCase() !== "button") {
+  const handleSetClick = (set) => (e) => {
+    if (
+      e.target.tagName.toLowerCase() !== "button" ||
+      !["editButton", "deleteButton", "saveButton"].some((cls) =>
+        e.target.classList.contains(styles[cls])
+      )
+    ) {
       navigateTo(`/sets/${set.id}`);
     }
   };
@@ -39,7 +44,7 @@ function SetsListPage({ user }) {
       <img
         src={`data:image/png;base64, ${imageString}`}
         alt="Set Image"
-        style={{ width: "60px", height: "60px" }}
+        className={styles.setImageStyle} 
       />
     );
   };
@@ -274,9 +279,7 @@ function SetsListPage({ user }) {
             </thead>
             <tbody>
   {currentDataPost.map((item) => (
-    <tr key={item.id}  onClick={() => {
-      handleSetClick(item);
-    }} >
+    <tr key={item.id}  onClick={handleSetClick(item)} >
       {headers.map((header) => (
         <td key={header.accessor}>
           {header.accessor === "set_image" ? (

@@ -9,14 +9,14 @@ import InstrumentModal from "../components/InstrumentModal";
 
 function InstrumentsListPage({ user }) {
   const headers = [
-    { name: "Instrument Name", accessor: "instrument_name" },
+    { name: "Instrument", accessor: "instrument_name" },
     { name: "ID", accessor: "instrument_id" },
     { name: "Quantity", accessor: "instrument_quantity" },
     { name: "Location", accessor: "instrument_location" },
     {
       name: "Image",
       accessor: "instrument_image",
-      render: (image) => <img src={`data:image/jpeg;base64,${image}`} alt="Instrument" style={{ width: '60px', height: '60px' }} />,
+      render: (image) => <img src={`data:image/jpeg;base64,${image}`} alt="Instrument"  className={styles.imageStyle} />,
     },
   ];
 
