@@ -50,9 +50,7 @@ const handleLogout = async () => {
 
   return (
     <div className={`${styles.sidebar} ${sideBar ? styles.open : ""}`} ref={sidebarRef}>
-      <div className={styles.closeButton} onClick={() => toggleSideBar()}>
-        <i className="fas fa-times"></i>
-      </div>
+
       <ul>
         <Link to="/" onClick={handleLinkClick}>
           <li>

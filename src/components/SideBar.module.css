@@ -1,8 +1,8 @@
 .sidebar {
   position:absolute;
   top: 90px;
-  left: 0; /* Change the initial position */
-  transform: translateX(-100%);
+  right: 0; /* Change the initial position */
+  transform: translateX(100%);
   width: 250px;
   height: 90%;
   background-color: #39559e;

@@ -104,9 +104,6 @@ function InstrumentSearchModal({
       </ul>
 
       <div className={styles.buttons}>
-        <button className={styles.saveButton} onClick={handleSave}>
-          Save
-        </button>
         <button className={styles.closeModalButton} onClick={closeModal}>
           Close
         </button>

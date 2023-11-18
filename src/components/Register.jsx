@@ -122,7 +122,7 @@ const createUser = (event) => {
 
         <div className={styles.footerDiv}>
           <span className={styles.footerText}> Have an account?</span>
-          <Link to={"/"}>
+          <Link to={"/login"}>
             <button className={styles.signUpButton}> Login </button>
           </Link>
         </div>
