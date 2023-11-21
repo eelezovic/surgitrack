@@ -1,9 +1,9 @@
 .sidebar {
   position:absolute;
   top: 90px;
-  right: 0; /* Change the initial position */
+  right: 0; 
   transform: translateX(100%);
-  width: 250px;
+  width: 270px;
   height: 90%;
   background-color: #39559e;
   color: #fff;
@@ -41,6 +41,11 @@
 .sidebar a:hover {
   color:#819ee5;
 }
+
+.logoutSidebar:hover {
+  color:#819ee5;
+}
+
 .closeButton {
   position: absolute;
   top: 10px;
@@ -56,13 +61,14 @@
 
 @media (max-width: 768px) {
   .sidebar {
-    left: -250px;
-    height: 100%;
+    right: 0;
+    height: 81%;
     z-index: 1;
-    top: 23%;
+    top: 24%;
   }
 
   .sidebar.open {
-    left: 0;
+    right: 0;
   }
 }
+

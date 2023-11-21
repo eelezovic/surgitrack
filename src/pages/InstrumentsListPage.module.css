@@ -7,7 +7,6 @@
   background-repeat: no-repeat;*/
 }
 
-
 .instrumentWrapper {
   width: 100%;
   display: flex;
@@ -31,6 +30,10 @@
 
 .instrumentWrapper td {
   font-size: 1.4rem;
+} 
+
+tr:hover td {
+  background-color:#e6e8ea;
 }
 
 .addButton {

@@ -58,7 +58,7 @@
   background-color: #87de55;
 }
 
-.editButton, .deleteButton {
+.editButton, .deleteButton, .viewImageButton {
   display: flex;
   margin: 0.5rem;
   border: none;
@@ -80,6 +80,11 @@
 
 .addButton:hover {
   background-color: #0056b3;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px; /* Adjust the gap according to your design */
 }
 
 @media only screen and (max-width: 600px) {

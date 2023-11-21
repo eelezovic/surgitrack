@@ -1,27 +1,12 @@
 // In SideBar.jsx
-import React, {useRef, useEffect} from "react";
+import React from "react";
 import styles from "./SideBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { BiHome, BiBarChart, BiLogOut, BiSolidUser } from "react-icons/bi";
 
-function SideBar({ user, signout, sideBar, toggleSideBar, closeSideBar }) {
+function SideBar({ user, signout, sideBar, toggleSideBar}) {
   const navigate = useNavigate();
-  const sidebarRef = useRef();
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        closeSideBar();
-      }
-    }
-  
-    document.addEventListener("mousedown", handleClickOutside);
-  
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [closeSideBar]);
-  
 
 const handleLogout = async () => {
   try {
@@ -30,8 +15,6 @@ const handleLogout = async () => {
     });
 
     if (response.ok) {
-      // Successful logout on the server side
-      // Clearing cookies and navigate if needed
       document.cookie = "userId=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
       document.cookie = "username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
       signout();
@@ -49,7 +32,7 @@ const handleLogout = async () => {
   };
 
   return (
-    <div className={`${styles.sidebar} ${sideBar ? styles.open : ""}`} ref={sidebarRef}>
+    <div className={`${styles.sidebar} ${sideBar ? styles.open : ""}`} >
 
       <ul>
         <Link to="/" onClick={handleLinkClick}>
@@ -60,13 +43,13 @@ const handleLogout = async () => {
         </Link>
         <Link to="/dashboard" onClick={handleLinkClick}>
           <li>
-            <BiBarChart />
+          <BiBarChart />
             Dashboard
           </li>
         </Link>
         {user && (
           <div>
-            <li onClick={handleLogout}>
+            <li className={styles.logoutSidebar} onClick={handleLogout}>
               <BiLogOut />
               Logout
             </li>

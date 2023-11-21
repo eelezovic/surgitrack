@@ -51,6 +51,9 @@ function App() {
         signout={signout}
         user={user}
         toggleSideBar={() => setSideBar(!sideBar)}
+        closeSideBar={() => {
+          setSideBar(false);
+        }}
       />
        <SideBar
                 user={user}

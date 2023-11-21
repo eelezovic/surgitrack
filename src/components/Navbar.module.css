@@ -38,14 +38,21 @@
   font-size: 2.5rem;
 }
 
-
-
 .navLinks {
   display: flex;
   justify-content: flex-end;
   list-style: none;
   width: 75%;
 }
+
+.navLinkMobile {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  width: 75%;
+
+}
+
 .displayUserName {
   text-decoration: none;
   color: rgb(255, 255, 255);
@@ -140,14 +147,18 @@
   }
 
   .navLinkMobile {
-    position: absolute;
-    display: grid;
-    justify-content: center;
+   position:absolute;
+ display: grid;
+ justify-content: center;
     list-style: none;
     background-color: #39559e;
     width: 100%;
     padding-top: 100px;
     transition: all 0.5s ease-out;
+  }
+
+  .login {
+    margin-bottom: 20px;
   }
 
   .home,
@@ -176,6 +187,6 @@
   }
   .logoutButton {
     font-size: 2rem;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
   } 
 }

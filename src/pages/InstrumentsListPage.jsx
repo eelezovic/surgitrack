@@ -27,6 +27,7 @@ function InstrumentsListPage({ user }) {
   const [instrumentModalOpen, setInstrumentModalOpen] = useState(false);
   const navigateTo = useNavigate();
   const [newInstrumentData, setNewInstrumentData] = useState({});
+  
 
   const handleInstrumentClick = (instrument) => {
     navigateTo(`/instruments/${instrument.id}`);

@@ -6,6 +6,7 @@ import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
 import SetModal from "../components/SetModal";
 
+
 function SetsListPage({ user }) {
   const headers = [
     { name: "Set", accessor: "set_name" },
@@ -30,12 +31,13 @@ function SetsListPage({ user }) {
 
   const handleSetClick = (set) => (e) => {
     if (
+      !editingRows.length && (
       e.target.tagName.toLowerCase() !== "button" ||
       !["editButton", "deleteButton", "saveButton"].some((cls) =>
         e.target.classList.contains(styles[cls])
-      )
+      ))
     ) {
-      navigateTo(`/sets/${set.id}`);
+      navigateTo(`/sets/${set.id}`);s
     }
   };
 
@@ -340,7 +342,6 @@ function SetsListPage({ user }) {
     </tr>
   ))}
 </tbody>
-
           </table>
         </div>
 

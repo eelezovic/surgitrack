@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styles from "../pages/InstrumentPage.module.css";
 import { useParams } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import ImageModal from "../components/ImageModal";
 
 function InstrumentPage({ user }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
-
   const [instrumentData, setInstrumentData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [openImageModal, setOpenImageModal] = useState(false);
+
+  const handleImageClick = () => {
+    setOpenImageModal(true);
+  };
 
   const handleEdit = (field, value) => {
     setInstrumentData((prevData) => ({
@@ -40,7 +45,7 @@ function InstrumentPage({ user }) {
       if (response.ok) {
         console.log("Instrument updated successfully");
         setIsEditing(false);
-        navigate('/instruments');
+        navigate("/instruments");
       } else {
         console.error("Error updating instrument:", response.statusText);
       }
@@ -54,7 +59,7 @@ function InstrumentPage({ user }) {
       const response = await updateInstrumentOnServer(instrumentData);
       if (response.ok) {
         console.log("Instrument updated successfully");
-        navigate('/instruments');
+        navigate("/instruments");
         setIsEditing(false);
       } else {
         console.error("Error updating instrument:", response.statusText);
@@ -62,31 +67,33 @@ function InstrumentPage({ user }) {
     }
   };
 
- //function to delete an instrument 
+  //function to delete an instrument
   const handleDelete = () => {
-    const isConfirmed = window.confirm("Are you sure you want to delete this instrument?");
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this instrument?"
+    );
 
     if (isConfirmed) {
-    const deleteUrl = `/api/singleInstruments/${id}`;
+      const deleteUrl = `/api/singleInstruments/${id}`;
 
-    // Sending a DELETE request to delete the instrument
-    fetch(deleteUrl, {
-      method: 'DELETE',
-    })
-      .then((response) => {
-        if (response.ok) {
-          setIsDeleted(true); 
-          navigate('/instruments');
-        } else {
-          console.error('Error deleting instrument:', response.statusText);
-        }
+      // Sending a DELETE request to delete the instrument
+      fetch(deleteUrl, {
+        method: "DELETE",
       })
-      .catch((error) => {
-        console.error('Error deleting instrument:', error);
-      });
+        .then((response) => {
+          if (response.ok) {
+            setIsDeleted(true);
+            navigate("/instruments");
+          } else {
+            console.error("Error deleting instrument:", response.statusText);
+          }
+        })
+        .catch((error) => {
+          console.error("Error deleting instrument:", error);
+        });
     }
   };
-  
+
   // Fetching instrument data based on the id
   useEffect(() => {
     fetch(`/api/singleInstruments/${id}`)
@@ -100,7 +107,7 @@ function InstrumentPage({ user }) {
   return (
     <div className={styles.tableWrapper}>
       <div className={styles.tableContainer}>
-      <h2 className={styles.header}>Instrument Details</h2>
+        <h2 className={styles.header}>Instrument Details</h2>
         <table className={styles.table}>
           <thead>
             <tr>
@@ -184,34 +191,48 @@ function InstrumentPage({ user }) {
                   <img
                     src={`data:image/jpeg;base64,${instrumentData.instrument_image}`}
                     alt="Instrument"
-                    style={{ width: '60px', height: '60px' }}
+                    style={{ width: "60px", height: "60px" }}
                   />
                 )}
               </td>
               {isEditing && (
                 <td>
-                  <button className={styles.saveButton} onClick={handleSave}>Save</button>
+                  <button className={styles.saveButton} onClick={handleSave}>
+                    Save
+                  </button>
                 </td>
               )}
             </tr>
           </tbody>
         </table>
         {!isEditing && (
-          <button className={styles.editButton} onClick={() => setIsEditing(true)}>Edit</button>
+           <div className={styles.buttonContainer}>
+           <button
+             className={styles.editButton}
+             onClick={() => setIsEditing(true)}
+           >
+             Edit
+           </button>
+           <button
+             className={styles.viewImageButton}
+             onClick={handleImageClick}
+           >
+             View image
+           </button>
+         </div>
         )}
-         {isEditing && (
-        <button className={styles.deleteButton} onClick={handleDelete}>Delete</button>
-      )}
       </div>
-     
+      {openImageModal && (
+        <ImageModal
+          closeImageModal={() => setOpenImageModal(false)}
+          imageData={instrumentData.instrument_image}
+        />
+      )}
     </div>
   );
-  
 }
 
 export default InstrumentPage;
-
-
 
 /*import React, { useState, useEffect } from "react";
 import styles from "../pages/InstrumentPage.module.css";

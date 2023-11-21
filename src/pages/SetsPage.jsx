@@ -3,13 +3,20 @@ import styles from "../pages/SetsPage.module.css";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import InstrumentSearchModal from "../components/InstrumentSearchModal";
+import ImageModal from "../components/ImageModal";
+
 
 function SetsPage({ user }) {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const [instrumentSearchModal, setInstrumentSearchModal] = useState(false);
   const [instruments, setInstruments] = useState([]);
+  const [openImageModal, setOpenImageModal] = useState(false);
+
+  const handleImageClick = () => {
+    setOpenImageModal(true);
+  };
+
 
 
   const openSearchInstrumentModal = () => {
@@ -133,12 +140,20 @@ function SetsPage({ user }) {
         </table>
 
         {user?.role === "ADMIN" && (
+         <div className={styles.buttonContainer}>
           <button
             className={styles.addButton}
             onClick={openSearchInstrumentModal}
           >
             Add Instrument
           </button>
+          <button
+             className={styles.viewImageButton}
+             onClick={handleImageClick}
+           >
+             View image
+           </button>
+          </div>
         )}
         {instrumentSearchModal && (
           <InstrumentSearchModal
@@ -149,6 +164,13 @@ function SetsPage({ user }) {
           />
         )}
       </div>
+      {openImageModal && (
+          <ImageModal
+            closeImageModal={() => setOpenImageModal(false)}
+            imageData={instruments.set_image}
+            
+          />
+        )}
     </div>
   );
 }
