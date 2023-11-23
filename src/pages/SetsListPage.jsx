@@ -89,7 +89,7 @@ function SetsListPage({ user }) {
         setSpecialty: newRow.select_specialty,
         setImage: newRow.set_image,
       };
-      console.log(newSetData);
+      
       const response = await fetch("/api/instrumentSets", {
         method: "POST",
         headers: {

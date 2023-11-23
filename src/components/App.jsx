@@ -9,7 +9,6 @@ import AboutProject from "../pages/AboutProject";
 import Login from "./login";
 import Register from "./Register";
 import { Route, Routes } from "react-router-dom";
-import InstrumentSetComponent from "../pages/InstrumentSetComponent";
 import InstrumentsListPage from "../pages/InstrumentsListPage";
 import InstrumentPage from "../pages/InstrumentPage";
 import SetsListPage from "../pages/SetsListPage";
@@ -136,3 +135,5 @@ function App() {
 }
 
 export default App;
+
+

@@ -1,11 +1,18 @@
 const mysql = require("mysql");
 
-const dbconnection = mysql.createConnection({
+const dbconnection = mysql.createConnection(process.env.MYSQL_URL || {
   host: "localhost",
   user: "root",
   password: "Kazahstan_1",
   database: "surgitrack_schema",
 });
+
+/*const dbconnection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "Kazahstan_1",
+  database: "surgitrack_schema",
+});*/
 
 dbconnection.connect();
 
@@ -22,4 +29,7 @@ const query = async (query, params) => {
 };
 
 module.exports= { query, dbconnection };
+
+
+
 

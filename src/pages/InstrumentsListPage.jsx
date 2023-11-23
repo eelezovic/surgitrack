@@ -27,6 +27,9 @@ function InstrumentsListPage({ user }) {
   const [instrumentModalOpen, setInstrumentModalOpen] = useState(false);
   const navigateTo = useNavigate();
   const [newInstrumentData, setNewInstrumentData] = useState({});
+
+  const apiBaseUrl = import.meta.env.VITE_APP_API;
+
   
 
   const handleInstrumentClick = (instrument) => {
@@ -67,7 +70,7 @@ function InstrumentsListPage({ user }) {
       };
 
 
-      const response = await fetch("/api/singleInstruments", {
+      const response = await fetch(`${apiBaseUrl}/api/singleInstruments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +104,7 @@ function InstrumentsListPage({ user }) {
 
   //fetching data from the API
   const fetchData = () => {
-    fetch("/api/singleInstruments")
+    fetch(`${apiBaseUrl}/api/singleInstruments`)
       .then((response) => response.json())
       .then((data) => {
 
