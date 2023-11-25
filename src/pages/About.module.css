@@ -1,7 +1,7 @@
 
 .aboutContainer {
   margin-top: 0;
-  height: 90vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -74,15 +74,17 @@
 
 @media (max-width: 768px) {
   .aboutContainer {
+
     flex-direction: column;
   }
   .content {
     align-items: center;
+    padding-bottom: 20px;
   }
 
   .textContent {
-    text-align:justify;
-    padding: 40px;
+    text-align: justify;
+    margin: 30px;
   }
 
   .content img {

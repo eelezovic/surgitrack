@@ -1,4 +1,3 @@
-// In SideBar.jsx
 import React from "react";
 import styles from "./SideBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -33,21 +32,20 @@ const handleLogout = async () => {
 
   return (
     <div className={`${styles.sidebar} ${sideBar ? styles.open : ""}`} >
-
+{user && (
       <ul>
-        <Link to="/" onClick={handleLinkClick}>
-          <li>
-            <BiHome />
-            Home
+        <li>
+            <Link to="/" onClick={handleLinkClick}>
+              <BiHome />
+              Home
+            </Link>
           </li>
-        </Link>
-        <Link to="/dashboard" onClick={handleLinkClick}>
           <li>
-          <BiBarChart />
-            Dashboard
+            <Link to="/dashboard" onClick={handleLinkClick}>
+              <BiBarChart />
+              Dashboard
+            </Link>
           </li>
-        </Link>
-        {user && (
           <div>
             <li className={styles.logoutSidebar} onClick={handleLogout}>
               <BiLogOut />
@@ -57,10 +55,10 @@ const handleLogout = async () => {
               <BiSolidUser size={20} /> {user.username}
             </li>
           </div>
-        )}
       </ul>
-    </div>
-  );
+      )}
+         </div>
+           );
 }
 
 export default SideBar;

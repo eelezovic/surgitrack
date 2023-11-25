@@ -8,11 +8,13 @@
   background-color: #39559e;
   color: #fff;
   padding: 20px;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  border: 1px solid red;
 }
 
 .sidebar.open {
   transform: translateX(0);
+  opacity: 1;
 }
 
 .sidebar ul {
