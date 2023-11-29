@@ -8,7 +8,7 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
       setId: "",
       setQuantity: "",
       setLocation: "",
-      setSpecialty: "Urology",
+      setSpecialty: "Orthopedic",
       setImage: "",
       id: "",
     }
@@ -126,7 +126,6 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
             <label htmlFor="setSpecialty">Set
             Specialty </label>
             <select name="setSpecialty" value={formState.setSpecialty} onChange={handleChange}>
-           
               <option value="Orthopedic">Orthopedic</option>
               <option value="Urology">Urology</option>
               <option value="Plastics">Plastics</option>

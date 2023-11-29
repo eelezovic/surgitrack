@@ -95,7 +95,7 @@ const InstrumentController = {
         currentUser.id
       );
       res.json({ message: "Instrument updated successfully" });
-    } catch (error) {
+    } catch (error) {x
       console.error("Error updating instrument:", error);
       res
         .status(500)

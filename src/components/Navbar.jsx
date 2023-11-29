@@ -24,9 +24,7 @@ function Navbar({ user, toggleSideBar, closeSideBar }) {
     setIsMobile((prevIsMobile) => !prevIsMobile);
     toggleSideBar();
     
-    if (isMobile) {
-      closeSideBar();
-    }
+   
   };
 
   const handleLinkClick = () => {
@@ -48,7 +46,6 @@ function Navbar({ user, toggleSideBar, closeSideBar }) {
             to="/about"
             className={styles.aboutMe}
             onClick={() => {
-              closeSideBar();
               handleLinkClick();
             }}
           >
@@ -58,7 +55,6 @@ function Navbar({ user, toggleSideBar, closeSideBar }) {
             to="/aboutproject"
             className={styles.aboutProject}
             onClick={() => {
-              closeSideBar();
               handleLinkClick();
             }}
           >
@@ -68,7 +64,6 @@ function Navbar({ user, toggleSideBar, closeSideBar }) {
             to="/login"
             className={styles.login}
             onClick={() => {
-              closeSideBar();
               handleLinkClick();
             }}
           >

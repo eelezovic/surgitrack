@@ -32,20 +32,23 @@ const handleLogout = async () => {
 
   return (
     <div className={`${styles.sidebar} ${sideBar ? styles.open : ""}`} >
-{user && (
+
       <ul>
+      <li>
+        <Link to="/" onClick={handleLinkClick}>
+            <BiHome />
+            Home
+        </Link>
+        </li>
         <li>
-            <Link to="/" onClick={handleLinkClick}>
-              <BiHome />
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/dashboard" onClick={handleLinkClick}>
-              <BiBarChart />
-              Dashboard
-            </Link>
-          </li>
+        <Link to="/dashboard" onClick={handleLinkClick}>
+         
+          <BiBarChart />
+            Dashboard
+        </Link>
+        </li>
+        {user && (
+          
           <div>
             <li className={styles.logoutSidebar} onClick={handleLogout}>
               <BiLogOut />
@@ -55,10 +58,10 @@ const handleLogout = async () => {
               <BiSolidUser size={20} /> {user.username}
             </li>
           </div>
+        )}
       </ul>
-      )}
-         </div>
-           );
+    </div>
+  );
 }
 
 export default SideBar;
