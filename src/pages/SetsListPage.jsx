@@ -6,7 +6,6 @@ import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
 import SetModal from "../components/SetModal";
 
-
 function SetsListPage({ user }) {
   const headers = [
     { name: "Set", accessor: "set_name" },
@@ -14,7 +13,7 @@ function SetsListPage({ user }) {
     { name: "Quantity", accessor: "set_quantity" },
     { name: "Location", accessor: "set_location" },
     { name: "Specialty", accessor: "select_specialty" },
-    { name: "Image",   accessor: "set_image" },
+    { name: "Image", accessor: "set_image" },
   ];
 
   const canPerformActions = user?.role === "ADMIN";
@@ -29,15 +28,18 @@ function SetsListPage({ user }) {
   const [editedData, setEditedData] = useState({});
   const navigateTo = useNavigate();
 
+  const apiBaseUrl = import.meta.env.VITE_APP_API;
+
   const handleSetClick = (set) => (e) => {
     if (
-      !editingRows.length && (
-      e.target.tagName.toLowerCase() !== "button" ||
-      !["editButton", "deleteButton", "saveButton"].some((cls) =>
-        e.target.classList.contains(styles[cls])
-      ))
+      !editingRows.length &&
+      (e.target.tagName.toLowerCase() !== "button" ||
+        !["editButton", "deleteButton", "saveButton"].some((cls) =>
+          e.target.classList.contains(styles[cls])
+        ))
     ) {
-      navigateTo(`/sets/${set.id}`);s
+      navigateTo(`/sets/${set.id}`);
+      s;
     }
   };
 
@@ -46,7 +48,7 @@ function SetsListPage({ user }) {
       <img
         src={`data:image/png;base64, ${imageString}`}
         alt="Set Image"
-        className={styles.setImageStyle} 
+        className={styles.setImageStyle}
       />
     );
   };
@@ -89,8 +91,8 @@ function SetsListPage({ user }) {
         setSpecialty: newRow.select_specialty,
         setImage: newRow.set_image,
       };
-      
-      const response = await fetch("/api/instrumentSets", {
+
+      const response = await fetch(`${apiBaseUrl}/instrumentSets`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -124,7 +126,7 @@ function SetsListPage({ user }) {
 
   //fetching data from the API
   const fetchData = () => {
-    fetch("/api/instrumentSets")
+    fetch(`${apiBaseUrl}/instrumentSets`)
       .then((response) => response.json())
       .then((data) => setSetData(data))
       .catch((error) => console.error("Error fetching data:", error));
@@ -165,7 +167,7 @@ function SetsListPage({ user }) {
 
     if (isConfirmed) {
       try {
-        const response = await fetch(`/api/instrumentSets/${setId}`, {
+        const response = await fetch(`${apiBaseUrl}/instrumentSets/${setId}`, {
           method: "DELETE",
         });
 
@@ -194,21 +196,28 @@ function SetsListPage({ user }) {
         setSpecialty: editedItem.select_specialty,
         setImage: editedItem.set_image,
       };
-  
-      const response = await fetch(`/api/instrumentSets/${editedItem.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
-  
+
+      const response = await fetch(
+        `${apiBaseUrl}/instrumentSets/${editedItem.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedData),
+        }
+      );
+
       if (response.ok) {
         console.log("Set updated successfully");
-        return response.json(); 
+        return response.json();
       } else {
-        console.error("Error updating set:", response.status, response.statusText);
-        const errorData = await response.json(); 
+        console.error(
+          "Error updating set:",
+          response.status,
+          response.statusText
+        );
+        const errorData = await response.json();
         console.error("Error data:", errorData);
         return null;
       }
@@ -217,7 +226,6 @@ function SetsListPage({ user }) {
       return null;
     }
   };
-  
 
   const handleSave = async (setId) => {
     if (user?.role === "ADMIN") {
@@ -228,7 +236,7 @@ function SetsListPage({ user }) {
         if (response) {
           console.log("Set updated successfully");
           setEditingRows(editingRows.filter((id) => id !== setId));
-        fetchData();  
+          fetchData();
           setIsEditing(false);
         } else {
           console.error("Error updating set:", response);
@@ -240,7 +248,7 @@ function SetsListPage({ user }) {
   const handleImageChange = (setId, event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
-  
+
     reader.onloadend = () => {
       setEditedData((prevData) => ({
         ...prevData,
@@ -250,12 +258,11 @@ function SetsListPage({ user }) {
         },
       }));
     };
-  
+
     if (file) {
       reader.readAsDataURL(file);
     }
   };
-  
 
   return (
     <div div className={styles.setsListPageContainer}>
@@ -280,68 +287,72 @@ function SetsListPage({ user }) {
               </tr>
             </thead>
             <tbody>
-  {currentDataPost.map((item) => (
-    <tr key={item.id}  onClick={handleSetClick(item)} >
-      {headers.map((header) => (
-        <td key={header.accessor}>
-          {header.accessor === "set_image" ? (
-            editingRows.includes(item.id) ? (
-              <input
-                type="file"
-                onChange={(e) => handleImageChange(item.id, e)}
-              />
-            ) : (
-              renderImage(item[header.accessor])
-            )
-          ) : editingRows.includes(item.id) ? (
-            <input
-              type={header.inputType}
-              value={
-                editedData[item.id]
-                  ? editedData[item.id][header.accessor]
-                  : item[header.accessor]
-              }
-              onChange={(e) =>
-                handleEditFieldChange(item.id, header.accessor, e.target.value)
-              }
-            />
-          ) : (
-            item[header.accessor]
-          )}
-        </td>
-      ))}
-      <td>
-        {canPerformActions ? (
-          editingRows.includes(item.id) ? (
-            <button
-              className={styles.saveButton}
-              onClick={() => handleSave(item.id)}
-            >
-              Save
-            </button>
-          ) : (
-            <button
-              className={styles.editButton}
-              onClick={() => toggleEditMode(item.id)}
-            >
-              Edit
-            </button>
-          )
-        ) : null}
-      </td>
-      <td>
-        {canPerformActions ? (
-          <button
-            className={styles.deleteButton}
-            onClick={() => handleDeleteClick(item.id)}
-          >
-            Delete
-          </button>
-        ) : null}
-      </td>
-    </tr>
-  ))}
-</tbody>
+              {currentDataPost.map((item) => (
+                <tr key={item.id} onClick={handleSetClick(item)}>
+                  {headers.map((header) => (
+                    <td key={header.accessor}>
+                      {header.accessor === "set_image" ? (
+                        editingRows.includes(item.id) ? (
+                          <input
+                            type="file"
+                            onChange={(e) => handleImageChange(item.id, e)}
+                          />
+                        ) : (
+                          renderImage(item[header.accessor])
+                        )
+                      ) : editingRows.includes(item.id) ? (
+                        <input
+                          type={header.inputType}
+                          value={
+                            editedData[item.id]
+                              ? editedData[item.id][header.accessor]
+                              : item[header.accessor]
+                          }
+                          onChange={(e) =>
+                            handleEditFieldChange(
+                              item.id,
+                              header.accessor,
+                              e.target.value
+                            )
+                          }
+                        />
+                      ) : (
+                        item[header.accessor]
+                      )}
+                    </td>
+                  ))}
+                  <td>
+                    {canPerformActions ? (
+                      editingRows.includes(item.id) ? (
+                        <button
+                          className={styles.saveButton}
+                          onClick={() => handleSave(item.id)}
+                        >
+                          Save
+                        </button>
+                      ) : (
+                        <button
+                          className={styles.editButton}
+                          onClick={() => toggleEditMode(item.id)}
+                        >
+                          Edit
+                        </button>
+                      )
+                    ) : null}
+                  </td>
+                  <td>
+                    {canPerformActions ? (
+                      <button
+                        className={styles.deleteButton}
+                        onClick={() => handleDeleteClick(item.id)}
+                      >
+                        Delete
+                      </button>
+                    ) : null}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
 

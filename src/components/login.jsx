@@ -5,11 +5,13 @@ import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
 
-function Login({onLogin}) {
+function Login({ onLogin }) {
   const [loginUserName, setLoginUserName] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
   const navigateTo = useNavigate();
+
+  const apiBaseUrl = import.meta.env.VITE_APP_API;
 
   const loginUser = async (event) => {
     event.preventDefault();
@@ -19,7 +21,7 @@ function Login({onLogin}) {
       return;
     }
 
-    const response = await fetch("/api/login", {
+    const response = await fetch(`${apiBaseUrl}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,25 +30,20 @@ function Login({onLogin}) {
         LoginUserName: loginUserName,
         LoginPassword: loginPassword,
       }),
-    })
+    });
     if (response.status === 400) {
       setLoginStatus("Username or Password is Incorrect!");
-      return
+      return;
     }
 
-    const data = await response.json()
+    const data = await response.json();
 
-    if (
-      data.message === "" ||
-      loginUserName === "" ||
-      loginPassword === ""
-    ) {
+    if (data.message === "" || loginUserName === "" || loginPassword === "") {
       setLoginStatus("Credentials don't exist!");
     } else {
       await onLogin();
       navigateTo("/dashboard");
-    } 
-      
+    }
   };
 
   const onSubmit = () => {
@@ -64,9 +61,7 @@ function Login({onLogin}) {
           </div>
           <form action="" className={styles.formGrid} onSubmit={onSubmit}>
             {loginStatus && (
-              <span className={`${styles.displayMessage}`}>
-                {loginStatus}
-              </span>
+              <span className={`${styles.displayMessage}`}>{loginStatus}</span>
             )}
             <div className={styles.inputDiv}>
               <label htmlFor="username"> Username </label>
@@ -122,4 +117,4 @@ function Login({onLogin}) {
   );
 }
 
-export default Login; 
+export default Login;

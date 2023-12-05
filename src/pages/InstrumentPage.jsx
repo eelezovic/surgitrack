@@ -13,6 +13,8 @@ function InstrumentPage({ user }) {
   const [isDeleted, setIsDeleted] = useState(false);
   const [openImageModal, setOpenImageModal] = useState(false);
 
+  const apiBaseUrl = import.meta.env.VITE_APP_API;
+
   const handleImageClick = () => {
     setOpenImageModal(true);
   };
@@ -34,13 +36,16 @@ function InstrumentPage({ user }) {
         instrumentImage: newRow.instrument_image,
       };
 
-      const response = await fetch(`/api/singleInstruments/${newRow.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
+      const response = await fetch(
+        `${apiBaseUrl}/singleInstruments/${newRow.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedData),
+        }
+      );
 
       if (response.ok) {
         console.log("Instrument updated successfully");
@@ -96,7 +101,7 @@ function InstrumentPage({ user }) {
 
   // Fetching instrument data based on the id
   useEffect(() => {
-    fetch(`/api/singleInstruments/${id}`)
+    fetch(`${apiBaseUrl}/singleInstruments/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setInstrumentData(data);
@@ -206,20 +211,20 @@ function InstrumentPage({ user }) {
           </tbody>
         </table>
         {!isEditing && (
-           <div className={styles.buttonContainer}>
-           <button
-             className={styles.editButton}
-             onClick={() => setIsEditing(true)}
-           >
-             Edit
-           </button>
-           <button
-             className={styles.viewImageButton}
-             onClick={handleImageClick}
-           >
-             View image
-           </button>
-         </div>
+          <div className={styles.buttonContainer}>
+            <button
+              className={styles.editButton}
+              onClick={() => setIsEditing(true)}
+            >
+              Edit
+            </button>
+            <button
+              className={styles.viewImageButton}
+              onClick={handleImageClick}
+            >
+              View image
+            </button>
+          </div>
         )}
       </div>
       {openImageModal && (

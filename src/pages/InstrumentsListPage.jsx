@@ -6,7 +6,6 @@ import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
 import InstrumentModal from "../components/InstrumentModal";
 
-
 function InstrumentsListPage({ user }) {
   const headers = [
     { name: "Instrument", accessor: "instrument_name" },
@@ -16,7 +15,13 @@ function InstrumentsListPage({ user }) {
     {
       name: "Image",
       accessor: "instrument_image",
-      render: (image) => <img src={`data:image/jpeg;base64,${image}`} alt="Instrument"  className={styles.imageStyle} />,
+      render: (image) => (
+        <img
+          src={`data:image/jpeg;base64,${image}`}
+          alt="Instrument"
+          className={styles.imageStyle}
+        />
+      ),
     },
   ];
 
@@ -29,8 +34,7 @@ function InstrumentsListPage({ user }) {
   const [newInstrumentData, setNewInstrumentData] = useState({});
 
   const apiBaseUrl = import.meta.env.VITE_APP_API;
-
-  
+  console.log(apiBaseUrl);
 
   const handleInstrumentClick = (instrument) => {
     navigateTo(`/instruments/${instrument.id}`);
@@ -57,8 +61,6 @@ function InstrumentsListPage({ user }) {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
-
-
   const handleSubmit = async (newRow) => {
     try {
       const newInstrumentData = {
@@ -66,11 +68,10 @@ function InstrumentsListPage({ user }) {
         instrumentId: newRow.instrument_id,
         instrumentQuantity: newRow.instrument_quantity,
         instrumentLocation: newRow.instrument_location,
-        instrumentImage: newRow.instrument_image, 
+        instrumentImage: newRow.instrument_image,
       };
 
-
-      const response = await fetch(`${apiBaseUrl}/api/singleInstruments`, {
+      const response = await fetch(`${apiBaseUrl}/singleInstruments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -104,10 +105,9 @@ function InstrumentsListPage({ user }) {
 
   //fetching data from the API
   const fetchData = () => {
-    fetch(`${apiBaseUrl}/api/singleInstruments`)
+    fetch(`${apiBaseUrl}/singleInstruments`)
       .then((response) => response.json())
       .then((data) => {
-
         setSetData(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
@@ -130,22 +130,24 @@ function InstrumentsListPage({ user }) {
             </tr>
           </thead>
           <tbody>
-          {currentPosts.map((item) => (
-  <tr
-    key={item.id}
-    onClick={() => {
-      handleItemClick(item);
-      handleInstrumentClick(item);
-    }}
-  >
-    {headers.map((header) => (
-      <td key={header.accessor}>
-        {header.render ? header.render(item[header.accessor]) : item[header.accessor]}
-      </td>
-    ))}
-  </tr>
-))}
-</tbody>
+            {currentPosts.map((item) => (
+              <tr
+                key={item.id}
+                onClick={() => {
+                  handleItemClick(item);
+                  handleInstrumentClick(item);
+                }}
+              >
+                {headers.map((header) => (
+                  <td key={header.accessor}>
+                    {header.render
+                      ? header.render(item[header.accessor])
+                      : item[header.accessor]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
         </table>
 
         <Pagination
@@ -165,7 +167,7 @@ function InstrumentsListPage({ user }) {
               setId: newInstrumentData.instrument_id,
               setQuantity: newInstrumentData.instrument_quantity,
               setLocation: newInstrumentData.instrument_location,
-              setImage: newInstrumentData.instrument_image, 
+              setImage: newInstrumentData.instrument_image,
               id: newInstrumentData.id,
             }}
           />
@@ -185,5 +187,3 @@ function InstrumentsListPage({ user }) {
 }
 
 export default InstrumentsListPage;
-
-

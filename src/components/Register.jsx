@@ -6,52 +6,54 @@ import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
 import { FaUserShield } from "react-icons/fa";
 
-
 function Register() {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
 
-const createUser = (event) => {
-  event.preventDefault()
-  
-  if (!email || !userName || !password) {
-    alert("Please fill out all fields!");
-    return false;
-  } 
+  const apiBaseUrl = import.meta.env.VITE_APP_API;
 
-  return fetch("/api/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      Email: email,
-      UserName: userName,
-      Password: password,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.message === "User with this email or username already exists.") {
-        // Display the alert message
-        alert(data.message);
-      } else {
-      navigateTo("/"); // Redirecting to the login page
-      setEmail("");
-      setUserName("");
-      setPassword("");
-      console.log("User has been created", data);
-      }
-      return data;  
+  const createUser = (event) => {
+    event.preventDefault();
+
+    if (!email || !userName || !password) {
+      alert("Please fill out all fields!");
+      return false;
+    }
+
+    return fetch(`${apiBaseUrl}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Email: email,
+        UserName: userName,
+        Password: password,
+      }),
     })
-    .catch((error) => {
-      console.error("Error creating user:", error);
-      throw error;
-    });
-};
-
+      .then((response) => response.json())
+      .then((data) => {
+        if (
+          data.message === "User with this email or username already exists."
+        ) {
+          // Display the alert message
+          alert(data.message);
+        } else {
+          navigateTo("/"); // Redirecting to the login page
+          setEmail("");
+          setUserName("");
+          setPassword("");
+          console.log("User has been created", data);
+        }
+        return data;
+      })
+      .catch((error) => {
+        console.error("Error creating user:", error);
+        throw error;
+      });
+  };
 
   return (
     <div className={styles.registerPage}>

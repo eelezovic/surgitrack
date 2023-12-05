@@ -15,10 +15,12 @@ import SetsListPage from "../pages/SetsListPage";
 import SetsPage from "../pages/SetsPage";
 import PrivateRoutes from "./PrivateRoutes";
 
+const apiBaseUrl = import.meta.env.VITE_APP_API;
+console.log(apiBaseUrl);
+
 const fetchUser = () => {
-  return fetch("/api/user")
-  .then((response) => response.json())
-}
+  return fetch(`${apiBaseUrl}/user`).then((response) => response.json());
+};
 
 function App() {
   const [isUserLoading, setIsUserLoading] = useState(true);
@@ -31,15 +33,15 @@ function App() {
   };
 
   const onLogin = async () => {
-     const data = await fetchUser();
-     if (data !== null) {
-       setUser(data);
-     }
-     setIsUserLoading(false);
-  }
+    const data = await fetchUser();
+    if (data !== null) {
+      setUser(data);
+    }
+    setIsUserLoading(false);
+  };
 
   useEffect(() => {
-  onLogin()
+    onLogin();
   }, []);
 
   if (isUserLoading) return "Loading...";
@@ -54,23 +56,21 @@ function App() {
           setSideBar(false);
         }}
       />
-       <SideBar
-                user={user}
-                signout={signout}
-                sideBar={sideBar}
-                toggleSideBar={() => setSideBar(!sideBar)}
-                closeSideBar={() => {
-                  setSideBar(false);
-                }}
-              />
+      <SideBar
+        user={user}
+        signout={signout}
+        sideBar={sideBar}
+        toggleSideBar={() => setSideBar(!sideBar)}
+        closeSideBar={() => {
+          setSideBar(false);
+        }}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login onLogin={onLogin} />} />
-        <Route path="/register" element={<Register />}  />
+        <Route path="/register" element={<Register />} />
       </Routes>
       <Routes>
-      
-
         <Route
           path="/dashboard"
           element={
@@ -135,5 +135,3 @@ function App() {
 }
 
 export default App;
-
-

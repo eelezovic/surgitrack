@@ -2,10 +2,10 @@ const UserController = require("../controllers/UserController");
 const currentUserHandler = require("./currentUser.js");
 
 const userRoutes = (app) => {
-  app.post("/register", UserController.register);
-  app.post("/login", UserController.login);
-  app.post("/logout", UserController.logout);
-  app.get("/user", currentUserHandler);
+  app.post("/api/register", UserController.register);
+  app.post("/api/login", UserController.login);
+  app.post("/api/logout", UserController.logout);
+  app.get("/api/user", currentUserHandler);
 };
 
 module.exports = userRoutes;

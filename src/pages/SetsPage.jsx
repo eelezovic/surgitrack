@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import InstrumentSearchModal from "../components/InstrumentSearchModal";
 import ImageModal from "../components/ImageModal";
 
-
 function SetsPage({ user }) {
   const { id } = useParams();
 
@@ -13,11 +12,11 @@ function SetsPage({ user }) {
   const [instruments, setInstruments] = useState([]);
   const [openImageModal, setOpenImageModal] = useState(false);
 
+  const apiBaseUrl = import.meta.env.VITE_APP_API;
+
   const handleImageClick = () => {
     setOpenImageModal(true);
   };
-
-
 
   const openSearchInstrumentModal = () => {
     setInstrumentSearchModal(true);
@@ -26,7 +25,7 @@ function SetsPage({ user }) {
   const handleSearchInstrumentSelect = async (instrument) => {
     try {
       const response = await fetch(
-        `/api/instrumentSets/${id}/attachExistingInstrument`,
+        `${apiBaseUrl}/instrumentSets/${id}/attachExistingInstrument`,
         {
           method: "POST",
           headers: {
@@ -47,7 +46,10 @@ function SetsPage({ user }) {
         setInstrumentSearchModal(false);
       } else {
         const data = await response.json();
-        console.error("Error attaching existing instrument to set:", data.error);
+        console.error(
+          "Error attaching existing instrument to set:",
+          data.error
+        );
       }
     } catch (error) {
       console.error("Error attaching existing instrument to set:", error);
@@ -57,7 +59,7 @@ function SetsPage({ user }) {
   // fetching instruments related to the set
   useEffect(() => {
     console.log(id);
-    fetch(`/api/instrumentSets/${id}/instruments`)
+    fetch(`${apiBaseUrl}/instrumentSets/${id}/instruments`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch instruments.");
@@ -82,15 +84,17 @@ function SetsPage({ user }) {
     if (isConfirmed) {
       try {
         const response = await fetch(
-          `/api/instrumentSets/${instrumentId}/deleteInstrument/${id}`,
+          `${apiBaseUrl}/instrumentSets/${instrumentId}/deleteInstrument/${id}`,
           {
             method: "DELETE",
           }
         );
 
         if (response.ok) {
-          setInstruments(prevInstruments =>
-            prevInstruments.filter(instrument => instrument.id !== instrumentId)
+          setInstruments((prevInstruments) =>
+            prevInstruments.filter(
+              (instrument) => instrument.id !== instrumentId
+            )
           );
           console.log("Instrument deleted from the set successfully");
         } else {
@@ -140,19 +144,19 @@ function SetsPage({ user }) {
         </table>
 
         {user?.role === "ADMIN" && (
-         <div className={styles.buttonContainer}>
-          <button
-            className={styles.addButton}
-            onClick={openSearchInstrumentModal}
-          >
-            Add Instrument
-          </button>
-          <button
-             className={styles.viewImageButton}
-             onClick={handleImageClick}
-           >
-             View image
-           </button>
+          <div className={styles.buttonContainer}>
+            <button
+              className={styles.addButton}
+              onClick={openSearchInstrumentModal}
+            >
+              Add Instrument
+            </button>
+            <button
+              className={styles.viewImageButton}
+              onClick={handleImageClick}
+            >
+              View image
+            </button>
           </div>
         )}
         {instrumentSearchModal && (
@@ -165,12 +169,11 @@ function SetsPage({ user }) {
         )}
       </div>
       {openImageModal && (
-          <ImageModal
-            closeImageModal={() => setOpenImageModal(false)}
-            imageData={instruments.set_image}
-            
-          />
-        )}
+        <ImageModal
+          closeImageModal={() => setOpenImageModal(false)}
+          imageData={instruments.set_image}
+        />
+      )}
     </div>
   );
 }
