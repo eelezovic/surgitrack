@@ -26,6 +26,8 @@ function App() {
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [sideBar, setSideBar] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
 
   const signout = () => {
     setUser(false);
@@ -55,12 +57,15 @@ function App() {
         closeSideBar={() => {
           setSideBar(false);
         }}
+        isMobile={isMobile}
+        setIsMobile={setIsMobile}
       />
       <SideBar
         user={user}
         signout={signout}
         sideBar={sideBar}
-        toggleSideBar={() => setSideBar(!sideBar)}
+        isMobile={isMobile}
+        setIsMobile={setIsMobile}
         closeSideBar={() => {
           setSideBar(false);
         }}

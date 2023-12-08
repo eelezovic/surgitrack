@@ -1,12 +1,34 @@
-import React from "react";
+import React, {useRef, useEffect} from "react";
 import styles from "./SideBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { BiHome, BiBarChart, BiLogOut, BiSolidUser } from "react-icons/bi";
 
-function SideBar({ user, signout, sideBar, toggleSideBar }) {
+function SideBar({ user, signout, sideBar,  isMobile, setIsMobile, closeSideBar }) {
   const navigate = useNavigate();
 
   const apiBaseUrl = import.meta.env.VITE_APP_API;
+
+  const sidebarRef = useRef();
+
+  useEffect(() => {
+    function handleClick(event) {
+      if (sidebarRef.current && sidebarRef.current.contains(event.target)) {
+        // Inside click: Toggle isMobile state
+        setIsMobile((prevIsMobile) => !prevIsMobile);
+      } else {
+
+        setIsMobile(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClick, true);
+  
+    return () => {
+      document.removeEventListener("mousedown", handleClick, true);
+    };
+  }, [setIsMobile]);
+  
+
 
   const handleLogout = async () => {
     try {
@@ -30,11 +52,15 @@ function SideBar({ user, signout, sideBar, toggleSideBar }) {
   };
 
   const handleLinkClick = () => {
-    toggleSideBar();
+    if (isMobile) {
+      setIsMobile((prevIsMobile) => !prevIsMobile);
+      closeSideBar();
+    }
   };
 
   return (
     <div className={`${styles.sidebar} ${sideBar ? styles.open : ""}`}>
+      <div className={styles.sideBarContainer}  ref={sidebarRef}>
       <ul>
         <li>
           <Link to="/" onClick={handleLinkClick}>
@@ -60,6 +86,7 @@ function SideBar({ user, signout, sideBar, toggleSideBar }) {
           </div>
         )}
       </ul>
+      </div>
     </div>
   );
 }

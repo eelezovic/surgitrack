@@ -87,6 +87,27 @@
   gap: 10px; /* Adjust the gap according to your design */
 }
 
+.customFileInputWrapper {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.customFileInput {
+  color: #39559e;
+  font-size: 16px; 
+  cursor: pointer;
+}
+
+.customFileInputHidden {
+  display: none;
+}
+
+.customFileInputWrapper:hover .customFileInput {
+  color: rgb(171, 170, 170);
+}
+
+
 @media only screen and (max-width: 600px) {
   .table {
     width: 90%;
@@ -94,6 +115,10 @@
   }
   .header{
     font-size: 1.6rem;
+  }
+  .tableContainer input {
+    border: none;
+    color: #819ee5;
   }
 }
 

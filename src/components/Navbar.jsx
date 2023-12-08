@@ -2,8 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
-function Navbar({ user, toggleSideBar, closeSideBar }) {
-  const [isMobile, setIsMobile] = useState(false);
+function Navbar({ user, toggleSideBar, closeSideBar,isMobile,setIsMobile }) {
   const sidebarRef = useRef();
 
   useEffect(() => {
@@ -23,12 +22,11 @@ function Navbar({ user, toggleSideBar, closeSideBar }) {
   const handleToggleSideBar = () => {
     setIsMobile((prevIsMobile) => !prevIsMobile);
     toggleSideBar();
-    
-   
   };
 
   const handleLinkClick = () => {
     closeSideBar();
+    setIsMobile(false);
   };
 
   return (

@@ -9,7 +9,6 @@
   color: #fff;
   padding: 20px;
   transition: transform 0.3s ease-in-out;
-
 }
 
 .sidebar.open {
@@ -65,7 +64,7 @@
     right: 0;
     height: 81%;
     z-index: 1;
-    top: 24%;
+    top: 24.9%;
   }
 
   .sidebar.open {

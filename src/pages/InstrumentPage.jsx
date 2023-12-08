@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import ImageModal from "../components/ImageModal";
 
 function InstrumentPage({ user }) {
+
+  const canPerformActions = user?.role === "ADMIN";
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [instrumentData, setInstrumentData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -121,7 +122,8 @@ function InstrumentPage({ user }) {
               <th className="quantity">Quantity</th>
               <th className="location">Location</th>
               <th className="image">Image</th>
-              {isEditing && <th className="save">Save</th>}
+              {isEditing && <th className="save">Save</th>
+              }
             </tr>
           </thead>
           <tbody>
@@ -180,18 +182,14 @@ function InstrumentPage({ user }) {
               </td>
               <td>
                 {isEditing ? (
+                  <label className={styles.customFileInputWrapper}>
+                  <span className={styles.customFileInput}>Choose Image</span>
                   <input
                     type="file"
-                    onChange={(e) => {
-                      const reader = new FileReader();
-                      reader.onloadend = () => {
-                        handleEdit("instrument_image", reader.result);
-                      };
-                      if (e.target.files[0]) {
-                        reader.readAsDataURL(e.target.files[0]);
-                      }
-                    }}
+                    className={styles.customFileInputHidden}
+                    onChange={(e) => handleImageChange(item.id, e)}
                   />
+                </label>
                 ) : (
                   <img
                     src={`data:image/jpeg;base64,${instrumentData.instrument_image}`}
@@ -200,7 +198,7 @@ function InstrumentPage({ user }) {
                   />
                 )}
               </td>
-              {isEditing && (
+              { isEditing && (
                 <td>
                   <button className={styles.saveButton} onClick={handleSave}>
                     Save
@@ -210,14 +208,16 @@ function InstrumentPage({ user }) {
             </tr>
           </tbody>
         </table>
-        {!isEditing && (
+        { !isEditing && (
           <div className={styles.buttonContainer}>
+           {canPerformActions && (
             <button
               className={styles.editButton}
               onClick={() => setIsEditing(true)}
             >
               Edit
             </button>
+          )}
             <button
               className={styles.viewImageButton}
               onClick={handleImageClick}

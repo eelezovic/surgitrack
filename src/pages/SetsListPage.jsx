@@ -5,6 +5,7 @@ import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
 import SetModal from "../components/SetModal";
+import ImageModal from "../components/ImageModal";
 
 function SetsListPage({ user }) {
   const headers = [
@@ -52,6 +53,7 @@ function SetsListPage({ user }) {
       />
     );
   };
+  console.log(renderImage);
 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
@@ -293,10 +295,14 @@ function SetsListPage({ user }) {
                     <td key={header.accessor}>
                       {header.accessor === "set_image" ? (
                         editingRows.includes(item.id) ? (
+                          <label className={styles.customFileInputWrapper}>
+                          <span className={styles.customFileInput}>Choose Image</span>
                           <input
                             type="file"
+                            className={styles.customFileInputHidden}
                             onChange={(e) => handleImageChange(item.id, e)}
                           />
+                        </label>
                         ) : (
                           renderImage(item[header.accessor])
                         )
