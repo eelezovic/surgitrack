@@ -27,33 +27,43 @@ function SetsListPage({ user }) {
   const [newSetData, setNewSetData] = useState({});
   const [editingRows, setEditingRows] = useState([]);
   const [editedData, setEditedData] = useState({});
+  const [openImageModal, setOpenImageModal] = useState(false); //ImageModal state
+  const [selectedSetImage, setSelectedSetImage] = useState(null);
+
   const navigateTo = useNavigate();
 
   const apiBaseUrl = import.meta.env.VITE_APP_API;
 
+  const handleImageClick = (setImageData) => {
+    setSelectedSetImage(setImageData);
+    setOpenImageModal(true);
+  };
+
   const handleSetClick = (set) => (e) => {
     if (
       !editingRows.length &&
-      (e.target.tagName.toLowerCase() !== "button" ||
-        !["editButton", "deleteButton", "saveButton"].some((cls) =>
-          e.target.classList.contains(styles[cls])
-        ))
+      !(
+        e.target.tagName.toLowerCase() === "img" ||
+        (e.target.tagName.toLowerCase() === "button" &&
+          ["editButton", "deleteButton", "saveButton"].some((cls) =>
+            e.target.classList.contains(styles[cls])
+          ))
+      )
     ) {
       navigateTo(`/sets/${set.id}`);
-      s;
     }
   };
 
-  const renderImage = (imageString) => {
+  const renderImage = (imageString, setId) => {
     return (
       <img
         src={`data:image/png;base64, ${imageString}`}
-        alt="Set Image"
+        alt={`Set Image for Set ID: ${setId}`}
         className={styles.setImageStyle}
+        onClick={() => handleImageClick(imageString)}
       />
     );
   };
-  console.log(renderImage);
 
   const getDataWithSearchString = (data) => {
     return data.filter((item) =>
@@ -296,13 +306,15 @@ function SetsListPage({ user }) {
                       {header.accessor === "set_image" ? (
                         editingRows.includes(item.id) ? (
                           <label className={styles.customFileInputWrapper}>
-                          <span className={styles.customFileInput}>Choose Image</span>
-                          <input
-                            type="file"
-                            className={styles.customFileInputHidden}
-                            onChange={(e) => handleImageChange(item.id, e)}
-                          />
-                        </label>
+                            <span className={styles.customFileInput}>
+                              Choose Image
+                            </span>
+                            <input
+                              type="file"
+                              className={styles.customFileInputHidden}
+                              onChange={(e) => handleImageChange(item.id, e)}
+                            />
+                          </label>
                         ) : (
                           renderImage(item[header.accessor])
                         )
@@ -393,6 +405,12 @@ function SetsListPage({ user }) {
           paginate={handlePagination}
           currentPage={currentPage}
         />
+        {openImageModal && (
+          <ImageModal
+            closeImageModal={() => setOpenImageModal(false)}
+            imageData={selectedSetImage}
+          />
+        )}
       </div>
     </div>
   );

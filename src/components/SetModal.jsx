@@ -126,6 +126,7 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
             <label htmlFor="setSpecialty">Set
             Specialty </label>
             <select name="setSpecialty" value={formState.setSpecialty} onChange={handleChange}>
+            <option value="">Select Specialty</option>
               <option value="Orthopedic">Orthopedic</option>
               <option value="Urology">Urology</option>
               <option value="Plastics">Plastics</option>

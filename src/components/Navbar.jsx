@@ -1,23 +1,8 @@
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
 function Navbar({ user, toggleSideBar, closeSideBar,isMobile,setIsMobile }) {
-  const sidebarRef = useRef();
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        closeSideBar();
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [closeSideBar]);
 
   const handleToggleSideBar = () => {
     setIsMobile((prevIsMobile) => !prevIsMobile);
@@ -30,7 +15,7 @@ function Navbar({ user, toggleSideBar, closeSideBar,isMobile,setIsMobile }) {
   };
 
   return (
-    <nav className={styles.navbar} ref={sidebarRef}>
+    <nav className={styles.navbar} >
       <div className={styles.logoContainer}>
         <img src={"/images/logo.png"} alt="" className={styles.logoImage} />
         <h2 className={styles.logoName}>SurgiTrack</h2>

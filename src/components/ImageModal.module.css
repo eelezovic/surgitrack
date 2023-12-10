@@ -21,15 +21,18 @@
 }
 
 .imageStyle {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 100%; /* Ensures the image does not exceed the wrapper width */
+  max-height: 100%; /* Ensures the image does not exceed the wrapper height */
   display: block;
-  margin: 0 auto;
+  margin-bottom:  4%;
+  width: auto;
+  height: auto;
 }
 
 .closeButton {
   display: flex;
   margin: auto;
+  justify-content: center;
   border: none;
   background-color: #39559e;
   color: white;

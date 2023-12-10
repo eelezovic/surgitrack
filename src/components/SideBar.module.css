@@ -2,9 +2,7 @@
   position:absolute;
   top: 90px;
   right: 0; 
-  transform: translateX(100%);
-  width: 270px;
-  height: 90%;
+  height: 85%;
   background-color: #39559e;
   color: #fff;
   padding: 20px;
@@ -13,7 +11,9 @@
 
 .sidebar.open {
   transform: translateX(0%);
+  width: 270px;
 }
+
 
 .sidebar ul {
   list-style: none;
@@ -30,7 +30,11 @@
   gap: 1rem;
   font-weight: 500;
   cursor: pointer;
+}
 
+.sidebar.closed {
+  transform: translateX(0%);
+  right: 0;
 }
 
 .sidebar a {
@@ -46,23 +50,14 @@
   color:#819ee5;
 }
 
-.closeButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 25px;
-}
 
-.closeButton:hover {
-  color: #819ee5;
-}
 
 
 @media (max-width: 768px) {
   .sidebar {
+    display: flex;
     right: 0;
-    height: 81%;
+    height: 100%;
     z-index: 1;
     top: 24.9%;
   }

@@ -41,7 +41,7 @@ function Register() {
           // Display the alert message
           alert(data.message);
         } else {
-          navigateTo("/"); // Redirecting to the login page
+          navigateTo("/login"); // Redirecting to the login page
           setEmail("");
           setUserName("");
           setPassword("");
