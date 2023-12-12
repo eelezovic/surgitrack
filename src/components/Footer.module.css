@@ -1,12 +1,24 @@
-footer {
+.footerContainer {
   display: flex;
-  position: relative;
+ /* position: relative;*/
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   bottom: 0;
   width: 100%;
-  min-height: 7vh;
+  padding: 2rem 0 1rem 0;
   background-color: #39559e;
+}
+
+.footerDiv {
+  display: flex;
+}
+
+footer {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
 }
 
 footer p {
@@ -14,7 +26,7 @@ footer p {
   font-size: 1rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 460px) {
   footer {
     justify-content: center;
     align-items: center;

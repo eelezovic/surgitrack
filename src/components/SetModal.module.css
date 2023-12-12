@@ -1,6 +1,5 @@
 .setModalContainer {
   position: fixed;
-  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
@@ -9,13 +8,15 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0 ,0.4);
+  z-index:999 ;
 }
 
 .setModal {
   border-radius: 5px;
-  padding: 2rem;
+  padding: 3rem;
   background-color: white;
   width: 25em;
+  height: 50vh;
   height: 95%;
 }
 
@@ -76,7 +77,7 @@ input[type="file"]::file-selector-button {
   .formGroup input {
     border: 1px solid rgb(77, 77, 77);
     font-size: 1rem;
-    border-radius: 1rem;
+    border-radius: 0.6rem;
     color: #696969;
   }
   .formGroup {

@@ -147,13 +147,13 @@
   }
 
   .navLinkMobile {
-   position:absolute;
- display: grid;
- justify-content: center;
+    position:absolute;
+    display: grid;
+    justify-content: center;
     list-style: none;
     background-color: #39559e;
     width: 100%;
-    padding-top: 100px;
+    top: 25%;
     transition: all 0.5s ease-out;
   }
 
@@ -184,6 +184,7 @@
     outline: none;
     right: 5%;
     cursor: pointer;
+    
   }
   .logoutButton {
     font-size: 2rem;

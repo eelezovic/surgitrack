@@ -3,20 +3,15 @@ import styles from "../pages/SetsPage.module.css";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import InstrumentSearchModal from "../components/InstrumentSearchModal";
-import ImageModal from "../components/ImageModal";
 
 function SetsPage({ user }) {
   const { id } = useParams();
 
   const [instrumentSearchModal, setInstrumentSearchModal] = useState(false);
   const [instruments, setInstruments] = useState([]);
-  const [openImageModal, setOpenImageModal] = useState(false);
+
 
   const apiBaseUrl = import.meta.env.VITE_APP_API;
-
-  const handleImageClick = () => {
-    setOpenImageModal(true);
-  };
 
   const openSearchInstrumentModal = () => {
     setInstrumentSearchModal(true);
@@ -151,12 +146,6 @@ function SetsPage({ user }) {
             >
               Add Instrument
             </button>
-            <button
-              className={styles.viewImageButton}
-              onClick={handleImageClick}
-            >
-              View image
-            </button>
           </div>
         )}
         {instrumentSearchModal && (
@@ -168,12 +157,6 @@ function SetsPage({ user }) {
           />
         )}
       </div>
-      {openImageModal && (
-        <ImageModal
-          closeImageModal={() => setOpenImageModal(false)}
-          imageData={instruments.set_image}
-        />
-      )}
     </div>
   );
 }

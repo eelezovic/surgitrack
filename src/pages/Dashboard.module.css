@@ -2,86 +2,108 @@
   margin: 0;
   padding: 0;
 }
-.mainContainer {
+.dasboardContainer {
   background-color: aliceblue;
   cursor: pointer;
   width: 100%;
   height: 80vh;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.instrumentListComponent,
-.instrumentsetcomponent {
-  border-radius: 10px;
-  background-color: #819ee5;
-  color: white;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 8vh;
-  padding: 30px;
-  text-decoration: none;
-  transition-duration: 0.6s;
-}
-
-.instrumentListComponent:hover,
-.instrumentsetcomponent:hover {
-  box-shadow: 0 12px 16px 0 rgba(85, 85, 85, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-  background-color: #576895; /* Green */
-  color: white;
-}
-
-.InstrumentIcon {
-  display: flex;
-  width: 200px;
-  height: 200px;
-  margin: 20px;
-}
-
-.container {
+.containerWrapper {
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  justify-content: center;
+  width: 90%;
+  height: 80%;
 }
 
-@media only screen and (max-width: 600px){
-  .mainContainer {
-  background-color: aliceblue;
-    cursor: pointer;
+.instrumentContainer,
+.setContainer {
+
+  border: 4px groove #819ee5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+  width: 30%;
+  height: 80%;
+}
+
+.instrumentContainer img, .setContainer img {
+  width: 100%;
+}
+
+.instrumentIcon,
+.setIcon {
+  display: flex;
+  justify-content: center;
+  width: 40%;
+  height: 40%;
+}
+
+.instrumentButton,
+.setButton {
+  display: flex;
+  justify-content: center;
+
+  padding: 20px;
+  text-decoration: none;
+  color: #39559e;
+}
+
+.instrumentButton:hover,
+.setButton:hover {
+  color: #819ee5;
+}
+
+.instrumentText, .setText {
+  font-size: 1.1rem;
+}
+
+@media only screen and (max-width: 560px) {
+  .containerWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    width: 90%;
+    height: 90%;
+  }
+
+  .instrumentContainer,
+  .setContainer {
+    border: 3px solid #819ee5;
+    width: 70%;
+    height: 70%;
+  }
+
+  .setContainer img, .instrumentContainer img {
     width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
   }
-  .container {
-    display: flex;
-    flex-direction: column;
-   
+
+  .instrumentText h2, .setText h2{
+    font-size: 1.1rem;
   }
-  .instrumentListComponent,
-  .instrumentsetcomponent {
-    display: flex;
-    justify-content: start;
-    font-size: 1rem;
-    border-radius: 20px;
-    transition-duration: 0.6s;
-  }
-  .iconContainer {
+
+  .instrumentButton,
+  .setButton {
     display: flex;
     justify-content: center;
-    width: 100%;
+    font-size: 1.3rem;
   }
-  .iconContainer:hover {
-    opacity: 0.6;
+  .instrumentIcon,
+  .setIcon {
+    width: 40%;
   }
-  .InstrumentIcon {
-    display: flex;
-    width: 150px;
-    height: 150px;
+}
+
+@media only screen and (max-width: 960px) {
+  .instrumentText h2, .setText h2{
+    font-size: 1.1rem;
   }
+
 }

@@ -77,7 +77,7 @@
 
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 560px){
   .paginationButtons {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -91,7 +91,7 @@
   }
   .pageItem a {
     color:#5774ba;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .active {

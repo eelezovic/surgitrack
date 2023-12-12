@@ -123,14 +123,14 @@ label {
   background-color: #819ee5;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
   .registerContainer {
-    width: 80%;
+    width: 93%;
   }
   .inputFlex {
     display: flex;
     margin: auto;
-    width: 90%;
+    width: 85%;
   }
   .registerButton {
     margin-left: 15px;
@@ -143,5 +143,27 @@ label {
   }
   .signUpButton {
     padding: 0.3rem 1rem;
+  }
+  .headerDiv h3 {
+    font-size: 30px;
+  }
+  .formGrid .inputDiv .userIcon {
+    color: grey;
+    font-size: 15px;
+  }
+  
+  input {
+    background: none;
+    outline: none;
+    border: none;
+    color: rgb(70, 74, 82);
+  }
+  
+  label {
+    color: #39559e;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 0.5rem 0;
+    display: block;
   }
 }
