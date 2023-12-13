@@ -112,7 +112,7 @@ function SetsPage({ user }) {
           <thead>
             <tr>
               <th>Instrument Name</th>
-              <th>Instrument ID</th>
+              <th> ID</th>
               <th>Quantity</th>
               <th>Location</th>
               <th>Delete</th>

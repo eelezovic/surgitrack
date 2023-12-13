@@ -118,7 +118,7 @@ function InstrumentPage({ user }) {
           <thead>
             <tr>
               <th className="name">Name</th>
-              <th className="instumentId">Instrument ID</th>
+              <th className="instumentId">ID</th>
               <th className="quantity">Quantity</th>
               <th className="location">Location</th>
               <th className="image">Image</th>

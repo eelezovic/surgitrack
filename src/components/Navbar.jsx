@@ -10,6 +10,7 @@ function Navbar({ user, toggleSideBar, closeSideBar,isMobile,setIsMobile }) {
   };
 
   const handleLinkClick = () => {
+    console.log("Link clicked");
     closeSideBar();
     setIsMobile(false);
   };

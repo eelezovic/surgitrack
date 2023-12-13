@@ -3,10 +3,10 @@
   padding: 0;
 }
 .dasboardContainer {
-  background-color: aliceblue;
+  background-color: whitesmoke;
   cursor: pointer;
   width: 100%;
-  height: 80vh;
+  height: 86vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,8 +22,8 @@
 
 .instrumentContainer,
 .setContainer {
-
-  border: 4px groove #819ee5;
+  background-color: aliceblue;
+  border: 6px groove #819ee5;
   display: flex;
   justify-content: center;
   align-items: center;

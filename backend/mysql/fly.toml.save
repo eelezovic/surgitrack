@@ -1,0 +1,28 @@
+
+app = "mysql-surgitrack"
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+# If copy/paste'ing, adjust this
+# to the region you're deploying to
+primary_region = "yul"
+
+[processes]
+app = """--datadir /data/mysql \
+  --default-authentication-plugin mysql_native_password \
+  --performance-schema=OFF \
+  --innodb-buffer-pool-size 64M"""
+
+[mounts]
+  source="mysqldata"
+  destination="/data"
+
+[env]
+  MYSQL_DATABASE = "surgitrack_schema"
+  MYSQL_USER = "user"
+
+# As of 04/25/2023:
+# MySQL 8.0.33 has a bug in it
+# so avoid that specific version
+[build]
+  image = "mysql:8.0.32"

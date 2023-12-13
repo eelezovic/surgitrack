@@ -31,12 +31,16 @@
   border: 1px solid #ccc;
 }
 
+.tableContainer  th {
+  font-size: 1.1rem;
+}
+
 .tableContainer input {
   background-color: transparent;
   color: #39559e;
   margin: 0 5px;
   border: 1px solid rgb(213, 213, 213);
-  font-size: 20px;
+  font-size: 1.1rem;
 }
 
 .tableContainer input:hover {

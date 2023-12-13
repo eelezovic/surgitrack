@@ -1,6 +1,6 @@
 .instrumentsListPageContainer {
   width: 100%;
-  min-height: 80vh;
+  height: 86vh;
   background-color: aliceblue;
   /*background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/images/background.jpg');
   background-size: cover;
@@ -25,11 +25,11 @@
 }
 
 .instrumentWrapper th {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .instrumentWrapper td {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
 } 
 
 tr:hover td {
@@ -65,11 +65,11 @@ tr:hover td {
     justify-content:flex-start;
   }
   .instrumentWrapper th {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
   
   .instrumentWrapper td {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .imageStyle {
     width: 50px;

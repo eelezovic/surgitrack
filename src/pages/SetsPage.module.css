@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.tableContainer  th {
+  font-size: 1.1rem;
+}
+
 .header  {
   display: flex;
   padding: 35px;
@@ -20,7 +24,6 @@
   color: #39559e;
   text-decoration: underline;
 }
-
 
 .table {
   width: 50%;
@@ -36,7 +39,7 @@
   color: #39559e;
   margin: 0 5px;
   border: 1px solid rgb(213, 213, 213);
-  font-size: 20px;
+  font-size: 1.1rem;
 }
 
 .tableContainer input:hover {
@@ -109,7 +112,7 @@
 }
 
 .instrumentsTable th {
-  background-color: #39559e;
+  background-color: #819ee5;
   color: white;
   text-align: left;
   padding: 10px;
@@ -145,5 +148,8 @@
   }
   .header{
     font-size: 1.6rem;
+  }
+  .tableContainer  th {
+    font-size: 0.8rem;
   }
 }
