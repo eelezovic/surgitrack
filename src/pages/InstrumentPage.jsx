@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import ImageModal from "../components/ImageModal";
 
 function InstrumentPage({ user }) {
-
   const canPerformActions = user?.role === "ADMIN";
   const { id } = useParams();
   const navigate = useNavigate();
@@ -112,77 +111,77 @@ function InstrumentPage({ user }) {
 
   return (
     <div className={styles.tableWrapper}>
-      <div className={styles.tableContainer}>
-        <h2 className={styles.header}>Instrument Details</h2>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th className="name">Name</th>
-              <th className="instumentId">ID</th>
-              <th className="quantity">Quantity</th>
-              <th className="location">Location</th>
-              <th className="image">Image</th>
-              {isEditing && <th className="save">Save</th>
-              }
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={instrumentData.instrument_name}
-                    onChange={(e) =>
-                      handleEdit("instrument_name", e.target.value)
-                    }
-                  />
-                ) : (
-                  instrumentData.instrument_name
-                )}
-              </td>
-              <td>
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={instrumentData.instrument_id}
-                    onChange={(e) =>
-                      handleEdit("instrument_id", e.target.value)
-                    }
-                  />
-                ) : (
-                  instrumentData.instrument_id
-                )}
-              </td>
-              <td>
-                {isEditing ? (
-                  <input
-                    type="number"
-                    value={instrumentData.instrument_quantity}
-                    onChange={(e) =>
-                      handleEdit("instrument_quantity", e.target.value)
-                    }
-                  />
-                ) : (
-                  instrumentData.instrument_quantity
-                )}
-              </td>
-              <td>
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={instrumentData.instrument_location}
-                    onChange={(e) =>
-                      handleEdit("instrument_location", e.target.value)
-                    }
-                  />
-                ) : (
-                  instrumentData.instrument_location
-                )}
-              </td>
-              <td>
-                {isEditing ? (
-                  <label className={styles.customFileInputWrapper}>
+    <div className={styles.tableContainer}>
+      <h2 className={styles.header}>Instrument Details</h2>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th className="name">Name</th>
+            <th className="instumentId">ID</th>
+            <th className="quantity">Quantity</th>
+            <th className="location">Location</th>
+            <th className="image">Image</th>
+            {isEditing && <th className="save">Save</th>}
+            {isEditing && <th className="delete">Delete</th>}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={instrumentData.instrument_name}
+                  onChange={(e) =>
+                    handleEdit("instrument_name", e.target.value)
+                  }
+                />
+              ) : (
+                instrumentData.instrument_name
+              )}
+            </td>
+            <td>
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={instrumentData.instrument_id}
+                  onChange={(e) =>
+                    handleEdit("instrument_id", e.target.value)
+                  }
+                />
+              ) : (
+                instrumentData.instrument_id
+              )}
+            </td>
+            <td>
+              {isEditing ? (
+                <input
+                  type="number"
+                  value={instrumentData.instrument_quantity}
+                  onChange={(e) =>
+                    handleEdit("instrument_quantity", e.target.value)
+                  }
+                />
+              ) : (
+                instrumentData.instrument_quantity
+              )}
+            </td>
+            <td>
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={instrumentData.instrument_location}
+                  onChange={(e) =>
+                    handleEdit("instrument_location", e.target.value)
+                  }
+                />
+              ) : (
+                instrumentData.instrument_location
+              )}
+            </td>
+            <td>
+              {isEditing ? (
+                <label className={styles.customFileInputWrapper}>
                   <span className={styles.customFileInput}>Choose Image</span>
                   <input
                     type="file"
@@ -190,34 +189,44 @@ function InstrumentPage({ user }) {
                     onChange={(e) => handleImageChange(item.id, e)}
                   />
                 </label>
-                ) : (
-                  <img
-                    src={`data:image/jpeg;base64,${instrumentData.instrument_image}`}
-                    alt="Instrument"
-                    style={{ width: "60px", height: "60px" }}
-                  />
-                )}
-              </td>
-              { isEditing && (
+              ) : (
+                <img
+                  src={`data:image/jpeg;base64,${instrumentData.instrument_image}`}
+                  alt="Instrument"
+                  style={{ width: "60px", height: "60px" }}
+                />
+              )}
+            </td>
+            {isEditing && (
+              <>
                 <td>
                   <button className={styles.saveButton} onClick={handleSave}>
                     Save
                   </button>
                 </td>
-              )}
-            </tr>
-          </tbody>
-        </table>
-        { !isEditing && (
+                <td>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </>
+            )}
+          </tr>
+        </tbody>
+      </table>
+        {!isEditing && (
           <div className={styles.buttonContainer}>
-           {canPerformActions && (
-            <button
-              className={styles.editButton}
-              onClick={() => setIsEditing(true)}
-            >
-              Edit
-            </button>
-          )}
+            {canPerformActions && (
+              <button
+                className={styles.editButton}
+                onClick={() => setIsEditing(true)}
+              >
+                Edit
+              </button>
+            )}
             <button
               className={styles.viewImageButton}
               onClick={handleImageClick}
