@@ -1,7 +1,6 @@
 
 .aboutContainer {
-  margin-top: 0;
-  height: 100vh;
+  height: 95vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -10,24 +9,31 @@
   background-color: aliceblue;
 }
 
-.content {
+.aboutWrap {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-right: 40px; 
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+}
+
+.imageContent {
+  display: flex;
+  margin-right: 4%;
 }
 
 .textContent {
   display: flex;
   flex-direction: column;
   align-items: center; 
-  margin-top: 70px;
+  margin-top: 5%;
   text-align:justify;
 }
 
 .aboutContainer h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  font-size: 1.8rem;
+  margin-bottom: 2%;
   color: #333;
 }
 
@@ -44,9 +50,10 @@
   letter-spacing: 0.3px
 }
 
-.content img {
+.imageContent img {
   max-width: 250px;
   border-radius: 50%;
+  margin-right: 4%; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   filter: brightness(1.1);
 }
@@ -55,43 +62,114 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 5%;
 }
 
-.gitHubIcon {
+.gitHubIcon, .linkedinIcon {
   display: flex;
   font-size: 2.3rem;
-  margin-right: 5px;
+  margin-right: 2%;
   color:  #171515 ;
 }
 
 .linkedinIcon {
-  display: flex;
-  font-size: 2.3rem;
-  margin-left: 5px;
   color: #0072b1;
 }
 
-@media (max-width: 768px) {
+@media only screen and (min-width: 720px) and (max-width: 1023px) {
+  .aboutWrap {
+    flex-direction: row;
+  }
   .aboutContainer {
+    flex-direction: column;
+    height: 100vh;
+  }
 
+  .aboutContainer h1 {
+    font-size: 1.2rem;
+    margin-bottom: 2%;
+    color: #333;
+  }
+  
+  .aboutContainer h2 {
+    font-size: 1.1rem;
+    color:  #666;
+  }
+  
+  .aboutContainer p {
+    font-size: 1rem;
+    color: #666;
+    max-width: 400px;
+    margin: 0 auto;
+    letter-spacing: 0.3px
+  }
+
+  .imageContent img {
+    max-width: 150px; 
+    margin-top: 5%;
+  }
+  .gitHubIcon, .linkedinIcon {
+    font-size: 1.8rem;
+    margin-right: 2%;
+    color:  #171515 ;
+  }
+  
+  .linkedinIcon {
+    color: #0072b1;
+  }
+}
+
+
+@media only screen and (max-width: 720px) {
+  .aboutContainer {
+    flex-direction: column;
+    height: 80vh;
+  }
+
+  .aboutWrap {
     flex-direction: column;
   }
-  .content {
+  .aboutContainer h1 {
+    font-size: 1.3rem;
+    color: #333;
+  }
+  
+  .aboutContainer h2 {
+    font-size: 1.1rem;
+    color:  #666;
+  }
+  
+  .imageContent {
     align-items: center;
-    padding-bottom: 20px;
+  }
+
+  .aboutContainer p {
+    font-size: 1rem;
+    color: #666;
+    max-width: 320px;
+    margin: 0 auto;
+    letter-spacing: 0.2px
   }
 
   .textContent {
     text-align: justify;
-    margin: 30px;
   }
 
-  .content img {
+  .imageContent img {
     max-width: 150px; 
-    margin-top: 10px;
   }
+  .gitHubIcon, .linkedinIcon {
+    font-size: 1.8rem;
+    margin-right: 2%;
+    color:  #171515 ;
+  }
+  
+  .linkedinIcon {
+    color: #0072b1;
+  }
+  
 }
+
 
 /*.aboutCountainer {
   display: block;

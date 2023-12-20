@@ -14,8 +14,8 @@
 .loginContainer {
   display: flex;
   flex-direction: column;
-  height: 75vh;
-  width: 40%;
+  height: 71vh;
+  width: 35%;
   margin: auto;
   border-radius: 10px;
   background: hsl(0, 0%, 91%);
@@ -32,11 +32,11 @@
 
 .headerDiv {
   text-align: center;
-  padding: 1.5rem 0;
+  padding: 1.3rem 0;
 }
 
 .headerDiv h3 {
-  font-size: 25px;
+  font-size: 1.5rem;
   color: #39559e;
   font-weight: 600;
 }
@@ -50,13 +50,17 @@
   text-align: center;
 }
 
-.formGrid {
-  gap: 1rem;
+.userNameLabel, .passwordLabel {
+  font-size: 1.3rem;
 }
 
-.formGrid .inputDiv .userIcon {
+.userName {
+  font-size: 1rem;
+}
+
+.userIcon {
+  font-size: 1.3rem;
   color: grey;
-  font-size: 20px;
 }
 
 input {
@@ -76,16 +80,22 @@ label {
 
 .inputFlex {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem;
+  gap: 0.3rem;
+  padding: 0.3rem;
   background-color: white;
   border-radius: 10px;
   align-items: center;
 }
 
+.loginButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
 .loginButton {
-  padding: 0.8rem;
-  margin-top: 20px;
+  padding: 0.6rem;
+  margin-top: 10px;
   background: white;
   border-radius: 10px;
   color: #39559e;
@@ -114,13 +124,13 @@ label {
 .footerText {
   padding-right: 5px;
   color: #5774ba;
-  font-size: 20px;
+  font-size: 1.1rem;
 }
 
 .signUpButton {
   background-color: white;
   color: #39559e;
-  padding: 0.5rem 1.2rem;
+  padding: 0.3rem 1rem;
   border-radius: 10px;
   font-weight: 500;
   transition: 0.3s ease;
@@ -132,49 +142,105 @@ label {
   background-color: #819ee5;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (min-width: 720px) and (max-width: 1023px) {
   .loginContainer {
-    width: 93%;
-    display: flex;
+    height: 78vh;
+    width: 65%;
+  }
+  .headerDiv {
+    text-align: center;
+    margin-top: 10%;
+    padding: 2px;
+  }
+  
+  .headerDiv h3 {
+    font-size: 1rem;
+  }
+
+  .userNameLabel, .passwordLabel {
+    font-size: 1.1rem;
+  }
+  
+  .userName {
+    font-size: 1rem;
+  }
+  
+  .userIcon {
+    font-size: 1.3rem;
+    color: grey;
+  }
+
+  .loginButton {
+      padding: 0.3rem;
+      margin-top: 10px;
+      background: white;
+      border-radius: 10px;
+      color: #39559e;
+      align-items: center;
+      font-size: 14px;
+      width: 80%;
+      transition: 0.3s ease;
+      cursor: pointer;
+  }
+  .formDiv {
+    gap: 0.3rem;
+  }
+
+  .footerText {
+    padding-right: 5px;
+    color: #5774ba;
+    font-size: 0.8rem;
+  }
+  .signUpButton {
+    padding: 0.2rem 1rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .loginContainer {
+    width: 70%;
+    height: 65vh;
   }
   .inputFlex {
     display: flex;
     margin: auto;
-    width: 85%;
+    width: 80%;
   }
+
   .loginButton {
-    width: 85%;
-    margin: 15px;
+    width: 70%;
+    margin: 5%;
   }
   .footerText {
     padding-right: 5px;
     color: #5774ba;
-    font-size: 16px;
+    font-size: 0.8rem;
   }
   .signUpButton {
     padding: 0.3rem 1rem;
   }
   .headerDiv h3 {
-    font-size: 30px;
+    font-size: 1.3rem;
   }
-  .formGrid .inputDiv .userIcon {
+  .userNameLabel, .passwordLabel {
+    font-size: 1.1rem;
+  }
+  
+  .userName {
+    font-size: 1rem;
+  }
+  
+  .userIcon {
+    font-size: 1.3rem;
     color: grey;
-    font-size: 15px;
   }
   
-  input {
-    background: none;
-    outline: none;
-    border: none;
-    color: rgb(70, 74, 82);
+  .headerDiv {
+    text-align: center;
+    margin-top: 5%;
+    padding: 2px;
   }
-  
-  label {
-    color: #39559e;
-    font-weight: 400;
-    font-size: 18px;
-    padding: 0.5rem 0;
-    display: block;
-  }
-  
+
+
 }

@@ -72,14 +72,15 @@ function InstrumentSearchModal({
   return (
     <div className={styles.searchModalContainer}>
     <div className={styles.searchModalWrapper} ref={modalRef}>
+
       <h2>Search for Instruments</h2>
       <SearchBar setQuery={setQuery} />
       <ul>
         <table>
           <thead>
             <tr>
-              <th>Instrument Name</th>
-              <th>Instrument ID</th>
+              <th>Instrument</th>
+              <th>ID</th>
               <th>Quantity</th>
               <th>Location</th>
             </tr>

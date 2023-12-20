@@ -64,7 +64,15 @@
   font-size: 1.1rem;
 }
 
-@media only screen and (max-width: 560px) {
+@media only screen and (min-width: 720px) and (max-width: 1023px) {
+  .instrumentContainer,
+  .setContainer {
+    border: 3px solid #819ee5;
+    height: 70%;
+  }
+}
+
+@media only screen and (max-width: 720px) {
   .containerWrapper {
     display: flex;
     flex-direction: column;
@@ -77,12 +85,12 @@
   .instrumentContainer,
   .setContainer {
     border: 3px solid #819ee5;
-    width: 70%;
-    height: 70%;
+    width: 66%;
+    height: 60%;
   }
 
   .setContainer img, .instrumentContainer img {
-    width: 100%;
+    width: 90%;
   }
 
   .instrumentText h2, .setText h2{
@@ -97,13 +105,10 @@
   }
   .instrumentIcon,
   .setIcon {
-    width: 40%;
+    width: 50%;
   }
 }
 
-@media only screen and (max-width: 960px) {
-  .instrumentText h2, .setText h2{
-    font-size: 1.1rem;
-  }
 
-}
+
+

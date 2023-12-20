@@ -13,10 +13,11 @@
 
 .setModal {
   border-radius: 5px;
-  padding: 3rem;
+  padding: 1.5rem;
   background-color: white;
   width: 25em;
-  height: 95%;
+  height: 90%;
+
 }
 
 .setModal .button {
@@ -36,7 +37,12 @@
   flex-direction: column;
   margin-bottom: 1.5rem;
   color: #39559e;
-  font-weight: 700;
+  font-weight: 6000;
+  width: 80%;
+}
+
+.formGroup label {
+  font-size: 1.1rem;
 }
 
 .formGroup input {
@@ -58,30 +64,35 @@ input[type="file"]::file-selector-button {
   font-size: 16px;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 720px) {
   .setModalContainer {
-    display: flex;
-    width: 100%;
     z-index: 9999;
   }
   .setModal {
-    display: flex;
-    justify-content: center;
     width: 80%;
-    height: 90%;
+    height: 85%;
   }
   .setModal .button {
     padding: 10px;
-    font-size: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .setModal form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
   }
   .formGroup input {
     border: 1px solid rgb(77, 77, 77);
     font-size: 1rem;
     border-radius: 0.6rem;
+    width: 100%;
     color: #696969;
   }
-  .formGroup {
-    font-size: 1.2rem;
-    color: #39559e;
+
+  .formGroup label {
+    font-size: 1rem;
   }
 } 

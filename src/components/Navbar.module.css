@@ -9,7 +9,7 @@
   width: 100%;
   z-index: 10;
   display: flex;
-  position: relative;
+  position: sticky;
   top: 0;
 }
 
@@ -117,29 +117,21 @@
   display: none;
 }
 
-@media only screen and (max-width: 600px) {
+
+@media only screen and (max-width: 720px) {
   .navbar {
-    background-color: #39559e;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 170px;
     z-index: 9999;
     width: 100%;
   }
 
   .logoName {
-    font-size: 2rem;
-    display: flex;
-    align-items: center;
+    font-size: 1.4rem;
     margin-left: 5px;
   }
 
   .logoImage {
-    width: 15%;
-    height: 15%;
-
+    width: 10%;
+    height: 10%;
   }
 
   .navLinks {
@@ -158,7 +150,8 @@
   }
 
   .login {
-    margin-bottom: 20px;
+    margin-bottom: 6%;
+    font-size: 1.5;
   }
 
   .home,
@@ -166,18 +159,18 @@
   .aboutProject {
     display: flex;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: white;
     text-align: center;
     transition: all 0.5s ease;
-    padding: 20px;
+    padding: 15px;
   }
 
   .mobileMenuIcon {
     display: block;
     position: absolute;
-    font-size: 3rem;
+    font-size: 2rem;
     color: white;
     background-color: #39559e;
     border: none;
@@ -187,7 +180,29 @@
     
   }
   .logoutButton {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 100px;
   } 
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1023px) {
+  .logoImage {
+    width: 60px;
+    height: 60px;
+  }
+  .logoName {
+    font-size: 1.4rem;
+    margin-left: 5px;
+  }
+  .home,
+  .aboutMe,
+  .aboutProject,
+  .login {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    transition: all 0.5s ease;
+    padding: 15px;
+  }
 }

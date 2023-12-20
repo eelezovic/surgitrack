@@ -21,34 +21,7 @@ function AboutProject() {
             delete, and update surgical instruments.
             <br />
             <br />
-         {/*   The app categorizes surgical instruments into two main sections:
-            Single Instruments and Instrument Sets. */}
           </p>
-           {/*  <br />
-          <p>
-            <strong>Single Instruments</strong>
-          </p>
-          <div className={styles.instrumentContent}>
-            <img src="./images/InstrumentIcon.jpg" alt="InstrumentImage" />
-            <p>
-              In this section, each instrument is assigned a unique ID,
-              facilitating quick and precise tracking. Users can search for
-              instruments using their names, IDs, or designated locations.
-            </p>
-          </div>
-          <br />
-          <p>
-            <strong>Instrument Sets</strong>
-          </p>
-          <div className={styles.setContent}>
-            <br />
-            <img src="./images/SetIcon.jpg" alt="SetImage" />
-            <p>
-              Instrument Sets are categorized by specialty, containing a
-              collection of instruments specific to that particular field.
-             
-  </p>  
-          </div>*/}
         </div>
       </div>
     </div>

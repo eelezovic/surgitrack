@@ -64,11 +64,11 @@ function Login({ onLogin }) {
               <span className={`${styles.displayMessage}`}>{loginStatus}</span>
             )}
             <div className={styles.inputDiv}>
-              <label htmlFor="username"> Username </label>
+              <label className={styles.userNameLabel} htmlFor="username"> Username </label>
               <div className={styles.inputFlex}>
                 <FaUserShield className={styles.userIcon} />
                 <input
-                  className={styles.userName}
+                  className={styles.userName} 
                   type="text"
                   id="username"
                   placeholder="Enter Username"
@@ -78,9 +78,8 @@ function Login({ onLogin }) {
                 />
               </div>
             </div>
-
             <div className={styles.inputDiv}>
-              <label htmlFor="password">Password</label>
+              <label className={styles.passwordLabel}  htmlFor="password">Password</label>
               <div className={styles.inputFlex}>
                 <BsFillShieldLockFill className={styles.userIcon} />
                 <input
@@ -94,8 +93,8 @@ function Login({ onLogin }) {
                 />
               </div>
             </div>
-
-            <button
+            <div className={styles.loginButtonContainer}>
+              <button
               type="submit"
               className={styles.loginButton}
               onClick={loginUser}
@@ -103,6 +102,7 @@ function Login({ onLogin }) {
               <span> Login </span>
               <AiOutlineSwapRight className={styles.loginIcon} />
             </button>
+            </div>
           </form>
         </div>
 

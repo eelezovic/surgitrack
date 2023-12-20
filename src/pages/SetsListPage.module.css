@@ -4,17 +4,6 @@
   display: flex;
   flex-direction: row;
   background-color: aliceblue;
-  /*background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/images/background.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;*/
-}
-
-.innerContainer {
-  display: flex;
-  width: 40%;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: row;
 }
 
 .mainContainer {
@@ -26,19 +15,38 @@
   align-items: center;
 }
 
-
-.tableContainer th {
-  font-size: 1.2rem;
+.mainContainer td {
+  padding-right: 10px; 
+  padding-left: 10px;
+  font-size: 1.1rem;
+  border: 1px solid #dddddd; 
 }
 
-.mainContainer td {
-  font-size: 1.1rem;
+.innerContainer {
+  display: flex;
+  width: 40%;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+}
+
+.tableContainerthead tr th {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  padding: 12px;
+  vertical-align: top;
+  text-align: left;
+  background-color: #819ee5;
+  color: white;
+  border: 1px solid #819ee5; 
 }
 
 .tableContainer {
   width: 70%;
   display: flex;
   justify-content: center;
+  border: 1px solid red;
 }
 
 .tableContainer table {
@@ -116,6 +124,7 @@
 .setImageStyle {
   width: 55px;
   height: 55px;
+  padding: 4px;
 }
 
 .customFileInputWrapper {
@@ -148,40 +157,53 @@
 }
 
 
-@media only screen and (max-width: 960px) {
-  .tableContainer input {
-    border: none;
-    font-size: 0.8rem;
-    color: #819ee5;
+@media only screen and (max-width: 720px) {
+
+  .mainContainer {
+    display: flex;
+    width: 100%;
+    height: 80%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+  
 
   .innerContainer {
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin: auto;
     width: 80%;
   }
   .tableContainer {
     width: 100%;
+   margin: auto;
   }
   .tableContainer th {
-    font-size: 0.7rem;
-    max-width: 100%;
+    font-size: 0.6rem;
+    width: 100%;
   }
   .tableContainer td {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
+    width: 100%;
+  }
+
+  .tableContainer table {
     max-width: 100%;
   }
+  
   .editButton,
   .deleteButton {
-    padding: 0.3rem 0.3rem;
+    padding: 0.2rem 0.2rem;
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0 3px 3px #ccc;
     font-size: 0.6rem;
   }
   .setImageStyle {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
   .customFileInput {
     color: rgb(52, 51, 51);

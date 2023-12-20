@@ -111,7 +111,7 @@ function SetsPage({ user }) {
         <table className={styles.instrumentsTable}>
           <thead>
             <tr>
-              <th>Instrument Name</th>
+              <th>Name</th>
               <th> ID</th>
               <th>Quantity</th>
               <th>Location</th>

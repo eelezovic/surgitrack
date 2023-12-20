@@ -64,11 +64,11 @@ function Register() {
           </div>
           <form action="" className={styles.formGrid}>
             <div className={styles.inputDiv}>
-              <label htmlFor="email"> Email </label>
+              <label className={styles.emialLabel} htmlFor="email"> Email </label>
               <div className={styles.inputFlex}>
                 <MdMarkEmailRead className={styles.userIcon} />
                 <input
-                  className={styles.userName}
+                  className={styles.userEmail}
                   type="email"
                   id="email"
                   placeholder="Enter Email"
@@ -80,7 +80,7 @@ function Register() {
             </div>
 
             <div className={styles.inputDiv}>
-              <label htmlFor="username"> Username </label>
+              <label className={styles.userNameLabel} htmlFor="username"> Username </label>
               <div className={styles.inputFlex}>
                 <FaUserShield className={styles.userIcon} />
                 <input
@@ -96,7 +96,7 @@ function Register() {
             </div>
 
             <div className={styles.inputDiv}>
-              <label htmlFor="password">Password</label>
+              <label className={styles.passwordLabel} htmlFor="password">Password</label>
               <div className={styles.inputFlex}>
                 <BsFillShieldLockFill className={styles.userIcon} />
                 <input
@@ -110,7 +110,7 @@ function Register() {
                 />
               </div>
             </div>
-
+           <div className={styles.registerButtonContainer}>
             <button
               type="submit"
               className={styles.registerButton}
@@ -119,6 +119,7 @@ function Register() {
               <span> Register </span>
               <AiOutlineSwapRight className={styles.registerIcon} />
             </button>
+            </div>
           </form>
         </div>
 

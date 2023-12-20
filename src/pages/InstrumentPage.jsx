@@ -110,11 +110,12 @@ function InstrumentPage({ user }) {
   }, [id]);
 
   return (
+    
     <div className={styles.tableWrapper}>
     <div className={styles.tableContainer}>
       <h2 className={styles.header}>Instrument Details</h2>
       <table className={styles.table}>
-        <thead>
+        <thead className={`${styles.thead } ${isEditing ? styles.editing : ''}`}>
           <tr>
             <th className="name">Name</th>
             <th className="instumentId">ID</th>
@@ -127,7 +128,7 @@ function InstrumentPage({ user }) {
         </thead>
         <tbody>
           <tr>
-            <td>
+          <td className={isEditing ? styles.editing : ''}>
               {isEditing ? (
                 <input
                   type="text"
@@ -140,7 +141,7 @@ function InstrumentPage({ user }) {
                 instrumentData.instrument_name
               )}
             </td>
-            <td>
+            <td className={isEditing ? styles.editing : ''}>
               {isEditing ? (
                 <input
                   type="text"
@@ -153,7 +154,7 @@ function InstrumentPage({ user }) {
                 instrumentData.instrument_id
               )}
             </td>
-            <td>
+            <td className={isEditing ? styles.editing : ''}>
               {isEditing ? (
                 <input
                   type="number"
@@ -166,7 +167,7 @@ function InstrumentPage({ user }) {
                 instrumentData.instrument_quantity
               )}
             </td>
-            <td>
+            <td className={isEditing ? styles.editing : ''}>
               {isEditing ? (
                 <input
                   type="text"
@@ -179,7 +180,7 @@ function InstrumentPage({ user }) {
                 instrumentData.instrument_location
               )}
             </td>
-            <td>
+            <td className={isEditing ? styles.editing : ''}>
               {isEditing ? (
                 <label className={styles.customFileInputWrapper}>
                   <span className={styles.customFileInput}>Choose Image</span>

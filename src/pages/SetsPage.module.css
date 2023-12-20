@@ -141,15 +141,28 @@
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 720px) {
   .table {
     width: 90%;
     border-collapse: collapse;
   }
   .header{
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
   .tableContainer  th {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+  }
+  .tableContainer  td {
+    font-size: 0.6rem;
+  }
+ .addButton {
+    margin: 1rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.7rem;
+  }
+
+  .deleteInstrumentBtn {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.6rem;
   }
 }

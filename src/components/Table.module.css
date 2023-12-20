@@ -1,4 +1,4 @@
-.tableContainer {
+/*.tableContainer {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -126,7 +126,7 @@ tr:nth-child(even) {
     text-align: left;
   }
   
-  table tbody tr td {
+  table tbody tr  {
     font-size: 14px;
     letter-spacing: 0.35px;
     font-weight: normal;
@@ -185,7 +185,7 @@ tr:nth-child(even) {
   }
 }
 
-
+*/
 
 /*.tableContainer {
   display: flex;

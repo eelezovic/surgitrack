@@ -6,7 +6,8 @@ import { FaLinkedin, FaGithub } from "react-icons/fa";
 function About() {
   return (
     <div className={styles.aboutContainer}>
-      <div className={styles.content}>
+      <div className={styles.aboutWrap}>
+      <div className={styles.imageContent}>
         <img src="./images/ja.jpg" alt="Image" />
       </div>
       <div className={styles.textContainer}>
@@ -33,6 +34,7 @@ function About() {
             <FaLinkedin />
           </a>
         </div>
+      </div>
       </div>
     </div>
   );

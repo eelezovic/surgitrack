@@ -4,12 +4,13 @@
   border: 1px solid aliceblue;
 }
 .tableContainer {
-  margin: 40px;
   height: 70vh; 
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  margin: auto;
 }
 
 .header {
@@ -22,29 +23,51 @@
   text-decoration: underline;
 }
 
-.table {
+thead tr th {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  padding: 12px;
+  vertical-align: top;
+  text-align: left;
+  background-color: #819ee5;
+  color: white;
+  border: 1px solid #819ee5; 
+}
+
+table {
   width: 50%;
   border-collapse: collapse;
 }
 
-.table, .cell {
-  border: 1px solid #ccc;
+table, .cell {
+  border: 1px solid #e4e4e4;
+  color: #39559e;
 }
 
-.tableContainer  th {
+.tableContainer td {
+  padding-right: 10px; 
+  padding-left: 10px;
   font-size: 1.1rem;
+  border: 1px solid #dddddd; 
 }
 
-.tableContainer input {
+.tableContainer tr:hover td {
+    background-color:#e6e8ea;
+}
+
+/*css styling for input elements in table*/
+.editing td {
+  padding: 8px; 
+}
+
+.editing input {
   background-color: transparent;
   color: #39559e;
   margin: 0 5px;
   border: 1px solid rgb(213, 213, 213);
   font-size: 1.1rem;
-}
-
-.tableContainer input:hover {
-  color:white;
+  width: 100%;
 }
 
 .saveButton, .deleteButton {
@@ -107,18 +130,60 @@
   display: none;
 }
 
-@media only screen and (max-width: 600px) {
-  .table {
-    width: 90%;
+@media only screen and (max-width: 720px) {
+
+  .tableContainer {
+    width: 95%;
+    margin: auto;
+    height: 50vh; 
+  }
+
+  thead tr th {
+    font-size: 0.3rem;
+    font-weight: 600;
+    letter-spacing: 0.35px;
+    padding: 12px;
+    vertical-align: top;
+    text-align: left;
+    background-color: #819ee5;
+    color: white;
+    border: 1px solid #819ee5; 
+  }
+  
+  table {
     border-collapse: collapse;
   }
+
   .header{
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
   .tableContainer input {
     border: none;
     color: #819ee5;
   }
+
+  .tableContainer th {
+    font-size: 0.8rem;
+  }
+
+
+  .editing input {
+    background-color: transparent;
+    color: #39559e;
+    margin: 0 5px;
+    border: 1px solid rgb(213, 213, 213);
+    font-size: 0.7rem;
+    width: 100%;
+  }
+
+
+  .saveButton, .deleteButton {
+    padding: 0.1rem 0.4rem;
+  }
+  .customFileInput {
+    font-size: 0.7rem;
+  }
+ 
 }
 
 
