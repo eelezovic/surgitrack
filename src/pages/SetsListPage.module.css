@@ -1,9 +1,10 @@
 .setsListPageContainer {
-  max-width: 100%;
+  width: 100%;
   height: 90vh;
   display: flex;
   flex-direction: row;
   background-color: aliceblue;
+  border: 1px solid green;
 }
 
 .mainContainer {
@@ -15,13 +16,6 @@
   align-items: center;
 }
 
-.mainContainer td {
-  padding-right: 10px; 
-  padding-left: 10px;
-  font-size: 1.1rem;
-  border: 1px solid #dddddd; 
-}
-
 .innerContainer {
   display: flex;
   width: 40%;
@@ -30,7 +24,22 @@
   flex-direction: row;
 }
 
-.tableContainerthead tr th {
+.tableContainer {
+  width: 50%;
+}
+
+.tableContainer table {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 2%;
+  background-color: white;
+  border: 1px solid rgb(191, 199, 207);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-collapse: collapse;
+  color: #39559e;
+}
+
+.tableContainer thead tr th {
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.35px;
@@ -42,19 +51,11 @@
   border: 1px solid #819ee5; 
 }
 
-.tableContainer {
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  border: 1px solid red;
-}
-
-.tableContainer table {
-  width: 80%;
-  height: 100%;
-  background-color: aliceblue;
-  border: 1px solid rgb(191, 199, 207);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.tableContainer td {
+  padding-right: 10px; 
+  padding-left: 10px;
+  font-size: 1.1rem;
+  border: 1px solid #dddddd; 
 }
 
 .tableContainer input {
@@ -62,30 +63,21 @@
   color: #39559e;
   margin: 5px;
   border: 1px solid rgb(213, 213, 213);
-  font-size: 20px;
+  font-size: 1.1rem;
 }
 
 .tableContainer input:hover {
   color: rgb(171, 170, 170);
 }
 
-.saveButton {
-  display: flex;
-  border: none;
-  background-color: #39559e;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 5px 5px #ccc;
-}
 
 .saveButton:hover {
   background-color: #87de55;
 }
 
 .editButton,
-.deleteButton {
+.deleteButton,
+.saveButton {
   display: flex;
   margin: 0.3rem;
   border: none;
@@ -121,6 +113,7 @@
   background-color: #819ee5;
 }
 
+
 .setImageStyle {
   width: 55px;
   height: 55px;
@@ -136,6 +129,7 @@
 .customFileInput {
   color: #39559e;
   font-size: 16px;
+  text-decoration: underline;
 }
 
 .customFileInputHidden {
@@ -152,20 +146,29 @@
 }
 
 .setImageStyle:hover {
-  transform: scale(1.1);
+  transform: scale(1);
   border: 1px solid rgb(171, 170, 170);
 }
 
 
+.editingRows  {
+  width: 100%;
+}
+
 @media only screen and (max-width: 720px) {
+
+  .setsListPageContainer {
+    width: 100%;
+    display: flex;
+  }
+  
 
   .mainContainer {
     display: flex;
     width: 100%;
-    height: 80%;
+    height: 100%;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
   
 
@@ -174,24 +177,38 @@
     align-items: center;
     justify-content: center;
     margin: auto;
-    width: 80%;
-  }
-  .tableContainer {
-    width: 100%;
-   margin: auto;
-  }
-  .tableContainer th {
-    font-size: 0.6rem;
-    width: 100%;
-  }
-  .tableContainer td {
-    font-size: 0.5rem;
     width: 100%;
   }
 
-  .tableContainer table {
-    max-width: 100%;
+  .tableContainer {
+    border: 1px solid red;
+    width: 95%;
   }
+
+  .tableContainer table {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+ 
+  .tableContainer tbody {
+    width: 100%;
+    overflow-y: auto;
+    max-height: 250px; 
+  }
+
+  .tableContainer th {
+    text-align: left;
+    font-size: 0.7rem; /* Adjust the font size for th in mobile view */
+  }
+
+  .tableContainer td {
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.6rem; /* Adjust the font size for td in mobile view */
+  }
+
   
   .editButton,
   .deleteButton {

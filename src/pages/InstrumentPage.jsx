@@ -110,115 +110,108 @@ function InstrumentPage({ user }) {
   }, [id]);
 
   return (
-    
     <div className={styles.tableWrapper}>
-    <div className={styles.tableContainer}>
-      <h2 className={styles.header}>Instrument Details</h2>
-      <table className={styles.table}>
-        <thead className={`${styles.thead } ${isEditing ? styles.editing : ''}`}>
-          <tr>
-            <th className="name">Name</th>
-            <th className="instumentId">ID</th>
-            <th className="quantity">Quantity</th>
-            <th className="location">Location</th>
-            <th className="image">Image</th>
-            {isEditing && <th className="save">Save</th>}
-            {isEditing && <th className="delete">Delete</th>}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-          <td className={isEditing ? styles.editing : ''}>
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={instrumentData.instrument_name}
-                  onChange={(e) =>
-                    handleEdit("instrument_name", e.target.value)
-                  }
-                />
-              ) : (
-                instrumentData.instrument_name
-              )}
-            </td>
-            <td className={isEditing ? styles.editing : ''}>
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={instrumentData.instrument_id}
-                  onChange={(e) =>
-                    handleEdit("instrument_id", e.target.value)
-                  }
-                />
-              ) : (
-                instrumentData.instrument_id
-              )}
-            </td>
-            <td className={isEditing ? styles.editing : ''}>
-              {isEditing ? (
-                <input
-                  type="number"
-                  value={instrumentData.instrument_quantity}
-                  onChange={(e) =>
-                    handleEdit("instrument_quantity", e.target.value)
-                  }
-                />
-              ) : (
-                instrumentData.instrument_quantity
-              )}
-            </td>
-            <td className={isEditing ? styles.editing : ''}>
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={instrumentData.instrument_location}
-                  onChange={(e) =>
-                    handleEdit("instrument_location", e.target.value)
-                  }
-                />
-              ) : (
-                instrumentData.instrument_location
-              )}
-            </td>
-            <td className={isEditing ? styles.editing : ''}>
-              {isEditing ? (
-                <label className={styles.customFileInputWrapper}>
-                  <span className={styles.customFileInput}>Choose Image</span>
+      <div className={styles.tableContainer}>
+        <h2 className={styles.header}>Instrument Details</h2>
+        <table className={styles.table}>
+          <thead
+            className={`${styles.thead} ${isEditing ? styles.editing : ""}`}
+          >
+            <tr>
+              <th className="name">Name</th>
+              <th className="instumentId">ID</th>
+              <th className="quantity">Quantity</th>
+              <th className="location">Location</th>
+              <th className="image">Image</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className={isEditing ? styles.editing : ""}>
+                {isEditing ? (
                   <input
-                    type="file"
-                    className={styles.customFileInputHidden}
-                    onChange={(e) => handleImageChange(item.id, e)}
+                    type="text"
+                    value={instrumentData.instrument_name}
+                    onChange={(e) =>
+                      handleEdit("instrument_name", e.target.value)
+                    }
                   />
-                </label>
-              ) : (
-                <img
-                  src={`data:image/jpeg;base64,${instrumentData.instrument_image}`}
-                  alt="Instrument"
-                  style={{ width: "60px", height: "60px" }}
-                />
-              )}
-            </td>
-            {isEditing && (
-              <>
-                <td>
-                  <button className={styles.saveButton} onClick={handleSave}>
-                    Save
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className={styles.deleteButton}
-                    onClick={handleDelete}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </>
-            )}
-          </tr>
-        </tbody>
-      </table>
-        {!isEditing && (
+                ) : (
+                  instrumentData.instrument_name
+                )}
+              </td>
+              <td className={isEditing ? styles.editing : ""}>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={instrumentData.instrument_id}
+                    onChange={(e) =>
+                      handleEdit("instrument_id", e.target.value)
+                    }
+                  />
+                ) : (
+                  instrumentData.instrument_id
+                )}
+              </td>
+              <td className={isEditing ? styles.editing : ""}>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={instrumentData.instrument_quantity}
+                    onChange={(e) =>
+                      handleEdit("instrument_quantity", e.target.value)
+                    }
+                  />
+                ) : (
+                  instrumentData.instrument_quantity
+                )}
+              </td>
+              <td className={isEditing ? styles.editing : ""}>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={instrumentData.instrument_location}
+                    onChange={(e) =>
+                      handleEdit("instrument_location", e.target.value)
+                    }
+                  />
+                ) : (
+                  instrumentData.instrument_location
+                )}
+              </td>
+              <td className={isEditing ? styles.editing : ""}>
+                {isEditing ? (
+                  <label className={styles.customFileInputWrapper}>
+                    <span className={styles.customFileInput}>Upload image</span>
+                    <input
+                      type="file"
+                      className={styles.customFileInputHidden}
+                      onChange={(e) => handleImageChange(item.id, e)}
+                    />
+                  </label>
+                ) : (
+                  <img
+                    src={`data:image/jpeg;base64,${instrumentData.instrument_image}`}
+                    alt="Instrument"
+                    className={styles.imageStyle}
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                )}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+   
+        {isEditing ? (
+          <div className={styles.saveAndDeleteButtonContainer}>
+            <button className={styles.saveButton} onClick={handleSave}>
+              Save
+            </button>
+            <button className={styles.deleteButton} onClick={handleDelete}>
+              Delete
+            </button>
+          </div>
+        ) : (
           <div className={styles.buttonContainer}>
             {canPerformActions && (
               <button

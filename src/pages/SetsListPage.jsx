@@ -275,9 +275,8 @@ function SetsListPage({ user }) {
       reader.readAsDataURL(file);
     }
   };
-
   return (
-    <div div className={styles.setsListPageContainer}>
+    <div className={styles.setsListPageContainer}>
       <div className={styles.mainContainer}>
         <div className={styles.innerContainer}>
           <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
@@ -285,60 +284,63 @@ function SetsListPage({ user }) {
         </div>
         <div className={styles.tableContainer}>
           <table>
-            <thead>
+            <thead className={`${styles.thead} ${editingRows? styles.editingRows : ""}`}>
               <tr>
-                {headers.map((header) => (
-                  <th key={header.accessor}>{header.name}</th>
-                ))}
+                {headers
+                  .filter((header) => header.accessor !== 'select_specialty') // Exclude the 'select_specialty' header
+                  .map((header) => (
+                    <th key={header.accessor}>{header.name}</th>
+                  ))}
                 {canPerformActions && (
                   <>
                     <th>Edit</th>
-                    <th>Delete</th>
                   </>
                 )}
               </tr>
             </thead>
             <tbody>
               {currentDataPost.map((item) => (
-                <tr key={item.id} onClick={handleSetClick(item)}>
-                  {headers.map((header) => (
-                    <td key={header.accessor}>
-                      {header.accessor === "set_image" ? (
-                        editingRows.includes(item.id) ? (
-                          <label className={styles.customFileInputWrapper}>
-                            <span className={styles.customFileInput}>
-                              Choose Image
-                            </span>
-                            <input
-                              type="file"
-                              className={styles.customFileInputHidden}
-                              onChange={(e) => handleImageChange(item.id, e)}
-                            />
-                          </label>
+                <tr key={item.id} onClick={() => handleSetClick(item)}>
+                  {headers
+                    .filter((header) => header.accessor !== 'select_specialty') // Exclude the 'select_specialty' cell
+                    .map((header) => (
+                      <td  className={`${editingRows? styles.editingRows : ""}`} key={header.accessor}>
+                        {header.accessor === 'set_image' ? (
+                          editingRows.includes(item.id) ? (
+                            <label className={styles.customFileInputWrapper}>
+                              <span className={styles.customFileInput}>
+                               Upload image
+                              </span>
+                              <input
+                                type="file"
+                                className={styles.customFileInputHidden}
+                                onChange={(e) => handleImageChange(item.id, e)}
+                              />
+                            </label>
+                          ) : (
+                            renderImage(item[header.accessor])
+                          )
+                        ) : editingRows.includes(item.id) ? (
+                          <input
+                            type={header.inputType}
+                            value={
+                              editedData[item.id]
+                                ? editedData[item.id][header.accessor]
+                                : item[header.accessor]
+                            }
+                            onChange={(e) =>
+                              handleEditFieldChange(
+                                item.id,
+                                header.accessor,
+                                e.target.value
+                              )
+                            }
+                          />
                         ) : (
-                          renderImage(item[header.accessor])
-                        )
-                      ) : editingRows.includes(item.id) ? (
-                        <input
-                          type={header.inputType}
-                          value={
-                            editedData[item.id]
-                              ? editedData[item.id][header.accessor]
-                              : item[header.accessor]
-                          }
-                          onChange={(e) =>
-                            handleEditFieldChange(
-                              item.id,
-                              header.accessor,
-                              e.target.value
-                            )
-                          }
-                        />
-                      ) : (
-                        item[header.accessor]
-                      )}
-                    </td>
-                  ))}
+                          item[header.accessor]
+                        )}
+                      </td>
+                    ))}
                   <td>
                     {canPerformActions ? (
                       editingRows.includes(item.id) ? (
@@ -358,22 +360,12 @@ function SetsListPage({ user }) {
                       )
                     ) : null}
                   </td>
-                  <td>
-                    {canPerformActions ? (
-                      <button
-                        className={styles.deleteButton}
-                        onClick={() => handleDeleteClick(item.id)}
-                      >
-                        Delete
-                      </button>
-                    ) : null}
-                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-
+      
         {setModalOpen && (
           <SetModal
             closeSetModal={() => {
@@ -391,14 +383,29 @@ function SetsListPage({ user }) {
             }}
           />
         )}
-        {user?.role && (
-          <button
-            className={styles.addButton}
-            onClick={() => setSetModalOpen(true)}
-          >
-            Add New Set
-          </button>
-        )}
+ <>
+  <div className={styles.buttonContainer}>
+    {user?.role && !editingRows.length && (
+      <button
+        className={styles.addButton}
+        onClick={() => setSetModalOpen(true)}
+      >
+        Add New Set
+      </button>
+    )}
+    {canPerformActions && editingRows.length > 0 && (
+      <div className={styles.editActionsContainer}>
+        <button
+          className={styles.deleteButton}
+          onClick={() => handleDeleteClick(editingRows[0])}
+        >
+          Delete
+        </button>
+      </div>
+    )}
+  </div>
+</>
+
         <Pagination
           postsPerPage={postsPerPage}
           totalPosts={allPosts.length}

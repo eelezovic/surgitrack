@@ -16,7 +16,7 @@
 }
 
 
-thead tr th {
+.instrumentWrapper thead tr th {
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.35px;

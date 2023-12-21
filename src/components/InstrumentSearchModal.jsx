@@ -75,8 +75,9 @@ function InstrumentSearchModal({
 
       <h2>Search for Instruments</h2>
       <SearchBar setQuery={setQuery} />
+      <div className={styles.instrumentSearchTable}>
       <ul>
-        <table>
+        <table >
           <thead>
             <tr>
               <th>Instrument</th>
@@ -103,7 +104,7 @@ function InstrumentSearchModal({
           </tbody>
         </table>
       </ul>
-
+     </div>
       <div className={styles.buttons}>
         <button className={styles.closeModalButton} onClick={closeModal}>
           Close

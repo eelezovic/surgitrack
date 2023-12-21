@@ -23,7 +23,7 @@
   text-decoration: underline;
 }
 
-thead tr th {
+.tableContainer  thead tr th {
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.35px;
@@ -35,18 +35,16 @@ thead tr th {
   border: 1px solid #819ee5; 
 }
 
-table {
-  width: 50%;
+.tableContainer table {
+  width: 100%;
   border-collapse: collapse;
 }
 
 table, .cell {
-  border: 1px solid #e4e4e4;
   color: #39559e;
 }
 
 .tableContainer td {
-  padding-right: 10px; 
   padding-left: 10px;
   font-size: 1.1rem;
   border: 1px solid #dddddd; 
@@ -64,28 +62,16 @@ table, .cell {
 .editing input {
   background-color: transparent;
   color: #39559e;
-  margin: 0 5px;
-  border: 1px solid rgb(213, 213, 213);
+  margin: 0;
+  border: 1px solid rgba(213, 213, 213, 0.957);
   font-size: 1.1rem;
   width: 100%;
 }
 
-.saveButton, .deleteButton {
-  display: flex;
-  border: none;
-  background-color: #39559e;
-  color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 5px 5px #ccc;
-}
-
-.saveButton:hover {
-  background-color: #87de55;
-}
-
-.editButton, .viewImageButton {
+.editButton, 
+.viewImageButton, 
+.saveButton,
+ .deleteButton  {
   display: flex;
   margin: 0.5rem;
   border: none;
@@ -95,6 +81,10 @@ table, .cell {
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 5px 5px #ccc;
+}
+
+.saveButton:hover {
+  background-color: #87de55;
 }
 
 .deleteButton:hover {
@@ -109,8 +99,9 @@ table, .cell {
   background-color: #0056b3;
 }
 
-.buttonContainer {
+.buttonContainer, .saveAndDeleteButtonContainer {
   display: flex;
+  flex-direction: row;
   gap: 10px; 
 }
 
@@ -118,16 +109,32 @@ table, .cell {
   display: inline-block;
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 
 .customFileInput {
   color: #39559e;
   font-size: 16px; 
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .customFileInputHidden {
   display: none;
+}
+
+.imageStyle {
+  width: 55px;
+  height: 55px;
+  padding: 5px;
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1023px) {
+  .tableContainer {
+    width: 90%;
+    margin: auto;
+    height: 50vh; 
+  }
 }
 
 @media only screen and (max-width: 720px) {
@@ -145,8 +152,6 @@ table, .cell {
     padding: 12px;
     vertical-align: top;
     text-align: left;
-    background-color: #819ee5;
-    color: white;
     border: 1px solid #819ee5; 
   }
   
@@ -165,21 +170,20 @@ table, .cell {
   .tableContainer th {
     font-size: 0.8rem;
   }
-
+ 
+  .tableContainer td {
+    font-size: 0.7rem;
+  }
 
   .editing input {
     background-color: transparent;
     color: #39559e;
-    margin: 0 5px;
     border: 1px solid rgb(213, 213, 213);
-    font-size: 0.7rem;
-    width: 100%;
+    font-size: 0.6rem;
+    padding: 5px;
+    text-size-adjust: none;
   }
 
-
-  .saveButton, .deleteButton {
-    padding: 0.1rem 0.4rem;
-  }
   .customFileInput {
     font-size: 0.7rem;
   }

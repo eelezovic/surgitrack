@@ -23,7 +23,7 @@ function InstrumentsListPage({ user }) {
         />
       ),
     },
-  ];
+  ]; 
 
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);

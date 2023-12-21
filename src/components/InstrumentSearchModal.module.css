@@ -13,7 +13,7 @@
 .searchModalWrapper {
   border-radius: 5px;
   width: 40%;
-  height: 50%;
+  height: 60%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -28,7 +28,13 @@
   text-decoration: underline;
 }
 
-.searchModalWrapper thead tr th {
+.instrumentSearchTable {
+  width: 90%;
+  border: 1px solid #dddddd; 
+}
+
+.instrumentSearchTable thead tr th {
+  width: 100%;
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.35px;
@@ -40,19 +46,18 @@
   border: 1px solid #819ee5; 
 }
 
-.searchModalWrapper td {
-    padding-right: 10px; 
-    padding-left: 10px;
-    font-size: 1.1rem;
+.instrumentSearchTable td {
+    padding: 10px; 
+    font-size: 1.2rem;
     border: 1px solid #dddddd; 
-}
+} 
 
 .searchModalWrapper .buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 30%;
-  margin-top: 50px;
+  margin-top: 2%;
 }
 
 .closeModalButton {
@@ -66,7 +71,7 @@
   box-shadow: 0 5px 5px #ccc;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 720px) {
 
   .searchModalWrapper {
     border-radius: 5px;
@@ -78,16 +83,19 @@
     background-color: white;
 }
 
-.searchInstrument {
-  font-size: 2rem;
+.instrumentSearchTable {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  border: none; 
 }
 
-.searchModalWrapper th  {
-  font-size: 0.9rem;
+.instrumentSearchTable thead tr th {
+  font-size: 0.8rem;
 }
 
 .searchModalWrapper td  {
-  font-size: 1rem;
+  font-size: 0.7rem;
   padding: 5px;
 }
 
