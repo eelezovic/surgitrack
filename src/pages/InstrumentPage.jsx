@@ -72,6 +72,23 @@ function InstrumentPage({ user }) {
     }
   };
 
+  const handleImageChange = (id, event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+  
+    reader.onloadend = () => {
+      setInstrumentData((prevData) => ({
+        ...prevData,
+        instrument_image: reader.result,
+      }));
+    };
+  
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+  
+
   //function to delete an instrument
   const handleDelete = () => {
     const isConfirmed = window.confirm(
@@ -108,6 +125,8 @@ function InstrumentPage({ user }) {
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, [id]);
+
+ 
 
   return (
     <div className={styles.tableWrapper}>
@@ -184,10 +203,11 @@ function InstrumentPage({ user }) {
                   <label className={styles.customFileInputWrapper}>
                     <span className={styles.customFileInput}>Upload image</span>
                     <input
-                      type="file"
-                      className={styles.customFileInputHidden}
-                      onChange={(e) => handleImageChange(item.id, e)}
-                    />
+  type="file"
+  className={styles.customFileInputHidden}
+  onChange={(e) => handleImageChange(id, e)}
+/>
+
                   </label>
                 ) : (
                   <img
