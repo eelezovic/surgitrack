@@ -23,7 +23,7 @@
   text-decoration: underline;
 }
 
-.tableContainer  thead tr th {
+thead tr th {
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.35px;
@@ -35,7 +35,7 @@
   border: 1px solid #819ee5; 
 }
 
-.tableContainer table {
+table {
   width: 100%;
   border-collapse: collapse;
 }
@@ -146,7 +146,7 @@ table, .cell {
   }
 
   thead tr th {
-    font-size: 0.3rem;
+    font-size: 0.5rem;
     font-weight: 600;
     letter-spacing: 0.35px;
     padding: 12px;

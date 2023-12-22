@@ -37,33 +37,19 @@ input:focus {
   font-size: 1.4rem;
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 720px){
   .inputWrapper {
-    background-color: white;
-    width: 80%;
-    border-radius: 20px;
-    box-shadow: 0 0 8px #ddd;
-    display: flex;
-    align-items: center;
-    border: 1px solid rgb(179, 179, 179);
+    width: 90%;
     font-size: 1rem;
   }
-  input {
-    background-color: transparent;
-    border: none;
-    height:  100%;
-    font-size: 1.5rem;
-    width: 100%;
-    margin-left:  10px;
-    color: rgb(96, 96, 96);
-  }
+ 
   .search {
     background-color: rgb(255, 255, 255);
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .iconStyles {
     color: #5774ba;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
 }

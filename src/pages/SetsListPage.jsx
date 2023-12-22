@@ -284,7 +284,7 @@ function SetsListPage({ user }) {
         </div>
         <div className={styles.tableContainer}>
           <table>
-            <thead className={`${styles.thead} ${editingRows? styles.editingRows : ""}`}>
+            <thead >
               <tr>
                 {headers
                   .filter((header) => header.accessor !== 'select_specialty') // Exclude the 'select_specialty' header

@@ -73,8 +73,8 @@ input[type="file"]::file-selector-button {
     height: 85%;
   }
   .setModal .button {
-    padding: 10px;
-    font-size: 0.8rem;
+    padding: 5px;
+    font-size: 0.7rem;
   }
 
   .setModal form {
