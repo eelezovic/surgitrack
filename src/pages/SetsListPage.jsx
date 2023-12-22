@@ -27,7 +27,7 @@ function SetsListPage({ user }) {
   const [newSetData, setNewSetData] = useState({});
   const [editingRows, setEditingRows] = useState([]);
   const [editedData, setEditedData] = useState({});
-  const [openImageModal, setOpenImageModal] = useState(false); //ImageModal state
+  const [openImageModal, setOpenImageModal] = useState(false); 
   const [selectedSetImage, setSelectedSetImage] = useState(null);
 
   const navigateTo = useNavigate();
@@ -287,7 +287,7 @@ function SetsListPage({ user }) {
             <thead >
               <tr>
                 {headers
-                  .filter((header) => header.accessor !== 'select_specialty') // Exclude the 'select_specialty' header
+                  .filter((header) => header.accessor !== 'select_specialty')
                   .map((header) => (
                     <th key={header.accessor}>{header.name}</th>
                   ))}
@@ -300,9 +300,9 @@ function SetsListPage({ user }) {
             </thead>
             <tbody>
               {currentDataPost.map((item) => (
-                <tr key={item.id} onClick={() => handleSetClick(item)}>
+                  <tr key={item.id} onClick={handleSetClick(item)}>
                   {headers
-                    .filter((header) => header.accessor !== 'select_specialty') // Exclude the 'select_specialty' cell
+                    .filter((header) => header.accessor !== 'select_specialty') 
                     .map((header) => (
                       <td  className={`${editingRows? styles.editingRows : ""}`} key={header.accessor}>
                         {header.accessor === 'set_image' ? (
