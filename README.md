@@ -1,3 +1,5 @@
+https://github.com/eelezovic/azra-apartments/assets/107818535/15a86b2a-75b9-40a4-a6d4-079d5c40a633
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
