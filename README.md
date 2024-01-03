@@ -1,72 +1,32 @@
+# SurgiTrack
+
+## Overview
+
+SurgiTrack is a cutting-edge instrument tracking application developed for healthcare professionals, specifically tailored for Operating Room environments. This project was created as a final assignment at Get Coding, aiming to bridge the gap between technology and healthcare.
+
+## Features
+
+- **Efficient Tracking:** SurgiTrack simplifies the process of adding, modifying, and tracking surgical instruments and sets within Operating Rooms, promoting efficiency in healthcare workflows.
+
+- **Cost-Effective Solutions:** By minimizing unnecessary instrument openings and wastage, SurgiTrack contributes to cost-effective operations for healthcare facilities.
+
+- **Educational Tool:** Designed with new nurses in mind, SurgiTrack serves as a valuable teaching tool with detailed images and lists of all instruments and set contents.
+
+- **Security:** Robust authorization and authentication features ensure that only authorized administrators can make modifications, maintaining data integrity.
+
+## Technologies Used
+
+- **Frontend:** React.js, CSS
+- **Backend:** Node.js, Express
+- **Database:** MySQL
+- **Deployment:** [SurgiTrack on Fly](https://surgitrack.fly.dev/)
+
+## Demo
+
+Check out the quick demo video to see SurgiTrack in action:
+
 https://github.com/eelezovic/azra-apartments/assets/107818535/15a86b2a-75b9-40a4-a6d4-079d5c40a633
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
