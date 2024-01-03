@@ -21,6 +21,10 @@ SurgiTrack is a cutting-edge instrument tracking application developed for healt
 - **Database:** MySQL
 - **Deployment:** [SurgiTrack on Fly](https://surgitrack.fly.dev/)
 
+## Feedback and Contact
+
+I welcome your feedback and suggestions on how I can make SurgiTrack app even better. Please feel free to contact me on my [LinkedIn profile](https://www.linkedin.com/) or here on GitHub.
+
 ## Demo
 
 Check out the quick demo video to see SurgiTrack in action:
