@@ -10,7 +10,6 @@ function Navbar({ user, toggleSideBar, closeSideBar,isMobile,setIsMobile }) {
   };
 
   const handleLinkClick = () => {
-    console.log("Link clicked");
     closeSideBar();
     setIsMobile(false);
   };
@@ -42,7 +41,7 @@ function Navbar({ user, toggleSideBar, closeSideBar,isMobile,setIsMobile }) {
               handleLinkClick();
             }}
           >
-            Project
+           SurgiTrack
           </Link>
           <Link
             to="/login"

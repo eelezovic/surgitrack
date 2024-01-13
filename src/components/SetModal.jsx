@@ -88,6 +88,10 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
   return (
     <div className={styles.setModalContainer}>
       <div className={styles.setModal} ref={modalRef}>
+      <div className={styles.closeButtonSetContainer}>
+        <button className={styles.closeButtonSetModal} onClick={closeSetModal}>X</button>
+      </div>
+      <div className={styles.setFormContainer}>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label htmlFor="setName">Set Name</label>
@@ -160,6 +164,7 @@ function SetModal({ closeSetModal, onSubmit, defaultValue }) {
             Submit
           </button>
         </form>
+        </div>
       </div>
     </div>
   );

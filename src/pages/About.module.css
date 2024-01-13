@@ -7,6 +7,7 @@
   align-items: center;
   text-align: center;
   background-color: aliceblue;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .aboutWrap {
@@ -167,117 +168,6 @@
   .linkedinIcon {
     color: #0072b1;
   }
-  
 }
 
-
-/*.aboutCountainer {
-  display: block;
-  font-family: verdana;
-  margin: 10px auto;
-  padding: 20px;
-  background-color: rgb(190, 236, 242);
-  color: #20325e;
-  width: 80%;
-  height: 80vh;
-}
-
-.aboutCountainer h1 {
-  font-size: 2rem;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
-.aboutCountainer p {
-  text-indent: 25px;
-  font-size: 1.5rem;
-  font-weight: normal;
-  display: flex;
-  justify-content: center;
-  text-align:justify;
-  line-height: 1.5;
-}
-
-.iconsContainer {
-  width: 8%;
-  margin: auto;
-  display: flex;
-  justify-content:space-around;
-  padding: 20px;
-}
-
-.gitHubIcon {
-  display: flex;
-  font-size: 2.5rem;
-  color:  #171515 ;
-
-}
-
-.linkedinIcon {
-  display: flex;
-  font-size: 2.5rem;
-  color: #0072b1;
-}
-
-
-@media only screen and (max-width: 600px){
-  .aboutCountainer {
-  display: block;
-  font-family: verdana;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px auto;
-  padding: 5px;
-  background-color: rgb(190, 236, 242);
-  color: #20325e;
-  width: 90%;
-  height: 100%;
-  }
-
-  .aboutCountainer p {
-    font-size: 1.3rem;
-    font-weight: normal;
-    display: flex;
-    justify-content: center;
-    text-align:center;
-    line-height: 1.5;
-  }
-
-  .gitHubIcon {
-    font-size: 2.5rem;
-  }
-  .linkedinIcon {
-    font-size:  2.5rem;
-  }
-
-
-
-
-
-}
-  /*.aboutCountainer {
-    width: 80%;
-    height: 100vh;
-  }
-  .aboutCountainer p {
-    text-indent:25px;
-    font-size: 1.3rem;
-    font-weight: normal;
-    display: flex;
-    justify-content:flex-start;
-    text-align: justify;
-  }
-  .aboutCountainer h1 {
-    font-size: 2rem;
-
-  }
-  .gitHubIcon {
-    font-size: 2rem;
-  }
-  .linkedinIcon {
-    font-size: 2rem;
-  }
-*/
 

@@ -14,6 +14,7 @@ function InstrumentPage({ user }) {
   const [openImageModal, setOpenImageModal] = useState(false);
 
   const apiBaseUrl = import.meta.env.VITE_APP_API;
+  const navigateTo = useNavigate();
 
   const handleImageClick = () => {
     setOpenImageModal(true);
@@ -75,19 +76,18 @@ function InstrumentPage({ user }) {
   const handleImageChange = (id, event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
-  
+
     reader.onloadend = () => {
       setInstrumentData((prevData) => ({
         ...prevData,
         instrument_image: reader.result,
       }));
     };
-  
+
     if (file) {
       reader.readAsDataURL(file);
     }
   };
-  
 
   //function to delete an instrument
   const handleDelete = () => {
@@ -126,10 +126,16 @@ function InstrumentPage({ user }) {
       .catch((error) => console.error("Error fetching data:", error));
   }, [id]);
 
- 
-
   return (
     <div className={styles.tableWrapper}>
+      <div className={styles.returnButtonContainer}>
+        <button
+          className={styles.returnButton}
+          onClick={() => navigateTo("/instruments")}
+        >
+          &#x2190; Previous
+        </button>
+      </div>
       <div className={styles.tableContainer}>
         <h2 className={styles.header}>Instrument Details</h2>
         <table className={styles.table}>
@@ -203,11 +209,10 @@ function InstrumentPage({ user }) {
                   <label className={styles.customFileInputWrapper}>
                     <span className={styles.customFileInput}>Upload image</span>
                     <input
-  type="file"
-  className={styles.customFileInputHidden}
-  onChange={(e) => handleImageChange(id, e)}
-/>
-
+                      type="file"
+                      className={styles.customFileInputHidden}
+                      onChange={(e) => handleImageChange(id, e)}
+                    />
                   </label>
                 ) : (
                   <img
@@ -221,7 +226,7 @@ function InstrumentPage({ user }) {
             </tr>
           </tbody>
         </table>
-   
+
         {isEditing ? (
           <div className={styles.saveAndDeleteButtonContainer}>
             <button className={styles.saveButton} onClick={handleSave}>

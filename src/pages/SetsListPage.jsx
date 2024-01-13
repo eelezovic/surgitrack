@@ -27,11 +27,10 @@ function SetsListPage({ user }) {
   const [newSetData, setNewSetData] = useState({});
   const [editingRows, setEditingRows] = useState([]);
   const [editedData, setEditedData] = useState({});
-  const [openImageModal, setOpenImageModal] = useState(false); 
+  const [openImageModal, setOpenImageModal] = useState(false);
   const [selectedSetImage, setSelectedSetImage] = useState(null);
 
   const navigateTo = useNavigate();
-
   const apiBaseUrl = import.meta.env.VITE_APP_API;
 
   const handleImageClick = (setImageData) => {
@@ -115,7 +114,15 @@ function SetsListPage({ user }) {
       console.log(responseData.message);
 
       setSetData([...setData, newRow]);
+
       if (response.ok) {
+        const updatedData = [...setData, newRow];
+        setSetData(updatedData);
+  
+        const newPageNumber = Math.ceil(updatedData.length / postsPerPage);
+        setCurrentPage(newPageNumber);
+
+
         fetchData();
         setSetModalOpen(false);
 
@@ -275,19 +282,28 @@ function SetsListPage({ user }) {
       reader.readAsDataURL(file);
     }
   };
+
   return (
     <div className={styles.setsListPageContainer}>
       <div className={styles.mainContainer}>
+          <div className={styles.returnButtonContainer}>
+        <button
+          className={styles.returnButton}
+          onClick={() => navigateTo("/dashboard")}
+        >
+          &#x2190; Previous
+        </button>
+      </div>
         <div className={styles.innerContainer}>
           <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
           <Dropdown selected={selected} setSelected={handleDropdownSelect} />
         </div>
         <div className={styles.tableContainer}>
           <table>
-            <thead >
+            <thead>
               <tr>
                 {headers
-                  .filter((header) => header.accessor !== 'select_specialty')
+                  .filter((header) => header.accessor !== "select_specialty")
                   .map((header) => (
                     <th key={header.accessor}>{header.name}</th>
                   ))}
@@ -300,16 +316,19 @@ function SetsListPage({ user }) {
             </thead>
             <tbody>
               {currentDataPost.map((item) => (
-                  <tr key={item.id} onClick={handleSetClick(item)}>
+                <tr key={item.id} onClick={handleSetClick(item)}>
                   {headers
-                    .filter((header) => header.accessor !== 'select_specialty') 
+                    .filter((header) => header.accessor !== "select_specialty")
                     .map((header) => (
-                      <td  className={`${editingRows? styles.editingRows : ""}`} key={header.accessor}>
-                        {header.accessor === 'set_image' ? (
+                      <td
+                        className={`${editingRows ? styles.editingRows : ""}`}
+                        key={header.accessor}
+                      >
+                        {header.accessor === "set_image" ? (
                           editingRows.includes(item.id) ? (
                             <label className={styles.customFileInputWrapper}>
                               <span className={styles.customFileInput}>
-                               Upload image
+                                Upload image
                               </span>
                               <input
                                 type="file"
@@ -365,7 +384,7 @@ function SetsListPage({ user }) {
             </tbody>
           </table>
         </div>
-      
+
         {setModalOpen && (
           <SetModal
             closeSetModal={() => {
@@ -383,28 +402,28 @@ function SetsListPage({ user }) {
             }}
           />
         )}
- <>
-  <div className={styles.buttonContainer}>
-    {user?.role && !editingRows.length && (
-      <button
-        className={styles.addButton}
-        onClick={() => setSetModalOpen(true)}
-      >
-        Add New Set
-      </button>
-    )}
-    {canPerformActions && editingRows.length > 0 && (
-      <div className={styles.editActionsContainer}>
-        <button
-          className={styles.deleteButton}
-          onClick={() => handleDeleteClick(editingRows[0])}
-        >
-          Delete
-        </button>
-      </div>
-    )}
-  </div>
-</>
+        <>
+          <div className={styles.buttonContainer}>
+            {user?.role && !editingRows.length && (
+              <button
+                className={styles.addButton}
+                onClick={() => setSetModalOpen(true)}
+              >
+                Add New Set
+              </button>
+            )}
+            {canPerformActions && editingRows.length > 0 && (
+              <div className={styles.editActionsContainer}>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => handleDeleteClick(editingRows[0])}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
+          </div>
+        </>
 
         <Pagination
           postsPerPage={postsPerPage}

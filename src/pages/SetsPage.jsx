@@ -10,7 +10,7 @@ function SetsPage({ user }) {
   const [instrumentSearchModal, setInstrumentSearchModal] = useState(false);
   const [instruments, setInstruments] = useState([]);
 
-
+  const navigateTo = useNavigate();
   const apiBaseUrl = import.meta.env.VITE_APP_API;
 
   const openSearchInstrumentModal = () => {
@@ -106,6 +106,14 @@ function SetsPage({ user }) {
 
   return (
     <div className={styles.setWrapper}>
+      <div className={styles.returnButtonContainer}>
+        <button
+          className={styles.returnButton}
+          onClick={() => navigateTo("/sets")}
+        >
+          &#x2190; Previous
+        </button>
+      </div>
       <div className={styles.tableContainer}>
         <div className={styles.header}>Instrument List</div>
         <table className={styles.instrumentsTable}>

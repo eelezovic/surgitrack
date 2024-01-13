@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../pages/InstrumentsListPage.module.css";
 import SearchBar from "../components/SearchBar";
-import Table from "../components/Table";
 import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
 import InstrumentModal from "../components/InstrumentModal";
@@ -80,11 +79,18 @@ function InstrumentsListPage({ user }) {
       });
       const responseData = await response.json();
       console.log(responseData.message);
-
       setSetData([...setData, newRow]);
+
       if (response.ok) {
-        fetchData();
-        setInstrumentModalOpen(false);
+      const updatedData = [...setData, newRow];
+      setSetData(updatedData);
+
+      // Calculate new page number
+      const newPageNumber = Math.ceil(updatedData.length / postsPerPage);
+      setCurrentPage(newPageNumber);
+
+      fetchData();
+      setInstrumentModalOpen(false);
 
         // Clear the form fields if needed
         setNewInstrumentData({
@@ -119,6 +125,14 @@ function InstrumentsListPage({ user }) {
 
   return (
     <div className={styles.instrumentsListPageContainer}>
+         <div className={styles.returnButtonContainer}>
+        <button
+          className={styles.returnButton}
+          onClick={() => navigateTo("/dashboard")}
+        >
+          &#x2190; Previous
+        </button>
+      </div>
       <div className={styles.instrumentWrapper}>
         <SearchBar setQuery={setQuery} handlePagination={handlePagination} />
         <table>

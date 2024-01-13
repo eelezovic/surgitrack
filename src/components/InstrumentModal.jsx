@@ -87,6 +87,10 @@ function InstrumentModal({ closeInstrumentModal, onSubmit, defaultValue }) {
   return (
     <div className={styles.instrumentModalContainer}>
       <div className={styles.instrumentModal} ref={modalRef}>
+      <div className={styles.closeButtonInstrumentContainer}>
+        <button className={styles.closeButtonInstrumentModal} onClick={closeInstrumentModal}>X</button>
+      </div>
+      <div className={styles.instrumentFormContainer}>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label htmlFor="instrumentName">Instrument Name</label>
@@ -139,6 +143,7 @@ function InstrumentModal({ closeInstrumentModal, onSubmit, defaultValue }) {
             Submit
           </button>
         </form>
+        </div>
       </div>
     </div>
   );

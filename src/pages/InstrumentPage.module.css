@@ -13,6 +13,29 @@
   margin: auto;
 }
 
+.returnButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  margin-top: 10px; 
+}
+
+.returnButton {
+  display: flex;
+  font-size: 1rem;
+  border: 2px solid #819ee5;
+  color: #39559e;
+  padding: 4px;
+  border-radius: 7%;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.returnButton:hover {
+  background-color: #39559e;
+  color: white;
+}
+
 .header {
   display: flex;
   padding: 20px;
@@ -143,6 +166,17 @@ table, .cell {
     width: 95%;
     margin: auto;
     height: 50vh; 
+  }
+
+  .returnButtonContainer {
+    justify-content: end;
+    width: 15%;
+    margin-left: 10px; 
+  }
+  
+  .returnButton {
+    font-size: 0.8rem;
+    border: 1px solid #819ee5;
   }
 
   thead tr th {

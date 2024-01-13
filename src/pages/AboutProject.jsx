@@ -6,7 +6,7 @@ function AboutProject() {
     <div className={styles.projectContainer}>
       <div className={styles.projectContent}>
         <div className={styles.text}>
-          <h1> About Project </h1>
+          <h1> About SurgiTrack </h1>
           <p>
             As an operating room professional, I've developed an Instrument
             Tracking App tailored to streamline the management of surgical

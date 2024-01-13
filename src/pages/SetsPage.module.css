@@ -3,6 +3,30 @@
   background-color: aliceblue;
   border: 1px solid aliceblue;
 }
+
+.returnButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  margin-top: 10px; 
+}
+
+.returnButton {
+  display: flex;
+  font-size: 1rem;
+  border: 2px solid #819ee5;
+  color: #39559e;
+  padding: 4px;
+  border-radius: 7%;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.returnButton:hover {
+  background-color: #39559e;
+  color: white;
+}
+
 .tableContainer {
   height: 70vh; 
   display: flex;
@@ -160,6 +184,18 @@
     width: 90%;
     border-collapse: collapse;
   }
+
+  .returnButtonContainer {
+    justify-content: end;
+    width: 15%;
+    margin-left: 10px; 
+  }
+  
+  .returnButton {
+    font-size: 0.8rem;
+    border: 1px solid #819ee5;
+  }
+
   .header{
     font-size: 1.5rem;
   }

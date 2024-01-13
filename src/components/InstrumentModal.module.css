@@ -7,15 +7,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0 ,0.4);
-  z-index:999 ;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
 }
 
 .instrumentModal {
   border-radius: 5px;
-  padding: 2rem;
+  padding: 1rem;
   background-color: white;
   width: 25em;
+}
+
+.closeButtonInstrumentContainer{
+  display: flex;
+  justify-content: end;
+  margin: 5px;
+}
+
+.closeButtonInstrumentModal {
+  display: flex;
+  justify-content: end;
+  background-color: white;
+  color: #39559e;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.instrumentFormContainer {
+  display: flex;
+  padding: 10px;
 }
 
 .instrumentModal .button {
@@ -23,7 +45,7 @@
   display: block;
   margin-top: 1rem;
   border: none;
-  background-color: #39559e;;
+  background-color: #39559e;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 10px;
@@ -68,7 +90,20 @@ input[type="file"]::file-selector-button {
     display: flex;
     justify-content: center;
     width: 80%;
+    flex-direction: column;
   }
+
+  .instrumentFormContainer{
+    display: flex;
+    justify-content: center;
+  }
+
+  .closeButtonInstrumentModal {
+    font-size: 1.1rem;
+    font-weight: 500;
+    width: 5%;
+  }
+
   .instrumentModal .button {
     padding: 10px;
     font-size: 1rem;
@@ -83,4 +118,4 @@ input[type="file"]::file-selector-button {
     font-size: 1.2rem;
     color: #39559e;
   }
-} 
+}

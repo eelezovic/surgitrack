@@ -25,9 +25,9 @@ const fetchUser = () => {
 function App() {
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [user, setUser] = useState(null);
-  const [sideBar, setSideBar] = useState(false); 
-  const [isMobile, setIsMobile] = useState(false); 
-  
+  const [sideBar, setSideBar] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
   const signout = () => {
     setUser(false);
     setSideBar(false);
@@ -91,21 +91,10 @@ function App() {
             </PrivateRoutes>
           }
         />
-        <Route
-          path="/aboutproject"
-          element={
-            <PrivateRoutes isSignedIn={user}>
-              <AboutProject />
-            </PrivateRoutes>
-          }
-        />
+        <Route path="/aboutproject" element={<AboutProject />} />
         <Route
           path="/instruments"
-          element={
-            <PrivateRoutes isSignedIn={user}>
-              <InstrumentsListPage user={user} />
-            </PrivateRoutes>
-          }
+          element={<InstrumentsListPage user={user} />}
         />
         <Route
           path="/instruments/:id"

@@ -16,8 +16,28 @@
   padding: 1.5rem;
   background-color: white;
   width: 25em;
-  height: 90%;
+  height: 91%;
+}
 
+.closeButtonSetContainer{
+  display: flex;
+  justify-content: end;
+}
+
+.closeButtonSetModal {
+  display: flex;
+  justify-content: end;
+  background-color: white;
+  color: #39559e;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.setFormContainer {
+  display: flex;
+  justify-content: center;
 }
 
 .setModal .button {
@@ -69,9 +89,26 @@ input[type="file"]::file-selector-button {
     z-index: 9999;
   }
   .setModal {
-    width: 80%;
-    height: 85%;
+    width: 70%;
+    height: 87%;
   }
+
+  .closeButtonSetModal {
+    display: flex;
+    justify-content: end;
+    background-color: white;
+    color: #39559e;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .setFormContainer {
+    display: flex;
+    justify-content: center;
+  }
+
   .setModal .button {
     padding: 5px;
     font-size: 0.7rem;
