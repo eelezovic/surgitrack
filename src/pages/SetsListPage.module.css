@@ -175,7 +175,6 @@
   border: 1px solid rgb(171, 170, 170);
 }
 
-
 .editingRows  {
   width: 100%;
 }
@@ -196,10 +195,9 @@
   .returnButton {
     display: flex;
     align-items: center;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     border: 1px solid #819ee5;
     color: #39559e;
-    padding: 3px;
   }
   
   .mainContainer {

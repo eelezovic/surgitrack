@@ -94,12 +94,12 @@
   .instrumentContainer,
   .setContainer {
     border: 3px solid #819ee5;
-    width: 50%;
-    height: 40%;
+    width: 55%;
+    height: 45%;
   }
 
   .instrumentText h2, .setText h2{
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
 
   .instrumentButton,

@@ -192,7 +192,8 @@
   }
   
   .returnButton {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
+    padding: 3px;
     border: 1px solid #819ee5;
   }
 

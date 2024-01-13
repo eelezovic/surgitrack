@@ -89,7 +89,7 @@ input[type="file"]::file-selector-button {
     z-index: 9999;
   }
   .setModal {
-    width: 70%;
+    width: 80%;
     height: 87%;
   }
 
